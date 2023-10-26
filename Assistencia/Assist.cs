@@ -22,10 +22,10 @@ namespace Assistencia
         private int idAssistencia;
         private DateTime dataAssistencia;
         private int precoAssistencia;
-        TipoAssist[] tipoAssistencia;
-        EstadoAssist[] estadoAssistencia;
-        Cliente[] clienteAssistir;
-        Operador[] operadorExecutar;
+        private TipoAssist tipoAssistencia;
+        private EstadoAssist estadoAssistencia;
+        private Cliente[] clienteAssistir;
+        private Operador[] operadorExecutar;
         private static Assist[] assistencias;
         private static int assistenciasRealizadas;
 
@@ -67,6 +67,9 @@ namespace Assistencia
             this.idAssistencia = id;
             this.precoAssistencia = preco;
         }
+        /// <summary>
+        /// Devolve uma copia da array Assist.
+        /// </summary>
         public static Assist[] Assistencias
         {
             get
@@ -86,14 +89,15 @@ namespace Assistencia
         {
             set
             {
-                foreach(Assist a in assistencias)
-                {
-                    if (a.Id == value)
-                        value++;
-                }
                 idAssistencia = value;
+                //foreach(Assist a in assistencias)
+                //{
+                //    if (a.Id == value)
+                //        value++;
+                //}
+                //idAssistencia = value;
             }
-            get { return Id; }
+            get { return idAssistencia; }
         }
         /// <summary>
         /// Manipulacao da variavel preco.
@@ -104,7 +108,7 @@ namespace Assistencia
             {
                 if (value > 0)
                 {
-                    Preco = value;
+                    precoAssistencia = value;
                 }
             }
             get { return precoAssistencia; }
@@ -114,8 +118,21 @@ namespace Assistencia
         /// </summary>
         public DateTime Data
         {
-            set { Data = value; }
+            set { dataAssistencia = value; }
             get { return dataAssistencia; }
+        }
+        /// <summary>
+        /// Manipulacao da variavel tipoAssistencia.
+        /// </summary>
+        public TipoAssist tipoAssis
+        {
+            get { return tipoAssistencia; }
+            set { tipoAssistencia = value; }
+        }
+        public EstadoAssist estadoA
+        {
+            get { return estadoAssistencia; }
+            set { estadoAssistencia = value; }
         }
         #endregion
 
@@ -127,7 +144,7 @@ namespace Assistencia
         /// <param name="b">The b.</param>
         public static bool operator == (Assist a, Assist b)
         {
-            if ((a.idAssistencia == b.idAssistencia) && (a.dataAssistencia == b.dataAssistencia))
+            if ((a.idAssistencia == b.idAssistencia) && (a.dataAssistencia == b.dataAssistencia) && (a.tipoAssistencia.Id == b.tipoAssistencia.Id ))
                 return true;
             return false;
         }
@@ -151,7 +168,7 @@ namespace Assistencia
             return string.Format("ID:{0}|Data:{1}|Preco:{2}", idAssistencia.ToString(), dataAssistencia.ToString(), precoAssistencia.ToString());
         }
         /// <summary>
-        /// Determina se um determinado objeto é igual a outro.
+        /// Determina se um determinado objeto do tipo Assist é igual a outro.
         /// </summary>
         public override bool Equals(object obj)
         {

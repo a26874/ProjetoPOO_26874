@@ -81,6 +81,7 @@ namespace Operadores
         }
 
         #endregion
+
         #region OPERADORES        
         /// <summary>
         /// Redefinição do operador ==
@@ -103,6 +104,7 @@ namespace Operadores
             return (!(a == b));
         }
         #endregion
+
         #region OVERRIDES
         public override string ToString()
         {
