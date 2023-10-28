@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemasConhecidos", "Prob
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedback", "Feedback\Feedback.csproj", "{A9CDAB7C-43D6-4B66-9EA0-0F0241FC2B1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morada", "Morada\Morada.csproj", "{76E0B1C5-D0B9-4981-B074-D4B11F73FE7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{A9CDAB7C-43D6-4B66-9EA0-0F0241FC2B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9CDAB7C-43D6-4B66-9EA0-0F0241FC2B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9CDAB7C-43D6-4B66-9EA0-0F0241FC2B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E0B1C5-D0B9-4981-B074-D4B11F73FE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E0B1C5-D0B9-4981-B074-D4B11F73FE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E0B1C5-D0B9-4981-B074-D4B11F73FE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E0B1C5-D0B9-4981-B074-D4B11F73FE7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

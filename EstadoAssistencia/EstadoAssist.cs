@@ -52,7 +52,7 @@ namespace EstadoAssistencia
         /// <summary>
         /// Manipulacao da variavel servicoAtivo.
         /// </summary>
-        public bool aDecorrer
+        public bool Ativo
         {
             set { servicoAtivo = value; }
             get { return servicoAtivo; }

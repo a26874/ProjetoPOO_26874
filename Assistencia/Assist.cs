@@ -124,16 +124,16 @@ namespace Assistencia
         /// <summary>
         /// Manipulacao da variavel tipoAssistencia.
         /// </summary>
-        public TipoAssist tipoAssis
-        {
-            get { return tipoAssistencia; }
-            set { tipoAssistencia = value; }
-        }
-        public EstadoAssist estadoA
-        {
-            get { return estadoAssistencia; }
-            set { estadoAssistencia = value; }
-        }
+        //public TipoAssist tipoAssis
+        //{
+        //    get { return tipoAssistencia; }
+        //    set { tipoAssistencia = value; }
+        //}
+        //public EstadoAssist estadoA
+        //{
+        //    get { return estadoAssistencia; }
+        //    set { estadoAssistencia = value; }
+        //}
         #endregion
 
         #region OPERADORES        

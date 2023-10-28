@@ -6,16 +6,15 @@
 *   <date>2023 10/25/2023 6:07:35 PM</date>
 *	<description></description>
 **/
-
+using Morada;
 namespace Clientes
 {
     public class Cliente
     {
         #region ATRIBUTOS
         private string nome;
-        private int numero;
         private int contacto;
-        private string morada;
+        private Moradas morada;
         private static int numClientes;
         #endregion
 
@@ -28,15 +27,32 @@ namespace Clientes
         public Cliente()
         {
             nome = string.Empty;
-            numero = -1;
             contacto = -1;
-            morada = string.Empty;
+            morada = new Moradas(string.Empty,string.Empty,string.Empty);
             numClientes = 0;
         }
         #endregion
 
         #region PROPRIEDADES
-
+        public string Nome
+        {
+            set { nome = value; }
+            get { return nome; }
+        }
+        public int Contacto
+        {
+            set
+            {
+                if (contacto > 0)
+                    contacto = value;
+            }
+            get { return contacto; }
+        }
+        public Moradas Morada
+        {
+            get { return morada; }
+            set { morada = value; }
+        }
         #endregion
 
         #region OVERRIDES
