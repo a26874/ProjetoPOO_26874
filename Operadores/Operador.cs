@@ -15,7 +15,7 @@ namespace Operadores
         private string nome;
         private int id;
         private int contacto;
-        static private int numOperadores;
+        static private int numOperadores = 0;
         #endregion
 
         #region COMPORTAMENTO
@@ -29,7 +29,7 @@ namespace Operadores
             nome = string.Empty;
             id = -1;
             contacto = -1;
-            numOperadores = 0;
+            numOperadores++;
         }
         /// <summary>
         /// Construtor com parametros.
@@ -42,6 +42,7 @@ namespace Operadores
             this.nome = nomeOperador;
             this.id = numeroOperador;
             this.contacto = contactoOperador;
+            numOperadores++;
         }
 
         #endregion
@@ -58,12 +59,12 @@ namespace Operadores
         /// <summary>
         /// Manipulador de Numero
         /// </summary>
-        public int Numero
+        public int Id
         {
             get { return id; }
             set
             {
-                if (id > 0)
+                if (value > 0)
                     id = value;
             }
         }
@@ -105,11 +106,24 @@ namespace Operadores
         }
         #endregion
 
-        #region OVERRIDES
+        #region OVERRIDES        
+        /// <summary>
+        /// Redefinição do metodo ToString.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return string.Format("Nome:{0}|ID:{1}|Contacto:{2}", nome, id.ToString(), contacto.ToString());
         }
+        /// <summary>
+        /// Redefinição do metodo Equals.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (obj is Operador)
@@ -119,6 +133,10 @@ namespace Operadores
                     return true;
             }
             return false;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
         #endregion
 

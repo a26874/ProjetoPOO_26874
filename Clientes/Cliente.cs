@@ -7,6 +7,7 @@
 *	<description></description>
 **/
 using Morada;
+
 namespace Clientes
 {
     public class Cliente
@@ -31,23 +32,53 @@ namespace Clientes
             morada = new Moradas(string.Empty,string.Empty,string.Empty);
             numClientes = 0;
         }
+        /// <summary>
+        /// Construtor por parametros.
+        /// </summary>
+        /// <param name="n">The n.</param>
+        /// <param name="c">The c.</param>
+        /// <param name="M">The m.</param>
+        public Cliente(string n, int c, Moradas M)
+        {
+            nome = n;
+            contacto = c;
+            morada = M;
+        }
         #endregion
 
-        #region PROPRIEDADES
+        #region PROPRIEDADES        
+        /// <summary>
+        /// Manipulacao da variavel nome.
+        /// </summary>
+        /// <value>
+        /// The nome.
+        /// </value>
         public string Nome
         {
             set { nome = value; }
             get { return nome; }
         }
+        /// <summary>
+        /// Manipulacao da variavel contacto.
+        /// </summary>
+        /// <value>
+        /// The contacto.
+        /// </value>
         public int Contacto
         {
             set
             {
-                if (contacto > 0)
+                if (value > 0)
                     contacto = value;
             }
             get { return contacto; }
         }
+        /// <summary>
+        /// Manipulacao da variavel Morada.
+        /// </summary>
+        /// <value>
+        /// The morada.
+        /// </value>
         public Moradas Morada
         {
             get { return morada; }
@@ -55,12 +86,28 @@ namespace Clientes
         }
         #endregion
 
-        #region OVERRIDES
-
+        #region OVERRIDES        
+        /// <summary>
+        /// Redefinição do metodo ToString.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return FichaCliente();
+        }
         #endregion
 
-        #region OUTROS METODOS
-
+        #region OUTROS METODOS        
+        /// <summary>
+        /// Metodo para impressão das informações essenciais do cliente.
+        /// </summary>
+        /// <returns></returns>
+        public string FichaCliente()
+        {
+            return string.Format("Nome:{0} - Contacto:{1}", nome, contacto);
+        }
         #endregion
 
         #endregion

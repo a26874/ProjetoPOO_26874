@@ -39,7 +39,8 @@
     <Reference Include="Clientes">
       <HintPath>..\Clientes\bin\Debug\Clientes.dll</HintPath>
     </Reference>
-    <Reference Include="EstadoAssistencia">
+    <Reference Include="EstadoAssistencia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\EstadoAssistencia\bin\Debug\EstadoAssistencia.dll</HintPath>
     </Reference>
     <Reference Include="Feedback">

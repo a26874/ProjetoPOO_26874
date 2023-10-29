@@ -76,15 +76,29 @@ namespace EstadoAssistencia
         {
             return string.Format("Descricao:{0}|Ativo:{1}", descEstadoAssistencia, servicoAtivo.ToString());
         }
+        /// <summary>
+        /// Determina se um determinado objeto do tipo EstadoAssist é igual a outro.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
-            if(obj is EstadoAssist)
-            {
-                EstadoAssist a = (EstadoAssist)obj;
-                if (this == a)
-                    return true;
-            }
+            EstadoAssist a = (EstadoAssist)obj;
+            if (this == a)
+                return true;
+            //if (obj is EstadoAssist)
+            //{
+            //    EstadoAssist a = (EstadoAssist)obj;
+            //    if (this == a)
+            //        return true;
+            //}
             return false;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
         #endregion
 

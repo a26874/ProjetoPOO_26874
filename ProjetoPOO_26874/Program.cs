@@ -4,14 +4,16 @@ using System;
 using EstadoAssistencia;
 using TipoAssistencia;
 using Morada;
+using Operadores;
 
 namespace ProjetoPOO_26874
 {
     internal class Program
     {
-        const int MAXASSISTENCIAS = 5;
+        const int MAXASSISTENCIAS = 10;
         const int TIPOSASSISTENCIA = 5;
         const int MAXCLIENTES = 10;
+        const int MAXOPERADORES = 10;
         static void Main(string[] args)
         {
             Assist[] assistencias = new Assist[MAXASSISTENCIAS];
@@ -20,9 +22,17 @@ namespace ProjetoPOO_26874
             Assist a1 = new Assist(1, DateTime.Now, 20);
             Assist a2 = new Assist(2, DateTime.Now, 30);
             Assist a3 = new Assist(3, DateTime.Now, 40);
-            assistencias[0] = a1;
-            assistencias[1] = a2;
-            assistencias[2] = a3;
+            a1.tipoAssis.NomeTipo = "teste";
+            a1.tipoAssis.Id = 2;
+            a1.estadoA.Ativo = true;
+            a1.estadoA.DescEstado = "Concluido";
+
+            a2.tipoAssis = new TipoAssist();
+            a2.estadoA = new EstadoAssist();
+            a2.cliente = new Cliente();
+            a2.operador = new Operador();
+
+
             //Tipo assistencias
             TipoAssist[] tipoAssistencias = new TipoAssist[TIPOSASSISTENCIA];
             TipoAssist descAssist1 = new TipoAssist();
@@ -31,6 +41,11 @@ namespace ProjetoPOO_26874
             descAssist1.Id = 1;
             tipoAssistencias[0] = descAssist1;
             //a1.tipoAssis = tipoAssistencias[0];
+            a1.tipoAssis = descAssist1;
+
+
+
+
 
             //Estado Assistencias
             EstadoAssist estado1 = new EstadoAssist();
@@ -43,26 +58,39 @@ namespace ProjetoPOO_26874
 
             Cliente c1 = new Cliente();
             c1.Nome = "askdaskd";
-            c1.Contacto = 812412;
+            c1.Contacto = 424242;
             c1.Morada = new Moradas();
             c1.Morada.Localidade = "Braga";
             c1.Morada.Rua = "asdas";
             c1.Morada.CodPostal = "2487-248";
-
-
             clientes[0] = c1;
 
-            Console.WriteLine(c1.Morada.ToString());
-            //Console.WriteLine("{0},{1},{2}", a1.tipoAssis.NomeTipo, a1.tipoAssis.Id, a1.tipoAssis.Desc);
-            //Console.WriteLine(descAssist1.ToString());
+            a1.cliente = c1;
 
-            //Console.WriteLine(a1.estadoA.ToString());
+
+
+            //Operadores
+            Operador[] operadores = new Operador[MAXOPERADORES];
             
-            //foreach (Assist c in assistencias)
-            //{
-            //    if (c != null)
-            //        Console.WriteLine(c.ToString());
-            //}
+            Operador op1 = new Operador();
+            op1.Nome = "Marco";
+            op1.Contacto = 18274;
+            op1.Id = 2;
+
+            a1.operador = op1;
+            assistencias[0] = a1;
+            assistencias[1] = a2;
+            assistencias[2] = a3;
+
+            foreach (Assist a in assistencias)
+            {
+                if (a!= null)
+                {
+                    Console.WriteLine(a.ToString());
+                    Console.WriteLine();
+                }
+            }
+            Console.WriteLine(a1.cliente.ToString());
         }
     }
 }

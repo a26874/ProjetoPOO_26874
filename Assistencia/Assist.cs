@@ -24,8 +24,8 @@ namespace Assistencia
         private int precoAssistencia;
         private TipoAssist tipoAssistencia;
         private EstadoAssist estadoAssistencia;
-        private Cliente[] clienteAssistir;
-        private Operador[] operadorExecutar;
+        private Cliente clienteAssistir;
+        private Operador operadorExecutar;
         private static Assist[] assistencias;
         private static int assistenciasRealizadas;
 
@@ -56,6 +56,8 @@ namespace Assistencia
             this.idAssistencia = id;
             this.dataAssistencia = data;
             this.precoAssistencia = preco;
+            this.tipoAssis = new TipoAssist(string.Empty,string.Empty, -1);
+            this.estadoA = new EstadoAssist(string.Empty, false);
         }
         /// <summary>
         /// Construtor para assistencia, com apenas dois parametros.
@@ -124,16 +126,44 @@ namespace Assistencia
         /// <summary>
         /// Manipulacao da variavel tipoAssistencia.
         /// </summary>
-        //public TipoAssist tipoAssis
-        //{
-        //    get { return tipoAssistencia; }
-        //    set { tipoAssistencia = value; }
-        //}
-        //public EstadoAssist estadoA
-        //{
-        //    get { return estadoAssistencia; }
-        //    set { estadoAssistencia = value; }
-        //}
+        public TipoAssist tipoAssis
+        {
+            get { return tipoAssistencia; }
+            set { tipoAssistencia = value; }
+        }
+        /// <summary>
+        /// Manipulacao da variavel EstadoAssistencia.
+        /// </summary>
+        /// <value>
+        /// The estado a.
+        /// </value>
+        public EstadoAssist estadoA
+        {
+            get { return estadoAssistencia; }
+            set { estadoAssistencia = value; }
+        }
+        /// <summary>
+        /// Manipulacao da variavel Cliente.
+        /// </summary>
+        /// <value>
+        /// The cliente.
+        /// </value>
+        public Cliente cliente
+        {
+            get { return clienteAssistir; }
+            set {  clienteAssistir = value; }
+        }
+        /// <summary>
+        /// Manipulacao da variavel operador.
+        /// </summary>
+        /// <value>
+        /// The operador.
+        /// </value>
+        public Operador operador
+        {
+            get { return operadorExecutar; }
+            set { operadorExecutar = value; }
+        }
         #endregion
 
         #region OPERADORES        
@@ -165,7 +195,7 @@ namespace Assistencia
         /// </summary>
         public override string ToString()
         {
-            return string.Format("ID:{0}|Data:{1}|Preco:{2}", idAssistencia.ToString(), dataAssistencia.ToString(), precoAssistencia.ToString());
+            return FichaAssistencia();
         }
         /// <summary>
         /// Determina se um determinado objeto do tipo Assist é igual a outro.
@@ -188,6 +218,23 @@ namespace Assistencia
 
         #region OUTROS METODOS
 
+        public string FichaAssistencia()
+        {
+            return string.Format("ID assistencia:{0} - Data:{1} - Preco:{2} - Tipo:{3} - Desc:{4} - IDTipo:{5} - Estado:{6} - DescEstado:{7} - NomeCliente:{8} - ContactoCl:{9}",
+                idAssistencia, dataAssistencia, precoAssistencia, tipoAssistencia.NomeTipo,tipoAssistencia.Desc,tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
+                clienteAssistir.Nome, clienteAssistir.Contacto);
+        }
+
+        //#region ATRIBUTOS
+        //private int idAssistencia;
+        //private DateTime dataAssistencia;
+        //private int precoAssistencia;
+        //private TipoAssist tipoAssistencia;
+        //private EstadoAssist estadoAssistencia;
+        //private Cliente[] clienteAssistir;
+        //private Operador[] operadorExecutar;
+        //private static Assist[] assistencias;
+        //private static int assistenciasRealizadas;
         #endregion
 
         #endregion

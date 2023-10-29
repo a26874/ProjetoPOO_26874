@@ -96,15 +96,46 @@ namespace Morada
             return !(a == b);
         }
         #endregion
-        #region OVERRIDES
+
+        #region OVERRIDES        
+        /// <summary>
+        /// Redefinição do metodo ToString.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
-            return string.Format("Rua:{0}|Codigo-Postal:{1}|Localidade:{2}", rua, codigoPostal, localidade);
+            return string.Format("", rua, codigoPostal, localidade);
+        }
+        /// <summary>
+        /// Redefinição do metodo Equals.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            Moradas a = (Moradas)obj;
+            if (this == a) return true;
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
         #endregion
 
-        #region OUTROS METODOS
-
+        #region OUTROS METODOS        
+        /// <summary>
+        /// Metodo para impressão das informações essenciais de uma morada.
+        /// </summary>
+        /// <returns></returns>
+        public string FichaMorada()
+        {
+            return string.Format("Rua:{0} - Codigo-Postal:{1} - Localidade:{2}", rua, codigoPostal, localidade);
+        }
         #endregion
 
         #endregion
