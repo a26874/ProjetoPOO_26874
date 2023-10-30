@@ -5,6 +5,7 @@ using EstadoAssistencia;
 using TipoAssistencia;
 using Morada;
 using Operadores;
+using Produtos;
 using RegistoAssistencias;
 
 namespace ProjetoPOO_26874
@@ -67,6 +68,7 @@ namespace ProjetoPOO_26874
 
             a1.cliente = c1;
 
+            Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG");
 
 
             //Operadores
@@ -83,11 +85,10 @@ namespace ProjetoPOO_26874
             registoAssist.InsereAssist(a1);
             foreach (Assist a in registoAssist.TodasAssistencias)
             {
-                if (a is null)
+                if (a.Id == -1)
                     continue;
                 Console.WriteLine(a.ToString());
             }
-            registoAssist.RemoverAssistencias();
         }
     }
 }

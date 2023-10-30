@@ -14,7 +14,7 @@ namespace RegistoAssistencias
 {
     public class RegistoAssist
     {
-        const int MAXASSISTENCIAS = 10;
+        const int MAXASSISTENCIAS = 5;
         #region ATRIBUTOS
         int numAssist;
         private static int idRegisto; 
@@ -31,7 +31,7 @@ namespace RegistoAssistencias
         {
             idRegisto = -1;
             assistencias = new Assist[MAXASSISTENCIAS];
-            IniciarArrayRegisto(assistencias); 
+            IniciarArrayRegisto(assistencias);
         }
         /// <summary>
         /// Construtor por parametros.
@@ -77,14 +77,13 @@ namespace RegistoAssistencias
             numAssist++;
             return true;
         }
-        #endregion
         /// <summary>
         /// Metodo para remoção de assistencias.
         /// </summary>
         /// <param name="r"></param>
         public void RemoverAssistencias(RegistoAssist[] r)
         {
-            for (int i = 0; i < r.Length;i++)
+            for (int i = 0; i < r.Length; i++)
             {
                 if (r[i] is null)
                     continue;
@@ -92,6 +91,8 @@ namespace RegistoAssistencias
                     r[i] = null;
             }
         }
+        #endregion
+
         #endregion
     }
 }

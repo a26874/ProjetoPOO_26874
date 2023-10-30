@@ -218,17 +218,6 @@ namespace Assistencia
                 idAssistencia, dataAssistencia, precoAssistencia, tipoAssistencia.NomeTipo,tipoAssistencia.Desc,tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
                 clienteAssistir.Nome, clienteAssistir.Contacto);
         }
-        /// <summary>
-        /// Metodo para iniciar a array assistencias.
-        /// </summary>
-        /// <param name="a"></param>
-        void IniciarArray(Assist[] a)
-        {
-            for (int i = 0; i < a.Length;i++)
-            {
-                a[i] = new Assist();
-            }
-        }
 
         #endregion
 
