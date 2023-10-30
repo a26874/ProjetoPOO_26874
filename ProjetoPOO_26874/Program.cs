@@ -5,6 +5,7 @@ using EstadoAssistencia;
 using TipoAssistencia;
 using Morada;
 using Operadores;
+using RegistoAssistencias;
 
 namespace ProjetoPOO_26874
 {
@@ -16,12 +17,12 @@ namespace ProjetoPOO_26874
         const int MAXOPERADORES = 10;
         static void Main(string[] args)
         {
-            Assist[] assistencias = new Assist[MAXASSISTENCIAS];
+            RegistoAssist registoAssist = new RegistoAssist();
 
             //Nova assistencias
             Assist a1 = new Assist(1, DateTime.Now, 20);
             Assist a2 = new Assist(2, DateTime.Now, 30);
-            Assist a3 = new Assist(3, DateTime.Now, 40);
+            //Assist a3 = new Assist(3, DateTime.Now, 40);
             a1.tipoAssis.NomeTipo = "teste";
             a1.tipoAssis.Id = 2;
             a1.estadoA.Ativo = true;
@@ -78,19 +79,19 @@ namespace ProjetoPOO_26874
             op1.Id = 2;
 
             a1.operador = op1;
-            assistencias[0] = a1;
-            assistencias[1] = a2;
-            assistencias[2] = a3;
-
-            foreach (Assist a in assistencias)
-            {
-                if (a!= null)
-                {
-                    Console.WriteLine(a.ToString());
-                    Console.WriteLine();
-                }
-            }
+            
+            //foreach (Assist a in assistencias)
+            //{
+            //    if (a is null)
+            //    {
+            //        continue;
+            //    }
+            //    Console.WriteLine(a.ToString());
+            //    Console.WriteLine();
+            //}
             Console.WriteLine(a1.cliente.ToString());
+            registoAssist.InsereAssist(a1);
         }
+
     }
 }

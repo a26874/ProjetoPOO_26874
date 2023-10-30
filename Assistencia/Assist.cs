@@ -26,7 +26,6 @@ namespace Assistencia
         private EstadoAssist estadoAssistencia;
         private Cliente clienteAssistir;
         private Operador operadorExecutar;
-        private static Assist[] assistencias;
         private static int assistenciasRealizadas;
 
         #endregion
@@ -43,7 +42,7 @@ namespace Assistencia
             dataAssistencia = DateTime.MinValue;
             precoAssistencia = 0;
             assistenciasRealizadas = 0;
-            assistencias = new Assist[MAXASSISTENCIAS];
+            //assistencias = new Assist[MAXASSISTENCIAS];
         }
         /// <summary>
         /// Construtor para assistencia, com todos os parametros.
@@ -72,15 +71,16 @@ namespace Assistencia
         /// <summary>
         /// Devolve uma copia da array Assist.
         /// </summary>
-        public static Assist[] Assistencias
-        {
-            get
-            {
-                Assist[] copy = new Assist[assistencias.Length];
-                Array.Copy(assistencias,copy, assistencias.Length);
-                return copy;
-            }
-        }
+        
+        
+        //Perguntar prof
+        //public static Assist[] TodasAssistencias
+        //{
+        //    get
+        //    {
+        //        return (Assist[])assistencias.Clone();
+        //    }
+        //}
         #endregion
 
         #region PROPRIEDADES        
@@ -89,16 +89,7 @@ namespace Assistencia
         /// </summary>
         public int Id
         {
-            set
-            {
-                idAssistencia = value;
-                //foreach(Assist a in assistencias)
-                //{
-                //    if (a.Id == value)
-                //        value++;
-                //}
-                //idAssistencia = value;
-            }
+            set { idAssistencia = value; }
             get { return idAssistencia; }
         }
         /// <summary>
@@ -217,24 +208,28 @@ namespace Assistencia
         #endregion
 
         #region OUTROS METODOS
-
+        /// <summary>
+        /// Metodo para apresentação dos dados de uma assistencia.
+        /// </summary>
+        /// <returns></returns>
         public string FichaAssistencia()
         {
             return string.Format("ID assistencia:{0} - Data:{1} - Preco:{2} - Tipo:{3} - Desc:{4} - IDTipo:{5} - Estado:{6} - DescEstado:{7} - NomeCliente:{8} - ContactoCl:{9}",
                 idAssistencia, dataAssistencia, precoAssistencia, tipoAssistencia.NomeTipo,tipoAssistencia.Desc,tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
                 clienteAssistir.Nome, clienteAssistir.Contacto);
         }
+        /// <summary>
+        /// Metodo para iniciar a array assistencias.
+        /// </summary>
+        /// <param name="a"></param>
+        void IniciarArray(Assist[] a)
+        {
+            for (int i = 0; i < a.Length;i++)
+            {
+                a[i] = new Assist();
+            }
+        }
 
-        //#region ATRIBUTOS
-        //private int idAssistencia;
-        //private DateTime dataAssistencia;
-        //private int precoAssistencia;
-        //private TipoAssist tipoAssistencia;
-        //private EstadoAssist estadoAssistencia;
-        //private Cliente[] clienteAssistir;
-        //private Operador[] operadorExecutar;
-        //private static Assist[] assistencias;
-        //private static int assistenciasRealizadas;
         #endregion
 
         #endregion

@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9BB1AD70-70B9-4DE4-A244-F9B87DA4333D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ProjetoPOO_26874</RootNamespace>
-    <AssemblyName>ProjetoPOO_26874</AssemblyName>
+    <ProjectGuid>{07C42CD3-BD56-486B-8D67-20ACD81CC213}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RegistoAssistencias</RootNamespace>
+    <AssemblyName>RegistoAssistencias</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,34 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assistencia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Assistencia">
       <HintPath>..\Assistencia\bin\Debug\Assistencia.dll</HintPath>
     </Reference>
     <Reference Include="Clientes">
       <HintPath>..\Clientes\bin\Debug\Clientes.dll</HintPath>
     </Reference>
-    <Reference Include="EstadoAssistencia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EstadoAssistencia\bin\Debug\EstadoAssistencia.dll</HintPath>
-    </Reference>
-    <Reference Include="Feedback">
-      <HintPath>..\Feedback\bin\Debug\Feedback.dll</HintPath>
-    </Reference>
-    <Reference Include="Morada">
-      <HintPath>..\Morada\bin\Debug\Morada.dll</HintPath>
-    </Reference>
     <Reference Include="Operadores">
       <HintPath>..\Operadores\bin\Debug\Operadores.dll</HintPath>
-    </Reference>
-    <Reference Include="ProblemasConhecidos">
-      <HintPath>..\ProblemasConhecidos\bin\Debug\ProblemasConhecidos.dll</HintPath>
-    </Reference>
-    <Reference Include="Produtos">
-      <HintPath>..\Produtos\bin\Debug\Produtos.dll</HintPath>
-    </Reference>
-    <Reference Include="RegistoAssistencias">
-      <HintPath>..\RegistoAssistencias\bin\Debug\RegistoAssistencias.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,16 +48,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TipoAssistencia">
-      <HintPath>..\TipoAssistencia\bin\Debug\TipoAssistencia.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="RegistoAssist.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
