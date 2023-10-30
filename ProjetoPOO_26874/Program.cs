@@ -11,7 +11,6 @@ namespace ProjetoPOO_26874
 {
     internal class Program
     {
-        const int MAXASSISTENCIAS = 10;
         const int TIPOSASSISTENCIA = 5;
         const int MAXCLIENTES = 10;
         const int MAXOPERADORES = 10;
@@ -80,18 +79,15 @@ namespace ProjetoPOO_26874
 
             a1.operador = op1;
             
-            //foreach (Assist a in assistencias)
-            //{
-            //    if (a is null)
-            //    {
-            //        continue;
-            //    }
-            //    Console.WriteLine(a.ToString());
-            //    Console.WriteLine();
-            //}
             Console.WriteLine(a1.cliente.ToString());
             registoAssist.InsereAssist(a1);
+            foreach (Assist a in registoAssist.TodasAssistencias)
+            {
+                if (a is null)
+                    continue;
+                Console.WriteLine(a.ToString());
+            }
+            registoAssist.RemoverAssistencias();
         }
-
     }
 }

@@ -18,8 +18,6 @@ namespace RegistoAssistencias
         #region ATRIBUTOS
         int numAssist;
         private static int idRegisto; 
-        private Cliente cliente;
-        private Operador operadores;
         private Assist[] assistencias;
         #endregion
 
@@ -32,9 +30,8 @@ namespace RegistoAssistencias
         public RegistoAssist()
         {
             idRegisto = -1;
-            cliente = new Cliente();
-            operadores = new Operador();
             assistencias = new Assist[MAXASSISTENCIAS];
+            IniciarArrayRegisto(assistencias); 
         }
         /// <summary>
         /// Construtor por parametros.
@@ -43,17 +40,37 @@ namespace RegistoAssistencias
         /// <param name="c"></param>
         /// <param name="o"></param>
         /// <param name="a"></param>
-        
+
         #endregion
 
         #region PROPRIEDADES
+        public Assist[] TodasAssistencias
+        {
+            get { return assistencias; }
+        }
         #endregion
 
         #region OVERRIDES
-
+        
         #endregion
 
         #region OUTROS METODOS
+        /// <summary>
+        /// Metodo para inicialização da array.
+        /// </summary>
+        /// <param name="a"></param>
+        void IniciarArrayRegisto(Assist[] a)
+        {
+            for (int i = 0; i < a.Length;i++)
+            {
+                a[i] = new Assist();
+            }
+        }
+        /// <summary>
+        /// Metodo para a inserção de uma nova assistência na array de registos.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public bool InsereAssist(Assist a)
         {
             assistencias[numAssist] = a;
@@ -61,7 +78,20 @@ namespace RegistoAssistencias
             return true;
         }
         #endregion
-
+        /// <summary>
+        /// Metodo para remoção de assistencias.
+        /// </summary>
+        /// <param name="r"></param>
+        public void RemoverAssistencias(RegistoAssist[] r)
+        {
+            for (int i = 0; i < r.Length;i++)
+            {
+                if (r[i] is null)
+                    continue;
+                else
+                    r[i] = null;
+            }
+        }
         #endregion
     }
 }
