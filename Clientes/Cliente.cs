@@ -10,18 +10,27 @@ using Morada;
 
 namespace Clientes
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Cliente
     {
         #region ATRIBUTOS
         private string nome;
         private int contacto;
         private Moradas morada;
-        private static int numClientes;
+        private static int numClientes; //
         #endregion
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES        
+        #region CONSTRUTORES     
+        
+        static Cliente()
+        {
+            numClientes = 0;
+        }
+
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -38,11 +47,11 @@ namespace Clientes
         /// <param name="n">The n.</param>
         /// <param name="c">The c.</param>
         /// <param name="M">The m.</param>
-        public Cliente(string n, int c, Moradas M)
+        public Cliente(string n, int c, Moradas m)
         {
             nome = n;
             contacto = c;
-            morada = M;
+            morada = m;
         }
         #endregion
 

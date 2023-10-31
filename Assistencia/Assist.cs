@@ -24,8 +24,9 @@ namespace Assistencia
         private int precoAssistencia;
         private TipoAssist tipoAssistencia;
         private EstadoAssist estadoAssistencia;
-        private Cliente clienteAssistir;
-        private Operador operadorExecutar;
+        ///Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
+        private Cliente clienteAssistir; //substituir por clienteID
+        private Operador operadorExecutar; //substituir por OperadorID
         private static int assistenciasRealizadas;
 
         #endregion

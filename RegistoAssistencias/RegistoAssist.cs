@@ -73,6 +73,7 @@ namespace RegistoAssistencias
         /// <returns></returns>
         public bool InsereAssist(Assist a)
         {
+            //Verificar se a já existe!!! && se existe espaço
             assistencias[numAssist] = a;
             numAssist++;
             return true;
@@ -81,15 +82,16 @@ namespace RegistoAssistencias
         /// Metodo para remoção de assistencias.
         /// </summary>
         /// <param name="r"></param>
-        public void RemoverAssistencias(RegistoAssist[] r)
+        public bool RemoverAssistencias()
         {
-            for (int i = 0; i < r.Length; i++)
+            for (int i = 0; i < assistencias.Length; i++)
             {
-                if (r[i] is null)
+                if (assistencias[i] is null)
                     continue;
                 else
-                    r[i] = null;
+                    assistencias[i] = null;
             }
+            return true;
         }
         #endregion
 

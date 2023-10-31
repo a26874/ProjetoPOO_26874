@@ -9,6 +9,9 @@
 
 namespace Morada
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Moradas
     {
         #region ATRIBUTOS
