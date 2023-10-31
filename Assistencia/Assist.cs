@@ -21,7 +21,6 @@ namespace Assistencia
         #region ATRIBUTOS
         private int idAssistencia;
         private DateTime dataAssistencia;
-        private int precoAssistencia;
         private TipoAssist tipoAssistencia;
         private EstadoAssist estadoAssistencia;
         ///Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
@@ -41,9 +40,7 @@ namespace Assistencia
         {
             idAssistencia = -1;
             dataAssistencia = DateTime.MinValue;
-            precoAssistencia = 0;
             assistenciasRealizadas = 0;
-            //assistencias = new Assist[MAXASSISTENCIAS];
         }
         /// <summary>
         /// Construtor para assistencia, com todos os parametros.
@@ -51,12 +48,11 @@ namespace Assistencia
         /// <param name="id">O identificador da assistencia.</param>
         /// <param name="data">A data da assistencia.</param>
         /// <param name="preco">O preco da assistencia.</param>
-        public Assist(int id, DateTime data, int preco)
+        public Assist(int id, DateTime data)
         {
             this.idAssistencia = id;
             this.dataAssistencia = data;
-            this.precoAssistencia = preco;
-            this.tipoAssis = new TipoAssist(string.Empty,string.Empty, -1);
+            this.tipoAssis = new TipoAssist(string.Empty,string.Empty,-1,-1);
             this.estadoA = new EstadoAssist(string.Empty, false);
         }
         /// <summary>
@@ -67,7 +63,6 @@ namespace Assistencia
         public Assist(int id, int preco)
         {
             this.idAssistencia = id;
-            this.precoAssistencia = preco;
         }
         /// <summary>
         /// Devolve uma copia da array Assist.
@@ -92,20 +87,6 @@ namespace Assistencia
         {
             set { idAssistencia = value; }
             get { return idAssistencia; }
-        }
-        /// <summary>
-        /// Manipulacao da variavel preco.
-        /// </summary>
-        public int Preco
-        {
-            set
-            {
-                if (value > 0)
-                {
-                    precoAssistencia = value;
-                }
-            }
-            get { return precoAssistencia; }
         }
         /// <summary>
         /// Manipulacao da variavel data.
@@ -216,7 +197,7 @@ namespace Assistencia
         public string FichaAssistencia()
         {
             return string.Format("ID assistencia:{0} - Data:{1} - Preco:{2} - Tipo:{3} - Desc:{4} - IDTipo:{5} - Estado:{6} - DescEstado:{7} - NomeCliente:{8} - ContactoCl:{9}",
-                idAssistencia, dataAssistencia, precoAssistencia, tipoAssistencia.NomeTipo,tipoAssistencia.Desc,tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
+                idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo,tipoAssistencia.Desc,tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
                 clienteAssistir.Nome, clienteAssistir.Contacto);
         }
 

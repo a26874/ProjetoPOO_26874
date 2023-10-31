@@ -16,6 +16,7 @@ namespace TipoAssistencia
         private string desc;
         private string nomeTipo;
         private int id;
+        private int preco;
         #endregion
 
         #region COMPORTAMENTO
@@ -28,17 +29,20 @@ namespace TipoAssistencia
         {
             desc = string.Empty;
             nomeTipo = string.Empty;
+            id = -1;
+            preco = -1;
         }
         /// <summary>
         /// Construtor para tipos de assistencia.
         /// </summary>
         /// <param name="descricao">The descricao.</param>
         /// <param name="nome">The nome.</param>
-        public TipoAssist(string descricao, string nome, int id)
+        public TipoAssist(string desc, string nomeTipo, int id, int preco)
         {
-            this.desc = descricao;
-            this.nomeTipo = nome;
+            this.desc = desc;
+            this.nomeTipo = nomeTipo;
             this.id = id;
+            this.preco = preco;
         }
         #endregion
 
@@ -74,6 +78,14 @@ namespace TipoAssistencia
             }
             get { return id; }
         }
+        public int Preco
+        {
+            get { return preco; }
+            set 
+            {
+                if (value > 0) preco = value;
+            }
+        }
         #endregion
 
         #region OPERADORES  
@@ -108,7 +120,7 @@ namespace TipoAssistencia
         /// <returns>string</returns>
         public override string ToString()
         {
-            return string.Format("Descricao:{0}|Tipo:{1}|ID:{2}", desc, nomeTipo, id);
+            return string.Format("Descricao:{0}|Tipo:{1}|ID:{2}|Preco:{3}", desc, nomeTipo, id, preco);
         }
         /// <summary>
         /// Determina se um objeto do tipo TipoAssist é igual a outro.

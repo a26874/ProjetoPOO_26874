@@ -20,8 +20,8 @@ namespace ProjetoPOO_26874
             RegistoAssist registoAssist = new RegistoAssist();
 
             //Nova assistencias
-            Assist a1 = new Assist(1, DateTime.Now, 20);
-            Assist a2 = new Assist(2, DateTime.Now, 30);
+            Assist a1 = new Assist(1, DateTime.Now);
+            Assist a2 = new Assist(2, DateTime.Now);
             //Assist a3 = new Assist(3, DateTime.Now, 40);
             a1.tipoAssis.NomeTipo = "teste";
             a1.tipoAssis.Id = 2;
@@ -35,12 +35,11 @@ namespace ProjetoPOO_26874
 
 
             //Tipo assistencias
-            TipoAssist[] tipoAssistencias = new TipoAssist[TIPOSASSISTENCIA];
             TipoAssist descAssist1 = new TipoAssist();
             descAssist1.Desc = "Realizada Chamada para resolucao problemas";
             descAssist1.NomeTipo = "Telefone/Telemovel";
             descAssist1.Id = 1;
-            tipoAssistencias[0] = descAssist1;
+            descAssist1.Preco = 20000;
             //a1.tipoAssis = tipoAssistencias[0];
             a1.tipoAssis = descAssist1;
 
@@ -55,7 +54,6 @@ namespace ProjetoPOO_26874
             //a1.estadoA = estado1;
 
             //Clientes
-            Cliente[] clientes = new Cliente[MAXCLIENTES];
 
             Cliente c1 = new Cliente();
             c1.Nome = "askdaskd";
@@ -64,7 +62,6 @@ namespace ProjetoPOO_26874
             c1.Morada.Localidade = "Braga";
             c1.Morada.Rua = "asdas";
             c1.Morada.CodPostal = "2487-248";
-            clientes[0] = c1;
 
             a1.cliente = c1;
 
@@ -72,7 +69,6 @@ namespace ProjetoPOO_26874
 
 
             //Operadores
-            Operador[] operadores = new Operador[MAXOPERADORES];
             
             Operador op1 = new Operador();
             op1.Nome = "Marco";
