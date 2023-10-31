@@ -64,19 +64,6 @@ namespace Assistencia
         {
             this.idAssistencia = id;
         }
-        /// <summary>
-        /// Devolve uma copia da array Assist.
-        /// </summary>
-        
-        
-        //Perguntar prof
-        //public static Assist[] TodasAssistencias
-        //{
-        //    get
-        //    {
-        //        return (Assist[])assistencias.Clone();
-        //    }
-        //}
         #endregion
 
         #region PROPRIEDADES        

@@ -1,12 +1,12 @@
 ﻿using Assistencia;
-using Clientes;
 using System;
 using EstadoAssistencia;
 using TipoAssistencia;
-using Morada;
-using Operadores;
 using Produtos;
 using RegistoAssistencias;
+using Clientes;
+using Operadores;
+using Morada;
 
 namespace ProjetoPOO_26874
 {
