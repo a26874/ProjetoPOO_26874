@@ -6,7 +6,7 @@
 *   <date>2023 10/25/2023 6:03:03 PM</date>
 *	<description></description>
 **/
-using Operadores;
+using Pessoas;
 
 namespace TipoAssistencia
 {

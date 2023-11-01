@@ -7,8 +7,11 @@
 *	<description></description>
 **/
 
-namespace Operadores
+namespace Pessoas
 {
+    /// <summary>
+    /// Classe de operadores.
+    /// </summary>
     public class Operador
     {
         #region ATRIBUTOS
@@ -21,6 +24,11 @@ namespace Operadores
         #region COMPORTAMENTO
 
         #region CONSTRUTORES        
+
+        static Operador()
+        {
+            numOperadores = 0;
+        }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>

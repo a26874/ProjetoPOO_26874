@@ -4,17 +4,13 @@ using EstadoAssistencia;
 using TipoAssistencia;
 using Produtos;
 using RegistoAssistencias;
-using Clientes;
-using Operadores;
-using Morada;
+using Pessoas;
 
 namespace ProjetoPOO_26874
 {
     internal class Program
     {
-        const int TIPOSASSISTENCIA = 5;
         const int MAXCLIENTES = 10;
-        const int MAXOPERADORES = 10;
         static void Main(string[] args)
         {
             RegistoAssist registoAssist = new RegistoAssist();
@@ -27,11 +23,10 @@ namespace ProjetoPOO_26874
             a1.tipoAssis.Id = 2;
             a1.estadoA.Ativo = true;
             a1.estadoA.DescEstado = "Concluido";
-
+            a1.ClienteId = 1;
+            a1.OperadorId = 1;
             a2.tipoAssis = new TipoAssist();
             a2.estadoA = new EstadoAssist();
-            a2.cliente = new Cliente();
-            a2.operador = new Operador();
 
 
             //Tipo assistencias
@@ -53,31 +48,53 @@ namespace ProjetoPOO_26874
             estado1.DescEstado = "Ainda objetivos para realizar.";
             //a1.estadoA = estado1;
 
-            //Clientes
+            //Pessoas
+            Clientes listaClientes = new Clientes();
+
 
             Cliente c1 = new Cliente();
             c1.Nome = "askdaskd";
             c1.Contacto = 424242;
+            c1.NIF = 29442442;
             c1.Morada = new Moradas();
             c1.Morada.Localidade = "Braga";
             c1.Morada.Rua = "asdas";
             c1.Morada.CodPostal = "2487-248";
 
-            a1.cliente = c1;
+            Cliente c2 = new Cliente("Marco", 9274, new Moradas("Teste", "4718-222", "Braga"), 284719);
 
+            listaClientes.InsereCliente(c1);
+
+            //foreach (Cliente c in listaClientes.ObterClientes)
+            //{
+            //    if (c.NIF == -1)
+            //        continue;
+            //    Console.WriteLine(c.ToString());
+            //}
+
+            bool teste = false;
+
+            teste =listaClientes.InsereCliente(c1);
+
+            listaClientes.InsereCliente(c2);
+            foreach (Cliente c in listaClientes.ObterClientes)
+            {
+                if (c.NIF == -1)
+                    continue;
+                Console.WriteLine(c.ToString());
+            }
             Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG");
 
 
-            //Operadores
+            //Pessoas
             
             Operador op1 = new Operador();
             op1.Nome = "Marco";
             op1.Contacto = 18274;
             op1.Id = 2;
 
-            a1.operador = op1;
+
             
-            Console.WriteLine(a1.cliente.ToString());
             registoAssist.InsereAssist(a1);
             foreach (Assist a in registoAssist.TodasAssistencias)
             {

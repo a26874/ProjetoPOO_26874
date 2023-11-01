@@ -7,13 +7,14 @@
 *	<description></description>
 **/
 using TipoAssistencia;
-using Clientes;
-using Operadores;
 using EstadoAssistencia;
 using System;
 
 namespace Assistencia
 {
+    /// <summary>
+    /// Classe para assistências.
+    /// </summary>
     public class Assist
     {
         const int MAXASSISTENCIAS = 10;
@@ -24,8 +25,8 @@ namespace Assistencia
         private TipoAssist tipoAssistencia;
         private EstadoAssist estadoAssistencia;
         ///Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
-        private Cliente clienteAssistir; //substituir por clienteID
-        private Operador operadorExecutar; //substituir por OperadorID
+        private int clienteId;
+        private int operadorId;
         private static int assistenciasRealizadas;
 
         #endregion
@@ -103,26 +104,26 @@ namespace Assistencia
             set { estadoAssistencia = value; }
         }
         /// <summary>
-        /// Manipulacao da variavel Cliente.
+        /// Manipulacao da variavel clienteID.
         /// </summary>
         /// <value>
         /// The cliente.
         /// </value>
-        public Cliente cliente
+        public int ClienteId
         {
-            get { return clienteAssistir; }
-            set {  clienteAssistir = value; }
+            get { return clienteId; }
+            set {  clienteId = value; }
         }
         /// <summary>
-        /// Manipulacao da variavel operador.
+        /// Manipulacao da variavel operadorID
         /// </summary>
         /// <value>
         /// The operador.
         /// </value>
-        public Operador operador
+        public int OperadorId
         {
-            get { return operadorExecutar; }
-            set { operadorExecutar = value; }
+            get { return operadorId; }
+            set { operadorId = value; }
         }
         #endregion
 
@@ -145,7 +146,7 @@ namespace Assistencia
         /// <param name="b">The b.</param>
         public static bool operator != (Assist a, Assist b)
         {
-            return (!(a == b));
+            return !(a == b);
         }
         #endregion
 
@@ -183,9 +184,8 @@ namespace Assistencia
         /// <returns></returns>
         public string FichaAssistencia()
         {
-            return string.Format("ID assistencia:{0} - Data:{1} - Preco:{2} - Tipo:{3} - Desc:{4} - IDTipo:{5} - Estado:{6} - DescEstado:{7} - NomeCliente:{8} - ContactoCl:{9}",
-                idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo,tipoAssistencia.Desc,tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
-                clienteAssistir.Nome, clienteAssistir.Contacto);
+            return string.Format("ID assistencia:{0} - Data:{1} - Preco:{2} - Tipo:{3} - Desc:{4} - IDTipo:{5} - Estado:{6} - DescEstado:{7}",
+                idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo, tipoAssistencia.Desc, tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado);      
         }
 
         #endregion

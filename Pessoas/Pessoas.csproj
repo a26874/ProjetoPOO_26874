@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs" />
+    <Compile Include="Clientes.cs" />
     <Compile Include="Moradas.cs" />
     <Compile Include="Operador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

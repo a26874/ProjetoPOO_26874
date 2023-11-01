@@ -7,10 +7,10 @@
 *	<description></description>
 **/
 
-namespace Morada
+namespace Pessoas
 {
     /// <summary>
-    /// 
+    /// Classe para moradas.
     /// </summary>
     public class Moradas
     {

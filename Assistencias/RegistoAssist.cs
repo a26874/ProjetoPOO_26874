@@ -6,8 +6,6 @@
 *   <date>2023 10/30/2023 1:26:01 PM</date>
 *	<description></description>
 **/
-using Operadores;
-using Clientes;
 using Assistencia;
 
 namespace RegistoAssistencias
@@ -16,7 +14,7 @@ namespace RegistoAssistencias
     {
         const int MAXASSISTENCIAS = 5;
         #region ATRIBUTOS
-        int numAssist;
+        private int numAssist;
         private static int idRegisto; 
         private Assist[] assistencias;
         #endregion

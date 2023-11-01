@@ -6,12 +6,11 @@
 *   <date>2023 10/25/2023 6:07:35 PM</date>
 *	<description></description>
 **/
-using Morada;
 
-namespace Clientes
+namespace Pessoas
 {
     /// <summary>
-    /// 
+    /// Classe para cliente.
     /// </summary>
     public class Cliente
     {
@@ -19,6 +18,7 @@ namespace Clientes
         private string nome;
         private int contacto;
         private Moradas morada;
+        private int nif;
         private static int numClientes; //
         #endregion
 
@@ -39,6 +39,7 @@ namespace Clientes
             nome = string.Empty;
             contacto = -1;
             morada = new Moradas(string.Empty,string.Empty,string.Empty);
+            nif = -1;
             numClientes = 0;
         }
         /// <summary>
@@ -47,11 +48,12 @@ namespace Clientes
         /// <param name="n">The n.</param>
         /// <param name="c">The c.</param>
         /// <param name="M">The m.</param>
-        public Cliente(string n, int c, Moradas m)
+        public Cliente(string n, int c, Moradas m, int ni)
         {
             nome = n;
             contacto = c;
             morada = m;
+            nif = ni;
         }
         #endregion
 
@@ -83,7 +85,7 @@ namespace Clientes
             get { return contacto; }
         }
         /// <summary>
-        /// Manipulacao da variavel Morada.
+        /// Manipulacao da variavel Pessoas.
         /// </summary>
         /// <value>
         /// The morada.
@@ -92,6 +94,44 @@ namespace Clientes
         {
             get { return morada; }
             set { morada = value; }
+        }
+        public int NIF
+        {
+            get { return nif; }
+            set
+            {
+                if (value > 0)
+                { nif = value; }
+            }
+        }
+        #endregion
+
+        #region OPERADORES          
+        /// <summary>
+        /// Redefinição do operador ==.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
+        public static bool operator == (Cliente a, Cliente b)
+        {
+            if (a.nif == b.nif)
+                return true;
+            return false;
+        }
+        /// <summary>
+        /// Redefinição do operador !=.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
+        public static bool operator != (Cliente a, Cliente b)
+        {
+            return !(a == b);
         }
         #endregion
 
@@ -105,6 +145,34 @@ namespace Clientes
         public override string ToString()
         {
             return FichaCliente();
+        }
+        /// <summary>
+        /// Redefinição do metodo equals.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is Cliente)
+            {
+                Cliente c = (Cliente)obj;
+                if (this == c)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
         #endregion
 
