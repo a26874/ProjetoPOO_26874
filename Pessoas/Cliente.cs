@@ -19,7 +19,7 @@ namespace Pessoas
         private int contacto;
         private Moradas morada;
         private int nif;
-        private static int numClientes; //
+        private static int numClientes=0; //
         #endregion
 
         #region COMPORTAMENTO

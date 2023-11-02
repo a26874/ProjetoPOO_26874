@@ -43,13 +43,13 @@ namespace Pessoas
         /// Construtor com parametros.
         /// </summary>
         /// <param name="nomeOperador">O nome do operador.</param>
-        /// <param name="numeroOperador">O numero do operador.</param>
+        /// <param name="idOperador">O numero do operador.</param>
         /// <param name="contactoOperador">O contacto do operador.</param>
-        public Operador(string nomeOperador, int numeroOperador, int contactoOperador)
+        public Operador(string nomeOperador, int idOperador, int contactoOperador)
         {
-            this.nome = nomeOperador;
-            this.id = numeroOperador;
-            this.contacto = contactoOperador;
+            nome = nomeOperador;
+            id = idOperador;
+            contacto = contactoOperador;
             numOperadores++;
         }
 

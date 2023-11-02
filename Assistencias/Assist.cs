@@ -27,13 +27,18 @@ namespace Assistencia
         ///Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
         private int clienteId;
         private int operadorId;
-        private static int assistenciasRealizadas;
+        private static int assistenciasRealizadas = 0;
 
         #endregion
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES        
+        #region CONSTRUTORES
+        
+        static Assist()
+        {
+            assistenciasRealizadas = 0;
+        }
         /// <summary>
         /// Construtor default;
         /// </summary>
@@ -44,34 +49,41 @@ namespace Assistencia
             assistenciasRealizadas = 0;
         }
         /// <summary>
-        /// Construtor para assistencia, com todos os parametros.
+        /// Construtor com 2 parametros para teste.
         /// </summary>
-        /// <param name="id">O identificador da assistencia.</param>
-        /// <param name="data">A data da assistencia.</param>
-        /// <param name="preco">O preco da assistencia.</param>
-        public Assist(int id, DateTime data)
+        /// <param name="idAssistencia"></param>
+        /// <param name="dataAssistencia"></param>
+        public Assist(int idAssistencia, DateTime dataAssistencia)
         {
-            this.idAssistencia = id;
-            this.dataAssistencia = data;
-            this.tipoAssis = new TipoAssist(string.Empty,string.Empty,-1,-1);
-            this.estadoA = new EstadoAssist(string.Empty, false);
+            this.idAssistencia = idAssistencia;
+            this.dataAssistencia = dataAssistencia;
         }
         /// <summary>
-        /// Construtor para assistencia, com apenas dois parametros.
+        /// Construtor com todos os parametros.
         /// </summary>
-        /// <param name="id">O identificador da assistencia.</param>
-        /// <param name="preco">O preco da assistencia.</param>
-        public Assist(int id, int preco)
+        /// <param name="idAssistencia"></param>
+        /// <param name="dataAssistencia"></param>
+        /// <param name="tipoA"></param>
+        /// <param name="estadoA"></param>
+        /// <param name="clienteId"></param>
+        /// <param name="operadorId"></param>
+        public Assist(int idAssistencia, DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteId, int operadorId)
         {
-            this.idAssistencia = id;
+            this.idAssistencia = idAssistencia;
+            this.dataAssistencia= dataAssistencia;
+            tipoAssistencia = new TipoAssist();
+            estadoAssistencia = new EstadoAssist();
+            this.clienteId = clienteId;
+            this.operadorId = operadorId;
         }
-        #endregion
 
-        #region PROPRIEDADES        
-        /// <summary>
-        /// Manipulacao da variavel id.
-        /// </summary>
-        public int Id
+    #endregion
+
+    #region PROPRIEDADES        
+    /// <summary>
+    /// Manipulacao da variavel id.
+    /// </summary>
+    public int Id
         {
             set { idAssistencia = value; }
             get { return idAssistencia; }

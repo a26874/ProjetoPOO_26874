@@ -14,9 +14,9 @@ namespace Pessoas
     /// <summary>
     /// Classe para armazenamento de vários clientes.
     /// </summary>
-    public class Clientes
+    public class RegistoClientes
     {
-        const int MAXCLIENTES = 10;
+        const int MAXCLIENTES = 5;
         #region ATRIBUTOS
         private int numCliente;
         Cliente[] listaClientes;
@@ -28,7 +28,7 @@ namespace Pessoas
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
-        public Clientes()
+        public RegistoClientes()
         {
             listaClientes = new Cliente[MAXCLIENTES];
             IniciarArrayClientes(listaClientes);
