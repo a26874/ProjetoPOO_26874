@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9BB1AD70-70B9-4DE4-A244-F9B87DA4333D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ProjetoPOO_26874</RootNamespace>
-    <AssemblyName>ProjetoPOO_26874</AssemblyName>
+    <ProjectGuid>{9EF39D30-01BA-40D3-BE43-CB67AD8C8948}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Outros</RootNamespace>
+    <AssemblyName>Outros</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,18 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assistencias">
-      <HintPath>..\Assistencias\bin\Debug\Assistencias.dll</HintPath>
-    </Reference>
-    <Reference Include="Feedback">
-      <HintPath>..\Feedback\bin\Debug\Feedback.dll</HintPath>
-    </Reference>
-    <Reference Include="Outros">
-      <HintPath>..\Outros\bin\Debug\Outros.dll</HintPath>
-    </Reference>
-    <Reference Include="Pessoas">
-      <HintPath>..\Pessoas\bin\Debug\Pessoas.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,11 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Avaliacao.cs" />
+    <Compile Include="ProblemasCon.cs" />
+    <Compile Include="Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
