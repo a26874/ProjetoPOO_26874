@@ -19,7 +19,7 @@ namespace Clientes
         private string nome;
         private int contacto;
         private Moradas morada;
-        private static int numClientes; //
+        private static int numClientes; //Variavel estatica, inicializar sempre con construtor estático.
         #endregion
 
         #region COMPORTAMENTO
