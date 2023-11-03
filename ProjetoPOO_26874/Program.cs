@@ -67,12 +67,12 @@ namespace ProjetoPOO_26874
             listaClientes.InsereCliente(c6);
 
             //Criar novos operadores
-            Operador op1 = new Operador("Marco", 1, 2487);
-            Operador op2 = new Operador("asd", 2, 2222);
-            Operador op3 = new Operador("Mar", 3, 2444);
-            Operador op4 = new Operador("Mao", 4, 11123);
-            Operador op5 = new Operador("Maco", 5, 2444);
-            Operador op6 = new Operador("arco", 6, 4959);
+            Operador op1 = new Operador("Marco", 1, 2487, new Moradas("teste123","24848", "asddd"));
+            Operador op2 = new Operador("asd", 2, 2222, new Moradas("teste123", "24848", "asddd"));
+            Operador op3 = new Operador("Mar", 3, 2444, new Moradas("teste123", "24848", "asddd"));
+            Operador op4 = new Operador("Mao", 4, 11123, new Moradas("teste123", "24848", "asddd"));
+            Operador op5 = new Operador("Maco", 5, 2444, new Moradas("teste123", "24848", "asddd"));
+            Operador op6 = new Operador("arco", 6, 4959, new Moradas("teste123", "24848", "asddd"));
 
             //Inserir operadores.
             listaOperadores.InserirOperador(op1);

@@ -12,12 +12,13 @@ namespace Pessoas
     /// <summary>
     /// Classe de operadores.
     /// </summary>
-    public class Operador
+    public class Operador : Pessoa
     {
         #region ATRIBUTOS
-        private string nome;
+        //private string nome;
+        //private int contacto;
+        //private Moradas morada;
         private int id;
-        private int contacto;
         static private int numOperadores = 0;
         #endregion
 
@@ -34,9 +35,10 @@ namespace Pessoas
         /// </summary>
         public Operador()
         {
-            nome = string.Empty;
+            Nome= string.Empty;
             id = -1;
-            contacto = -1;
+            Contacto = -1;
+            Morada = new Moradas();
             numOperadores++;
         }
         /// <summary>
@@ -45,25 +47,18 @@ namespace Pessoas
         /// <param name="nomeOperador">O nome do operador.</param>
         /// <param name="idOperador">O numero do operador.</param>
         /// <param name="contactoOperador">O contacto do operador.</param>
-        public Operador(string nomeOperador, int idOperador, int contactoOperador)
+        public Operador(string nomeOperador, int idOperador, int contactoOperador, Moradas moradaOperador)
         {
-            nome = nomeOperador;
+            Nome = nomeOperador;
             id = idOperador;
-            contacto = contactoOperador;
+            Contacto = contactoOperador;
+            Morada = moradaOperador;
             numOperadores++;
         }
 
         #endregion
 
         #region PROPRIEDADES        
-        /// <summary>
-        /// Manipulador de nome.
-        /// </summary>
-        public string Nome
-        {
-            set { nome = value; }
-            get { return nome; }
-        }
         /// <summary>
         /// Manipulador de Numero
         /// </summary>
@@ -76,19 +71,7 @@ namespace Pessoas
                     id = value;
             }
         }
-        /// <summary>
-        /// Manipulador de contacto.
-        /// </summary>
-        public int Contacto
-        {
-            set
-            {
-                if(contacto >0)
-                    contacto = value;
-            }
-            get { return contacto; }
-        }
-
+        
         #endregion
 
         #region OPERADORES        
@@ -99,7 +82,7 @@ namespace Pessoas
         /// <param name="b">The b.</param>
         public static bool operator == ( Operador a, Operador b)
         {
-            if ((a.id == b.id) && (a.nome == b.nome))
+            if ((a.id == b.id) && (a.Nome == b.Nome))
                 return true;
             return false;
         }
@@ -123,7 +106,7 @@ namespace Pessoas
         /// </returns>
         public override string ToString()
         {
-            return string.Format("Nome:{0}|ID:{1}|Contacto:{2}", nome, id.ToString(), contacto.ToString());
+            return string.Format("Nome:{0}|ID:{1}|Contacto:{2}", Nome, id.ToString(), Contacto.ToString());
         }
         /// <summary>
         /// Redefinição do metodo Equals.

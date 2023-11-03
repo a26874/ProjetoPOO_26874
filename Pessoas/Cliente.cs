@@ -12,12 +12,12 @@ namespace Pessoas
     /// <summary>
     /// Classe para cliente.
     /// </summary>
-    public class Cliente
+    public class Cliente : Pessoa
     {
         #region ATRIBUTOS
-        private string nome;
-        private int contacto;
-        private Moradas morada;
+        //private string nome;
+        //private int contacto;
+        //private Moradas morada;
         private int nif;
         private static int numClientes=0; //
         #endregion
@@ -36,9 +36,9 @@ namespace Pessoas
         /// </summary>
         public Cliente()
         {
-            nome = string.Empty;
-            contacto = -1;
-            morada = new Moradas(string.Empty,string.Empty,string.Empty);
+            Nome = string.Empty;
+            Contacto = -1;
+            Morada = new Moradas(string.Empty,string.Empty,string.Empty);
             nif = -1;
             numClientes = 0;
         }
@@ -50,9 +50,9 @@ namespace Pessoas
         /// <param name="M">The m.</param>
         public Cliente(string n, int c, Moradas m, int ni)
         {
-            nome = n;
-            contacto = c;
-            morada = m;
+            Nome= n;
+            Contacto = c;
+            Morada = m;
             nif = ni;
         }
         #endregion
@@ -64,37 +64,37 @@ namespace Pessoas
         /// <value>
         /// The nome.
         /// </value>
-        public string Nome
-        {
-            set { nome = value; }
-            get { return nome; }
-        }
+        //public string Nome
+        //{
+        //    set { Nome = value; }
+        //    get { return Nome; }
+        //}
         /// <summary>
         /// Manipulacao da variavel contacto.
         /// </summary>
         /// <value>
         /// The contacto.
         /// </value>
-        public int Contacto
-        {
-            set
-            {
-                if (value > 0)
-                    contacto = value;
-            }
-            get { return contacto; }
-        }
-        /// <summary>
-        /// Manipulacao da variavel Pessoas.
-        /// </summary>
-        /// <value>
-        /// The morada.
-        /// </value>
-        public Moradas Morada
-        {
-            get { return morada; }
-            set { morada = value; }
-        }
+        //public int Contacto
+        //{
+        //    set
+        //    {
+        //        if (value > 0)
+        //            contacto = value;
+        //    }
+        //    get { return contacto; }
+        //}
+        ///// <summary>
+        ///// Manipulacao da variavel Pessoas.
+        ///// </summary>
+        ///// <value>
+        ///// The morada.
+        ///// </value>
+        //public Moradas Morada
+        //{
+        //    get { return morada; }
+        //    set { morada = value; }
+        //}
         public int NIF
         {
             get { return nif; }
@@ -183,7 +183,7 @@ namespace Pessoas
         /// <returns></returns>
         public string FichaCliente()
         {
-            return string.Format("Nome:{0} - Contacto:{1}", nome, contacto);
+            return string.Format("Nome:{0} - Contacto:{1}", Nome, Contacto);
         }
         #endregion
 

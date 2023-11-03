@@ -65,17 +65,12 @@ namespace Pessoas
             }
         }
         /// <summary>
-        /// Insere um novo cliente na array.
+        /// Insere um novo cliente na array de clientes.
         /// </summary>
-        /// <param name="a">a.</param>
+        /// <param name="c"></param>
         /// <returns></returns>
         public bool InsereCliente(Cliente c)
         {
-            //if (c.Equals(this) && (numCliente != MAXCLIENTES))
-            //{
-            //    return false;
-            //}
-            
             //Verificar se a já existe!!! && se existe espaço
             foreach (Cliente a in listaClientes)
             {
