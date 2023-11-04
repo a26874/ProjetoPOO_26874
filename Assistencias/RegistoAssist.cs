@@ -30,13 +30,6 @@ namespace RegistoAssistencias
             listaAssistencias = new Assist[MAXASSISTENCIAS];
             IniciarArrayRegisto(listaAssistencias);
         }
-        /// <summary>
-        /// Construtor por parametros.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="c"></param>
-        /// <param name="o"></param>
-        /// <param name="a"></param>
 
         #endregion
 
