@@ -17,7 +17,6 @@ namespace Assistencia
     /// </summary>
     public class Assist
     {
-        const int MAXASSISTENCIAS = 10;
 
         #region ATRIBUTOS
         private int idAssistencia;

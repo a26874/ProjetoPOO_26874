@@ -7,7 +7,6 @@
 *	<description></description>
 **/
 
-using Pessoas;
 
 namespace Pessoas
 {
@@ -48,6 +47,10 @@ namespace Pessoas
         }
         #endregion
 
+        #region OPERADORES
+
+        #endregion
+
         #region OVERRIDES
 
         #endregion
@@ -82,6 +85,40 @@ namespace Pessoas
             listaClientes[numCliente] = c;
             numCliente++;
             return true;
+        }
+        /// <summary>
+        /// Substitui os clientes existentes por novos objetos do tipo cliente.
+        /// </summary>
+        /// <returns></returns>
+        public bool RemoverClientes()
+        {
+            for (int i = 0; i < listaClientes.Length; i++)
+            {
+                if (listaClientes[i] is null)
+                    continue;
+                else
+                    listaClientes[i] = new Cliente();
+            }
+            return true;
+        }
+        /// <summary>
+        /// Dado um certo cliente, esse mesmo é removido da array de clientes.
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <returns></returns>
+        public bool RemoverClienteEspecifico(Cliente c)
+        {
+            for (int i = 0; i < listaClientes.Length; i++)
+            {
+                if (listaClientes[i].Equals(c))
+                {
+                    for (int j = i; j < listaClientes.Length-1; j++)
+                        listaClientes[j] = listaClientes[j+1];
+                    listaClientes[listaClientes.Length-1] = new Cliente();
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 

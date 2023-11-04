@@ -73,13 +73,46 @@ namespace Pessoas
             {
                 if (a.Id == -1)
                     continue;
-                if (a.Equals(o) || numOperadores >= MAXOPERADORES)
+                if (a.Equals(o) || numOperadores >= MAXOPERADORES) 
                     return false;
-                
             }
             listaOperadores[numOperadores] = o;
             numOperadores++;
             return true;
+        }
+        /// <summary>
+        /// Substitui os operadores existentes por um novo objeto default de operador.
+        /// </summary>
+        /// <param name="r"></param>
+        public bool RemoverOperadores()
+        {
+            for (int i = 0; i < listaOperadores.Length; i++)
+            {
+                if (listaOperadores[i] is null)
+                    continue;
+                else
+                    listaOperadores[i] = new Operador();
+            }
+            return true;
+        }
+        /// <summary>
+        /// Dado um certo objecto do tipo operador, caso exista é removido da array de operadores.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        public bool RemoverOperadorEspecifico(Operador o)
+        {
+            for (int i = 0; i < listaOperadores.Length; i++)
+            {
+                if (listaOperadores[i].Equals(o))
+                {
+                    for (int j = i; j < listaOperadores.Length - 1; j++)
+                        listaOperadores[j] = listaOperadores[j + 1];
+                    listaOperadores[listaOperadores.Length - 1] = new Operador();
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 

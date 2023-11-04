@@ -7,6 +7,7 @@
 *	<description></description>
 **/
 using Assistencia;
+using Pessoas;
 
 namespace RegistoAssistencias
 {
@@ -15,8 +16,7 @@ namespace RegistoAssistencias
         const int MAXASSISTENCIAS = 5;
         #region ATRIBUTOS
         private int numAssist;
-        private static int idRegisto; 
-        private Assist[] assistencias;
+        private Assist[] listaAssistencias;
         #endregion
 
         #region COMPORTAMENTO
@@ -27,9 +27,8 @@ namespace RegistoAssistencias
         /// </summary>
         public RegistoAssist()
         {
-            idRegisto = -1;
-            assistencias = new Assist[MAXASSISTENCIAS];
-            IniciarArrayRegisto(assistencias);
+            listaAssistencias = new Assist[MAXASSISTENCIAS];
+            IniciarArrayRegisto(listaAssistencias);
         }
         /// <summary>
         /// Construtor por parametros.
@@ -44,7 +43,7 @@ namespace RegistoAssistencias
         #region PROPRIEDADES
         public Assist[] TodasAssistencias
         {
-            get { return assistencias; }
+            get { return listaAssistencias; }
         }
         #endregion
 
@@ -72,24 +71,50 @@ namespace RegistoAssistencias
         public bool InsereAssist(Assist a)
         {
             //Verificar se a já existe!!! && se existe espaço
-            assistencias[numAssist] = a;
+            foreach (Assist aux in listaAssistencias)
+            {
+                if (aux.Id == -1)
+                    continue;
+                if (aux.Equals(a) || (numAssist >= MAXASSISTENCIAS))
+                    return false;
+            }
+            listaAssistencias[numAssist] = a;
             numAssist++;
             return true;
         }
         /// <summary>
-        /// Metodo para remoção de assistencias.
+        /// Substitui as assistências existentes por novos objetos do tipo assist.
         /// </summary>
         /// <param name="r"></param>
         public bool RemoverAssistencias()
         {
-            for (int i = 0; i < assistencias.Length; i++)
+            for (int i = 0; i < listaAssistencias.Length; i++)
             {
-                if (assistencias[i] is null)
+                if (listaAssistencias[i] is null)
                     continue;
                 else
-                    assistencias[i] = null;
+                    listaAssistencias[i] = new Assist();
             }
             return true;
+        }
+        /// <summary>
+        /// Dada uma certa assistencia essa mesma é removida da array de assitências.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        public bool RemoverAssistenciaEspecifica(Assist a)
+        {
+            for (int i = 0; i < listaAssistencias.Length; i++)
+            {
+                if (listaAssistencias[i].Equals(a))
+                {
+                    for (int j = i; j < listaAssistencias.Length - 1; j++)
+                        listaAssistencias[j] = listaAssistencias[j + 1];
+                    listaAssistencias[listaAssistencias.Length - 1] = new Assist();
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 

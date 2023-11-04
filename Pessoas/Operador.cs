@@ -15,9 +15,6 @@ namespace Pessoas
     public class Operador : Pessoa
     {
         #region ATRIBUTOS
-        //private string nome;
-        //private int contacto;
-        //private Moradas morada;
         private int id;
         static private int numOperadores = 0;
         #endregion
@@ -106,7 +103,7 @@ namespace Pessoas
         /// </returns>
         public override string ToString()
         {
-            return string.Format("Nome:{0}|ID:{1}|Contacto:{2}", Nome, id.ToString(), Contacto.ToString());
+            return FichaOperador();
         }
         /// <summary>
         /// Redefinição do metodo Equals.
@@ -132,7 +129,10 @@ namespace Pessoas
         #endregion
 
         #region OUTROS METODOS
-
+        public string FichaOperador()
+        {
+            return string.Format("Nome:{0}|ID{1}:Contacto:{2}", Nome, id.ToString(), Contacto.ToString());
+        }
         #endregion
 
         #endregion

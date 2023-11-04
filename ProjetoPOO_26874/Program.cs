@@ -112,6 +112,32 @@ namespace ProjetoPOO_26874
                     continue;
                 Console.WriteLine(c.ToString());
             }
+
+            bool resultadoClientes = listaClientes.RemoverClienteEspecifico(new Cliente("asdwqq", 9191, new Moradas("asd", "asdad", "asdasda"), 82748));
+            bool resultadoClientes2 = listaClientes.RemoverClienteEspecifico(c3);
+            Console.WriteLine(resultadoClientes);
+            Console.WriteLine(resultadoClientes2);
+            Console.WriteLine("Clientes removidos");
+            //Clientes removidos
+            foreach (Cliente c in listaClientes.ObterClientes)
+            {
+                if (c.NIF == -1)
+                    continue;
+                Console.WriteLine(c.ToString());
+            }
+
+            bool resultadoOperador = listaOperadores.RemoverOperadorEspecifico(new Operador("asda", 187, 9888, new Moradas("asda", "qwdq", "awsdd")));
+            bool resultadoOperador2 = listaOperadores.RemoverOperadorEspecifico(op2);
+            Console.WriteLine(resultadoOperador);
+            Console.WriteLine(resultadoOperador2);
+            Console.WriteLine("Operadores removidos");
+            //Operadores removidos
+            foreach (Operador o in listaOperadores.ObterOperadores)
+            {
+                if (o.Id == -1)
+                    continue;
+                Console.WriteLine(o.ToString());
+            }
             //Produtos
             Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG");
 
