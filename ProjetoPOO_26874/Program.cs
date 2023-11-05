@@ -51,12 +51,12 @@ namespace ProjetoPOO_26874
 
 
             //Criação de um novo cliente
-            Cliente c1 = new Cliente("aaaa", 94829, new Moradas("Braga", "dsad", "4444-444"), 2498289);
-            Cliente c2 = new Cliente("Marco", 9421474, new Moradas("asd", "222", "Braga"), 284719);
-            Cliente c3 = new Cliente("aadasd", 94, new Moradas("fdkk", "4718-22", "Braga"), 2424);
-            Cliente c4 = new Cliente("ascxzc", 274, new Moradas("zcxc", "4718-2", "Braga"), 219);
-            Cliente c5 = new Cliente("cxzv", 974, new Moradas("lk", "47-222", "Braga"), 29);
-            Cliente c6 = new Cliente("Mo", 244, new Moradas("zxc", "478-222", "Braga"), 2119);
+            Cliente c1 = new Cliente("aaaa", 94829, new Moradas("Braga", "dsad", "4444-444"), 42);
+            Cliente c2 = new Cliente("Marco", 9421474, new Moradas("asd", "222", "Braga"), 28);
+            Cliente c3 = new Cliente("aadasd", 94, new Moradas("fdkk", "4718-22", "Braga"), 4);
+            Cliente c4 = new Cliente("ascxzc", 274, new Moradas("zcxc", "4718-2", "Braga"), 9);
+            Cliente c5 = new Cliente("cxzv", 974, new Moradas("lk", "47-222", "Braga"), 19);
+            Cliente c6 = new Cliente("Mo", 244, new Moradas("zxc", "478-222", "Braga"), 29);
 
             //Inserir clientes na array listaClientes
             listaClientes.InsereCliente(c1);
@@ -67,11 +67,11 @@ namespace ProjetoPOO_26874
             listaClientes.InsereCliente(c6);
 
             //Criar novos operadores
-            Operador op1 = new Operador("Marco", 1, 2487, new Moradas("teste123","24848", "asddd"));
+            Operador op1 = new Operador("Marco", 12, 2487, new Moradas("teste123","24848", "asddd"));
             Operador op2 = new Operador("asd", 2, 2222, new Moradas("teste123", "24848", "asddd"));
-            Operador op3 = new Operador("Mar", 3, 2444, new Moradas("teste123", "24848", "asddd"));
-            Operador op4 = new Operador("Mao", 4, 11123, new Moradas("teste123", "24848", "asddd"));
-            Operador op5 = new Operador("Maco", 5, 2444, new Moradas("teste123", "24848", "asddd"));
+            Operador op3 = new Operador("Mar", 34, 2444, new Moradas("teste123", "24848", "asddd"));
+            Operador op4 = new Operador("Mao", 14, 11123, new Moradas("teste123", "24848", "asddd"));
+            Operador op5 = new Operador("Maco", 25, 2444, new Moradas("teste123", "24848", "asddd"));
             Operador op6 = new Operador("arco", 6, 4959, new Moradas("teste123", "24848", "asddd"));
 
             //Inserir operadores.
@@ -140,6 +140,32 @@ namespace ProjetoPOO_26874
             }
             //Produtos
             Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG");
+
+
+
+
+            //BubbleSortClientes
+            listaClientes.BubbleSortClientes();
+            Console.WriteLine("Ordenado por NIF");
+            foreach (Cliente c in listaClientes.ObterClientes)
+            {
+                if (c.NIF == -1)
+                    continue;
+                Console.WriteLine(c.ToString());
+            }
+
+
+
+
+            //BubbleSortOperadores
+            listaOperadores.BubbleSortOperadores();
+            Console.WriteLine("Ordenado por ID");
+            foreach (Operador o in listaOperadores.ObterOperadores)
+            {
+                if (o.Id == -1)
+                    continue;
+                Console.WriteLine(o.ToString());
+            }
 
         }
     }

@@ -59,42 +59,11 @@ namespace Pessoas
 
         #region PROPRIEDADES        
         /// <summary>
-        /// Manipulacao da variavel nome.
+        /// Manipulacao da variavel nif.
         /// </summary>
         /// <value>
-        /// The nome.
+        /// O nif.
         /// </value>
-        //public string Nome
-        //{
-        //    set { Nome = value; }
-        //    get { return Nome; }
-        //}
-        /// <summary>
-        /// Manipulacao da variavel contacto.
-        /// </summary>
-        /// <value>
-        /// The contacto.
-        /// </value>
-        //public int Contacto
-        //{
-        //    set
-        //    {
-        //        if (value > 0)
-        //            contacto = value;
-        //    }
-        //    get { return contacto; }
-        //}
-        ///// <summary>
-        ///// Manipulacao da variavel Pessoas.
-        ///// </summary>
-        ///// <value>
-        ///// The morada.
-        ///// </value>
-        //public Moradas Morada
-        //{
-        //    get { return morada; }
-        //    set { morada = value; }
-        //}
         public int NIF
         {
             get { return nif; }
@@ -163,7 +132,6 @@ namespace Pessoas
             }
             return false;
         }
-
         /// <summary>
         /// Returns a hash code for this instance.
         /// </summary>
@@ -183,7 +151,7 @@ namespace Pessoas
         /// <returns></returns>
         public string FichaCliente()
         {
-            return string.Format("Nome:{0} - Contacto:{1}", Nome, Contacto);
+            return string.Format("Nome:{0} - Contacto:{1} - NIF{2}", Nome, Contacto, nif);
         }
         #endregion
 

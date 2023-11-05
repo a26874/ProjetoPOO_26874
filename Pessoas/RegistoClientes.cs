@@ -16,6 +16,7 @@ namespace Pessoas
     public class RegistoClientes
     {
         const int MAXCLIENTES = 5;
+
         #region ATRIBUTOS
         private int numCliente;
         Cliente[] listaClientes;
@@ -119,6 +120,30 @@ namespace Pessoas
                 }
             }
             return false;
+        }
+        /// <summary>
+        /// Ordenação da array listaClientes com o metodo BubbleSort.
+        /// </summary>
+        /// <returns></returns>
+        public bool BubbleSortClientes()
+        {
+            Cliente aux;
+            bool a = true;
+            while(a)
+            {
+                a = false;
+                for (int i = 0; i < listaClientes.Length-1;i++)
+                {
+                    if (listaClientes[i].NIF > listaClientes[i+1].NIF)
+                    {
+                        aux = listaClientes[i];
+                        listaClientes[i] = listaClientes[i+1];
+                        listaClientes[i+1]= aux;
+                        a = true;
+                    }
+                }
+            }
+            return true;
         }
         #endregion
 

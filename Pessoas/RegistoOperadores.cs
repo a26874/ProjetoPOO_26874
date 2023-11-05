@@ -114,6 +114,30 @@ namespace Pessoas
             }
             return false;
         }
+        /// <summary>
+        /// Ordenação da array Operadores com o metodo bubblesort.
+        /// </summary>
+        /// <returns></returns>
+        public bool BubbleSortOperadores()
+        {
+            Operador aux;
+            bool a = true;
+            while (a)
+            {
+                a = false;
+                for (int i = 0; i < listaOperadores.Length - 1; i++)
+                {
+                    if (listaOperadores[i].Id > listaOperadores[i + 1].Id)
+                    {
+                        aux = listaOperadores[i];
+                        listaOperadores[i] = listaOperadores[i + 1];
+                        listaOperadores[i + 1] = aux;
+                        a = true;
+                    }
+                }
+            }
+            return true;
+        }
         #endregion
 
         #endregion
