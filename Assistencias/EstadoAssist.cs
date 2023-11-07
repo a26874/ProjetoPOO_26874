@@ -60,11 +60,9 @@ namespace EstadoAssistencia
         #endregion
 
         #region OPERADORES
-        //public static bool operator == (EstadoAssist a, EstadoAssist b)
-        //{ perguntar prof
 
-        //}
         #endregion
+
         #region OVERRIDES        
         /// <summary>
         /// Redefinição do metodo ToString.
@@ -74,7 +72,7 @@ namespace EstadoAssistencia
         /// </returns>
         public override string ToString()
         {
-            return string.Format("Descricao:{0}|Ativo:{1}", descEstadoAssistencia, servicoAtivo.ToString());
+            return FichaEstadoAssistencia();
         }
         /// <summary>
         /// Determina se um determinado objeto do tipo EstadoAssist é igual a outro.
@@ -88,12 +86,6 @@ namespace EstadoAssistencia
             EstadoAssist a = (EstadoAssist)obj;
             if (this == a)
                 return true;
-            //if (obj is EstadoAssist)
-            //{
-            //    EstadoAssist a = (EstadoAssist)obj;
-            //    if (this == a)
-            //        return true;
-            //}
             return false;
         }
         public override int GetHashCode()
@@ -103,7 +95,14 @@ namespace EstadoAssistencia
         #endregion
 
         #region OUTROS METODOS
-
+        /// <summary>
+        /// Reformulação do metodo ToString na classe EstadoAssist.
+        /// </summary>
+        /// <returns></returns>
+        public string FichaEstadoAssistencia()
+        {
+            return string.Format("Descricao:{0}|Ativo:{1}", descEstadoAssistencia, servicoAtivo.ToString());
+        }
         #endregion
 
         #endregion

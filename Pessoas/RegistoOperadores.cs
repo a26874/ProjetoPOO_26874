@@ -128,7 +128,7 @@ namespace Pessoas
                 a = false;
                 for (int i = 0; i < listaOperadores.Length - 1; i++)
                 {
-                    if (listaOperadores[i].Id > listaOperadores[i + 1].Id)
+                    if (listaOperadores[i].Id > listaOperadores[i + 1].Id && listaOperadores[i+1].Id != -1)
                     {
                         aux = listaOperadores[i];
                         listaOperadores[i] = listaOperadores[i + 1];

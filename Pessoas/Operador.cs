@@ -129,6 +129,10 @@ namespace Pessoas
         #endregion
 
         #region OUTROS METODOS
+        /// <summary>
+        /// Redefinição do metodo ToString.
+        /// </summary>
+        /// <returns></returns>
         public string FichaOperador()
         {
             return string.Format("Nome:{0}|ID{1}:Contacto:{2}", Nome, id.ToString(), Contacto.ToString());

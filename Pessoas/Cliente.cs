@@ -18,9 +18,6 @@ namespace Pessoas
     public class Cliente : Pessoa
     {
         #region ATRIBUTOS
-        //private string nome;
-        //private int contacto;
-        //private Moradas morada;
         private int nif;
         private static int numClientes=0; //
         #endregion

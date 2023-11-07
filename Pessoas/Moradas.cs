@@ -109,9 +109,8 @@ namespace Pessoas
         /// </returns>
         public override string ToString()
         {
-            return string.Format("", rua, codigoPostal, localidade);
+            return FichaMorada();
         }
-        /// <summary>
         /// Redefinição do metodo Equals.
         /// </summary>
         /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>

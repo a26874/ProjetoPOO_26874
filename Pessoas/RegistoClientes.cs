@@ -135,7 +135,9 @@ namespace Pessoas
                 a = false;
                 for (int i = 0; i < listaClientes.Length-1;i++)
                 {
-                    if (listaClientes[i].NIF > listaClientes[i+1].NIF)
+                    //if (listaClientes[i].NIF == -1)
+                    //    continue;
+                    if (listaClientes[i].NIF > listaClientes[i+1].NIF && listaClientes[i+1].NIF !=-1)
                     {
                         aux = listaClientes[i];
                         listaClientes[i] = listaClientes[i+1];

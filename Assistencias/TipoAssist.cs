@@ -73,11 +73,14 @@ namespace TipoAssistencia
         {
             set 
             {
-                if (id > 0)
+                if (value > 0)
                     id = value;
             }
             get { return id; }
         }
+        /// <summary>
+        /// Manipulacao da variavel preco.
+        /// </summary>
         public int Preco
         {
             get { return preco; }
@@ -120,7 +123,7 @@ namespace TipoAssistencia
         /// <returns>string</returns>
         public override string ToString()
         {
-            return string.Format("Descricao:{0}|Tipo:{1}|ID:{2}|Preco:{3}", desc, nomeTipo, id, preco);
+            return FichaTipoAssist();
         }
         /// <summary>
         /// Determina se um objeto do tipo TipoAssist é igual a outro.
@@ -144,7 +147,14 @@ namespace TipoAssistencia
         #endregion
 
         #region OUTROS METODOS
-
+        /// <summary>
+        /// Reformulação do metodo ToString na classe Assist.
+        /// </summary>
+        /// <returns></returns>
+        public string FichaTipoAssist()
+        {
+            return string.Format("Descricao:{0}|Tipo:{1}|ID:{2}|Preco:{3}", desc, nomeTipo, id, preco);
+        }
         #endregion
 
         #endregion

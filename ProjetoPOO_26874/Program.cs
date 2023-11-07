@@ -5,7 +5,7 @@ using TipoAssistencia;
 using Produtos;
 using RegistoAssistencias;
 using Pessoas;
-
+using FrontEnd;
 namespace ProjetoPOO_26874
 {
     internal class Program
@@ -82,8 +82,6 @@ namespace ProjetoPOO_26874
 
 
             //Print de cada array
-
-            
             Console.WriteLine("Operadores:");
             //Operadores
             foreach (Operador o in listaOperadores.ObterOperadores)
@@ -167,6 +165,13 @@ namespace ProjetoPOO_26874
                     continue;
                 Console.WriteLine(a.ToString());
             }
+
+            //
+            Console.WriteLine("teste");
+            IO.MostrarAssistencias(listaAssist);
+            IO.MostrarClientes(listaClientes);
+            IO.MostrarOperadores(listaOperadores);
         }
+
     }
 }
