@@ -37,7 +37,7 @@ namespace RegistoAssistencias
         #region PROPRIEDADES
         public Assist[] TodasAssistencias
         {
-            get { return listaAssistencias; }
+            get { return (Assist[])listaAssistencias.Clone(); }
         }
         #endregion
 

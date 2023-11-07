@@ -44,7 +44,7 @@ namespace Pessoas
         /// </value>
         public Cliente[] ObterClientes
         {
-            get { return listaClientes; }
+            get { return (Cliente[])listaClientes.Clone(); }
         }
         
         #endregion

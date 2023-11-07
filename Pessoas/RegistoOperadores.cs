@@ -39,7 +39,7 @@ namespace Pessoas
         /// </summary>
         public Operador[] ObterOperadores
         {
-            get { return listaOperadores;}
+            get { return (Operador[])listaOperadores.Clone();}
         }
         #endregion
 
