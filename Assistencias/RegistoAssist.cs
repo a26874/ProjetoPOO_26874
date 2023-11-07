@@ -8,6 +8,7 @@
 **/
 using Assistencia;
 using Pessoas;
+using System;
 
 namespace RegistoAssistencias
 {
@@ -61,16 +62,25 @@ namespace RegistoAssistencias
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        public bool InsereAssist(Assist a)
+        public bool InsereAssist(Operador[] listaOperadores, Cliente[] listaClientes,Assist a)
         {
+            Cliente auxCliente = new Cliente();
+            Operador auxOperador = new Operador();
+            bool existeCliente = auxCliente.ExisteCliente(listaClientes, a.ClienteNIF);
+            bool existeOperador = auxOperador.ExisteOperador(listaOperadores, a.OperadorId);
             //Verificar se a já existe!!! && se existe espaço
-            foreach (Assist aux in listaAssistencias)
+            if (existeCliente && existeOperador)
             {
-                if (aux.Id == -1)
-                    continue;
-                if (aux.Equals(a) || (numAssist >= MAXASSISTENCIAS))
-                    return false;
+                foreach (Assist auxAssist in listaAssistencias)
+                {
+                    if (auxAssist.Id == -1)
+                        continue;
+                    if (auxAssist.Equals(a) || (numAssist >= MAXASSISTENCIAS))
+                        return false;
+                }
             }
+            else
+                return false;
             listaAssistencias[numAssist] = a;
             numAssist++;
             return true;
@@ -108,6 +118,28 @@ namespace RegistoAssistencias
                 }
             }
             return false;
+        }
+        /// <summary>
+        /// Organiza a array de assistencias conforme o ID da assistência.
+        /// </summary>
+        public void BubbleSortAssistencias()
+        {
+            Assist aux;
+            bool a = true;
+            while (a)
+            {
+                a = false;
+                for (int i = 0; i < listaAssistencias.Length - 1; i++)
+                {
+                    if (listaAssistencias[i].Id > listaAssistencias[i + 1].Id)
+                    {
+                        aux = listaAssistencias[i];
+                        listaAssistencias[i] = listaAssistencias[i + 1];
+                        listaAssistencias[i + 1] = aux;
+                        a = true;
+                    }
+                }
+            }
         }
         #endregion
 

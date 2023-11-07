@@ -46,6 +46,7 @@ namespace Pessoas
         {
             get { return listaClientes; }
         }
+        
         #endregion
 
         #region OPERADORES
@@ -125,7 +126,7 @@ namespace Pessoas
         /// Ordenação da array listaClientes com o metodo BubbleSort.
         /// </summary>
         /// <returns></returns>
-        public bool BubbleSortClientes()
+        public void BubbleSortClientes()
         {
             Cliente aux;
             bool a = true;
@@ -143,7 +144,6 @@ namespace Pessoas
                     }
                 }
             }
-            return true;
         }
         #endregion
 

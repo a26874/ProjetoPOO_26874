@@ -14,6 +14,7 @@ namespace Pessoas
     public class RegistoOperadores
     {
         const int MAXOPERADORES = 5;
+
         #region ATRIBUTOS
         private int numOperadores;
         private Operador[] listaOperadores;
@@ -118,7 +119,7 @@ namespace Pessoas
         /// Ordenação da array Operadores com o metodo bubblesort.
         /// </summary>
         /// <returns></returns>
-        public bool BubbleSortOperadores()
+        public void BubbleSortOperadores()
         {
             Operador aux;
             bool a = true;
@@ -136,7 +137,6 @@ namespace Pessoas
                     }
                 }
             }
-            return true;
         }
         #endregion
 

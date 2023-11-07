@@ -21,12 +21,11 @@ namespace ProjetoPOO_26874
             //Nova assistencias
             Assist a1 = new Assist(1, DateTime.Now);
             Assist a2 = new Assist(2, DateTime.Now);
-            Assist a3 = new Assist(1, DateTime.Now, new TipoAssist("Esclarecimento", "Atendimento", 2, 500), new EstadoAssist("Ativo", true), 1, 1);
-            a1.ClienteId = 1;
+            Assist a3 = new Assist(1, DateTime.Now, new TipoAssist("Esclarecimento", "Atendimento", 2, 500), new EstadoAssist("Ativo", true), 42, 12);
+            a1.ClienteNIF = 1;
             a1.OperadorId = 1;
             a2.tipoAssis = new TipoAssist();
             a2.estadoA = new EstadoAssist();
-
 
             //Tipo assistencias
             TipoAssist descAssist1 = new TipoAssist();
@@ -46,9 +45,7 @@ namespace ProjetoPOO_26874
             estado1.DescEstado = "Ainda objetivos para realizar.";
             a1.estadoA = estado1;
 
-            //Inserir nova assistencia;
-            listaAssist.InsereAssist(a3);
-
+            
 
             //Criação de um novo cliente
             Cliente c1 = new Cliente("aaaa", 94829, new Moradas("Braga", "dsad", "4444-444"), 42);
@@ -86,15 +83,7 @@ namespace ProjetoPOO_26874
 
             //Print de cada array
 
-            //Assistencias
-            Console.WriteLine("Assistencias:");
-            foreach (Assist a in listaAssist.TodasAssistencias)
-            {
-                if (a.Id == -1)
-                    continue;
-                Console.WriteLine(a.ToString());
-            }
-
+            
             Console.WriteLine("Operadores:");
             //Operadores
             foreach (Operador o in listaOperadores.ObterOperadores)
@@ -167,6 +156,17 @@ namespace ProjetoPOO_26874
                 Console.WriteLine(o.ToString());
             }
 
+
+            //Inserir nova assistencia;
+            listaAssist.InsereAssist(listaOperadores.ObterOperadores,listaClientes.ObterClientes, a3);
+            //Assistencias
+            Console.WriteLine("Assistencias:");
+            foreach (Assist a in listaAssist.TodasAssistencias)
+            {
+                if (a.Id == -1)
+                    continue;
+                Console.WriteLine(a.ToString());
+            }
         }
     }
 }

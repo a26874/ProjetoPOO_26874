@@ -24,7 +24,7 @@ namespace Assistencia
         private TipoAssist tipoAssistencia;
         private EstadoAssist estadoAssistencia;
         ///Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
-        private int clienteId;
+        private int clienteNIF;
         private int operadorId;
         private static int assistenciasRealizadas = 0;
 
@@ -64,21 +64,21 @@ namespace Assistencia
         /// <param name="dataAssistencia"></param>
         /// <param name="tipoA"></param>
         /// <param name="estadoA"></param>
-        /// <param name="clienteId"></param>
+        /// <param name="clienteNIF"></param>
         /// <param name="operadorId"></param>
-        public Assist(int idAssistencia, DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteId, int operadorId)
+        public Assist(int idAssistencia, DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteNIF, int operadorId)
         {
             this.idAssistencia = idAssistencia;
             this.dataAssistencia= dataAssistencia;
-            tipoAssistencia = new TipoAssist();
-            estadoAssistencia = new EstadoAssist();
-            this.clienteId = clienteId;
+            tipoAssistencia = tipoA;
+            estadoAssistencia = estadoA;
+            this.clienteNIF = clienteNIF;
             this.operadorId = operadorId;
         }
 
     #endregion
 
-    #region PROPRIEDADES        
+        #region PROPRIEDADES        
     /// <summary>
     /// Manipulacao da variavel id.
     /// </summary>
@@ -120,10 +120,10 @@ namespace Assistencia
         /// <value>
         /// The cliente.
         /// </value>
-        public int ClienteId
+        public int ClienteNIF
         {
-            get { return clienteId; }
-            set {  clienteId = value; }
+            get { return clienteNIF; }
+            set {  clienteNIF = value; }
         }
         /// <summary>
         /// Manipulacao da variavel operadorID
