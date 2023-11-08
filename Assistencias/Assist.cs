@@ -9,6 +9,7 @@
 using TipoAssistencia;
 using EstadoAssistencia;
 using System;
+using RegistoAssistencias;
 
 namespace Assistencia
 {
@@ -26,6 +27,7 @@ namespace Assistencia
         ///Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
         private int clienteNIF;
         private int operadorId;
+        private static int contIdAssistencia;
         private static int assistenciasRealizadas = 0;
 
         #endregion
@@ -36,6 +38,7 @@ namespace Assistencia
         
         static Assist()
         {
+            contIdAssistencia = 1;
             assistenciasRealizadas = 0;
         }
         /// <summary>
@@ -70,9 +73,11 @@ namespace Assistencia
         /// <param name="estadoA"></param>
         /// <param name="clienteNIF"></param>
         /// <param name="operadorId"></param>
-        public Assist(int idAssistencia, DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteNIF, int operadorId)
+        public Assist(/*int idAssistencia*/ DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteNIF, int operadorId)
         {
-            this.idAssistencia = idAssistencia;
+            idAssistencia = contIdAssistencia;
+            if (idAssistencia >= 1)
+                idAssistencia = contIdAssistencia++;
             this.dataAssistencia= dataAssistencia;
             tipoAssistencia = tipoA;
             estadoAssistencia = estadoA;

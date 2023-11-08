@@ -34,8 +34,8 @@ namespace EstadoAssistencia
         /// <param name="ativo">Se esta a decorrer ou nao.</param>
         public EstadoAssist(string descEstado, bool aDecorrer)
         {
-            this.descEstadoAssistencia = descEstado;
-            this.servicoAtivo = aDecorrer;
+            descEstadoAssistencia = descEstado;
+            servicoAtivo = aDecorrer;
         }
 
         #endregion

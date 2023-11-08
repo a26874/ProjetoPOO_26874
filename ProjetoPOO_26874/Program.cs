@@ -21,7 +21,11 @@ namespace ProjetoPOO_26874
             //Nova assistencias
             Assist a1 = new Assist(1, DateTime.Now);
             Assist a2 = new Assist(2, DateTime.Now);
-            Assist a3 = new Assist(1, DateTime.Now, new TipoAssist("Esclarecimento", "Atendimento", 2, 500), new EstadoAssist("Ativo", true), 42, 12);
+            Assist a3 = new Assist(DateTime.Now, new TipoAssist("Esclarecimento", "Atendimento", 2, 500), new EstadoAssist("Ativo", true), 42, 12);
+            Assist a4 = new Assist(DateTime.Now, new TipoAssist("Entrega Produto", "Entregas", 3, 5020), new EstadoAssist("Ativo", false), 28, 12);
+            Assist a5 = new Assist(DateTime.Now, new TipoAssist("Entrega Produto", "Entregas", 3, 5020), new EstadoAssist("Ativo", false), 28, 12);
+            Assist a6 = new Assist(DateTime.Now, new TipoAssist("Entrega Produto", "Entregas", 3, 5020), new EstadoAssist("Ativo", false), 28, 12);
+
             a1.ClienteNIF = 1;
             a1.OperadorId = 1;
             a2.tipoAssis = new TipoAssist();
@@ -123,6 +127,9 @@ namespace ProjetoPOO_26874
 
             //Inserir nova assistencia;
             listaAssist.InsereAssist(listaOperadores.ObterOperadores,listaClientes.ObterClientes, a3);
+            listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a4);
+            listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a5);
+            listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a6);
             //Assistencias
             Console.WriteLine("Assistencias:");
             IO.MostrarAssistencias(listaAssist);

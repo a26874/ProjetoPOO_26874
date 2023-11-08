@@ -75,6 +75,7 @@ namespace RegistoAssistencias
                 {
                     if (auxAssist.Id == -1)
                         continue;
+                    //Retirar a comparação de ID e colocar apenas data e tipodeAssistencia -> perguntar prof.
                     if (auxAssist.Equals(a) || (numAssist >= MAXASSISTENCIAS))
                         return false;
                 }
