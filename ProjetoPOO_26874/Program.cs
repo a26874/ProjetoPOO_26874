@@ -84,21 +84,11 @@ namespace ProjetoPOO_26874
             //Print de cada array
             Console.WriteLine("Operadores:");
             //Operadores
-            foreach (Operador o in listaOperadores.ObterOperadores)
-            {
-                if (o.Id == -1)
-                    continue;
-                Console.WriteLine(o.ToString());
-            }
+            IO.MostrarOperadores(listaOperadores);
 
             Console.WriteLine("Clientes");
             //Clientes
-            foreach (Cliente c in listaClientes.ObterClientes)
-            {
-                if (c.NIF == -1)
-                    continue;
-                Console.WriteLine(c.ToString());
-            }
+            IO.MostrarClientes(listaClientes);
 
             bool resultadoClientes = listaClientes.RemoverClienteEspecifico(new Cliente("asdwqq", 9191, new Moradas("asd", "asdad", "asdasda"), 82748));
             bool resultadoClientes2 = listaClientes.RemoverClienteEspecifico(c3);
@@ -106,12 +96,7 @@ namespace ProjetoPOO_26874
             Console.WriteLine(resultadoClientes2);
             Console.WriteLine("Clientes removidos");
             //Clientes removidos
-            foreach (Cliente c in listaClientes.ObterClientes)
-            {
-                if (c.NIF == -1)
-                    continue;
-                Console.WriteLine(c.ToString());
-            }
+            IO.MostrarClientes(listaClientes);
 
             bool resultadoOperador = listaOperadores.RemoverOperadorEspecifico(new Operador("asda", 187, 9888, new Moradas("asda", "qwdq", "awsdd")));
             bool resultadoOperador2 = listaOperadores.RemoverOperadorEspecifico(op2);
@@ -119,58 +104,36 @@ namespace ProjetoPOO_26874
             Console.WriteLine(resultadoOperador2);
             Console.WriteLine("Operadores removidos");
             //Operadores removidos
-            foreach (Operador o in listaOperadores.ObterOperadores)
-            {
-                if (o.Id == -1)
-                    continue;
-                Console.WriteLine(o.ToString());
-            }
+            IO.MostrarOperadores(listaOperadores);
             //Produtos
             Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG");
-
-
 
 
             //BubbleSortClientes
             listaClientes.BubbleSortClientes();
             Console.WriteLine("Ordenado por NIF");
-            foreach (Cliente c in listaClientes.ObterClientes)
-            {
-                if (c.NIF == -1)
-                    continue;
-                Console.WriteLine(c.ToString());
-            }
-
-
+            IO.MostrarClientes(listaClientes);
 
 
             //BubbleSortOperadores
             listaOperadores.BubbleSortOperadores();
             Console.WriteLine("Ordenado por ID");
-            foreach (Operador o in listaOperadores.ObterOperadores)
-            {
-                if (o.Id == -1)
-                    continue;
-                Console.WriteLine(o.ToString());
-            }
+            IO.MostrarOperadores(listaOperadores);
 
 
             //Inserir nova assistencia;
             listaAssist.InsereAssist(listaOperadores.ObterOperadores,listaClientes.ObterClientes, a3);
             //Assistencias
             Console.WriteLine("Assistencias:");
-            foreach (Assist a in listaAssist.TodasAssistencias)
-            {
-                if (a.Id == -1)
-                    continue;
-                Console.WriteLine(a.ToString());
-            }
+            IO.MostrarAssistencias(listaAssist);
 
             //
             Console.WriteLine("teste");
             IO.MostrarAssistencias(listaAssist);
             IO.MostrarClientes(listaClientes);
             IO.MostrarOperadores(listaOperadores);
+            int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
+            Console.WriteLine(resultado);
         }
 
     }

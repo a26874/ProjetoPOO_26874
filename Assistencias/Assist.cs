@@ -45,6 +45,10 @@ namespace Assistencia
         {
             idAssistencia = -1;
             dataAssistencia = DateTime.MinValue;
+            tipoAssistencia = new TipoAssist();
+            estadoAssistencia = new EstadoAssist();
+            ClienteNIF = -1;
+            operadorId = -1;
             assistenciasRealizadas = 0;
         }
         /// <summary>

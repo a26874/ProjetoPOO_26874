@@ -83,6 +83,21 @@ namespace FrontEnd
                 Console.WriteLine(o.ToString());
             }
         }
+        /// <summary>
+        /// De todas as assistencias, mostra o preço da mais cara.
+        /// </summary>
+        /// <param name="listaAssistencias">The lista assistencias.</param>
+        /// <returns></returns>
+        public static int MostrarAssistenciaMaisCara(RegistoAssist listaAssistencias)
+        {
+            int maisCaro = 0;
+            foreach(Assist a in listaAssistencias.TodasAssistencias)
+            {
+                if (a.tipoAssis.Preco > maisCaro && a.tipoAssis.Preco != -1)
+                    maisCaro = a.tipoAssis.Preco;
+            }
+            return maisCaro;
+        }
         #endregion
 
         #endregion
