@@ -19,6 +19,8 @@ namespace ProjetoPOO_26874
             RegistoClientes listaClientes = new RegistoClientes();
             RegistoOperadores listaOperadores = new RegistoOperadores();
             RegistoProdutos listaProdutos = new RegistoProdutos();
+            RegistoCategorias listaCategorias = new RegistoCategorias();
+
 
             //Nova assistencias
             Assist a1 = new Assist(1, DateTime.Now);
@@ -113,6 +115,7 @@ namespace ProjetoPOO_26874
             IO.MostrarOperadores(listaOperadores);
             //Produtos
             Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", new Categoria("SMARTPHONE"));
+            Produto prdt2 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategorias.InserirCategoria("Samsung"));
 
             listaProdutos.InserirProduto(prdt1);
 

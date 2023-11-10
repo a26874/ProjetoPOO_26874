@@ -46,6 +46,7 @@
     <Compile Include="ProblemasCon.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistoCategorias.cs" />
     <Compile Include="RegistoProdutos.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
