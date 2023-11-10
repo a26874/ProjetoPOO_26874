@@ -115,7 +115,7 @@ namespace ProjetoPOO_26874
             IO.MostrarOperadores(listaOperadores);
             //Produtos
             Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", new Categoria("SMARTPHONE"));
-            Produto prdt2 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategorias.InserirCategoria("Samsung"));
+            //Produto prdt2 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategorias.InserirCategoria("Samsung"));
 
             listaProdutos.InserirProduto(prdt1);
 

@@ -43,7 +43,7 @@ namespace Produtos
         /// <param name="i">The i.</param>
         /// <param name="p">The p.</param>
         /// <param name="d">The d.</param>
-        public Produto(string n, int i, int p, string d, )
+        public Produto(string n, int i, int p, string d, Categoria nomeCategoria)
         {
             nome = n;
             id = i;
