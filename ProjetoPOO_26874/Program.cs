@@ -6,6 +6,7 @@ using Produtos;
 using RegistoAssistencias;
 using Pessoas;
 using FrontEnd;
+using Outros;
 namespace ProjetoPOO_26874
 {
     internal class Program
@@ -17,6 +18,7 @@ namespace ProjetoPOO_26874
             RegistoAssist listaAssist = new RegistoAssist();
             RegistoClientes listaClientes = new RegistoClientes();
             RegistoOperadores listaOperadores = new RegistoOperadores();
+            RegistoProdutos listaProdutos = new RegistoProdutos();
 
             //Nova assistencias
             Assist a1 = new Assist(1, DateTime.Now);
@@ -110,8 +112,17 @@ namespace ProjetoPOO_26874
             //Operadores removidos
             IO.MostrarOperadores(listaOperadores);
             //Produtos
-            Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG");
+            Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", new Categoria("SMARTPHONE"));
 
+            listaProdutos.InserirProduto(prdt1);
+
+            Console.WriteLine("teste....");
+            foreach(Produto p in listaProdutos.ObterProdutos)
+            {
+                if (p.Id == 0)
+                    continue;
+                Console.WriteLine(p.ToString());
+            }
 
             //BubbleSortClientes
             listaClientes.BubbleSortClientes();

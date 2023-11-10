@@ -7,15 +7,19 @@
 *	<description></description>
 **/
 
+using Outros;
+
 namespace Produtos
 {
     public class Produto
     {
+        const int MAXCATEGORIA = 2;
         #region ATRIBUTOS
         private string nome;
         private int id;
         private int preco;
         private string descricao;
+        Categoria categorias;
         #endregion
 
         #region COMPORTAMENTO
@@ -30,6 +34,7 @@ namespace Produtos
             id = 0;
             preco = 0;
             descricao = string.Empty;
+            categorias = new Categoria();
         }
         /// <summary>
         /// Construtor com todos os parametros.
@@ -38,12 +43,13 @@ namespace Produtos
         /// <param name="i">The i.</param>
         /// <param name="p">The p.</param>
         /// <param name="d">The d.</param>
-        public Produto(string n, int i, int p, string d)
+        public Produto(string n, int i, int p, string d, Categoria nomeCategoria)
         {
             nome = n;
             id = i;
             preco = p;
             descricao = d;
+            categorias = nomeCategoria;
         }
         #endregion
 
@@ -92,6 +98,40 @@ namespace Produtos
             get { return descricao; }
             set { descricao = value; }
         }
+        /// <summary>
+        /// Manipulacao da variavel NomeCategoria.
+        /// </summary>
+        public Categoria NomeCategoria
+        {
+            get { return categorias; }
+            set { categorias = value; }
+        }
+        #endregion
+
+        #region OPERADORES
+
+        /// <summary>
+        /// Redefinição do operador ==.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static bool operator == (Produto a, Produto b)
+        {
+            if ((a.id == b.id) && (a.descricao == b.descricao))
+                return true;
+            return false;
+        }
+        /// <summary>
+        /// Redefinição do operador !=.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static bool operator !=(Produto a, Produto b)
+        {
+            return !(a == b);
+        }
         #endregion
 
         #region OVERRIDES        
@@ -135,7 +175,7 @@ namespace Produtos
         /// <returns></returns>
         public string FichaProduto()
         {
-            return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}\n", nome, id, preco, descricao);
+            return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}\nCategoria:{4}", nome, id, preco, descricao, categorias.NomeCategoria);
         }
         #endregion
 

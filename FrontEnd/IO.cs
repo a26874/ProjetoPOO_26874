@@ -11,7 +11,9 @@ using Assistencia;
 using RegistoAssistencias;
 using Pessoas;
 using System;
+using Outros;
 using System.Runtime.InteropServices;
+using Produtos;
 
 namespace FrontEnd
 {
@@ -98,6 +100,10 @@ namespace FrontEnd
             }
             return maisCaro;
         }
+        //public static void MostrarProdutos(Produto listaProdutos)
+        //{
+
+        //}
         #endregion
 
         #endregion

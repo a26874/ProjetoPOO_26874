@@ -34,6 +34,9 @@
     <Reference Include="Assistencias">
       <HintPath>..\Assistencias\bin\Debug\Assistencias.dll</HintPath>
     </Reference>
+    <Reference Include="Outros">
+      <HintPath>..\Outros\bin\Debug\Outros.dll</HintPath>
+    </Reference>
     <Reference Include="Pessoas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Pessoas\bin\Debug\Pessoas.dll</HintPath>
