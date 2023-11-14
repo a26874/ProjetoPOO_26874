@@ -11,6 +11,9 @@ using Outros;
 
 namespace Produtos
 {
+    /// <summary>
+    /// Classe para descrever um produto.
+    /// </summary>
     public class Produto
     {
         const int MAXCATEGORIA = 2;

@@ -9,6 +9,9 @@
 
 namespace Feedback
 {
+    /// <summary>
+    /// Classe para avaliação de uma assistência.
+    /// </summary>
     public class Avaliacao
     {
         #region ATRIBUTOS

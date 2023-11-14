@@ -10,6 +10,9 @@ using Pessoas;
 
 namespace TipoAssistencia
 {
+    /// <summary>
+    /// Classe para o tipo de assistência.
+    /// </summary>
     public class TipoAssist
     {
         #region ATRIBUTOS

@@ -12,6 +12,9 @@ using System.Runtime.ExceptionServices;
 
 namespace Outros
 {
+    /// <summary>
+    /// Classe para registo de categorias.
+    /// </summary>
     public class RegistoCategorias
     {
         const int MAXCAT = 2;

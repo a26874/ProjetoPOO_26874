@@ -9,6 +9,9 @@
 
 namespace Outros
 {
+    /// <summary>
+    /// Classe para categoria de produto.
+    /// </summary>
     public class Categoria
     {
         #region ATRIBUTOS

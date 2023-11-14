@@ -12,6 +12,9 @@ using System;
 
 namespace RegistoAssistencias
 {
+    /// <summary>
+    /// Classe para registar assistências.
+    /// </summary>
     public class RegistoAssist
     {
         const int MAXASSISTENCIAS = 5;

@@ -9,6 +9,9 @@
 
 namespace EstadoAssistencia
 {
+    /// <summary>
+    /// Classe para estado de assistências.
+    /// </summary>
     public class EstadoAssist
     {
         #region ATRIBUTOS
