@@ -68,6 +68,7 @@ namespace Outros
         {
             return !(a == b);
         }
+
         #endregion
 
         #region OVERRIDES
@@ -86,9 +87,32 @@ namespace Outros
             }
             return false;
         }
+        /// <summary>
+        /// Redefinição do override ToString.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return FichaCategoria();
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         #endregion
 
-        #region OUTROS METODOS
+        #region OUTROS METODOS        
+        /// <summary>
+        /// Metodo para impressão do nome da categoria.
+        /// </summary>
+        /// <returns></returns>
+        public string FichaCategoria()
+        {
+            return string.Format("Categoria:{0}", nomeCategoria);
+        }
 
         #endregion
 

@@ -12,6 +12,7 @@ namespace ProjetoPOO_26874
     internal class Program
     {
         const int MAXCLIENTES = 10;
+        const int MAXCATEGORIAS = 2;
         static void Main(string[] args)
         {
             //Array de registo Clientes, Operadores;
@@ -113,9 +114,12 @@ namespace ProjetoPOO_26874
             Console.WriteLine("Operadores removidos");
             //Operadores removidos
             IO.MostrarOperadores(listaOperadores);
+
+            listaCategorias.InserirCategoria("teste");
+            listaCategorias.InserirCategoria("asdas");
             //Produtos
             Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", new Categoria("SMARTPHONE"));
-            //Produto prdt2 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategorias.InserirCategoria("Samsung"));
+
 
             listaProdutos.InserirProduto(prdt1);
 

@@ -24,7 +24,7 @@ namespace Assistencia
         private DateTime dataAssistencia;
         private TipoAssist tipoAssistencia;
         private EstadoAssist estadoAssistencia;
-        ///Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
+        //Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
         private int clienteNIF;
         private int operadorId;
         private static int contIdAssistencia;

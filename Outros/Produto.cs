@@ -14,6 +14,7 @@ namespace Produtos
     public class Produto
     {
         const int MAXCATEGORIA = 2;
+
         #region ATRIBUTOS
         private string nome;
         private int id;
@@ -43,13 +44,13 @@ namespace Produtos
         /// <param name="i">The i.</param>
         /// <param name="p">The p.</param>
         /// <param name="d">The d.</param>
-        public Produto(string n, int i, int p, string d, Categoria nomeCategoria)
+        public Produto(string n, int i, int p, string d, Categoria categoria)
         {
             nome = n;
             id = i;
             preco = p;
             descricao = d;
-            categorias = nomeCategoria;
+            categorias = categoria;
         }
         #endregion
 
@@ -175,7 +176,7 @@ namespace Produtos
         /// <returns></returns>
         public string FichaProduto()
         {
-            return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}\nCategoria:{4}", nome, id, preco, descricao, categorias.NomeCategoria);
+            return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}\n{4}", nome, id, preco, descricao, categorias.FichaCategoria());
         }
         #endregion
 
