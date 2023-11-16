@@ -16,6 +16,7 @@ namespace Assistencia
     public class RegistoAssist
     {
         const int MAXASSISTENCIAS = 5;
+
         #region ATRIBUTOS
         private int numAssist;
         private Assist[] listaAssistencias;

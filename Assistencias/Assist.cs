@@ -240,11 +240,6 @@ namespace Assistencia
         /// <summary>
         /// Concluir assistência.
         /// </summary>
-        public void ConcluirAssistencia()
-        {
-            estadoAssistencia.Ativo = false;
-            assistenciasRealizadas++;
-        }
         #endregion
 
         #endregion
