@@ -143,11 +143,15 @@ namespace Pessoas
         /// <param name="listaOperadores"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public bool ExisteOperador(Operador[] listaOperadores, int id)
+        public bool ExisteOperador(Operador[] listaOperadores, int id, out Operador operadorInserir)
         {
             foreach (Operador o in listaOperadores)
                 if (o.id == id)
+                {
+                    operadorInserir = o;
                     return true;
+                }
+            operadorInserir = null;
             return false;
         }
         

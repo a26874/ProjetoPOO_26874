@@ -159,11 +159,15 @@ namespace Pessoas
         /// <param name="listaClientes"></param>
         /// <param name="nif"></param>
         /// <returns></returns>
-        public bool ExisteCliente(Cliente[] listaClientes, int nif)
+        public bool ExisteCliente(Cliente[] listaClientes, int nif, out Cliente novoCliente)
         {
             foreach (Cliente c in listaClientes)
                 if (c.nif == nif)
+                {
+                    novoCliente = c;
                     return true;
+                }
+            novoCliente = null;
             return false;
         }
         #endregion

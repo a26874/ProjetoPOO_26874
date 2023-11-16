@@ -57,6 +57,7 @@ namespace FrontEnd
                 if (a.Id == -1)
                     continue;
                 Console.WriteLine(a.ToString());
+                Console.WriteLine();
             }
         }
         /// <summary>
@@ -99,6 +100,30 @@ namespace FrontEnd
                     maisCaro = a.tipoAssis.Preco;
             }
             return maisCaro;
+        }
+
+        /// <summary>
+        /// Mostra as categorias de um produto.
+        /// </summary>
+        /// <param name="listaCategorias">The lista categorias.</param>
+        public static void MostrarCategorias(Categoria[] listaCategorias)
+        {
+            foreach(Categoria c in listaCategorias)
+            {
+                if (c.NomeCategoria == string.Empty)
+                    continue;
+                Console.WriteLine(c.ToString());
+            }
+        }
+        public static void MostrarProdutos(RegistoProdutos listaProdutos)
+        {
+            foreach(Produto p in listaProdutos.ObterProdutos)
+            {
+                if (p.Id == 0)
+                    continue;
+                Console.WriteLine(p.ToString());
+                IO.MostrarCategorias(p.Categorias);
+            }
         }
         //public static void MostrarProdutos(Produto listaProdutos)
         //{

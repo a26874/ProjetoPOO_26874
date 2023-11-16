@@ -79,6 +79,7 @@ namespace Outros
             numCategorias++;
             return true;
         }
+
         #endregion
 
         #endregion

@@ -10,6 +10,7 @@ using TipoAssistencia;
 using EstadoAssistencia;
 using System;
 using RegistoAssistencias;
+using Pessoas;
 
 namespace Assistencia
 {
@@ -27,6 +28,8 @@ namespace Assistencia
         //Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
         private int clienteNIF;
         private int operadorId;
+        private Cliente cliente;
+        private Operador operador;
         private static int contIdAssistencia;
         private static int assistenciasRealizadas = 0;
 
@@ -35,7 +38,7 @@ namespace Assistencia
         #region COMPORTAMENTO
 
         #region CONSTRUTORES
-        
+
         static Assist()
         {
             contIdAssistencia = 1;
@@ -78,20 +81,20 @@ namespace Assistencia
             idAssistencia = contIdAssistencia;
             if (idAssistencia >= 1)
                 idAssistencia = contIdAssistencia++;
-            this.dataAssistencia= dataAssistencia;
+            this.dataAssistencia = dataAssistencia;
             tipoAssistencia = tipoA;
             estadoAssistencia = estadoA;
             this.clienteNIF = clienteNIF;
             this.operadorId = operadorId;
         }
 
-    #endregion
+        #endregion
 
         #region PROPRIEDADES        
-    /// <summary>
-    /// Manipulacao da variavel id.
-    /// </summary>
-    public int Id
+        /// <summary>
+        /// Manipulacao da variavel id.
+        /// </summary>
+        public int Id
         {
             set { idAssistencia = value; }
             get { return idAssistencia; }
@@ -132,7 +135,7 @@ namespace Assistencia
         public int ClienteNIF
         {
             get { return clienteNIF; }
-            set {  clienteNIF = value; }
+            set { clienteNIF = value; }
         }
         /// <summary>
         /// Manipulacao da variavel operadorID
@@ -144,6 +147,22 @@ namespace Assistencia
         {
             get { return operadorId; }
             set { operadorId = value; }
+        }
+        /// <summary>
+        /// Manipulacao da variavel Cliente.
+        /// </summary>
+        /// <value>
+        /// The cliente.
+        /// </value>
+        public Cliente Cliente
+        {
+            get { return cliente; }
+            set { cliente = value; }
+        }
+        public Operador Operador
+        {
+            get { return operador; }
+            set { operador = value; }
         }
         #endregion
 
@@ -204,8 +223,10 @@ namespace Assistencia
         /// <returns></returns>
         public string FichaAssistencia()
         {
-            return string.Format("ID assistencia:{0} - Data:{1} - Preco:{2} - Tipo:{3} - Desc:{4} - IDTipo:{5} - Estado:{6} - DescEstado:{7}",
-                idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo, tipoAssistencia.Desc, tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado);      
+            return string.Format("ID assistencia:{0}\nData:{1}\nPreco:{2}\nTipo:{3}\nDesc:{4}\nIDTipo:{5}\nEstado:{6}\nDescEstado:{7}\nCliente:{8}\nOperador:{9}",
+                idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo, tipoAssistencia.Desc, tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
+                cliente.ToString(), operador.ToString() );      
+        
         }
 
         #endregion

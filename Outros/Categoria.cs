@@ -48,6 +48,7 @@ namespace Outros
             set { nomeCategoria = value; }
         }
         #endregion
+
         /// <summary>
         /// Redefinição do operador ==.
         /// </summary>
