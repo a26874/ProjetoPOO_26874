@@ -6,11 +6,9 @@
 *   <date>2023 10/30/2023 1:26:01 PM</date>
 *	<description></description>
 **/
-using Assistencia;
 using Pessoas;
-using System;
 
-namespace RegistoAssistencias
+namespace Assistencia
 {
     /// <summary>
     /// Classe para registar assistências.

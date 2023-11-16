@@ -135,7 +135,7 @@ namespace Pessoas
         /// <returns></returns>
         public string FichaOperador()
         {
-            return string.Format("Nome:{0}|ID{1}:Contacto:{2}", Nome, id.ToString(), Contacto.ToString());
+            return string.Format("Nome:{0} | ID{1}: | Contacto:{2}", Nome, id.ToString(), Contacto.ToString());
         }
         /// <summary>
         /// Verifica se existe um operador na array de lista de operadores.

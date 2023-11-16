@@ -7,8 +7,6 @@
 *	<description></description>
 **/
 
-using Produtos;
-using System.Runtime.ExceptionServices;
 
 namespace Outros
 {

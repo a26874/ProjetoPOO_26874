@@ -6,11 +6,9 @@
 *   <date>2023 10/25/2023 5:16:25 PM</date>
 *	<description></description>
 **/
-using TipoAssistencia;
-using EstadoAssistencia;
 using System;
-using RegistoAssistencias;
 using Pessoas;
+using Outros;
 
 namespace Assistencia
 {
@@ -30,6 +28,7 @@ namespace Assistencia
         private int operadorId;
         private Cliente cliente;
         private Operador operador;
+        private Avaliacao classificacao;
         private static int contIdAssistencia;
         private static int assistenciasRealizadas = 0;
 
@@ -70,13 +69,12 @@ namespace Assistencia
         /// <summary>
         /// Construtor com todos os parametros.
         /// </summary>
-        /// <param name="idAssistencia"></param>
         /// <param name="dataAssistencia"></param>
         /// <param name="tipoA"></param>
         /// <param name="estadoA"></param>
         /// <param name="clienteNIF"></param>
         /// <param name="operadorId"></param>
-        public Assist(/*int idAssistencia*/ DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteNIF, int operadorId)
+        public Assist(DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteNIF, int operadorId/*, Avaliacao clf*/)
         {
             idAssistencia = contIdAssistencia;
             if (idAssistencia >= 1)
@@ -86,6 +84,7 @@ namespace Assistencia
             estadoAssistencia = estadoA;
             this.clienteNIF = clienteNIF;
             this.operadorId = operadorId;
+            //classificacao = clf;
         }
 
         #endregion
@@ -159,10 +158,21 @@ namespace Assistencia
             get { return cliente; }
             set { cliente = value; }
         }
+        /// <summary>
+        /// Manipulacao da variavel Operador.
+        /// </summary>
         public Operador Operador
         {
             get { return operador; }
             set { operador = value; }
+        }
+        /// <summary>
+        /// Manipulacao da variavel Classificação.
+        /// </summary>
+        public Avaliacao Classificacao
+        {
+            get { return this.classificacao; }
+            set { this.classificacao = value; }
         }
         #endregion
 
@@ -223,12 +233,18 @@ namespace Assistencia
         /// <returns></returns>
         public string FichaAssistencia()
         {
-            return string.Format("ID assistencia:{0}\nData:{1}\nPreco:{2}\nTipo:{3}\nDesc:{4}\nIDTipo:{5}\nEstado:{6}\nDescEstado:{7}\nCliente:{8}\nOperador:{9}",
+            return string.Format("ID assistencia:{0}\nData:{1}\nPreco:{2}\nTipo:{3}\nDesc:{4}\nIDTipo:{5}\nEstado:{6}\nDescEstado:{7}\nCliente:\n{8}\nOperador:\n{9}\n",
                 idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo, tipoAssistencia.Desc, tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
                 cliente.ToString(), operador.ToString() );      
-        
         }
-
+        /// <summary>
+        /// Concluir assistência.
+        /// </summary>
+        public void ConcluirAssistencia()
+        {
+            estadoAssistencia.Ativo = false;
+            assistenciasRealizadas++;
+        }
         #endregion
 
         #endregion

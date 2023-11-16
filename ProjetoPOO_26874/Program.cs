@@ -1,18 +1,13 @@
 ﻿using Assistencia;
-using System;
-using EstadoAssistencia;
-using TipoAssistencia;
-using Produtos;
-using RegistoAssistencias;
-using Pessoas;
 using FrontEnd;
 using Outros;
+using Pessoas;
+using System;
+
 namespace ProjetoPOO_26874
 {
     internal class Program
     {
-        const int MAXCLIENTES = 10;
-        const int MAXCATEGORIAS = 2;
         static void Main(string[] args)
         {
             //Array de registo Clientes, Operadores;
@@ -25,16 +20,16 @@ namespace ProjetoPOO_26874
             //Nova assistencias
             Assist a1 = new Assist(1, DateTime.Now);
             Assist a2 = new Assist(2, DateTime.Now);
-            Assist a3 = new Assist(DateTime.Now, new TipoAssist("Esclarecimento", "Atendimento", 2, 500), new EstadoAssist("Ativo", true), 42, 12);
-            Assist a4 = new Assist(DateTime.Now, new TipoAssist("Entrega Produto", "Entregas", 3, 5020), new EstadoAssist("Ativo", false), 28, 12);
-            Assist a5 = new Assist(DateTime.Now, new TipoAssist("Entrega Produto", "Entregas", 3, 5020), new EstadoAssist("Ativo", false), 28, 12);
-            Assist a6 = new Assist(DateTime.Now, new TipoAssist("Entrega Produto", "Entregas", 3, 5020), new EstadoAssist("Ativo", false), 28, 12);
-
+            Assist a3 = new Assist(DateTime.Now, new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 42, 12);
+            Assist a4 = new Assist(DateTime.Now, new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 28, 12);
+            Assist a5 = new Assist(DateTime.Now, new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 28, 12);
+            Assist a6 = new Assist(DateTime.Now, new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 28, 12);
+            // tipo assist, 
             a1.ClienteNIF = 1;
             a1.OperadorId = 1;
             a2.tipoAssis = new TipoAssist();
             a2.estadoA = new EstadoAssist();
-
+            a1.Classificacao = new Avaliacao("Bom servico", 9, string.Empty);
             //Tipo assistencias
             TipoAssist descAssist1 = new TipoAssist();
             descAssist1.Desc = "Realizada Chamada para resolucao problemas";
@@ -53,7 +48,7 @@ namespace ProjetoPOO_26874
             estado1.DescEstado = "Ainda objetivos para realizar.";
             a1.estadoA = estado1;
 
-            
+
 
             //Criação de um novo cliente
             Cliente c1 = new Cliente("aaaa", 94829, new Moradas("Braga", "dsad", "4444-444"), 42);
@@ -72,7 +67,7 @@ namespace ProjetoPOO_26874
             listaClientes.InsereCliente(c6);
 
             //Criar novos operadores
-            Operador op1 = new Operador("Marco", 12, 2487, new Moradas("teste123","24848", "asddd"));
+            Operador op1 = new Operador("Marco", 12, 2487, new Moradas("teste123", "24848", "asddd"));
             Operador op2 = new Operador("asd", 2, 2222, new Moradas("teste123", "24848", "asddd"));
             Operador op3 = new Operador("Mar", 34, 2444, new Moradas("teste123", "24848", "asddd"));
             Operador op4 = new Operador("Mao", 14, 11123, new Moradas("teste123", "24848", "asddd"));
@@ -139,7 +134,7 @@ namespace ProjetoPOO_26874
 
 
             //Inserir nova assistencia;
-            listaAssist.InsereAssist(listaOperadores.ObterOperadores,listaClientes.ObterClientes, a3);
+            listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a3);
             listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a4);
             listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a5);
             listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a6);
@@ -155,6 +150,9 @@ namespace ProjetoPOO_26874
             //IO.MostrarOperadores(listaOperadores);
             int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
             Console.WriteLine(resultado);
+            a4.ConcluirAssistencia();
+            Console.WriteLine(a4.ToString());
+            
         }
 
     }

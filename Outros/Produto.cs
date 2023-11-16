@@ -7,9 +7,7 @@
 *	<description></description>
 **/
 
-using Outros;
-
-namespace Produtos
+namespace Outros
 {
     /// <summary>
     /// Classe para descrever um produto.

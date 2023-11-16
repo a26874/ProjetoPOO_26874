@@ -39,7 +39,8 @@
     <Reference Include="FrontEnd">
       <HintPath>..\FrontEnd\bin\Debug\FrontEnd.dll</HintPath>
     </Reference>
-    <Reference Include="Outros">
+    <Reference Include="Outros, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Outros\bin\Debug\Outros.dll</HintPath>
     </Reference>
     <Reference Include="Pessoas">

@@ -7,7 +7,6 @@
 *	<description></description>
 **/
 
-using Produtos;
 
 namespace Outros
 {

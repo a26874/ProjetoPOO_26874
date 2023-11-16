@@ -7,7 +7,7 @@
 *	<description></description>
 **/
 
-namespace EstadoAssistencia
+namespace Assistencia
 {
     /// <summary>
     /// Classe para estado de assistências.

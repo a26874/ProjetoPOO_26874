@@ -8,12 +8,9 @@
 **/
 
 using Assistencia;
-using RegistoAssistencias;
 using Pessoas;
 using System;
 using Outros;
-using System.Runtime.InteropServices;
-using Produtos;
 
 namespace FrontEnd
 {
@@ -122,7 +119,7 @@ namespace FrontEnd
                 if (p.Id == 0)
                     continue;
                 Console.WriteLine(p.ToString());
-                IO.MostrarCategorias(p.Categorias);
+                MostrarCategorias(p.Categorias);
             }
         }
         //public static void MostrarProdutos(Produto listaProdutos)

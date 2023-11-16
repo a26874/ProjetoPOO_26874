@@ -7,8 +7,6 @@
 *	<description></description>
 **/
 
-using Assistencia;
-using RegistoAssistencias;
 
 namespace Pessoas
 {
@@ -151,7 +149,7 @@ namespace Pessoas
         /// <returns></returns>
         public string FichaCliente()
         {
-            return string.Format("Nome:{0} - Contacto:{1} - NIF{2}", Nome, Contacto, nif);
+            return string.Format("Nome:{0} | Contacto:{1} | NIF:{2}", Nome, Contacto, nif);
         }
         /// <summary>
         /// Verifica se existe um cliente no array de registo de clientes.

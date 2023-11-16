@@ -7,7 +7,7 @@
 *	<description></description>
 **/
 
-namespace ProblemasConhecidos
+namespace Outros
 {
     /// <summary>
     /// Classe para problemas conhecidos.
