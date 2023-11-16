@@ -11,6 +11,9 @@ using Produtos;
 
 namespace Outros
 {
+    /// <summary>
+    /// Classe para registo de produtos.
+    /// </summary>
     public class RegistoProdutos
     {
         const int MAXPRODUTOS = 5;

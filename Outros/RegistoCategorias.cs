@@ -12,6 +12,9 @@ using System.Runtime.ExceptionServices;
 
 namespace Outros
 {
+    /// <summary>
+    /// Classe para registo de categorias.
+    /// </summary>
     public class RegistoCategorias
     {
         const int MAXCAT = 2;
@@ -31,7 +34,10 @@ namespace Outros
         #endregion
 
         #region PROPRIEDADES
-
+        public Categoria[] ObterCategorias
+        {
+            get { return (Categoria[])listaCategorias.Clone(); }
+        }
         #endregion
 
         #region OPERADORES
@@ -42,7 +48,11 @@ namespace Outros
 
         #endregion
 
-        #region OUTROS METODOS
+        #region OUTROS METODOS        
+        /// <summary>
+        /// Inicia a array de categorias.
+        /// </summary>
+        /// <param name="c">The c.</param>
         void InicializarArrayCategorias(Categoria[] c)
         { 
             for (int i = 0; i < c.Length; i++)
@@ -50,7 +60,11 @@ namespace Outros
                 c[i] = new Categoria();
             }  
         }
-
+        /// <summary>
+        /// Insere um categoria.
+        /// </summary>
+        /// <param name="nomeCategoria">The nome categoria.</param>
+        /// <returns></returns>
         public bool InserirCategoria(string nomeCategoria)
         {
             foreach (Categoria aux in listaCategorias)
@@ -65,6 +79,7 @@ namespace Outros
             numCategorias++;
             return true;
         }
+
         #endregion
 
         #endregion

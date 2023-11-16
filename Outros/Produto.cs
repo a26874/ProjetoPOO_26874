@@ -11,15 +11,19 @@ using Outros;
 
 namespace Produtos
 {
+    /// <summary>
+    /// Classe para descrever um produto.
+    /// </summary>
     public class Produto
     {
         const int MAXCATEGORIA = 2;
+
         #region ATRIBUTOS
         private string nome;
         private int id;
         private int preco;
         private string descricao;
-        Categoria categorias;
+        Categoria[] categorias;
         #endregion
 
         #region COMPORTAMENTO
@@ -34,7 +38,7 @@ namespace Produtos
             id = 0;
             preco = 0;
             descricao = string.Empty;
-            categorias = new Categoria();
+            categorias = new Categoria[MAXCATEGORIA];
         }
         /// <summary>
         /// Construtor com todos os parametros.
@@ -43,13 +47,13 @@ namespace Produtos
         /// <param name="i">The i.</param>
         /// <param name="p">The p.</param>
         /// <param name="d">The d.</param>
-        public Produto(string n, int i, int p, string d, Categoria nomeCategoria)
+        public Produto(string n, int i, int p, string d, Categoria[] categoria)
         {
             nome = n;
             id = i;
             preco = p;
             descricao = d;
-            categorias = nomeCategoria;
+            categorias = categoria;
         }
         #endregion
 
@@ -101,7 +105,7 @@ namespace Produtos
         /// <summary>
         /// Manipulacao da variavel NomeCategoria.
         /// </summary>
-        public Categoria NomeCategoria
+        public Categoria[] Categorias
         {
             get { return categorias; }
             set { categorias = value; }
@@ -175,7 +179,7 @@ namespace Produtos
         /// <returns></returns>
         public string FichaProduto()
         {
-            return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}\nCategoria:{4}", nome, id, preco, descricao, categorias.NomeCategoria);
+            return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}\n", nome, id, preco, descricao);
         }
         #endregion
 

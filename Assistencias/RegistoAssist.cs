@@ -12,6 +12,9 @@ using System;
 
 namespace RegistoAssistencias
 {
+    /// <summary>
+    /// Classe para registar assistências.
+    /// </summary>
     public class RegistoAssist
     {
         const int MAXASSISTENCIAS = 5;
@@ -66,8 +69,12 @@ namespace RegistoAssistencias
         {
             Cliente auxCliente = new Cliente();
             Operador auxOperador = new Operador();
-            bool existeCliente = auxCliente.ExisteCliente(listaClientes, a.ClienteNIF);
-            bool existeOperador = auxOperador.ExisteOperador(listaOperadores, a.OperadorId);
+            bool existeCliente = auxCliente.ExisteCliente(listaClientes, a.ClienteNIF, out Cliente clienteInserir);
+            if (existeCliente)
+                a.Cliente = clienteInserir;
+            bool existeOperador = auxOperador.ExisteOperador(listaOperadores, a.OperadorId, out Operador operadorInserir);
+            if (existeOperador)
+                a.Operador = operadorInserir;
             //Verificar se a já existe!!! && se existe espaço
             if (existeCliente && existeOperador)
             {

@@ -9,6 +9,9 @@
 
 namespace ProblemasConhecidos
 {
+    /// <summary>
+    /// Classe para problemas conhecidos.
+    /// </summary>
     public class ProblemasCon
     {
         #region ATRIBUTOS

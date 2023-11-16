@@ -12,6 +12,7 @@ namespace ProjetoPOO_26874
     internal class Program
     {
         const int MAXCLIENTES = 10;
+        const int MAXCATEGORIAS = 2;
         static void Main(string[] args)
         {
             //Array de registo Clientes, Operadores;
@@ -19,7 +20,6 @@ namespace ProjetoPOO_26874
             RegistoClientes listaClientes = new RegistoClientes();
             RegistoOperadores listaOperadores = new RegistoOperadores();
             RegistoProdutos listaProdutos = new RegistoProdutos();
-            RegistoCategorias listaCategorias = new RegistoCategorias();
 
 
             //Nova assistencias
@@ -113,21 +113,20 @@ namespace ProjetoPOO_26874
             Console.WriteLine("Operadores removidos");
             //Operadores removidos
             IO.MostrarOperadores(listaOperadores);
+
             //Produtos
-            Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", new Categoria("SMARTPHONE"));
-            //Produto prdt2 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategorias.InserirCategoria("Samsung"));
+            RegistoCategorias listaCategoriasProd1 = new RegistoCategorias();
+            listaCategoriasProd1.InserirCategoria("SMARTPHONE");
+            listaCategoriasProd1.InserirCategoria("5G");
+            Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategoriasProd1.ObterCategorias);
+
 
             listaProdutos.InserirProduto(prdt1);
 
             Console.WriteLine("teste....");
-            foreach(Produto p in listaProdutos.ObterProdutos)
-            {
-                if (p.Id == 0)
-                    continue;
-                Console.WriteLine(p.ToString());
-            }
-
+            IO.MostrarProdutos(listaProdutos);
             //BubbleSortClientes
+
             listaClientes.BubbleSortClientes();
             Console.WriteLine("Ordenado por NIF");
             IO.MostrarClientes(listaClientes);
@@ -145,14 +144,15 @@ namespace ProjetoPOO_26874
             listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a5);
             listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a6);
             //Assistencias
+            Console.WriteLine();
             Console.WriteLine("Assistencias:");
             IO.MostrarAssistencias(listaAssist);
 
             //
-            Console.WriteLine("teste");
-            IO.MostrarAssistencias(listaAssist);
-            IO.MostrarClientes(listaClientes);
-            IO.MostrarOperadores(listaOperadores);
+            //Console.WriteLine("teste");
+            //IO.MostrarAssistencias(listaAssist);
+            //IO.MostrarClientes(listaClientes);
+            //IO.MostrarOperadores(listaOperadores);
             int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
             Console.WriteLine(resultado);
         }

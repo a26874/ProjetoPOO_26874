@@ -9,6 +9,9 @@
 
 namespace Pessoas
 {
+    /// <summary>
+    /// Classe para generalizar uma pessoa.
+    /// </summary>
     public class Pessoa
     {
         #region ATRIBUTOS
