@@ -30,7 +30,6 @@ namespace Assistencia
         private Operador operador;
         private Avaliacao classificacao;
         private static int contIdAssistencia;
-        private static int assistenciasRealizadas = 0;
 
         #endregion
 
@@ -41,7 +40,6 @@ namespace Assistencia
         static Assist()
         {
             contIdAssistencia = 1;
-            assistenciasRealizadas = 0;
         }
         /// <summary>
         /// Construtor default;
@@ -54,7 +52,6 @@ namespace Assistencia
             estadoAssistencia = new EstadoAssist();
             ClienteNIF = -1;
             operadorId = -1;
-            assistenciasRealizadas = 0;
         }
         /// <summary>
         /// Construtor com 2 parametros para teste.

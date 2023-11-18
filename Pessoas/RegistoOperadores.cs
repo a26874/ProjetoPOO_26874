@@ -18,11 +18,19 @@ namespace Pessoas
         #region ATRIBUTOS
         private int numOperadores;
         private Operador[] listaOperadores;
+        private static int numeroOperadoresExistentes;
         #endregion
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES
+        #region CONSTRUTORES        
+        /// <summary>
+        /// Inicializa a <see cref="RegistoOperadores"/> classe.
+        /// </summary>
+        static RegistoOperadores()
+        {
+            numeroOperadoresExistentes = 0;
+        }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -79,6 +87,7 @@ namespace Pessoas
             }
             listaOperadores[numOperadores] = o;
             numOperadores++;
+            numeroOperadoresExistentes++;
             return true;
         }
         /// <summary>
@@ -94,6 +103,7 @@ namespace Pessoas
                 else
                     listaOperadores[i] = new Operador();
             }
+            numeroOperadoresExistentes = 0;
             return true;
         }
         /// <summary>
@@ -110,6 +120,7 @@ namespace Pessoas
                     for (int j = i; j < listaOperadores.Length - 1; j++)
                         listaOperadores[j] = listaOperadores[j + 1];
                     listaOperadores[listaOperadores.Length - 1] = new Operador();
+                    numeroOperadoresExistentes--;
                     return true;
                 }
             }
@@ -137,6 +148,14 @@ namespace Pessoas
                     }
                 }
             }
+        }
+        /// <summary>
+        /// Retorna o numero de operadores existentes.
+        /// </summary>
+        /// <returns></returns>
+        public int NumeroOperadoresExistentes()
+        {
+            return numeroOperadoresExistentes;
         }
         #endregion
 

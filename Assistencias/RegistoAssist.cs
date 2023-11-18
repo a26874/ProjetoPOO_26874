@@ -20,11 +20,19 @@ namespace Assistencia
         #region ATRIBUTOS
         private int numAssist;
         private Assist[] listaAssistencias;
+        private static int assistenciasRealizadas;
         #endregion
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES
+        #region CONSTRUTORES        
+        /// <summary>
+        /// Inicializa <see cref="RegistoAssist"/> classe.
+        /// </summary>
+        static RegistoAssist()
+        {
+            assistenciasRealizadas = 0;
+        }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -147,6 +155,27 @@ namespace Assistencia
                     }
                 }
             }
+        }
+        /// <summary>
+        /// Conclui uma assistência.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        public bool ConcluirAssistencia(Assist a)
+        {
+            if (a.estadoA.Ativo == false)
+                return false;
+            a.estadoA.Ativo = false;
+            assistenciasRealizadas++;
+            return true;
+        }
+        /// <summary>
+        /// Retorna o numero de assistencias realizadas.
+        /// </summary>
+        /// <returns></returns>
+        public int MostrarAssistenciasRealizadas()
+        {
+            return assistenciasRealizadas;
         }
         #endregion
 

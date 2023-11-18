@@ -19,34 +19,37 @@ namespace ProjetoPOO_26874
 
 
             //Nova assistencias
-            Assist a1 = new Assist(DateTime.Now, new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 42, 12);
-            Assist a2 = new Assist(DateTime.Now, new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 28, 12);
-            Assist a3 = new Assist(DateTime.Now, new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 28, 12);
-            Assist a4 = new Assist(DateTime.Now, new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 28, 12);
+            Assist a1 = new Assist(DateTime.Now, new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
+            Assist a2 = new Assist(DateTime.Now, new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
+            Assist a3 = new Assist(DateTime.Now, new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
+            Assist a4 = new Assist(DateTime.Now, new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
 
             //Criação de um novo cliente
-            Cliente c1 = new Cliente("aaaa", 94829, new Moradas("Braga", "dsad", "4444-444"), 42);
-            Cliente c2 = new Cliente("Marco", 9421474, new Moradas("asd", "222", "Braga"), 28);
-            Cliente c3 = new Cliente("aadasd", 94, new Moradas("fdkk", "4718-22", "Braga"), 4);
-            Cliente c4 = new Cliente("ascxzc", 274, new Moradas("zcxc", "4718-2", "Braga"), 9);
-            Cliente c5 = new Cliente("cxzv", 974, new Moradas("lk", "47-222", "Braga"), 19);
-            Cliente c6 = new Cliente("Mo", 244, new Moradas("zxc", "478-222", "Braga"), 29);
+            Cliente c1 = new Cliente("Marco", 94829, new Moradas("Braga", "4720-452", "Amares"), 1874);
+            Cliente c2 = new Cliente("Ruben", 9421474, new Moradas("Braga", "4122-862", "VilaVerde"), 1676);
+            Cliente c3 = new Cliente("Andre", 94, new Moradas("Braga", "4000-221", "Barcelos"), 1266);
+            Cliente c4 = new Cliente("Macedo", 274, new Moradas("Porto", "4218-211", "Arouca"), 1759);
+            Cliente c5 = new Cliente("Nuno", 974, new Moradas("Porto", "4117-222", "Espinho"), 1911);
+            Cliente c6 = new Cliente("Flavia", 244, new Moradas("Porto", "478-222", "Arcos"), 1898);
 
             //Inserir clientes na array listaClientes
+   
             listaClientes.InsereCliente(c1);
-            listaClientes.InsereCliente(c2);
+            listaClientes.InsereCliente(c2);        
             listaClientes.InsereCliente(c3);
             listaClientes.InsereCliente(c4);
             listaClientes.InsereCliente(c5);
             listaClientes.InsereCliente(c6);
 
             //Criar novos operadores
-            Operador op1 = new Operador("Marco", 12, 2487, new Moradas("teste123", "24848", "asddd"));
-            Operador op2 = new Operador("asd", 2, 2222, new Moradas("teste123", "24848", "asddd"));
-            Operador op3 = new Operador("Mar", 34, 2444, new Moradas("teste123", "24848", "asddd"));
-            Operador op4 = new Operador("Mao", 14, 11123, new Moradas("teste123", "24848", "asddd"));
-            Operador op5 = new Operador("Maco", 25, 2444, new Moradas("teste123", "24848", "asddd"));
-            Operador op6 = new Operador("arco", 6, 4959, new Moradas("teste123", "24848", "asddd"));
+            Operador op1 = new Operador("Marco", 12, 2487, new Moradas("Braga", "4720-444", "Amares"));
+            Operador op2 = new Operador("Joao", 2, 2222, new Moradas("Braga", "4700-124", "VilaVerde"));
+            Operador op3 = new Operador("Goncalo", 34, 2444, new Moradas("Porto", "4262-244", "Arouca"));
+            Operador op4 = new Operador("Rui", 14, 11123, new Moradas("Braga", "4991-242", "VilaVerde"));
+            Operador op5 = new Operador("Luis", 25, 2444, new Moradas("Porto", "4221-112", "Arouca"));
+            Operador op6 = new Operador("Diogo", 6, 4959, new Moradas("Braga", "4872-111", "Barcelos"));
+
+            int numeroOperadores = listaOperadores.NumeroOperadoresExistentes();
 
             //Inserir operadores.
             listaOperadores.InserirOperador(op1);
@@ -67,7 +70,7 @@ namespace ProjetoPOO_26874
             //Clientes
             IO.MostrarClientes(listaClientes);
 
-            bool resultadoClientes = listaClientes.RemoverClienteEspecifico(new Cliente("asdwqq", 9191, new Moradas("asd", "asdad", "asdasda"), 82748));
+            bool resultadoClientes = listaClientes.RemoverClienteEspecifico(new Cliente("teste", 9191, new Moradas("asd", "asdad", "asdasda"), 82748));
             bool resultadoClientes2 = listaClientes.RemoverClienteEspecifico(c3);
             Console.WriteLine(resultadoClientes);
             Console.WriteLine(resultadoClientes2);
@@ -75,7 +78,7 @@ namespace ProjetoPOO_26874
             //Clientes removidos
             IO.MostrarClientes(listaClientes);
 
-            bool resultadoOperador = listaOperadores.RemoverOperadorEspecifico(new Operador("asda", 187, 9888, new Moradas("asda", "qwdq", "awsdd")));
+            bool resultadoOperador = listaOperadores.RemoverOperadorEspecifico(new Operador("teste", 187, 9888, new Moradas("asda", "qwdq", "awsdd")));
             bool resultadoOperador2 = listaOperadores.RemoverOperadorEspecifico(op2);
             Console.WriteLine(resultadoOperador);
             Console.WriteLine(resultadoOperador2);
@@ -94,8 +97,8 @@ namespace ProjetoPOO_26874
 
             Console.WriteLine("teste....");
             IO.MostrarProdutos(listaProdutos);
-            //BubbleSortClientes
 
+            //BubbleSortClientes
             listaClientes.BubbleSortClientes();
             Console.WriteLine("Ordenado por NIF");
             IO.MostrarClientes(listaClientes);
@@ -117,15 +120,18 @@ namespace ProjetoPOO_26874
             Console.WriteLine("Assistencias:");
             IO.MostrarAssistencias(listaAssist);
 
-            //
-            //Console.WriteLine("teste");
-            //IO.MostrarAssistencias(listaAssist);
-            //IO.MostrarClientes(listaClientes);
-            //IO.MostrarOperadores(listaOperadores);
+
             int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
             Console.WriteLine(resultado);
-            Console.WriteLine(a2.ToString());
-            
+            int assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
+            Console.WriteLine(assistenciasRea);
+            listaAssist.ConcluirAssistencia(a4);
+            assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
+            Console.WriteLine(assistenciasRea);
+            Console.WriteLine(numeroOperadores);
+            listaOperadores.RemoverOperadores();
+            numeroOperadores = listaOperadores.NumeroOperadoresExistentes();
+            Console.WriteLine("operadores:{0}",numeroOperadores);
         }
 
     }

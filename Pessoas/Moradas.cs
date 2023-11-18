@@ -15,7 +15,7 @@ namespace Pessoas
     public class Moradas
     {
         #region ATRIBUTOS
-        private string rua;
+        private string distrito;
         private string codigoPostal;
         private string localidade;
         #endregion
@@ -28,7 +28,7 @@ namespace Pessoas
         /// </summary>
         public Moradas()
         {
-            rua = string.Empty;
+            distrito = string.Empty;
             codigoPostal = string.Empty;
             localidade = string.Empty;
         }
@@ -40,7 +40,7 @@ namespace Pessoas
         /// <param name="l"></param>
         public Moradas(string r, string codPost, string l)
         {
-            this.rua = r;
+            this.distrito = r;
             this.codigoPostal = codPost;
             this.localidade = l;
         }
@@ -48,12 +48,12 @@ namespace Pessoas
 
         #region PROPRIEDADES
         /// <summary>
-        /// Manipulacao da variavel rua.
+        /// Manipulacao da variavel distrito.
         /// </summary>
         public string Rua
         {
-            set { rua = value; }
-            get { return rua.ToUpper(); }
+            set { distrito = value; }
+            get { return distrito.ToUpper(); }
         }
         /// <summary>
         /// Manipulacao da variavel CodPostal
@@ -82,7 +82,7 @@ namespace Pessoas
         /// <returns></returns>
         public static bool operator == (Moradas a, Moradas b)
         {
-            if ((a.rua == b.rua) && (a.localidade == b.localidade) && (a.codigoPostal == b.codigoPostal))
+            if ((a.distrito == b.distrito) && (a.localidade == b.localidade) && (a.codigoPostal == b.codigoPostal))
             {
                 return true;
             }
@@ -136,7 +136,7 @@ namespace Pessoas
         /// <returns></returns>
         public string FichaMorada()
         {
-            return string.Format("Rua:{0} - Codigo-Postal:{1} - Localidade:{2}", rua, codigoPostal, localidade);
+            return string.Format("Rua:{0} - Codigo-Postal:{1} - Localidade:{2}", distrito, codigoPostal, localidade);
         }
         #endregion
 

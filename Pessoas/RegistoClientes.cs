@@ -20,11 +20,16 @@ namespace Pessoas
         #region ATRIBUTOS
         private int numCliente;
         Cliente[] listaClientes;
+        private static int numeroClientesExistentes;
         #endregion
 
         #region COMPORTAMENTO
 
         #region CONSTRUTORES        
+        static RegistoClientes()
+        {
+            numeroClientesExistentes = 0;
+        }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -86,6 +91,7 @@ namespace Pessoas
             }
             listaClientes[numCliente] = c;
             numCliente++;
+            numeroClientesExistentes++;
             return true;
         }
         /// <summary>
@@ -101,6 +107,7 @@ namespace Pessoas
                 else
                     listaClientes[i] = new Cliente();
             }
+            numeroClientesExistentes = 0;
             return true;
         }
         /// <summary>
@@ -117,6 +124,7 @@ namespace Pessoas
                     for (int j = i; j < listaClientes.Length-1; j++)
                         listaClientes[j] = listaClientes[j+1];
                     listaClientes[listaClientes.Length-1] = new Cliente();
+                    numeroClientesExistentes--;
                     return true;
                 }
             }
@@ -144,6 +152,14 @@ namespace Pessoas
                     }
                 }
             }
+        }
+        /// <summary>
+        /// Retorna o numero de clientes existentes.
+        /// </summary>
+        /// <returns></returns>
+        public int NumeroClientesExistentes()
+        {
+            return numeroClientesExistentes;
         }
         #endregion
 
