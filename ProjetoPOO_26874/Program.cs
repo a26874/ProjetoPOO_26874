@@ -111,27 +111,36 @@ namespace ProjetoPOO_26874
 
 
             //Inserir nova assistencia;
-            listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a1);
-            listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a2);
-            listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a3);
-            listaAssist.InsereAssist(listaOperadores.ObterOperadores, listaClientes.ObterClientes, a4);
+            listaAssist.InsereAssist(listaOperadores, listaClientes, a1);
+            listaAssist.InsereAssist(listaOperadores, listaClientes, a2);
+            listaAssist.InsereAssist(listaOperadores, listaClientes, a3);
+            listaAssist.InsereAssist(listaOperadores, listaClientes, a4);
             //Assistencias
             Console.WriteLine();
             Console.WriteLine("Assistencias:");
             IO.MostrarAssistencias(listaAssist);
 
 
-            int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
-            Console.WriteLine(resultado);
-            int assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
-            Console.WriteLine(assistenciasRea);
-            listaAssist.ConcluirAssistencia(a4);
-            assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
-            Console.WriteLine(assistenciasRea);
-            Console.WriteLine(numeroOperadores);
-            listaOperadores.RemoverOperadores();
-            numeroOperadores = listaOperadores.NumeroOperadoresExistentes();
-            Console.WriteLine("operadores:{0}",numeroOperadores);
+            //int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
+            //Console.WriteLine(resultado);
+            //int assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
+            //Console.WriteLine(assistenciasRea);
+            listaAssist.ConcluirAssistencia(a1);
+            Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
+            listaAssist.RegistoAvaliacao(a1,clsA1);
+            listaAssist.ConcluirAssistencia(a2);
+            Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
+            listaAssist.RegistoAvaliacao(a2, clsA2);
+            //listaAssist.RegistoAvaliacao();
+            //assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
+            //Console.WriteLine(assistenciasRea);
+            //Console.WriteLine(numeroOperadores);
+            //listaOperadores.RemoverOperadores();
+            //numeroOperadores = listaOperadores.NumeroOperadoresExistentes();
+            //Console.WriteLine("operadores:{0}",numeroOperadores);
+            Console.WriteLine(a1.Classificacao.ToString());
+            Console.WriteLine(a2.Classificacao.ToString());
+
         }
 
     }

@@ -6,6 +6,7 @@
 *   <date>2023 10/30/2023 1:26:01 PM</date>
 *	<description></description>
 **/
+using Outros;
 using Pessoas;
 
 namespace Assistencia
@@ -72,19 +73,15 @@ namespace Assistencia
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        public bool InsereAssist(Operador[] listaOperadores, Cliente[] listaClientes,Assist a)
+        public bool InsereAssist(RegistoOperadores listaOperadores, RegistoClientes listaClientes,Assist a)
         {
-            Cliente auxCliente = new Cliente();
-            Operador auxOperador = new Operador();
-            bool existeCliente = auxCliente.ExisteCliente(listaClientes, a.ClienteNIF, out Cliente clienteInserir);
-            if (existeCliente)
-                a.Cliente = clienteInserir;
-            bool existeOperador = auxOperador.ExisteOperador(listaOperadores, a.OperadorId, out Operador operadorInserir);
-            if (existeOperador)
-                a.Operador = operadorInserir;
+            bool existeCliente = listaClientes.ExisteCliente(a.ClienteNIF, out Cliente clienteInserir);
+            bool existeOperador = listaOperadores.ExisteOperador(a.OperadorId, out Operador operadorInserir);
             //Verificar se a já existe!!! && se existe espaço
             if (existeCliente && existeOperador)
             {
+                a.Cliente = clienteInserir;
+                a.Operador = operadorInserir;
                 foreach (Assist auxAssist in listaAssistencias)
                 {
                     if (auxAssist.Id == -1)
@@ -177,6 +174,24 @@ namespace Assistencia
         {
             return assistenciasRealizadas;
         }
+        /// <summary>
+        /// Registar avaliacao de uma assistencia.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="cls">The CLS.</param>
+        /// <returns></returns>
+        public bool RegistoAvaliacao(Assist a, Avaliacao cls)
+        {
+            if (a.Classificacao.Pontuacao == -1)
+            {
+                a.Classificacao.Pontuacao = cls.Pontuacao;
+                a.Classificacao.Descricao = cls.Descricao; 
+                a.Classificacao.Melhorias = cls.Melhorias;
+                return true;
+            }
+            return false;
+        }
+
         #endregion
 
         #endregion

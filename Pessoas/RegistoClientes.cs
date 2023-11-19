@@ -161,6 +161,24 @@ namespace Pessoas
         {
             return numeroClientesExistentes;
         }
+
+        /// <summary>
+        /// Verifica se um certo cliente existe na array de clientes.
+        /// </summary>
+        /// <param name="nif">The nif.</param>
+        /// <param name="novoCliente">The novo cliente.</param>
+        /// <returns></returns>
+        public bool ExisteCliente( int nif, out Cliente novoCliente)
+        {
+            foreach (Cliente c in listaClientes)
+                if (c.NIF == nif)
+                {
+                    novoCliente = c;
+                    return true;
+                }
+            novoCliente = null;
+            return false;
+        }
         #endregion
 
         #endregion

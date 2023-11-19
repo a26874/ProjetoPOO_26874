@@ -71,7 +71,7 @@ namespace Assistencia
         /// <param name="estadoA"></param>
         /// <param name="clienteNIF"></param>
         /// <param name="operadorId"></param>
-        public Assist(DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteNIF, int operadorId/*, Avaliacao clf*/)
+        public Assist(DateTime dataAssistencia, TipoAssist tipoA, EstadoAssist estadoA, int clienteNIF, int operadorId)
         {
             idAssistencia = contIdAssistencia;
             if (idAssistencia >= 1)
@@ -81,7 +81,7 @@ namespace Assistencia
             estadoAssistencia = estadoA;
             this.clienteNIF = clienteNIF;
             this.operadorId = operadorId;
-            //classificacao = clf;
+            this.classificacao = new Avaliacao();
         }
 
         #endregion
@@ -234,9 +234,6 @@ namespace Assistencia
                 idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo, tipoAssistencia.Desc, tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
                 cliente.ToString(), operador.ToString() );      
         }
-        /// <summary>
-        /// Concluir assistência.
-        /// </summary>
         #endregion
 
         #endregion

@@ -137,24 +137,8 @@ namespace Pessoas
         {
             return string.Format("Nome:{0} | ID{1}: | Contacto:{2}", Nome, id.ToString(), Contacto.ToString());
         }
-        /// <summary>
-        /// Verifica se existe um operador na array de lista de operadores.
-        /// </summary>
-        /// <param name="listaOperadores"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public bool ExisteOperador(Operador[] listaOperadores, int id, out Operador operadorInserir)
-        {
-            foreach (Operador o in listaOperadores)
-                if (o.id == id)
-                {
-                    operadorInserir = o;
-                    return true;
-                }
-            operadorInserir = null;
-            return false;
-        }
-        
+
+       
         #endregion
 
         #endregion

@@ -157,6 +157,23 @@ namespace Pessoas
         {
             return numeroOperadoresExistentes;
         }
+        /// <summary>
+        /// Verifica se existe um operador.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="operadorInserir">The operador inserir.</param>
+        /// <returns></returns>
+        public bool ExisteOperador(int id, out Operador operadorInserir)
+        {
+            foreach (Operador o in listaOperadores)
+                if (o.Id == id)
+                {
+                    operadorInserir = o;
+                    return true;
+                }
+            operadorInserir = null;
+            return false;
+        }
         #endregion
 
         #endregion
