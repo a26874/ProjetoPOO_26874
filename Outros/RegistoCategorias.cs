@@ -23,7 +23,10 @@ namespace Outros
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES
+        #region CONSTRUTORES        
+        /// <summary>
+        /// Construtor para inicializar um novo registo de categorias.
+        /// </summary>
         public RegistoCategorias()
         {
             listaCategorias= new Categoria[MAXCAT];
@@ -31,7 +34,13 @@ namespace Outros
         }
         #endregion
 
-        #region PROPRIEDADES
+        #region PROPRIEDADES        
+        /// <summary>
+        /// Devolve as categorias de um produto.
+        /// </summary>
+        /// <value>
+        /// The obter categorias.
+        /// </value>
         public Categoria[] ObterCategorias
         {
             get { return (Categoria[])listaCategorias.Clone(); }

@@ -45,8 +45,14 @@ namespace Assistencia
 
         #endregion
 
-        #region PROPRIEDADES
-        public Assist[] TodasAssistencias
+        #region PROPRIEDADES        
+        /// <summary>
+        /// Devolve a array de todas as assistências.
+        /// </summary>
+        /// <value>
+        /// The todas assistencias.
+        /// </value>
+        public Assist[] ObterAssistencias
         {
             get { return (Assist[])listaAssistencias.Clone(); }
         }
@@ -163,6 +169,7 @@ namespace Assistencia
             if (a.estadoA.Ativo == false)
                 return false;
             a.estadoA.Ativo = false;
+            a.estadoA.DescEstado = "Completado";
             assistenciasRealizadas++;
             return true;
         }
@@ -184,9 +191,7 @@ namespace Assistencia
         {
             if (a.Classificacao.Pontuacao == -1)
             {
-                a.Classificacao.Pontuacao = cls.Pontuacao;
-                a.Classificacao.Descricao = cls.Descricao; 
-                a.Classificacao.Melhorias = cls.Melhorias;
+                a.Classificacao = cls;
                 return true;
             }
             return false;

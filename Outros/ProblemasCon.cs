@@ -7,10 +7,12 @@
 *	<description></description>
 **/
 
+using Assistencia;
+
 namespace Outros
 {
     /// <summary>
-    /// Classe para problemas conhecidos.
+    /// Classe para listaSolucoes conhecidos.
     /// </summary>
     public class ProblemasCon
     {
@@ -126,10 +128,10 @@ namespace Outros
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is ProblemasCon)
+            if (obj is TipoAssist)
             {
-                ProblemasCon p = (ProblemasCon)obj;
-                if (this == p)
+                TipoAssist t = (TipoAssist)obj;
+                if (this.id == t.Id)
                     return true;
             }
             return false;
@@ -144,6 +146,7 @@ namespace Outros
         {
             return FichaProblemasCon();
         }
+        //Ainda por fazer
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -157,9 +160,10 @@ namespace Outros
         /// <returns></returns>
         public string FichaProblemasCon()
         {
-            return string.Format("Descricao:{0}\nResolucao:{1}\n", descProblema, resolucaoProblema);
+            return string.Format("Solucao:\nDescricao:{0}\nResolucao:{1}\n", descProblema, resolucaoProblema);
         }
         #endregion
+
 
         #endregion
     }

@@ -14,6 +14,9 @@ using Outros;
 
 namespace FrontEnd
 {
+    /// <summary>
+    /// Classe para input e output.
+    /// </summary>
     public class IO
     {
         #region ATRIBUTOS
@@ -42,19 +45,27 @@ namespace FrontEnd
 
         #endregion
 
-        #region OUTROS METODOS
+        #region OUTROS METODOS        
         /// <summary>
-        /// Mostra o registo de assistencias na consola.
+        /// Mostra as assistencias na consola.
         /// </summary>
-        /// <param name="listaAssistencias"></param>
-        public static void MostrarAssistencias(RegistoAssist listaAssistencias)
+        /// <param name="listaAssistencias">The lista assistencias.</param>
+        /// <param name="listaSolucoes">The lista solucoes.</param>
+        public static void MostrarAssistencias(RegistoAssist listaAssistencias, RegistoProblemas listaSolucoes)
         {
-            foreach (Assist a in listaAssistencias.TodasAssistencias)
+            foreach (Assist a in listaAssistencias.ObterAssistencias)
             {
                 if (a.Id == -1)
                     continue;
                 Console.WriteLine(a.ToString());
-                Console.WriteLine();
+                if (a.estadoA.Ativo == false)
+                    continue;
+                foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
+                {
+                    if (p.Id == -1)
+                        continue;
+                    MostrarSolucao(a,p);
+                }
             }
         }
         /// <summary>
@@ -91,14 +102,13 @@ namespace FrontEnd
         public static int MostrarAssistenciaMaisCara(RegistoAssist listaAssistencias)
         {
             int maisCaro = 0;
-            foreach(Assist a in listaAssistencias.TodasAssistencias)
+            foreach(Assist a in listaAssistencias.ObterAssistencias)
             {
                 if (a.tipoAssis.Preco > maisCaro && a.tipoAssis.Preco != -1)
                     maisCaro = a.tipoAssis.Preco;
             }
             return maisCaro;
         }
-
         /// <summary>
         /// Mostra as categorias de um produto.
         /// </summary>
@@ -112,6 +122,10 @@ namespace FrontEnd
                 Console.WriteLine(c.ToString());
             }
         }
+        /// <summary>
+        /// Mostra os produtos.
+        /// </summary>
+        /// <param name="listaProdutos">The lista produtos.</param>
         public static void MostrarProdutos(RegistoProdutos listaProdutos)
         {
             foreach(Produto p in listaProdutos.ObterProdutos)
@@ -122,10 +136,32 @@ namespace FrontEnd
                 MostrarCategorias(p.Categorias);
             }
         }
-        //public static void MostrarProdutos(Produto listaProdutos)
-        //{
-
-        //}
+        /// <summary>
+        /// Se existir solucao para um problema, ela e mostrada.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="p">The p.</param>
+        public static void MostrarSolucao(Assist a, ProblemasCon p)
+        {
+            bool existeSolucao = a.ExisteSolucao(a, p);
+            if(existeSolucao)
+            {
+                Console.WriteLine(p.ToString());
+            }
+        }
+        /// <summary>
+        /// Mostra todas as solucoes disponiveis.
+        /// </summary>
+        /// <param name="listaSolucoes">The lista solucoes.</param>
+        public static void MostrarSolucoesExistentes(RegistoProblemas listaSolucoes)
+        {
+            foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
+            {
+                if (p.Id == -1)
+                    continue;
+                Console.WriteLine(p.ToString());
+            }
+        }
         #endregion
 
         #endregion

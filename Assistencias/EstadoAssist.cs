@@ -91,6 +91,7 @@ namespace Assistencia
                 return true;
             return false;
         }
+        //Ainda por fazer
         public override int GetHashCode()
         {
             return base.GetHashCode();

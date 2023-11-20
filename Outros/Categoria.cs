@@ -101,7 +101,7 @@ namespace Outros
         {
             return FichaCategoria();
         }
-
+        //Ainda por fazer
         public override int GetHashCode()
         {
             return base.GetHashCode();

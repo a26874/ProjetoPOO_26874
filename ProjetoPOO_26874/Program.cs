@@ -16,13 +16,14 @@ namespace ProjetoPOO_26874
             RegistoClientes listaClientes = new RegistoClientes();
             RegistoOperadores listaOperadores = new RegistoOperadores();
             RegistoProdutos listaProdutos = new RegistoProdutos();
-
+            RegistoProblemas listaSolucoes = new RegistoProblemas();
 
             //Nova assistencias
             Assist a1 = new Assist(DateTime.Now, new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
             Assist a2 = new Assist(DateTime.Now, new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
             Assist a3 = new Assist(DateTime.Now, new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
             Assist a4 = new Assist(DateTime.Now, new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
+            Assist a5 = new Assist(DateTime.Now, new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
 
             //Criação de um novo cliente
             Cliente c1 = new Cliente("Marco", 94829, new Moradas("Braga", "4720-452", "Amares"), 1874);
@@ -110,15 +111,23 @@ namespace ProjetoPOO_26874
             IO.MostrarOperadores(listaOperadores);
 
 
+            ProblemasCon prob1 = new ProblemasCon("Atendimento-Duvidas", 1, "Ditar problemas e conforme o numero digitado, apresentar solucao");
+            ProblemasCon prob2 = new ProblemasCon("Entregas-Informacao", 2, "Oferecer detalhes sobre o estado de entrega");
+            ProblemasCon prob4 = new ProblemasCon("Assistencia-Servico Manutencao", 4, "Enviar um funcionario ao local desejado");
+
+            listaSolucoes.InserirSolucao(prob1);
+            listaSolucoes.InserirSolucao(prob2);
+            listaSolucoes.InserirSolucao(prob4);
+
+
             //Inserir nova assistencia;
             listaAssist.InsereAssist(listaOperadores, listaClientes, a1);
             listaAssist.InsereAssist(listaOperadores, listaClientes, a2);
             listaAssist.InsereAssist(listaOperadores, listaClientes, a3);
             listaAssist.InsereAssist(listaOperadores, listaClientes, a4);
-            //Assistencias
-            Console.WriteLine();
-            Console.WriteLine("Assistencias:");
-            IO.MostrarAssistencias(listaAssist);
+            listaAssist.InsereAssist(listaOperadores, listaClientes, a5);
+
+           
 
 
             //int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
@@ -138,9 +147,12 @@ namespace ProjetoPOO_26874
             //listaOperadores.RemoverOperadores();
             //numeroOperadores = listaOperadores.NumeroOperadoresExistentes();
             //Console.WriteLine("operadores:{0}",numeroOperadores);
-            Console.WriteLine(a1.Classificacao.ToString());
-            Console.WriteLine(a2.Classificacao.ToString());
 
+
+            //Assistencias
+            Console.WriteLine();
+            Console.WriteLine("Assistencias:");
+            IO.MostrarAssistencias(listaAssist, listaSolucoes);
         }
 
     }

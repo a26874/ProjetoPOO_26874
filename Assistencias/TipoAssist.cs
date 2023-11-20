@@ -144,6 +144,7 @@ namespace Assistencia
             }
             return false;
         }
+        //Ainda por fazer
         public override int GetHashCode()
         {
             return base.GetHashCode();

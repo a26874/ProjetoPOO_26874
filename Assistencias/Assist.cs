@@ -35,8 +35,10 @@ namespace Assistencia
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES
-
+        #region CONSTRUTORES        
+        /// <summary>
+        /// Inicializa o contador de assistencias.
+        /// </summary>
         static Assist()
         {
             contIdAssistencia = 1;
@@ -81,7 +83,7 @@ namespace Assistencia
             estadoAssistencia = estadoA;
             this.clienteNIF = clienteNIF;
             this.operadorId = operadorId;
-            this.classificacao = new Avaliacao();
+            classificacao = new Avaliacao();
         }
 
         #endregion
@@ -217,6 +219,7 @@ namespace Assistencia
             }
             return false;
         }
+        //Ainda por fazer.
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -230,9 +233,27 @@ namespace Assistencia
         /// <returns></returns>
         public string FichaAssistencia()
         {
-            return string.Format("ID assistencia:{0}\nData:{1}\nPreco:{2}\nTipo:{3}\nDesc:{4}\nIDTipo:{5}\nEstado:{6}\nDescEstado:{7}\nCliente:\n{8}\nOperador:\n{9}\n",
+            if (classificacao.Pontuacao !=-1)
+            {
+                return string.Format("ID assistencia:{0}\nData:{1}\nPreco:{2}\nTipo:{3}\nDesc:{4}\nIDTipo:{5}\nEstado:{6}\nDescEstado:{7}\nCliente:\n{8}\nOperador:\n{9}\nAvaliacao:{10}",
                 idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo, tipoAssistencia.Desc, tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
-                cliente.ToString(), operador.ToString() );      
+                cliente.ToString(), operador.ToString(),classificacao.ToString());
+            }
+            return string.Format("ID assistencia:{0}\nData:{1}\nPreco:{2}\nTipo:{3}\nDesc:{4}\nIDTipo:{5}\nEstado:{6}\nDescEstado:{7}\nCliente:\n{8}\nOperador:\n{9}",
+                idAssistencia, dataAssistencia, tipoAssistencia.Preco, tipoAssistencia.NomeTipo, tipoAssistencia.Desc, tipoAssistencia.Id, estadoAssistencia.Ativo, estadoAssistencia.DescEstado,
+                cliente.ToString(), operador.ToString());
+        }
+        /// <summary>
+        /// Verifica se ja existe uma solucao para o problema.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        public bool ExisteSolucao(Assist a, ProblemasCon p)
+        {
+            if (p.Equals(a.tipoAssis))
+                return true;
+            return false;
         }
         #endregion
 

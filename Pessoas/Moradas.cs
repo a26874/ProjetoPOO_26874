@@ -40,9 +40,9 @@ namespace Pessoas
         /// <param name="l"></param>
         public Moradas(string r, string codPost, string l)
         {
-            this.distrito = r;
-            this.codigoPostal = codPost;
-            this.localidade = l;
+            distrito = r;
+            codigoPostal = codPost;
+            localidade = l;
         }
         #endregion
 

@@ -129,7 +129,7 @@ namespace Outros
             }
             return false;
         }
-
+        //Ainda por fazer
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -143,7 +143,7 @@ namespace Outros
         /// <returns></returns>
         public string FichaAvaliacao()
         {
-            return string.Format("Pontuacao:{0}\nDescricao:{1}\nMelhorias:{2}", pontuacao, descricao, melhorias);
+            return string.Format("Pontuacao:{0}\nDescricao:{1}\nMelhorias:{2}\n", pontuacao, descricao, melhorias);
         }
         #endregion
 
