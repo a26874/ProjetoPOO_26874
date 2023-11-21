@@ -34,6 +34,9 @@
     <Reference Include="Assistencias">
       <HintPath>..\Assistencias\bin\Debug\Assistencias.dll</HintPath>
     </Reference>
+    <Reference Include="Interfaces">
+      <HintPath>..\Interfaces\bin\Debug\Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Outros">
       <HintPath>..\Outros\bin\Debug\Outros.dll</HintPath>
     </Reference>

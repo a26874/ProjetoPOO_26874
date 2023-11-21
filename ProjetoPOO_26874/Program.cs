@@ -19,11 +19,11 @@ namespace ProjetoPOO_26874
             RegistoProblemas listaSolucoes = new RegistoProblemas();
 
             //Nova assistencias
-            Assist a1 = new Assist(DateTime.Now, new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
-            Assist a2 = new Assist(DateTime.Now, new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
-            Assist a3 = new Assist(DateTime.Now, new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
-            Assist a4 = new Assist(DateTime.Now, new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
-            Assist a5 = new Assist(DateTime.Now, new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
+            Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
+            Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
+            Assist a3 = new Assist(new DateTime(2023, 11, 1, 13, 45, 44), new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
+            Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
+            Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
 
             //Criação de um novo cliente
             Cliente c1 = new Cliente("Marco", 94829, new Moradas("Braga", "4720-452", "Amares"), 1874);
@@ -34,9 +34,9 @@ namespace ProjetoPOO_26874
             Cliente c6 = new Cliente("Flavia", 244, new Moradas("Porto", "478-222", "Arcos"), 1898);
 
             //Inserir clientes na array listaClientes
-   
+
             listaClientes.InsereCliente(c1);
-            listaClientes.InsereCliente(c2);        
+            listaClientes.InsereCliente(c2);
             listaClientes.InsereCliente(c3);
             listaClientes.InsereCliente(c4);
             listaClientes.InsereCliente(c5);
@@ -53,12 +53,12 @@ namespace ProjetoPOO_26874
             int numeroOperadores = listaOperadores.NumeroOperadoresExistentes();
 
             //Inserir operadores.
-            listaOperadores.InserirOperador(op1);
-            listaOperadores.InserirOperador(op2);
-            listaOperadores.InserirOperador(op3);
-            listaOperadores.InserirOperador(op4);
-            listaOperadores.InserirOperador(op5);
-            //bool teste2 = listaOperadores.InserirOperador(op6);
+            listaOperadores.InsereOperador(op1);
+            listaOperadores.InsereOperador(op2);
+            listaOperadores.InsereOperador(op3);
+            listaOperadores.InsereOperador(op4);
+            listaOperadores.InsereOperador(op5);
+            //bool teste2 = listaOperadores.InsereOperador(op6);
 
 
 
@@ -127,32 +127,19 @@ namespace ProjetoPOO_26874
             listaAssist.InsereAssist(listaOperadores, listaClientes, a4);
             listaAssist.InsereAssist(listaOperadores, listaClientes, a5);
 
-           
-
-
-            //int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
-            //Console.WriteLine(resultado);
-            //int assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
-            //Console.WriteLine(assistenciasRea);
             listaAssist.ConcluirAssistencia(a1);
             Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
-            listaAssist.RegistoAvaliacao(a1,clsA1);
+            listaAssist.RegistoAvaliacao(a1, clsA1);
             listaAssist.ConcluirAssistencia(a2);
             Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
             listaAssist.RegistoAvaliacao(a2, clsA2);
-            //listaAssist.RegistoAvaliacao();
-            //assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
-            //Console.WriteLine(assistenciasRea);
-            //Console.WriteLine(numeroOperadores);
-            //listaOperadores.RemoverOperadores();
-            //numeroOperadores = listaOperadores.NumeroOperadoresExistentes();
-            //Console.WriteLine("operadores:{0}",numeroOperadores);
 
 
             //Assistencias
             Console.WriteLine();
             Console.WriteLine("Assistencias:");
             IO.MostrarAssistencias(listaAssist, listaSolucoes);
+
         }
 
     }

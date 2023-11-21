@@ -40,7 +40,7 @@ namespace Assistencia
         public RegistoAssist()
         {
             listaAssistencias = new Assist[MAXASSISTENCIAS];
-            IniciarArrayRegisto(listaAssistencias);
+            IniciarArrayRegisto();
         }
 
         #endregion
@@ -59,7 +59,7 @@ namespace Assistencia
         #endregion
 
         #region OVERRIDES
-        
+
         #endregion
 
         #region OUTROS METODOS
@@ -67,11 +67,11 @@ namespace Assistencia
         /// Metodo para inicialização da array.
         /// </summary>
         /// <param name="a"></param>
-        void IniciarArrayRegisto(Assist[] a)
+        void IniciarArrayRegisto()
         {
-            for (int i = 0; i < a.Length;i++)
+            for (int i = 0; i < listaAssistencias.Length;i++)
             {
-                a[i] = new Assist();
+                listaAssistencias[i] = new Assist();
             }
         }
         /// <summary>
@@ -88,17 +88,29 @@ namespace Assistencia
             {
                 a.Cliente = clienteInserir;
                 a.Operador = operadorInserir;
-                foreach (Assist auxAssist in listaAssistencias)
-                {
-                    if (auxAssist.Id == -1)
-                        continue;
-                    //Retirar a comparação de ID e colocar apenas data e tipodeAssistencia -> perguntar prof.
-                    if (auxAssist.Equals(a) || (numAssist >= MAXASSISTENCIAS))
-                        return false;
-                }
+                bool inserirAssist =InsereAssistArray(a);
+                if (inserirAssist)
+                    return true;
+                else
+                    return false;
             }
             else
                 return false;
+        }
+        /// <summary>
+        /// Insere uma assistencia na array.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        public bool InsereAssistArray(Assist a)
+        {
+            foreach (Assist b in listaAssistencias)
+            {
+                if (b.Id == -1)
+                    continue;
+                if (b.Equals(a) || (numAssist>=MAXASSISTENCIAS))
+                    return false;
+            }
             listaAssistencias[numAssist] = a;
             numAssist++;
             return true;
@@ -114,7 +126,7 @@ namespace Assistencia
                 if (listaAssistencias[i] is null)
                     continue;
                 else
-                    listaAssistencias[i] = new Assist();
+                    listaAssistencias[i] = null;
             }
             return true;
         }
@@ -131,7 +143,7 @@ namespace Assistencia
                 {
                     for (int j = i; j < listaAssistencias.Length - 1; j++)
                         listaAssistencias[j] = listaAssistencias[j + 1];
-                    listaAssistencias[listaAssistencias.Length - 1] = new Assist();
+                    listaAssistencias[listaAssistencias.Length - 1] = null;
                     return true;
                 }
             }
@@ -149,7 +161,7 @@ namespace Assistencia
                 a = false;
                 for (int i = 0; i < listaAssistencias.Length - 1; i++)
                 {
-                    if (listaAssistencias[i].Id > listaAssistencias[i + 1].Id)
+                    if (ReferenceEquals(listaAssistencias[i], null)||listaAssistencias[i].Id > listaAssistencias[i + 1].Id)
                     {
                         aux = listaAssistencias[i];
                         listaAssistencias[i] = listaAssistencias[i + 1];
@@ -166,12 +178,21 @@ namespace Assistencia
         /// <returns></returns>
         public bool ConcluirAssistencia(Assist a)
         {
-            if (a.estadoA.Ativo == false)
-                return false;
-            a.estadoA.Ativo = false;
-            a.estadoA.DescEstado = "Completado";
-            assistenciasRealizadas++;
-            return true;
+            foreach(Assist b in listaAssistencias)
+            {
+                if (b.Id == -1)
+                    continue;
+                if(b.Equals(a))
+                {
+                    if (a.estadoA.Ativo == false)
+                        return false;
+                    a.estadoA.Ativo = false;
+                    a.estadoA.DescEstado = "Completado";
+                    assistenciasRealizadas++;
+                    return true;
+                }
+            }
+            return false;
         }
         /// <summary>
         /// Retorna o numero de assistencias realizadas.
@@ -189,10 +210,18 @@ namespace Assistencia
         /// <returns></returns>
         public bool RegistoAvaliacao(Assist a, Avaliacao cls)
         {
-            if (a.Classificacao.Pontuacao == -1)
+            foreach (Assist b in listaAssistencias)
             {
-                a.Classificacao = cls;
-                return true;
+                if (b.Id == -1)
+                    continue;
+                if (b.Equals(a))
+                {
+                    if (b.Classificacao.Pontuacao == -1)
+                    {
+                        b.Classificacao = cls;
+                        return true;
+                    }
+                }
             }
             return false;
         }

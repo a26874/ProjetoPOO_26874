@@ -26,7 +26,7 @@ namespace FrontEnd
         #region COMPORTAMENTO
 
         #region CONSTRUTORES
-        
+
         public IO()
         {
 
@@ -64,7 +64,7 @@ namespace FrontEnd
                 {
                     if (p.Id == -1)
                         continue;
-                    MostrarSolucao(a,p);
+                    MostrarSolucao(a, p);
                 }
             }
         }
@@ -76,7 +76,7 @@ namespace FrontEnd
         {
             foreach (Cliente c in listaClientes.ObterClientes)
             {
-                if (c.NIF == -1)
+                if (ReferenceEquals(c,null)|| c.NIF == -1 )
                     continue;
                 Console.WriteLine(c.ToString());
             }
@@ -89,7 +89,7 @@ namespace FrontEnd
         {
             foreach (Operador o in listaOperadores.ObterOperadores)
             {
-                if (o.Id == -1)
+                if (ReferenceEquals(o,null)||o.Id == -1)
                     continue;
                 Console.WriteLine(o.ToString());
             }
@@ -102,7 +102,7 @@ namespace FrontEnd
         public static int MostrarAssistenciaMaisCara(RegistoAssist listaAssistencias)
         {
             int maisCaro = 0;
-            foreach(Assist a in listaAssistencias.ObterAssistencias)
+            foreach (Assist a in listaAssistencias.ObterAssistencias)
             {
                 if (a.tipoAssis.Preco > maisCaro && a.tipoAssis.Preco != -1)
                     maisCaro = a.tipoAssis.Preco;
@@ -115,7 +115,7 @@ namespace FrontEnd
         /// <param name="listaCategorias">The lista categorias.</param>
         public static void MostrarCategorias(Categoria[] listaCategorias)
         {
-            foreach(Categoria c in listaCategorias)
+            foreach (Categoria c in listaCategorias)
             {
                 if (c.NomeCategoria == string.Empty)
                     continue;
@@ -128,9 +128,9 @@ namespace FrontEnd
         /// <param name="listaProdutos">The lista produtos.</param>
         public static void MostrarProdutos(RegistoProdutos listaProdutos)
         {
-            foreach(Produto p in listaProdutos.ObterProdutos)
+            foreach (Produto p in listaProdutos.ObterProdutos)
             {
-                if (p.Id == 0)
+                if (ReferenceEquals(p,null)||p.Id == 0)
                     continue;
                 Console.WriteLine(p.ToString());
                 MostrarCategorias(p.Categorias);
@@ -144,7 +144,7 @@ namespace FrontEnd
         public static void MostrarSolucao(Assist a, ProblemasCon p)
         {
             bool existeSolucao = a.ExisteSolucao(a, p);
-            if(existeSolucao)
+            if (existeSolucao)
             {
                 Console.WriteLine(p.ToString());
             }
@@ -162,6 +162,12 @@ namespace FrontEnd
                 Console.WriteLine(p.ToString());
             }
         }
+        public static void InserirAssistenciaCompleta(RegistoAssist listaAssistencias, RegistoClientes listaClientes, Assist a)
+        {
+
+        }
+
+        
         #endregion
 
         #endregion

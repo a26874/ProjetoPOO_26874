@@ -29,7 +29,7 @@ namespace Outros
         public RegistoProblemas()
         {
             listaSolucoes = new ProblemasCon[MAXPROBLEMASCON];
-            InicializarArraySolucoes(listaSolucoes);
+            InicializarArraySolucoes();
         }
         #endregion
 
@@ -59,11 +59,11 @@ namespace Outros
         /// Inicializa o array de solucoes.
         /// </summary>
         /// <param name="p">The p.</param>
-        void InicializarArraySolucoes(ProblemasCon[] p)
+        void InicializarArraySolucoes()
         {
-            for (int i = 0; i < p.Length; i++)
+            for (int i = 0; i < listaSolucoes.Length; i++)
             {
-                p[i] = new ProblemasCon();
+                listaSolucoes[i] = new ProblemasCon();
             }
         }
         /// <summary>
@@ -83,6 +83,30 @@ namespace Outros
             listaSolucoes[numProblemas] = p;
             numProblemas++;
             return true;
+        }
+        /// <summary>
+        /// Edita uma solucao.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="desc">The desc.</param>
+        /// <param name="solucao">The solucao.</param>
+        /// <returns></returns>
+        public bool EditarSolucao(ProblemasCon p, int id, string desc, string solucao)
+        {
+            foreach (ProblemasCon s in listaSolucoes)
+            {
+                if (s.Id == -1)
+                    continue;
+                if (s.Equals(p))
+                {
+                    s.Descricao = desc;
+                    s.Id = id;
+                    s.Resolucao = solucao;
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 
