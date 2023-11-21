@@ -16,7 +16,12 @@ namespace Interfaces
     /// </summary>
     public interface IRegistoClientes
     {
+        void IniciarArrayClientes();
         bool InsereCliente(Cliente c);
+        bool RemoverClientes();
+        bool RemoverClienteEspecifico(Cliente c);
+        void BubbleSortClientes();
+        int NumeroClientesExistentes();
         bool ExisteCliente(int nif, out Cliente clienteInserir);
     }
 }
