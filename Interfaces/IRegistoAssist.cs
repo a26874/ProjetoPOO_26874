@@ -15,9 +15,9 @@ namespace Interfaces
 {
     public interface IRegistoAssist
     {
-        void IniciarArrayRegisto();
-        bool InsereAssist(RegistoOperadores listaOperadores, RegistoClientes listaClientes, Assist a);
         bool InsereAssistArray(Assist a);
+        bool InsereClienteAssist(Assist a, Cliente[] listaClientes);
+        bool InsereOperadorAssist(Assist a, Operador[] listaOperadores);
         bool RemoverAssistencias();
         bool RemoverAssistenciaEspecifica(Assist a);
         void BubbleSortAssistencias();

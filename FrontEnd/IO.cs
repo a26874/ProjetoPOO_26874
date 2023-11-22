@@ -55,7 +55,7 @@ namespace FrontEnd
         {
             foreach (Assist a in listaAssistencias.ObterAssistencias)
             {
-                if (a.Id == -1)
+                if (ReferenceEquals(a,null) || a.Id == -1)
                     continue;
                 Console.WriteLine(a.ToString());
                 if (a.estadoA.Ativo == false)

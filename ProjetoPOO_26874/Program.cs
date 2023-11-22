@@ -121,11 +121,32 @@ namespace ProjetoPOO_26874
 
 
             //Inserir nova assistencia;
-            listaAssist.InsereAssist(listaOperadores, listaClientes, a1);
-            listaAssist.InsereAssist(listaOperadores, listaClientes, a2);
-            listaAssist.InsereAssist(listaOperadores, listaClientes, a3);
-            listaAssist.InsereAssist(listaOperadores, listaClientes, a4);
-            listaAssist.InsereAssist(listaOperadores, listaClientes, a5);
+            //listaAssist.InsereAssist(listaOperadores, listaClientes, a1);
+            //listaAssist.InsereAssist(listaOperadores, listaClientes, a2);
+            //listaAssist.InsereAssist(listaOperadores, listaClientes, a3);
+            //listaAssist.InsereAssist(listaOperadores, listaClientes, a4);
+            //listaAssist.InsereAssist(listaOperadores, listaClientes, a5);
+
+            listaAssist.InsereAssistArray(a1);
+            listaAssist.InsereAssistArray(a2);
+            listaAssist.InsereAssistArray(a3);
+            listaAssist.InsereAssistArray(a4);
+            listaAssist.InsereAssistArray(a5);
+            
+
+
+            listaAssist.InsereClienteAssist(a1, listaClientes.ObterClientes);
+            listaAssist.InsereClienteAssist(a2, listaClientes.ObterClientes);
+            listaAssist.InsereClienteAssist(a3, listaClientes.ObterClientes);
+            listaAssist.InsereClienteAssist(a4, listaClientes.ObterClientes);
+            listaAssist.InsereClienteAssist(a5, listaClientes.ObterClientes);
+
+            listaAssist.InsereOperadorAssist(a1, listaOperadores.ObterOperadores);
+            listaAssist.InsereOperadorAssist(a2, listaOperadores.ObterOperadores);
+            listaAssist.InsereOperadorAssist(a3, listaOperadores.ObterOperadores);
+            listaAssist.InsereOperadorAssist(a4, listaOperadores.ObterOperadores);
+            listaAssist.InsereOperadorAssist(a5, listaOperadores.ObterOperadores);
+
 
             listaAssist.ConcluirAssistencia(a1);
             Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");

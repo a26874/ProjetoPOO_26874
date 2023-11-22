@@ -13,7 +13,6 @@ namespace Interfaces
 {
     public interface IRegistoOperadores
     {
-        void IniciarArrayOperadores();
         bool InsereOperador(Operador o);
         bool RemoverOperadores();
         bool RemoverOperadorEspecifico(Operador o);

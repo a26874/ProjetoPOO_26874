@@ -6,6 +6,7 @@
 *   <date>2023 10/30/2023 1:26:01 PM</date>
 *	<description></description>
 **/
+using Interfaces;
 using Outros;
 using Pessoas;
 
@@ -14,7 +15,7 @@ namespace Assistencia
     /// <summary>
     /// Classe para registar assistências.
     /// </summary>
-    public class RegistoAssist
+    public class RegistoAssist : IRegistoAssist
     {
         const int MAXASSISTENCIAS = 5;
 
@@ -75,29 +76,6 @@ namespace Assistencia
             }
         }
         /// <summary>
-        /// Metodo para a inserção de uma nova assistência na array de registos.
-        /// </summary>
-        /// <param name="a"></param>
-        /// <returns></returns>
-        public bool InsereAssist(RegistoOperadores listaOperadores, RegistoClientes listaClientes,Assist a)
-        {
-            bool existeCliente = listaClientes.ExisteCliente(a.ClienteNIF, out Cliente clienteInserir);
-            bool existeOperador = listaOperadores.ExisteOperador(a.OperadorId, out Operador operadorInserir);
-            //Verificar se a já existe!!! && se existe espaço
-            if (existeCliente && existeOperador)
-            {
-                a.Cliente = clienteInserir;
-                a.Operador = operadorInserir;
-                bool inserirAssist =InsereAssistArray(a);
-                if (inserirAssist)
-                    return true;
-                else
-                    return false;
-            }
-            else
-                return false;
-        }
-        /// <summary>
         /// Insere uma assistencia na array.
         /// </summary>
         /// <param name="a">a.</param>
@@ -114,6 +92,58 @@ namespace Assistencia
             listaAssistencias[numAssist] = a;
             numAssist++;
             return true;
+        }
+        /// <summary>
+        /// Insere um cliente numa assistencia.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="listaClientes">The lista clientes.</param>
+        /// <returns></returns>
+        public bool InsereClienteAssist(Assist a, Cliente[] listaClientes)
+        {
+            foreach(Assist b in listaAssistencias)
+            {
+                if (ReferenceEquals(b,null)||b.Id == -1)
+                    continue;
+                if(b.Id == a.Id)
+                    foreach (Cliente c in listaClientes)
+                    {
+                        if (ReferenceEquals(c,null) ||c.NIF == -1)
+                            continue;
+                        if (b.ClienteNIF == c.NIF)
+                        {
+                            b.Cliente = c;
+                            return true;
+                        }
+                    }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Insere um operador numa assistência.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="listaOperadores">The lista operadores.</param>
+        /// <returns></returns>
+        public bool InsereOperadorAssist(Assist a, Operador[] listaOperadores)
+        {
+            foreach(Assist b in listaAssistencias)
+            {
+                if (ReferenceEquals(b, null) || b.Id == -1)
+                    continue;
+                if (b.Id == a.Id)
+                    foreach (Operador o in listaOperadores)
+                    {
+                        if (ReferenceEquals(o, null) || o.Id == -1)
+                            continue;
+                        if (b.OperadorId == o.Id)
+                        {
+                            b.Operador = o;
+                            return true;
+                        }
+                    }
+            }
+            return false;
         }
         /// <summary>
         /// Substitui as assistências existentes por novos objetos do tipo assist.
@@ -180,14 +210,14 @@ namespace Assistencia
         {
             foreach(Assist b in listaAssistencias)
             {
-                if (b.Id == -1)
+                if (ReferenceEquals(b,null) || b.Id == -1)
                     continue;
                 if(b.Equals(a))
                 {
-                    if (a.estadoA.Ativo == false)
+                    if (b.estadoA.Ativo == false)
                         return false;
-                    a.estadoA.Ativo = false;
-                    a.estadoA.DescEstado = "Completado";
+                    b.estadoA.Ativo = false;
+                    b.estadoA.DescEstado = "Completado";
                     assistenciasRealizadas++;
                     return true;
                 }
@@ -212,7 +242,7 @@ namespace Assistencia
         {
             foreach (Assist b in listaAssistencias)
             {
-                if (b.Id == -1)
+                if (ReferenceEquals(b,null) || b.Id == -1)
                     continue;
                 if (b.Equals(a))
                 {
@@ -226,6 +256,11 @@ namespace Assistencia
             return false;
         }
 
+        public bool InsereClienteAssistencia(Assist a, Cliente c)
+        {
+
+            return false;
+        }
         #endregion
 
         #endregion
