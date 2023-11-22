@@ -39,7 +39,7 @@ namespace Pessoas
         {
             Nome = string.Empty;
             Contacto = -1;
-            Morada = new Moradas(string.Empty,string.Empty,string.Empty);
+            Morada = new Morada(string.Empty,string.Empty,string.Empty);
             nif = -1;
             numClientes = 0;
         }
@@ -49,7 +49,7 @@ namespace Pessoas
         /// <param name="n">The n.</param>
         /// <param name="c">The c.</param>
         /// <param name="M">The m.</param>
-        public Cliente(string n, int c, Moradas m, int ni)
+        public Cliente(string n, int c, Morada m, int ni)
         {
             Nome= n;
             Contacto = c;

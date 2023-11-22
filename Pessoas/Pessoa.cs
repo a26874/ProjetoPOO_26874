@@ -17,7 +17,7 @@ namespace Pessoas
         #region ATRIBUTOS
         private int contacto;
         private string nome;
-        private Moradas morada;
+        private Morada morada;
         #endregion
 
         #region COMPORTAMENTO
@@ -53,7 +53,7 @@ namespace Pessoas
         /// <summary>
         /// Manipulacao da variavel Morada.
         /// </summary>
-        public Moradas Morada
+        public Morada Morada
         {
             get { return morada; }
             set { morada = value;}

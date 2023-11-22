@@ -162,12 +162,26 @@ namespace FrontEnd
                 Console.WriteLine(p.ToString());
             }
         }
-        public static void InserirAssistenciaCompleta(RegistoAssist listaAssistencias, RegistoClientes listaClientes, Assist a)
+        /// <summary>
+        /// Mostra a ficha completa do cliente.
+        /// </summary>
+        /// <param name="listaClientes">The lista clientes.</param>
+        public static void MostrarFichaClientesCompleto(Cliente[] listaClientes)
         {
+            foreach(Cliente c in listaClientes)
+            {
+                if (ReferenceEquals(c, null) || c.NIF == -1)
+                    continue;
+                Console.WriteLine(c.ToString());
+                if (ReferenceEquals(c.Morada, null) || c.Morada.CodPostal == string.Empty)
+                    continue;
+                else
+                {
+                    Console.WriteLine(c.Morada.ToString());
+                }
+            }
 
         }
-
-        
         #endregion
 
         #endregion

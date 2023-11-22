@@ -1,5 +1,5 @@
 ﻿/*
-*	<copyright file="Moradas" company="IPCA">
+*	<copyright file="Morada" company="IPCA">
 *	</copyright>
 * 	<author>Marco Macedo</author>
 *	<contact>a26874@alunos.ipca.pt</contact>
@@ -12,7 +12,7 @@ namespace Pessoas
     /// <summary>
     /// Classe para moradas.
     /// </summary>
-    public class Moradas
+    public class Morada
     {
         #region ATRIBUTOS
         private string distrito;
@@ -26,7 +26,7 @@ namespace Pessoas
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
-        public Moradas()
+        public Morada()
         {
             distrito = string.Empty;
             codigoPostal = string.Empty;
@@ -38,7 +38,7 @@ namespace Pessoas
         /// <param name="r"></param>
         /// <param name="codPost"></param>
         /// <param name="l"></param>
-        public Moradas(string r, string codPost, string l)
+        public Morada(string r, string codPost, string l)
         {
             distrito = r;
             codigoPostal = codPost;
@@ -80,7 +80,7 @@ namespace Pessoas
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static bool operator == (Moradas a, Moradas b)
+        public static bool operator == (Morada a, Morada b)
         {
             if ((a.distrito == b.distrito) && (a.localidade == b.localidade) && (a.codigoPostal == b.codigoPostal))
             {
@@ -94,7 +94,7 @@ namespace Pessoas
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static bool operator != (Moradas a, Moradas b)
+        public static bool operator != (Morada a, Morada b)
         {
             return !(a == b);
         }
@@ -119,7 +119,7 @@ namespace Pessoas
         /// </returns>
         public override bool Equals(object obj)
         {
-            Moradas a = (Moradas)obj;
+            Morada a = (Morada)obj;
             if (this == a) return true;
             return false;
         }

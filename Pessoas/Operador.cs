@@ -35,7 +35,7 @@ namespace Pessoas
             Nome= string.Empty;
             id = -1;
             Contacto = -1;
-            Morada = new Moradas();
+            Morada = new Morada();
             numOperadores++;
         }
         /// <summary>
@@ -44,7 +44,7 @@ namespace Pessoas
         /// <param name="nomeOperador">O nome do operador.</param>
         /// <param name="idOperador">O numero do operador.</param>
         /// <param name="contactoOperador">O contacto do operador.</param>
-        public Operador(string nomeOperador, int idOperador, int contactoOperador, Moradas moradaOperador)
+        public Operador(string nomeOperador, int idOperador, int contactoOperador, Morada moradaOperador)
         {
             Nome = nomeOperador;
             id = idOperador;
