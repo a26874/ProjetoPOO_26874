@@ -7,8 +7,11 @@
 *	<description></description>
 **/
 
+using System;
+
 namespace Outros
 {
+    [Serializable]
     /// <summary>
     /// Classe para avaliação de uma assistência.
     /// </summary>

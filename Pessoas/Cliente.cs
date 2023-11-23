@@ -9,9 +9,11 @@
 
 
 using Outros;
+using System;
 
 namespace Pessoas
 {
+    [Serializable]
     /// <summary>
     /// Classe para cliente.
     /// </summary>

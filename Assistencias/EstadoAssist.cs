@@ -7,8 +7,11 @@
 *	<description></description>
 **/
 
+using System;
+
 namespace Assistencia
 {
+    [Serializable]
     /// <summary>
     /// Classe para estado de assistências.
     /// </summary>

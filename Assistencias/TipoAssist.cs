@@ -7,9 +7,11 @@
 *	<description></description>
 **/
 using Pessoas;
+using System;
 
 namespace Assistencia
 {
+    [Serializable]
     /// <summary>
     /// Classe para o tipo de assistência.
     /// </summary>

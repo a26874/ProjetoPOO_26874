@@ -9,9 +9,13 @@
 using Interfaces;
 using Outros;
 using Pessoas;
-
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 namespace Assistencia
 {
+    [Serializable]
     /// <summary>
     /// Classe para registar assistências.
     /// </summary>
@@ -23,6 +27,7 @@ namespace Assistencia
         private int numAssist;
         private Assist[] listaAssistencias;
         private static int assistenciasRealizadas;
+        private List<Assist> testeListaAssist; //apenas para teste ainda.
         #endregion
 
         #region COMPORTAMENTO
@@ -41,6 +46,7 @@ namespace Assistencia
         public RegistoAssist()
         {
             listaAssistencias = new Assist[MAXASSISTENCIAS];
+            testeListaAssist = new List<Assist>();
             IniciarArrayRegisto();
         }
 
@@ -56,6 +62,11 @@ namespace Assistencia
         public Assist[] ObterAssistencias
         {
             get { return (Assist[])listaAssistencias.Clone(); }
+        }
+
+        public List<Assist> ObterAssist
+        {
+            get { return testeListaAssist; }
         }
         #endregion
 
@@ -91,6 +102,24 @@ namespace Assistencia
             }
             listaAssistencias[numAssist] = a;
             numAssist++;
+            return true;
+        }
+        /// <summary>
+        /// Insere na list de assists.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        // Apenas para teste ainda.
+        public bool InseresAssistList(Assist a)
+        {
+            foreach(Assist b in testeListaAssist)
+            {
+                if (b.Id == -1)
+                    continue;
+                if (b.Equals(a) || (numAssist >= MAXASSISTENCIAS))
+                    return false;
+            }
+            testeListaAssist.Add(a);
             return true;
         }
         /// <summary>
@@ -255,11 +284,47 @@ namespace Assistencia
             }
             return false;
         }
-
-        public bool InsereClienteAssistencia(Assist a, Cliente c)
+        /// <summary>
+        /// Grava em ficheiro binario todas as assistencias.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        public bool GravarFicheiroAssistencias(string nomeFicheiro)
         {
+            Stream ficheiro = null;
 
-            return false;
+            if (!File.Exists(nomeFicheiro))
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+            else
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+            if (ficheiro == null)
+                return false;
+            else
+            {
+                BinaryFormatter b = new BinaryFormatter();
+                b.Serialize(ficheiro, listaAssistencias);
+                ficheiro.Close();
+                return true;
+            }
+        }
+        /// <summary>
+        /// Lê o ficheiro assistencias.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        public bool LerFicheiroAssistencia(string nomeFicheiro)
+        {
+            Stream ficheiro = null;
+            if (!File.Exists(nomeFicheiro))
+                return false;
+            else
+            {
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+                BinaryFormatter b = new BinaryFormatter();
+                listaAssistencias = (Assist[])b.Deserialize(ficheiro);
+                ficheiro.Close();
+                return true;
+            }
         }
         #endregion
 

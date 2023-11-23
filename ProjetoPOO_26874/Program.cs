@@ -120,12 +120,6 @@ namespace ProjetoPOO_26874
             listaSolucoes.InserirSolucao(prob4);
 
 
-            //Inserir nova assistencia;
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a1);
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a2);
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a3);
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a4);
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a5);
 
             listaAssist.InsereAssistArray(a1);
             listaAssist.InsereAssistArray(a2);
@@ -164,7 +158,14 @@ namespace ProjetoPOO_26874
             Console.WriteLine("Clientes com morada:");
             IO.MostrarFichaClientesCompleto(listaClientes.ObterClientes);
 
-        }
 
+            listaAssist.GravarFicheiroAssistencias("RegistoAssistencias.dat");
+            listaAssist.RemoverAssistencias();
+            IO.MostrarAssistencias(listaAssist,listaSolucoes);
+            listaAssist.LerFicheiroAssistencia("RegistoAssistencias.dat");
+            IO.MostrarAssistencias(listaAssist, listaSolucoes);
+
+
+        }
     }
 }
