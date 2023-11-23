@@ -166,6 +166,13 @@ namespace Assistencia
         /// <returns></returns>
         public bool ConcluirAssistencia(Assist a)
         {
+            //foreach(Assist b in listaAssistencias)
+            //{
+            //    if (b.Id == a.Id)
+            //    {
+
+            //    }
+            //}
             if (a.estadoA.Ativo == false)
                 return false;
             a.estadoA.Ativo = false;

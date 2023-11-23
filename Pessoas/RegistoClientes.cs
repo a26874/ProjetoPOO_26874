@@ -10,10 +10,17 @@
 
 namespace Pessoas
 {
+
+    interface IRegistoClientes
+    {
+        bool InsereCliente(Cliente c);
+
+
+    }
     /// <summary>
     /// Classe para armazenamento de vários clientes.
     /// </summary>
-    public class RegistoClientes
+    public class RegistoClientes : IRegistoClientes
     {
         const int MAXCLIENTES = 5;
 

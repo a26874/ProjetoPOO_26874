@@ -9,10 +9,15 @@
 
 namespace Pessoas
 {
+    interface IPessoa
+    {
+        int Contacto { get; set; }
+
+    }
     /// <summary>
     /// Classe para generalizar uma pessoa.
     /// </summary>
-    public class Pessoa
+    public class Pessoa : IPessoa
     {
         #region ATRIBUTOS
         private int contacto;

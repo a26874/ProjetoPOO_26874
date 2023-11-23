@@ -16,6 +16,7 @@ namespace Outros
     public class RegistoProdutos
     {
         const int MAXPRODUTOS = 5;
+
         #region ATRIBUTOS
         private int numProdutos;
         Produto[] listaProdutos;

@@ -28,28 +28,12 @@
     <Position X="3.25" Y="1.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="Outros.RegistoCategorias" Collapsed="true">
-    <Position X="1.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Outros.RegistoProdutos" Collapsed="true">
-    <Position X="3.25" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
   <Class Name="ProblemasConhecidos.ProblemasCon" Collapsed="true">
     <Position X="1.5" Y="0.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="Outros.Categoria" Collapsed="true">
-    <Position X="3.25" Y="0.75" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
   <Class Name="Feedback.Avaliacao" Collapsed="true">
     <Position X="1.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Assistencia.Assist" Collapsed="true">
-    <Position X="10.75" Y="3" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="EstadoAssistencia.EstadoAssist" Collapsed="true">
@@ -62,6 +46,22 @@
   </Class>
   <Class Name="TipoAssistencia.TipoAssist" Collapsed="true">
     <Position X="12.5" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Outros.Categoria" Collapsed="true">
+    <Position X="3.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Outros.RegistoProdutos" Collapsed="true">
+    <Position X="3.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Outros.RegistoCategorias" Collapsed="true">
+    <Position X="1.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Assistencia.Assist" Collapsed="true">
+    <Position X="10.75" Y="3" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />

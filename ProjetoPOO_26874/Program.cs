@@ -127,13 +127,14 @@ namespace ProjetoPOO_26874
             listaAssist.InsereAssist(listaOperadores, listaClientes, a4);
             listaAssist.InsereAssist(listaOperadores, listaClientes, a5);
 
-           
+
 
 
             //int resultado = IO.MostrarAssistenciaMaisCara(listaAssist);
             //Console.WriteLine(resultado);
             //int assistenciasRea = listaAssist.MostrarAssistenciasRealizadas();
             //Console.WriteLine(assistenciasRea);
+            // a1 = new Assist(DateTime.Now, new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
             listaAssist.ConcluirAssistencia(a1);
             Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
             listaAssist.RegistoAvaliacao(a1,clsA1);
@@ -154,6 +155,5 @@ namespace ProjetoPOO_26874
             Console.WriteLine("Assistencias:");
             IO.MostrarAssistencias(listaAssist, listaSolucoes);
         }
-
     }
 }
