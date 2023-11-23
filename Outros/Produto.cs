@@ -178,7 +178,7 @@ namespace Outros
         /// <returns></returns>
         public string FichaProduto()
         {
-            return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}\n", nome, id, preco, descricao);
+            return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}", nome, id, preco, descricao);
         }
         #endregion
 

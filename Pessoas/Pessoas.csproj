@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Assistencias">
+      <HintPath>..\Assistencias\bin\Debug\Assistencias.dll</HintPath>
+    </Reference>
+    <Reference Include="Interfaces">
+      <HintPath>..\Interfaces\bin\Debug\Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Outros">
       <HintPath>..\Outros\bin\Debug\Outros.dll</HintPath>
     </Reference>
@@ -47,7 +53,7 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Pessoa.cs" />
     <Compile Include="RegistoClientes.cs" />
-    <Compile Include="Moradas.cs" />
+    <Compile Include="Morada.cs" />
     <Compile Include="Operador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistoOperadores.cs" />

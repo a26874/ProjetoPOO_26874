@@ -30,7 +30,7 @@ namespace Outros
         public RegistoCategorias()
         {
             listaCategorias= new Categoria[MAXCAT];
-            InicializarArrayCategorias(listaCategorias);
+            InicializarArrayCategorias();
         }
         #endregion
 
@@ -60,11 +60,11 @@ namespace Outros
         /// Inicia a array de categorias.
         /// </summary>
         /// <param name="c">The c.</param>
-        void InicializarArrayCategorias(Categoria[] c)
+        void InicializarArrayCategorias()
         { 
-            for (int i = 0; i < c.Length; i++)
+            for (int i = 0; i < listaCategorias.Length; i++)
             {
-                c[i] = new Categoria();
+                listaCategorias[i] = new Categoria();
             }  
         }
         /// <summary>

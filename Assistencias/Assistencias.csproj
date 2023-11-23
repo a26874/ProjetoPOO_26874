@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interfaces">
+      <HintPath>..\Interfaces\bin\Debug\Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Outros">
       <HintPath>..\Outros\bin\Debug\Outros.dll</HintPath>
     </Reference>

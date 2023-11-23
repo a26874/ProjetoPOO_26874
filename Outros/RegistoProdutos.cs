@@ -28,7 +28,7 @@ namespace Outros
         public RegistoProdutos()
         {
             listaProdutos = new Produto[MAXPRODUTOS];
-            InicializarArrayProdutos(listaProdutos);
+            InicializarArrayProdutos();
         }
         #endregion
 
@@ -55,11 +55,11 @@ namespace Outros
         /// Inicializar array de produtos.
         /// </summary>
         /// <param name="p"></param>
-        void InicializarArrayProdutos(Produto[] p)
+        void InicializarArrayProdutos()
         {
-            for (int i = 0; i < p.Length; i++)
+            for (int i = 0; i < listaProdutos.Length; i++)
             {
-                p[i] = new Produto();
+                listaProdutos[i] = new Produto();
             }
         }
         /// <summary>
@@ -80,6 +80,53 @@ namespace Outros
             numProdutos++;
             return true;
         }
+        /// <summary>
+        /// Remove todos os produtos do array.
+        /// </summary>
+        /// <returns></returns>
+        public bool RemoverProdutos()
+        {
+            for (int i = 0; i <  listaProdutos.Length; i++)
+            {
+                if (listaProdutos[i] is null)
+                    continue;
+                else
+                {
+                    listaProdutos[i] = null;
+                }
+            }
+            numProdutos = 0;
+            return true;
+        }
+        /// <summary>
+        /// Remove um produto especifico.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        public bool RemoverProdutoEspecifico(Produto p)
+        {
+            for (int i = 0; i < listaProdutos.Length; i++)
+            {
+                if (listaProdutos[i].Equals(p))
+                {
+                    for (int j = i; j < listaProdutos.Length - 1; j++)
+                        listaProdutos[j] = listaProdutos[j + 1];
+                    listaProdutos[listaProdutos.Length - 1] = null;
+                    numProdutos--;
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Retorna o numero de produtos existentes.
+        /// </summary>
+        /// <returns></returns>
+        public int NumeroProdutosExistentes()
+        {
+            return numProdutos;
+        }
+
         #endregion
 
         #endregion

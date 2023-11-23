@@ -37,7 +37,7 @@ namespace Pessoas
         public RegistoOperadores()
         {
             listaOperadores = new Operador[MAXOPERADORES];
-            IniciarArrayOperadores(listaOperadores);
+            IniciarArrayOperadores();
         }
         #endregion
 
@@ -64,11 +64,11 @@ namespace Pessoas
         /// Metodo para inicialização de array dos operadores.
         /// </summary>
         /// <param name="o"></param>
-        void IniciarArrayOperadores(Operador[] o)
+        void IniciarArrayOperadores()
         {
-            for (int i = 0; i < o.Length;i++)
+            for (int i = 0; i < listaOperadores.Length;i++)
             {
-                o[i] = new Operador();
+                listaOperadores[i] = new Operador();
             }
         }
         /// <summary>
@@ -76,7 +76,7 @@ namespace Pessoas
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
-        public bool InserirOperador(Operador o)
+        public bool InsereOperador(Operador o)
         {
             foreach(Operador a in  listaOperadores)
             {
@@ -101,7 +101,7 @@ namespace Pessoas
                 if (listaOperadores[i] is null)
                     continue;
                 else
-                    listaOperadores[i] = new Operador();
+                    listaOperadores[i] = null;
             }
             numeroOperadoresExistentes = 0;
             return true;
@@ -119,7 +119,7 @@ namespace Pessoas
                 {
                     for (int j = i; j < listaOperadores.Length - 1; j++)
                         listaOperadores[j] = listaOperadores[j + 1];
-                    listaOperadores[listaOperadores.Length - 1] = new Operador();
+                    listaOperadores[listaOperadores.Length - 1] = null;
                     numeroOperadoresExistentes--;
                     return true;
                 }
@@ -139,6 +139,8 @@ namespace Pessoas
                 a = false;
                 for (int i = 0; i < listaOperadores.Length - 1; i++)
                 {
+                    if (ReferenceEquals(listaOperadores[i + 1], null))
+                        continue;
                     if (listaOperadores[i].Id > listaOperadores[i + 1].Id && listaOperadores[i+1].Id != -1)
                     {
                         aux = listaOperadores[i];
@@ -166,11 +168,15 @@ namespace Pessoas
         public bool ExisteOperador(int id, out Operador operadorInserir)
         {
             foreach (Operador o in listaOperadores)
+            {
+                if (ReferenceEquals(o, null))
+                    continue;
                 if (o.Id == id)
                 {
                     operadorInserir = o;
                     return true;
                 }
+            }
             operadorInserir = null;
             return false;
         }

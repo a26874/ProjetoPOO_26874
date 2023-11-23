@@ -134,6 +134,12 @@ namespace Outros
                 if (this.id == t.Id)
                     return true;
             }
+            if (obj is ProblemasCon)
+            {
+                ProblemasCon p = (ProblemasCon)obj;
+                if (this.id == p.Id)
+                    return true;
+            }
             return false;
         }
         /// <summary>

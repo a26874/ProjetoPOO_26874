@@ -7,6 +7,7 @@
 *	<description></description>
 **/
 
+using Interfaces;
 
 namespace Pessoas
 {
@@ -43,7 +44,7 @@ namespace Pessoas
         public RegistoClientes()
         {
             listaClientes = new Cliente[MAXCLIENTES];
-            IniciarArrayClientes(listaClientes);
+            IniciarArrayClientes();
         }
         #endregion
 
@@ -74,11 +75,11 @@ namespace Pessoas
         /// Metodo para inicialização da array.
         /// </summary>
         /// <param name="a"></param>
-        void IniciarArrayClientes(Cliente[] a)
+        void IniciarArrayClientes()
         {
-            for (int i = 0; i < a.Length; i++)
+            for (int i = 0; i < listaClientes.Length; i++)
             {
-                a[i] = new Cliente();
+                listaClientes[i] = new Cliente();
             }
         }
         /// <summary>
@@ -112,7 +113,7 @@ namespace Pessoas
                 if (listaClientes[i] is null)
                     continue;
                 else
-                    listaClientes[i] = new Cliente();
+                    listaClientes[i] = null;
             }
             numeroClientesExistentes = 0;
             return true;
@@ -130,7 +131,7 @@ namespace Pessoas
                 {
                     for (int j = i; j < listaClientes.Length-1; j++)
                         listaClientes[j] = listaClientes[j+1];
-                    listaClientes[listaClientes.Length-1] = new Cliente();
+                    listaClientes[listaClientes.Length-1] = null;
                     numeroClientesExistentes--;
                     return true;
                 }
@@ -150,6 +151,8 @@ namespace Pessoas
                 a = false;
                 for (int i = 0; i < listaClientes.Length-1;i++)
                 {
+                    if (ReferenceEquals(listaClientes[i+1],null))
+                        continue;
                     if (listaClientes[i].NIF > listaClientes[i+1].NIF && listaClientes[i+1].NIF !=-1)
                     {
                         aux = listaClientes[i];
@@ -168,24 +171,28 @@ namespace Pessoas
         {
             return numeroClientesExistentes;
         }
-
         /// <summary>
         /// Verifica se um certo cliente existe na array de clientes.
         /// </summary>
         /// <param name="nif">The nif.</param>
         /// <param name="novoCliente">The novo cliente.</param>
         /// <returns></returns>
-        public bool ExisteCliente( int nif, out Cliente novoCliente)
+        public bool ExisteCliente(int nif, out Cliente novoCliente)
         {
             foreach (Cliente c in listaClientes)
+            {
+                if (ReferenceEquals(c, null))
+                    continue;
                 if (c.NIF == nif)
                 {
                     novoCliente = c;
                     return true;
                 }
+            }
             novoCliente = null;
             return false;
         }
+
         #endregion
 
         #endregion
