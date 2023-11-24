@@ -9,7 +9,8 @@
 using Interfaces;
 using Outros;
 using Pessoas;
-
+using System;
+using System.Collections;
 namespace Assistencia
 {
     /// <summary>
@@ -256,11 +257,6 @@ namespace Assistencia
             return false;
         }
 
-        public bool InsereClienteAssistencia(Assist a, Cliente c)
-        {
-
-            return false;
-        }
         #endregion
 
         #endregion

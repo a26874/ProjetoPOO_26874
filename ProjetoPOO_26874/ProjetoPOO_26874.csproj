@@ -40,6 +40,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\FrontEnd\bin\Debug\FrontEnd.dll</HintPath>
     </Reference>
+    <Reference Include="GereFicheiro">
+      <HintPath>..\GereFicheiro\bin\Debug\GereFicheiro.dll</HintPath>
+    </Reference>
     <Reference Include="Interfaces">
       <HintPath>..\Interfaces\bin\Debug\Interfaces.dll</HintPath>
     </Reference>

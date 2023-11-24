@@ -3,7 +3,7 @@ using FrontEnd;
 using Outros;
 using Pessoas;
 using System;
-
+using GereFicheiro;
 
 namespace ProjetoPOO_26874
 {
@@ -120,13 +120,6 @@ namespace ProjetoPOO_26874
             listaSolucoes.InserirSolucao(prob4);
 
 
-            //Inserir nova assistencia;
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a1);
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a2);
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a3);
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a4);
-            //listaAssist.InsereAssist(listaOperadores, listaClientes, a5);
-
             listaAssist.InsereAssistArray(a1);
             listaAssist.InsereAssistArray(a2);
             listaAssist.InsereAssistArray(a3);
@@ -147,8 +140,6 @@ namespace ProjetoPOO_26874
             listaAssist.InsereOperadorAssist(a4, listaOperadores.ObterOperadores);
             listaAssist.InsereOperadorAssist(a5, listaOperadores.ObterOperadores);
 
-
-
             listaAssist.ConcluirAssistencia(a1);
             Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
             listaAssist.RegistoAvaliacao(a1, clsA1);
@@ -164,7 +155,8 @@ namespace ProjetoPOO_26874
             Console.WriteLine("Clientes com morada:");
             IO.MostrarFichaClientesCompleto(listaClientes.ObterClientes);
 
+            bool teste = GereFicheiroAssistencias.GravaAssitencias("assist.txt");
+            Console.WriteLine(teste);
         }
-
     }
 }
