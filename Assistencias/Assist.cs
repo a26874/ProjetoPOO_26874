@@ -12,6 +12,7 @@ using Outros;
 
 namespace Assistencia
 {
+    [Serializable]
     /// <summary>
     /// Classe para assistências.
     /// </summary>

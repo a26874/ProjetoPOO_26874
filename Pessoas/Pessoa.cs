@@ -7,17 +7,15 @@
 *	<description></description>
 **/
 
+using System;
+
 namespace Pessoas
 {
-    interface IPessoa
-    {
-        int Contacto { get; set; }
-
-    }
+    [Serializable]
     /// <summary>
     /// Classe para generalizar uma pessoa.
     /// </summary>
-    public class Pessoa : IPessoa
+    public class Pessoa
     {
         #region ATRIBUTOS
         private int contacto;

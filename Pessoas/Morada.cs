@@ -7,8 +7,11 @@
 *	<description></description>
 **/
 
+using System;
+
 namespace Pessoas
 {
+    [Serializable] 
     /// <summary>
     /// Classe para moradas.
     /// </summary>
