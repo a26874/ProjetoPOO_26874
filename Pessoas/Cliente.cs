@@ -21,7 +21,6 @@ namespace Pessoas
     {
         #region ATRIBUTOS
         private int nif;
-        private Avaliacao feedback;
         private static int numClientes=0; //
         #endregion
 

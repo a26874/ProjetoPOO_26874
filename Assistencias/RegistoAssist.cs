@@ -294,7 +294,7 @@ namespace Assistencia
             Stream ficheiro = null;
 
             if (!File.Exists(nomeFicheiro))
-                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+                ficheiro = File.Open(nomeFicheiro, FileMode.Create);
             else
                 ficheiro = File.Open(nomeFicheiro, FileMode.Open);
             if (ficheiro == null)

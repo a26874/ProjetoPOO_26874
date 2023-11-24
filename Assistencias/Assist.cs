@@ -16,7 +16,6 @@ namespace Assistencia
     /// <summary>
     /// Classe para assistências.
     /// </summary>
-    [Serializable]
     public class Assist
     {
 

@@ -8,6 +8,8 @@
 **/
 
 using Interfaces;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Pessoas
 {
@@ -185,7 +187,48 @@ namespace Pessoas
             novoCliente = null;
             return false;
         }
+        /// <summary>
+        /// Grava em ficheiro binário todos os clientes.
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        public bool GravarFicheiroClientes(string nomeFicheiro)
+        {
+            Stream ficheiro = null;
 
+            if (!File.Exists(nomeFicheiro))
+                ficheiro = File.Open(nomeFicheiro, FileMode.Create);
+            else
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+            if (ficheiro == null)
+                return false;
+            else
+            {
+                BinaryFormatter b = new BinaryFormatter();
+                b.Serialize(ficheiro, listaClientes);
+                ficheiro.Close();
+                return true;
+            }
+        }
+        /// <summary>
+        /// Le do ficheiro de clientes, todos os clientes.
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        public bool LerFicheiroClientes (string nomeFicheiro)
+        {
+            Stream ficheiro = null;
+            if (!File.Exists(nomeFicheiro))
+                return false;
+            else
+            {
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+                BinaryFormatter b = new BinaryFormatter();
+                listaClientes = (Cliente[])b.Deserialize(ficheiro);
+                ficheiro.Close();
+                return true;
+            }
+        }
         #endregion
 
         #endregion

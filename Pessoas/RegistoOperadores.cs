@@ -6,8 +6,13 @@
 *   <date>2023 11/2/2023 2:20:36 PM</date>
 *	<description></description>
 **/
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
 namespace Pessoas
 {
+    [Serializable]
     /// <summary>
     /// Classe para registo de operadores existentes.
     /// </summary>
@@ -179,6 +184,47 @@ namespace Pessoas
             }
             operadorInserir = null;
             return false;
+        }
+        /// <summary>
+        /// Grava o ficheiro com os operadores existentes.
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        public bool GravarFicheiroOperadores(string nomeFicheiro)
+        {
+            Stream ficheiro = null;
+            if (!File.Exists(nomeFicheiro))
+                ficheiro = File.Open(nomeFicheiro, FileMode.Create);
+            else
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+            if (ficheiro == null)
+                return false;
+            else
+            {
+                BinaryFormatter b = new BinaryFormatter();
+                b.Serialize(ficheiro, listaOperadores);
+                ficheiro.Close();
+                return true;
+            }
+        }
+        /// <summary>
+        /// Le o ficheiro de operadores.
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        public bool LerFicheiroOperadores(string nomeFicheiro)
+        {
+            Stream ficheiro = null;
+            if (!File.Exists(nomeFicheiro))
+                return false;
+            else
+            {
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+                BinaryFormatter b = new BinaryFormatter();
+                listaOperadores= (Operador[])b.Deserialize(ficheiro);
+                ficheiro.Close();
+                return true;
+            }
         }
         #endregion
 

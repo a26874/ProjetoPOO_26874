@@ -166,6 +166,19 @@ namespace ProjetoPOO_26874
             IO.MostrarAssistencias(listaAssist, listaSolucoes);
 
 
+            Console.WriteLine("Clientes:");
+            listaClientes.GravarFicheiroClientes("RegistoClientes.dat");
+            listaClientes.RemoverClientes();
+            IO.MostrarClientes(listaClientes);
+            listaClientes.LerFicheiroClientes("RegistoClientes.dat");
+            IO.MostrarClientes(listaClientes);
+
+            Console.WriteLine("Operadores:");
+            listaOperadores.GravarFicheiroOperadores("RegistoOperadores.dat");
+            listaOperadores.RemoverOperadores();
+            IO.MostrarOperadores(listaOperadores);
+            listaOperadores.LerFicheiroOperadores("RegistoOperadores.dat");
+            IO.MostrarOperadores(listaOperadores);
         }
     }
 }
