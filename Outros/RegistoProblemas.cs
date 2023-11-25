@@ -7,6 +7,9 @@
 *	<description></description>
 **/
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Outros
 {
     /// <summary>
@@ -17,7 +20,7 @@ namespace Outros
         const int MAXPROBLEMASCON = 4;
         #region ATRIBUTOS
         private int numProblemas;
-        ProblemasCon[] listaSolucoes;
+        private List<ProblemasCon> listaSolucoes;
         #endregion
 
         #region COMPORTAMENTO
@@ -28,8 +31,7 @@ namespace Outros
         /// </summary>
         public RegistoProblemas()
         {
-            listaSolucoes = new ProblemasCon[MAXPROBLEMASCON];
-            InicializarArraySolucoes();
+            listaSolucoes = new List<ProblemasCon>();
         }
         #endregion
 
@@ -40,9 +42,9 @@ namespace Outros
         /// <value>
         /// The obter problemascon.
         /// </value>
-        public ProblemasCon[] ObterSolucoes
+        public List<ProblemasCon> ObterSolucoes
         {
-            get { return (ProblemasCon[])listaSolucoes.Clone(); }
+            get { return listaSolucoes.ToList(); }
         }
         #endregion
 
@@ -55,17 +57,6 @@ namespace Outros
         #endregion
 
         #region OUTROS METODOS        
-        /// <summary>
-        /// Inicializa o array de solucoes.
-        /// </summary>
-        /// <param name="p">The p.</param>
-        void InicializarArraySolucoes()
-        {
-            for (int i = 0; i < listaSolucoes.Length; i++)
-            {
-                listaSolucoes[i] = new ProblemasCon();
-            }
-        }
         /// <summary>
         /// Insere uma solucao.
         /// </summary>
@@ -80,7 +71,7 @@ namespace Outros
                 if (aux.Equals(p) || numProblemas > MAXPROBLEMASCON)
                     return false;
             }
-            listaSolucoes[numProblemas] = p;
+            listaSolucoes.Add(p);
             numProblemas++;
             return true;
         }

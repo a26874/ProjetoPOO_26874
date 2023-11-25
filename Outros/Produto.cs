@@ -7,6 +7,8 @@
 *	<description></description>
 **/
 
+using System.Collections.Generic;
+
 namespace Outros
 {
     /// <summary>
@@ -21,7 +23,7 @@ namespace Outros
         private int id;
         private int preco;
         private string descricao;
-        Categoria[] categorias;
+        List<Categoria> categorias;
         #endregion
 
         #region COMPORTAMENTO
@@ -36,7 +38,6 @@ namespace Outros
             id = 0;
             preco = 0;
             descricao = string.Empty;
-            categorias = new Categoria[MAXCATEGORIA];
         }
         /// <summary>
         /// Construtor com todos os parametros.
@@ -45,7 +46,7 @@ namespace Outros
         /// <param name="i">The i.</param>
         /// <param name="p">The p.</param>
         /// <param name="d">The d.</param>
-        public Produto(string n, int i, int p, string d, Categoria[] categoria)
+        public Produto(string n, int i, int p, string d, List<Categoria> categoria)
         {
             nome = n;
             id = i;
@@ -103,7 +104,7 @@ namespace Outros
         /// <summary>
         /// Manipulacao da variavel NomeCategoria.
         /// </summary>
-        public Categoria[] Categorias
+        public List<Categoria> Categorias
         {
             get { return categorias; }
             set { categorias = value; }

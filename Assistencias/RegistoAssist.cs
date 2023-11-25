@@ -75,7 +75,6 @@ namespace Assistencia
         /// </summary>
         /// <param name="a">a.</param>
         /// <returns></returns>
-        // Apenas para teste ainda.
         public bool InsereAssistLista(Assist a)
         {
             foreach(Assist b in listaAssistencias)

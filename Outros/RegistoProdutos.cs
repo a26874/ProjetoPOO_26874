@@ -8,6 +8,9 @@
 **/
 
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Outros
 {
     /// <summary>
@@ -19,16 +22,18 @@ namespace Outros
 
         #region ATRIBUTOS
         private int numProdutos;
-        Produto[] listaProdutos;
+        private List<Produto> listaProdutos;
         #endregion
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES
+        #region CONSTRUTORES        
+        /// <summary>
+        /// Construtor por defeito.
+        /// </summary>
         public RegistoProdutos()
         {
-            listaProdutos = new Produto[MAXPRODUTOS];
-            InicializarArrayProdutos();
+            listaProdutos = new List<Produto>();
         }
         #endregion
 
@@ -36,9 +41,9 @@ namespace Outros
         /// <summary>
         /// Retorna a array de produtos.
         /// </summary>
-        public Produto[] ObterProdutos
+        public List<Produto> ObterProdutos
         {
-            get { return (Produto[])listaProdutos.Clone(); }
+            get { return listaProdutos.ToList(); }
         }
         #endregion
 
@@ -51,17 +56,6 @@ namespace Outros
         #endregion
 
         #region OUTROS METODOS
-        /// <summary>
-        /// Inicializar array de produtos.
-        /// </summary>
-        /// <param name="p"></param>
-        void InicializarArrayProdutos()
-        {
-            for (int i = 0; i < listaProdutos.Length; i++)
-            {
-                listaProdutos[i] = new Produto();
-            }
-        }
         /// <summary>
         /// Inserir um novo produto na array de produtos.
         /// </summary>
@@ -76,7 +70,7 @@ namespace Outros
                 if (aux.Equals(p) || numProdutos > MAXPRODUTOS)
                     return false;
             }
-            listaProdutos[numProdutos] = p;
+            listaProdutos.Add(p);
             numProdutos++;
             return true;
         }
@@ -86,15 +80,7 @@ namespace Outros
         /// <returns></returns>
         public bool RemoverProdutos()
         {
-            for (int i = 0; i <  listaProdutos.Length; i++)
-            {
-                if (listaProdutos[i] is null)
-                    continue;
-                else
-                {
-                    listaProdutos[i] = null;
-                }
-            }
+            listaProdutos.Clear();
             numProdutos = 0;
             return true;
         }
@@ -105,17 +91,8 @@ namespace Outros
         /// <returns></returns>
         public bool RemoverProdutoEspecifico(Produto p)
         {
-            for (int i = 0; i < listaProdutos.Length; i++)
-            {
-                if (listaProdutos[i].Equals(p))
-                {
-                    for (int j = i; j < listaProdutos.Length - 1; j++)
-                        listaProdutos[j] = listaProdutos[j + 1];
-                    listaProdutos[listaProdutos.Length - 1] = null;
-                    numProdutos--;
-                    return true;
-                }
-            }
+            if (listaProdutos.Remove(p))
+                return true;
             return false;
         }
         /// <summary>
@@ -124,7 +101,7 @@ namespace Outros
         /// <returns></returns>
         public int NumeroProdutosExistentes()
         {
-            return numProdutos;
+            return listaProdutos.Count;
         }
 
         #endregion

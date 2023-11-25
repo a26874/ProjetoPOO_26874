@@ -8,6 +8,9 @@
 **/
 
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Outros
 {
     /// <summary>
@@ -18,7 +21,7 @@ namespace Outros
         const int MAXCAT = 2;
         #region ATRIBUTOS
         private int numCategorias;
-        Categoria[] listaCategorias;
+        private List<Categoria> listaCategorias;
         #endregion
 
         #region COMPORTAMENTO
@@ -29,8 +32,7 @@ namespace Outros
         /// </summary>
         public RegistoCategorias()
         {
-            listaCategorias= new Categoria[MAXCAT];
-            InicializarArrayCategorias();
+            listaCategorias = new List<Categoria>();
         }
         #endregion
 
@@ -41,9 +43,9 @@ namespace Outros
         /// <value>
         /// The obter categorias.
         /// </value>
-        public Categoria[] ObterCategorias
+        public List<Categoria> ObterCategorias
         {
-            get { return (Categoria[])listaCategorias.Clone(); }
+            get { return listaCategorias.ToList(); }
         }
         #endregion
 
@@ -57,18 +59,7 @@ namespace Outros
 
         #region OUTROS METODOS        
         /// <summary>
-        /// Inicia a array de categorias.
-        /// </summary>
-        /// <param name="c">The c.</param>
-        void InicializarArrayCategorias()
-        { 
-            for (int i = 0; i < listaCategorias.Length; i++)
-            {
-                listaCategorias[i] = new Categoria();
-            }  
-        }
-        /// <summary>
-        /// Insere um categoria.
+        /// Insere uma categoria.
         /// </summary>
         /// <param name="nomeCategoria">The nome categoria.</param>
         /// <returns></returns>
@@ -82,7 +73,7 @@ namespace Outros
                     return false;
             }
             Categoria c = new Categoria(nomeCategoria);
-            listaCategorias[numCategorias] = c;
+            listaCategorias.Add(c);
             numCategorias++;
             return true;
         }

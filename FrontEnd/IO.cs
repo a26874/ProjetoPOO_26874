@@ -114,7 +114,7 @@ namespace FrontEnd
         /// Mostra as categorias de um produto.
         /// </summary>
         /// <param name="listaCategorias">The lista categorias.</param>
-        public static void MostrarCategorias(Categoria[] listaCategorias)
+        public static void MostrarCategorias(List<Categoria> listaCategorias)
         {
             foreach (Categoria c in listaCategorias)
             {
