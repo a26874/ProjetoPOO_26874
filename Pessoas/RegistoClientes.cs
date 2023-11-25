@@ -8,7 +8,10 @@
 **/
 
 using Interfaces;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Pessoas
@@ -22,7 +25,7 @@ namespace Pessoas
 
         #region ATRIBUTOS
         private int numCliente;
-        Cliente[] listaClientes;
+        private List<Cliente> listaClientes;
         private static int numeroClientesExistentes;
         #endregion
 
@@ -38,8 +41,7 @@ namespace Pessoas
         /// </summary>
         public RegistoClientes()
         {
-            listaClientes = new Cliente[MAXCLIENTES];
-            IniciarArrayClientes();
+            listaClientes = new List<Cliente>();
         }
         #endregion
 
@@ -50,11 +52,11 @@ namespace Pessoas
         /// <value>
         /// Obter clientes.
         /// </value>
-        public Cliente[] ObterClientes
+        public List<Cliente> ObterClientes
         {
-            get { return (Cliente[])listaClientes.Clone(); }
+            get { return listaClientes.ToList(); }
         }
-        
+
         #endregion
 
         #region OPERADORES
@@ -67,20 +69,9 @@ namespace Pessoas
 
         #region OUTROS METODOS
         /// <summary>
-        /// Metodo para inicialização da array.
+        /// Insere um cliente, na lista de clientes.
         /// </summary>
-        /// <param name="a"></param>
-        void IniciarArrayClientes()
-        {
-            for (int i = 0; i < listaClientes.Length; i++)
-            {
-                listaClientes[i] = new Cliente();
-            }
-        }
-        /// <summary>
-        /// Insere um novo cliente na array de clientes.
-        /// </summary>
-        /// <param name="c"></param>
+        /// <param name="c">The c.</param>
         /// <returns></returns>
         public bool InsereCliente(Cliente c)
         {
@@ -92,71 +83,43 @@ namespace Pessoas
                 if (a.Equals(c) || (numCliente >= MAXCLIENTES))
                     return false;
             }
-            listaClientes[numCliente] = c;
+            listaClientes.Add(c);
             numCliente++;
-            numeroClientesExistentes++;
+            numeroClientesExistentes = listaClientes.Count;
             return true;
         }
         /// <summary>
-        /// Substitui os clientes existentes por novos objetos do tipo cliente.
+        /// Limpa a lista de clientes.
         /// </summary>
         /// <returns></returns>
         public bool RemoverClientes()
         {
-            for (int i = 0; i < listaClientes.Length; i++)
-            {
-                if (listaClientes[i] is null)
-                    continue;
-                else
-                    listaClientes[i] = null;
-            }
+            listaClientes.Clear();
             numeroClientesExistentes = 0;
+            numCliente = 0;
             return true;
         }
         /// <summary>
-        /// Dado um certo cliente, esse mesmo é removido da array de clientes.
+        /// Dado um certo cliente, esse mesmo é removido da lista de clientes.
         /// </summary>
         /// <param name="c">The c.</param>
         /// <returns></returns>
         public bool RemoverClienteEspecifico(Cliente c)
         {
-            for (int i = 0; i < listaClientes.Length; i++)
+            if (listaClientes.Remove(c))
             {
-                if (listaClientes[i].Equals(c))
-                {
-                    for (int j = i; j < listaClientes.Length-1; j++)
-                        listaClientes[j] = listaClientes[j+1];
-                    listaClientes[listaClientes.Length-1] = null;
-                    numeroClientesExistentes--;
-                    return true;
-                }
+                numCliente--;
+                return true;
             }
             return false;
         }
         /// <summary>
-        /// Ordenação da array listaClientes com o metodo BubbleSort.
+        /// Ordena a lista de clientes, pelo seu NIF.
         /// </summary>
-        /// <returns></returns>
-        public void BubbleSortClientes()
+        public void OrdenarClientes()
         {
-            Cliente aux;
-            bool a = true;
-            while(a)
-            {
-                a = false;
-                for (int i = 0; i < listaClientes.Length-1;i++)
-                {
-                    if (ReferenceEquals(listaClientes[i+1],null))
-                        continue;
-                    if (listaClientes[i].NIF > listaClientes[i+1].NIF && listaClientes[i+1].NIF !=-1)
-                    {
-                        aux = listaClientes[i];
-                        listaClientes[i] = listaClientes[i+1];
-                        listaClientes[i+1]= aux;
-                        a = true;
-                    }
-                }
-            }
+            listaClientes.Sort((c1, c2) => c1.NIF.CompareTo(c2.NIF));
+            //listaClientes.Sort();
         }
         /// <summary>
         /// Retorna o numero de clientes existentes.
@@ -164,28 +127,7 @@ namespace Pessoas
         /// <returns></returns>
         public int NumeroClientesExistentes()
         {
-            return numeroClientesExistentes;
-        }
-        /// <summary>
-        /// Verifica se um certo cliente existe na array de clientes.
-        /// </summary>
-        /// <param name="nif">The nif.</param>
-        /// <param name="novoCliente">The novo cliente.</param>
-        /// <returns></returns>
-        public bool ExisteCliente(int nif, out Cliente novoCliente)
-        {
-            foreach (Cliente c in listaClientes)
-            {
-                if (ReferenceEquals(c, null))
-                    continue;
-                if (c.NIF == nif)
-                {
-                    novoCliente = c;
-                    return true;
-                }
-            }
-            novoCliente = null;
-            return false;
+            return listaClientes.Count;
         }
         /// <summary>
         /// Grava em ficheiro binário todos os clientes.
@@ -195,7 +137,6 @@ namespace Pessoas
         public bool GravarFicheiroClientes(string nomeFicheiro)
         {
             Stream ficheiro = null;
-
             if (!File.Exists(nomeFicheiro))
                 ficheiro = File.Open(nomeFicheiro, FileMode.Create);
             else
@@ -215,7 +156,7 @@ namespace Pessoas
         /// </summary>
         /// <param name="nomeFicheiro"></param>
         /// <returns></returns>
-        public bool LerFicheiroClientes (string nomeFicheiro)
+        public bool LerFicheiroClientes(string nomeFicheiro)
         {
             Stream ficheiro = null;
             if (!File.Exists(nomeFicheiro))
@@ -224,7 +165,7 @@ namespace Pessoas
             {
                 ficheiro = File.Open(nomeFicheiro, FileMode.Open);
                 BinaryFormatter b = new BinaryFormatter();
-                listaClientes = (Cliente[])b.Deserialize(ficheiro);
+                listaClientes = (List<Cliente>)b.Deserialize(ficheiro);
                 ficheiro.Close();
                 return true;
             }

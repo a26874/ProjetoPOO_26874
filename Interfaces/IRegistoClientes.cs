@@ -19,8 +19,7 @@ namespace Interfaces
         bool InsereCliente(Cliente c);
         bool RemoverClientes();
         bool RemoverClienteEspecifico(Cliente c);
-        void BubbleSortClientes();
+        void OrdenarClientes();
         int NumeroClientesExistentes();
-        bool ExisteCliente(int nif, out Cliente clienteInserir);
     }
 }

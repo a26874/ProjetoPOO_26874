@@ -13,6 +13,8 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace Assistencia
 {
     [Serializable]
@@ -25,9 +27,8 @@ namespace Assistencia
 
         #region ATRIBUTOS
         private int numAssist;
-        private Assist[] listaAssistencias;
+        private List<Assist> listaAssistencias;
         private static int assistenciasRealizadas;
-        private List<Assist> testeListaAssist; //apenas para teste ainda.
         #endregion
 
         #region COMPORTAMENTO
@@ -45,29 +46,23 @@ namespace Assistencia
         /// </summary>
         public RegistoAssist()
         {
-            listaAssistencias = new Assist[MAXASSISTENCIAS];
-            testeListaAssist = new List<Assist>();
-            IniciarArrayRegisto();
+            listaAssistencias = new List<Assist>();
         }
 
         #endregion
 
         #region PROPRIEDADES        
         /// <summary>
-        /// Devolve a array de todas as assistências.
+        /// Devolve uma copia da lista de assistencias.
         /// </summary>
         /// <value>
         /// The todas assistencias.
         /// </value>
-        public Assist[] ObterAssistencias
+        public List<Assist> ObterAssistencias
         {
-            get { return (Assist[])listaAssistencias.Clone(); }
+            get { return listaAssistencias.ToList(); }
         }
 
-        public List<Assist> ObterAssist
-        {
-            get { return testeListaAssist; }
-        }
         #endregion
 
         #region OVERRIDES
@@ -76,50 +71,22 @@ namespace Assistencia
 
         #region OUTROS METODOS
         /// <summary>
-        /// Metodo para inicialização da array.
-        /// </summary>
-        /// <param name="a"></param>
-        void IniciarArrayRegisto()
-        {
-            for (int i = 0; i < listaAssistencias.Length;i++)
-            {
-                listaAssistencias[i] = new Assist();
-            }
-        }
-        /// <summary>
-        /// Insere uma assistencia na array.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <returns></returns>
-        public bool InsereAssistArray(Assist a)
-        {
-            foreach (Assist b in listaAssistencias)
-            {
-                if (b.Id == -1)
-                    continue;
-                if (b.Equals(a) || (numAssist>=MAXASSISTENCIAS))
-                    return false;
-            }
-            listaAssistencias[numAssist] = a;
-            numAssist++;
-            return true;
-        }
-        /// <summary>
         /// Insere na list de assists.
         /// </summary>
         /// <param name="a">a.</param>
         /// <returns></returns>
         // Apenas para teste ainda.
-        public bool InseresAssistList(Assist a)
+        public bool InsereAssistLista(Assist a)
         {
-            foreach(Assist b in testeListaAssist)
+            foreach(Assist b in listaAssistencias)
             {
                 if (b.Id == -1)
                     continue;
                 if (b.Equals(a) || (numAssist >= MAXASSISTENCIAS))
                     return false;
             }
-            testeListaAssist.Add(a);
+            listaAssistencias.Add(a);
+            numAssist++;
             return true;
         }
         /// <summary>
@@ -128,7 +95,7 @@ namespace Assistencia
         /// <param name="a">a.</param>
         /// <param name="listaClientes">The lista clientes.</param>
         /// <returns></returns>
-        public bool InsereClienteAssist(Assist a, Cliente[] listaClientes)
+        public bool InsereClienteAssist(Assist a, List<Cliente> listaClientes)
         {
             foreach(Assist b in listaAssistencias)
             {
@@ -154,7 +121,7 @@ namespace Assistencia
         /// <param name="a">a.</param>
         /// <param name="listaOperadores">The lista operadores.</param>
         /// <returns></returns>
-        public bool InsereOperadorAssist(Assist a, Operador[] listaOperadores)
+        public bool InsereOperadorAssist(Assist a, List<Operador> listaOperadores)
         {
             foreach(Assist b in listaAssistencias)
             {
@@ -180,13 +147,7 @@ namespace Assistencia
         /// <param name="r"></param>
         public bool RemoverAssistencias()
         {
-            for (int i = 0; i < listaAssistencias.Length; i++)
-            {
-                if (listaAssistencias[i] is null)
-                    continue;
-                else
-                    listaAssistencias[i] = null;
-            }
+            listaAssistencias.Clear();
             return true;
         }
         /// <summary>
@@ -196,39 +157,17 @@ namespace Assistencia
         /// <returns></returns>
         public bool RemoverAssistenciaEspecifica(Assist a)
         {
-            for (int i = 0; i < listaAssistencias.Length; i++)
-            {
-                if (listaAssistencias[i].Equals(a))
-                {
-                    for (int j = i; j < listaAssistencias.Length - 1; j++)
-                        listaAssistencias[j] = listaAssistencias[j + 1];
-                    listaAssistencias[listaAssistencias.Length - 1] = null;
-                    return true;
-                }
-            }
+            if (listaAssistencias.Remove(a))
+                return true;
             return false;
         }
         /// <summary>
-        /// Organiza a array de assistencias conforme o ID da assistência.
+        /// Ordena as assistencias.
         /// </summary>
-        public void BubbleSortAssistencias()
+        public void OrdenarAssistencias()
         {
-            Assist aux;
-            bool a = true;
-            while (a)
-            {
-                a = false;
-                for (int i = 0; i < listaAssistencias.Length - 1; i++)
-                {
-                    if (ReferenceEquals(listaAssistencias[i], null)||listaAssistencias[i].Id > listaAssistencias[i + 1].Id)
-                    {
-                        aux = listaAssistencias[i];
-                        listaAssistencias[i] = listaAssistencias[i + 1];
-                        listaAssistencias[i + 1] = aux;
-                        a = true;
-                    }
-                }
-            }
+            //Perguntar professor.
+            listaAssistencias.Sort((a1,a2) => a1.Id.CompareTo(a2.Id));
         }
         /// <summary>
         /// Conclui uma assistência.
@@ -321,7 +260,7 @@ namespace Assistencia
             {
                 ficheiro = File.Open(nomeFicheiro, FileMode.Open);
                 BinaryFormatter b = new BinaryFormatter();
-                listaAssistencias = (Assist[])b.Deserialize(ficheiro);
+                listaAssistencias = (List<Assist>)b.Deserialize(ficheiro);
                 ficheiro.Close();
                 return true;
             }

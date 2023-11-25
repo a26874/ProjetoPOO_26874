@@ -18,6 +18,5 @@ namespace Interfaces
         bool RemoverOperadorEspecifico(Operador o);
         void BubbleSortOperadores();
         int NumeroOperadoresExistentes();
-        bool ExisteOperador(int id, out Operador operadorInserir);
     }
 }

@@ -10,6 +10,7 @@
 
 using Outros;
 using System;
+using Interfaces;
 
 namespace Pessoas
 {
@@ -150,6 +151,23 @@ namespace Pessoas
         {
             return string.Format("Nome:{0} | Contacto:{1} | NIF:{2}", Nome, Contacto, nif);
         }
+        /// <summary>
+        /// Faz a comparação de dois clientes.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <returns></returns>
+        public int CompareTo(Cliente a)
+        {
+            if (a == null)
+                return 1;
+            if (nif < a.nif)
+                return -1;
+            else if (nif > a.nif)
+                return 1;
+            else
+                return 0;
+        }
+
         #endregion
 
         #endregion

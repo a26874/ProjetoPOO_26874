@@ -10,17 +10,18 @@
 using Pessoas;
 using Assistencia;
 using Outros;
+using System.Collections.Generic;
 
 namespace Interfaces
 {
     public interface IRegistoAssist
     {
-        bool InsereAssistArray(Assist a);
-        bool InsereClienteAssist(Assist a, Cliente[] listaClientes);
-        bool InsereOperadorAssist(Assist a, Operador[] listaOperadores);
+        bool InsereAssistLista(Assist a);
+        bool InsereClienteAssist(Assist a, List<Cliente> listaClientes);
+        bool InsereOperadorAssist(Assist a, List<Operador> listaOperadores);
         bool RemoverAssistencias();
         bool RemoverAssistenciaEspecifica(Assist a);
-        void BubbleSortAssistencias();
+        void OrdenarAssistencias();
         bool ConcluirAssistencia(Assist a);
         int MostrarAssistenciasRealizadas();
         bool RegistoAvaliacao(Assist a, Avaliacao cls);

@@ -1,9 +1,9 @@
 ﻿using Assistencia;
 using FrontEnd;
+using Interfaces;
 using Outros;
 using Pessoas;
 using System;
-
 
 namespace ProjetoPOO_26874
 {
@@ -99,14 +99,13 @@ namespace ProjetoPOO_26874
             Console.WriteLine("teste....");
             IO.MostrarProdutos(listaProdutos);
 
-            //BubbleSortClientes
-            listaClientes.BubbleSortClientes();
+            //Ordenar Clientes
+            listaClientes.OrdenarClientes();
             Console.WriteLine("Ordenado por NIF");
             IO.MostrarClientes(listaClientes);
 
-
             //BubbleSortOperadores
-            listaOperadores.BubbleSortOperadores();
+            listaOperadores.OrdenarOperadores();
             Console.WriteLine("Ordenado por ID");
             IO.MostrarOperadores(listaOperadores);
 
@@ -121,11 +120,11 @@ namespace ProjetoPOO_26874
 
 
 
-            listaAssist.InsereAssistArray(a1);
-            listaAssist.InsereAssistArray(a2);
-            listaAssist.InsereAssistArray(a3);
-            listaAssist.InsereAssistArray(a4);
-            listaAssist.InsereAssistArray(a5);
+            listaAssist.InsereAssistLista(a1);
+            listaAssist.InsereAssistLista(a2);
+            listaAssist.InsereAssistLista(a3);
+            listaAssist.InsereAssistLista(a4);
+            listaAssist.InsereAssistLista(a5);
             
 
 
@@ -172,6 +171,7 @@ namespace ProjetoPOO_26874
             IO.MostrarClientes(listaClientes);
             listaClientes.LerFicheiroClientes("RegistoClientes.dat");
             IO.MostrarClientes(listaClientes);
+
 
             Console.WriteLine("Operadores:");
             listaOperadores.GravarFicheiroOperadores("RegistoOperadores.dat");

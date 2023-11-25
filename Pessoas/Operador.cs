@@ -35,7 +35,7 @@ namespace Pessoas
         /// </summary>
         public Operador()
         {
-            Nome= string.Empty;
+            Nome = string.Empty;
             id = -1;
             Contacto = -1;
             Morada = new Morada();
@@ -71,7 +71,7 @@ namespace Pessoas
                     id = value;
             }
         }
-        
+
         #endregion
 
         #region OPERADORES        
@@ -80,7 +80,7 @@ namespace Pessoas
         /// </summary>
         /// <param name="a">a.</param>
         /// <param name="b">The b.</param>
-        public static bool operator == ( Operador a, Operador b)
+        public static bool operator ==(Operador a, Operador b)
         {
             if ((a.id == b.id) && (a.Nome == b.Nome))
                 return true;
@@ -91,7 +91,7 @@ namespace Pessoas
         /// </summary>
         /// <param name="a">a.</param>
         /// <param name="b">The b.</param>
-        public static bool operator != (Operador a, Operador b)
+        public static bool operator !=(Operador a, Operador b)
         {
             return (!(a == b));
         }
@@ -141,8 +141,23 @@ namespace Pessoas
         {
             return string.Format("Nome:{0} | ID{1}: | Contacto:{2}", Nome, id.ToString(), Contacto.ToString());
         }
+        /// <summary>
+        /// Faz a comparação entre dois operadores.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+                return 1;
+            if (id < ((Operador)obj).id)
+                return -1;
+            else if (id > ((Operador)obj).id)
+                return 1;
+            else
+                return 0;
+        }
 
-       
         #endregion
 
         #endregion

@@ -11,6 +11,7 @@ using Assistencia;
 using Pessoas;
 using System;
 using Outros;
+using System.Collections.Generic;
 
 namespace FrontEnd
 {
@@ -166,7 +167,7 @@ namespace FrontEnd
         /// Mostra a ficha completa do cliente.
         /// </summary>
         /// <param name="listaClientes">The lista clientes.</param>
-        public static void MostrarFichaClientesCompleto(Cliente[] listaClientes)
+        public static void MostrarFichaClientesCompleto(List<Cliente> listaClientes)
         {
             foreach(Cliente c in listaClientes)
             {
