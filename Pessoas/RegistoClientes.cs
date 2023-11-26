@@ -118,8 +118,8 @@ namespace Pessoas
         /// </summary>
         public void OrdenarClientes()
         {
-            listaClientes.Sort((c1, c2) => c1.NIF.CompareTo(c2.NIF));
-            //listaClientes.Sort();
+            //listaClientes.Sort((c1, c2) => c1.NIF.CompareTo(c2.NIF));
+            listaClientes.Sort();
         }
         /// <summary>
         /// Retorna o numero de clientes existentes.

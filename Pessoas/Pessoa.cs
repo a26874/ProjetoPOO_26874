@@ -8,6 +8,7 @@
 **/
 
 using System;
+using Interfaces;
 
 namespace Pessoas
 {
@@ -15,7 +16,7 @@ namespace Pessoas
     /// <summary>
     /// Classe para generalizar uma pessoa.
     /// </summary>
-    public class Pessoa
+    public class Pessoa 
     {
         #region ATRIBUTOS
         private int contacto;
@@ -68,7 +69,7 @@ namespace Pessoas
         #endregion
 
         #region OUTROS METODOS
-
+        
         #endregion
 
         #endregion

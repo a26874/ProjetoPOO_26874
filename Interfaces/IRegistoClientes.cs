@@ -12,7 +12,7 @@ using Pessoas;
 namespace Interfaces
 {
     /// <summary>
-    /// Classe de interfaces.
+    /// Classe de Interfaces.
     /// </summary>
     public interface IRegistoClientes
     {

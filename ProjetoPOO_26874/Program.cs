@@ -11,7 +11,7 @@ namespace ProjetoPOO_26874
     {
         static void Main(string[] args)
         {
-            //Array de registo Assistencias, Clientes, Operadores, produtos 
+            //Lista de registo Assistencias, Clientes, Operadores, produtos 
             RegistoAssist listaAssist = new RegistoAssist();
             RegistoClientes listaClientes = new RegistoClientes();
             RegistoOperadores listaOperadores = new RegistoOperadores();
@@ -33,7 +33,7 @@ namespace ProjetoPOO_26874
             Cliente c5 = new Cliente("Nuno", 974, new Morada("Porto", "4117-222", "Espinho"), 1911);
             Cliente c6 = new Cliente("Flavia", 244, new Morada("Porto", "478-222", "Arcos"), 1898);
 
-            //Inserir clientes na array listaClientes
+            //Inserir clientes na lista de clientes
 
             listaClientes.InsereCliente(c1);
             listaClientes.InsereCliente(c2);
@@ -62,7 +62,7 @@ namespace ProjetoPOO_26874
 
 
 
-            //Print de cada array
+            //Print de cada lista
             Console.WriteLine("Operadores:");
             //Operadores
             IO.MostrarOperadores(listaOperadores);
@@ -159,26 +159,15 @@ namespace ProjetoPOO_26874
 
 
             listaAssist.GravarFicheiroAssistencias("RegistoAssistencias.dat");
-            listaAssist.RemoverAssistencias();
-            IO.MostrarAssistencias(listaAssist,listaSolucoes);
             listaAssist.LerFicheiroAssistencia("RegistoAssistencias.dat");
-            IO.MostrarAssistencias(listaAssist, listaSolucoes);
 
 
-            Console.WriteLine("Clientes:");
             listaClientes.GravarFicheiroClientes("RegistoClientes.dat");
-            listaClientes.RemoverClientes();
-            IO.MostrarClientes(listaClientes);
             listaClientes.LerFicheiroClientes("RegistoClientes.dat");
-            IO.MostrarClientes(listaClientes);
 
 
-            Console.WriteLine("Operadores:");
             listaOperadores.GravarFicheiroOperadores("RegistoOperadores.dat");
-            listaOperadores.RemoverOperadores();
-            IO.MostrarOperadores(listaOperadores);
             listaOperadores.LerFicheiroOperadores("RegistoOperadores.dat");
-            IO.MostrarOperadores(listaOperadores);
         }
     }
 }

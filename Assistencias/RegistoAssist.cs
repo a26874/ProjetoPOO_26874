@@ -141,16 +141,17 @@ namespace Assistencia
             return false;
         }
         /// <summary>
-        /// Substitui as assistências existentes por novos objetos do tipo assist.
+        /// Remove todas as assistencias da lista de assitencias.
         /// </summary>
-        /// <param name="r"></param>
+        /// <returns></returns>
         public bool RemoverAssistencias()
         {
             listaAssistencias.Clear();
+            numAssist = 0;
             return true;
         }
         /// <summary>
-        /// Dada uma certa assistencia essa mesma é removida da array de assitências.
+        /// Dada uma certa assistencia essa mesma é removida da lista de assistencias.
         /// </summary>
         /// <param name="a">a.</param>
         /// <returns></returns>
@@ -166,7 +167,9 @@ namespace Assistencia
         public void OrdenarAssistencias()
         {
             //Perguntar professor.
-            listaAssistencias.Sort((a1,a2) => a1.Id.CompareTo(a2.Id));
+            //listaAssistencias.Sort((a1,a2) => a1.Id.CompareTo(a2.Id));
+
+            listaAssistencias.Sort();
         }
         /// <summary>
         /// Conclui uma assistência.
@@ -197,7 +200,7 @@ namespace Assistencia
         /// <returns></returns>
         public int MostrarAssistenciasRealizadas()
         {
-            return assistenciasRealizadas;
+            return listaAssistencias.Count;
         }
         /// <summary>
         /// Registar avaliacao de uma assistencia.

@@ -181,7 +181,6 @@ namespace FrontEnd
                     Console.WriteLine(c.Morada.ToString());
                 }
             }
-
         }
         #endregion
 

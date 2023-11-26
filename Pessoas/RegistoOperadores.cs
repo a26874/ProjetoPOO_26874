@@ -86,9 +86,9 @@ namespace Pessoas
             return true;
         }
         /// <summary>
-        /// Substitui os operadores existentes por um novo objeto default de operador.
+        /// Remove os operadores.
         /// </summary>
-        /// <param name="r"></param>
+        /// <returns></returns>
         public bool RemoverOperadores()
         {
             listaOperadores.Clear();
@@ -97,9 +97,9 @@ namespace Pessoas
             return true;
         }
         /// <summary>
-        /// Dado um certo objecto do tipo operador, caso exista é removido da array de operadores.
+        /// Remove o operador especificado da lista de operadores.
         /// </summary>
-        /// <param name="a">a.</param>
+        /// <param name="o">The o.</param>
         /// <returns></returns>
         public bool RemoverOperadorEspecifico(Operador o)
         {
@@ -112,7 +112,8 @@ namespace Pessoas
         /// </summary>
         public void OrdenarOperadores()
         {
-            listaOperadores.Sort((o1,o2)=>o1.Id.CompareTo(o2.Id));
+            //listaOperadores.Sort((o1,o2)=>o1.Id.CompareTo(o2.Id));
+            listaOperadores.Sort();
         }
         /// <summary>
         /// Retorna o numero de operadores existentes.

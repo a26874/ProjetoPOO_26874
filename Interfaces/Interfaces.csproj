@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IComparable.cs" />
     <Compile Include="IRegistoAssist.cs" />
     <Compile Include="IRegistoClientes.cs" />
     <Compile Include="IRegistoOperadores.cs" />

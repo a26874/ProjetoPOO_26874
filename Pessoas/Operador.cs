@@ -15,7 +15,7 @@ namespace Pessoas
     /// <summary>
     /// Classe de operadores.
     /// </summary>
-    public class Operador : Pessoa
+    public class Operador : Pessoa, IComparable<Operador>
     {
         #region ATRIBUTOS
         private int id;
@@ -144,15 +144,15 @@ namespace Pessoas
         /// <summary>
         /// Faz a comparação entre dois operadores.
         /// </summary>
-        /// <param name="obj">The object.</param>
+        /// <param name="a">a.</param>
         /// <returns></returns>
-        public int CompareTo(object obj)
+        public int CompareTo(Operador a)
         {
-            if (obj == null)
+            if (a is null)
                 return 1;
-            if (id < ((Operador)obj).id)
+            if (id < a.id)
                 return -1;
-            else if (id > ((Operador)obj).id)
+            else if (id > a.id)
                 return 1;
             else
                 return 0;

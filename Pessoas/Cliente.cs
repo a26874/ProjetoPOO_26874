@@ -8,9 +8,7 @@
 **/
 
 
-using Outros;
 using System;
-using Interfaces;
 
 namespace Pessoas
 {
@@ -18,7 +16,7 @@ namespace Pessoas
     /// <summary>
     /// Classe para cliente.
     /// </summary>
-    public class Cliente : Pessoa
+    public class Cliente : Pessoa, IComparable<Cliente>
     {
         #region ATRIBUTOS
         private int nif;
@@ -158,7 +156,7 @@ namespace Pessoas
         /// <returns></returns>
         public int CompareTo(Cliente a)
         {
-            if (a == null)
+            if (a is null)
                 return 1;
             if (nif < a.nif)
                 return -1;

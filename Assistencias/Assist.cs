@@ -16,7 +16,7 @@ namespace Assistencia
     /// <summary>
     /// Classe para assistências.
     /// </summary>
-    public class Assist
+    public class Assist : IComparable<Assist>
     {
 
         #region ATRIBUTOS
@@ -255,6 +255,22 @@ namespace Assistencia
             if (p.Equals(a.tipoAssis))
                 return true;
             return false;
+        }
+        /// <summary>
+        /// Compara dois objetos de assistencias a partir do seu ID.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        public int CompareTo(Assist a)
+        {
+            if (a is null)
+                return 1;
+            if (idAssistencia < a.idAssistencia)
+                return -1;
+            else if (idAssistencia > a.idAssistencia)
+                return 1;
+            else
+                return 0;
         }
         #endregion
 
