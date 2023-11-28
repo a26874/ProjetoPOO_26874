@@ -8,7 +8,9 @@
 **/
 
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Outros
 {
@@ -17,7 +19,6 @@ namespace Outros
     /// </summary>
     public class RegistoProblemas
     {
-        const int MAXPROBLEMASCON = 4;
         #region ATRIBUTOS
         private int numProblemas;
         private List<ProblemasCon> listaSolucoes;
@@ -68,7 +69,7 @@ namespace Outros
             {
                 if (aux.Id == -1)
                     continue;
-                if (aux.Equals(p) || numProblemas > MAXPROBLEMASCON)
+                if (aux.Equals(p))
                     return false;
             }
             listaSolucoes.Add(p);
@@ -98,6 +99,47 @@ namespace Outros
                 }
             }
             return false;
+        }
+        /// <summary>
+        /// Grava em ficheiro binário as solucoes existentes.
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        public bool GravarFicheiroSolucoes(string nomeFicheiro)
+        {
+            Stream ficheiro = null;
+            if (!File.Exists(nomeFicheiro))
+                ficheiro = File.Open(nomeFicheiro, FileMode.Create);
+            else
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+            if (ficheiro == null)
+                return false;
+            else
+            {
+                BinaryFormatter b = new BinaryFormatter();
+                b.Serialize(ficheiro, listaSolucoes);
+                ficheiro.Close();
+                return true;
+            }
+        }
+        /// <summary>
+        /// Le do ficheiro de solucoes.
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        public bool LerFicheiroSolucoes(string nomeFicheiro)
+        {
+            Stream ficheiro = null;
+            if (!File.Exists(nomeFicheiro))
+                return false;
+            else
+            {
+                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+                BinaryFormatter b = new BinaryFormatter();
+                listaSolucoes = (List<ProblemasCon>)b.Deserialize(ficheiro);
+                ficheiro.Close();
+                return true;
+            }
         }
         #endregion
 

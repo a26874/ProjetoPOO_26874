@@ -9,6 +9,7 @@
 using Interfaces;
 using Outros;
 using Pessoas;
+using Excecoes;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -247,6 +248,8 @@ namespace Assistencia
                 ficheiro.Close();
                 return true;
             }
+
+
         }
         /// <summary>
         /// Lê o ficheiro assistencias.

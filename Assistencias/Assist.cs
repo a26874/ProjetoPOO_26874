@@ -171,8 +171,8 @@ namespace Assistencia
         /// </summary>
         public Avaliacao Classificacao
         {
-            get { return this.classificacao; }
-            set { this.classificacao = value; }
+            get { return classificacao; }
+            set { classificacao = value; }
         }
         #endregion
 

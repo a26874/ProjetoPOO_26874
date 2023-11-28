@@ -20,7 +20,6 @@ namespace Pessoas
     /// </summary>
     public class RegistoClientes : IRegistoClientes
     {
-        const int MAXCLIENTES = 5;
 
         #region ATRIBUTOS
         private int numCliente;
@@ -79,7 +78,7 @@ namespace Pessoas
             {
                 if (a.NIF == -1)
                     continue;
-                if (a.Equals(c) /*|| (numCliente >= MAXCLIENTES)*/)
+                if (a.Equals(c))
                     return false;
             }
             listaClientes.Add(c);
@@ -106,10 +105,7 @@ namespace Pessoas
         public bool RemoverClienteEspecifico(Cliente c)
         {
             if (listaClientes.Remove(c))
-            {
-                numCliente--;
                 return true;
-            }
             return false;
         }
         /// <summary>

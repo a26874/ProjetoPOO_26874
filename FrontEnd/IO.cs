@@ -11,7 +11,9 @@ using Assistencia;
 using Pessoas;
 using System;
 using Outros;
+using Excecoes;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace FrontEnd
 {
@@ -190,9 +192,12 @@ namespace FrontEnd
         {
             Console.WriteLine(listaClientes.Count);
         }
-        public static void AssistenciasRealizadas(List<Assist> listaAssistencias)
+        public static bool ExisteCliente(List<Cliente> listaClientes, Cliente a)
         {
-
+            if (listaClientes.Contains(a))
+                return true;
+            else
+                throw new ClienteNaoExisteException("Nao foi possivel encontrar o cliente " + a.Nome);
         }
         #endregion
 

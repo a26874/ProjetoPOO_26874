@@ -8,9 +8,11 @@
 **/
 
 using Assistencia;
+using System;
 
 namespace Outros
 {
+    [Serializable]
     /// <summary>
     /// Classe para listaSolucoes conhecidos.
     /// </summary>

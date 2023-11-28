@@ -38,11 +38,12 @@ namespace Pessoas
             nif = -1;
         }
         /// <summary>
-        /// Construtor por parametros.
+        /// Construtor com nome, contacto, morada e NIF.
         /// </summary>
         /// <param name="n">The n.</param>
         /// <param name="c">The c.</param>
-        /// <param name="M">The m.</param>
+        /// <param name="m">The m.</param>
+        /// <param name="ni">The ni.</param>
         public Cliente(string n, int c, Morada m, int ni)
         {
             Nome= n;

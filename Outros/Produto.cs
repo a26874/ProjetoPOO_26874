@@ -7,17 +7,17 @@
 *	<description></description>
 **/
 
+using System;
 using System.Collections.Generic;
 
 namespace Outros
 {
+    [Serializable]
     /// <summary>
     /// Classe para descrever um produto.
     /// </summary>
     public class Produto
     {
-        const int MAXCATEGORIA = 2;
-
         #region ATRIBUTOS
         private string nome;
         private int id;
