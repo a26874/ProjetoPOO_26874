@@ -8,7 +8,6 @@
 **/
 
 using Interfaces;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -80,7 +79,7 @@ namespace Pessoas
             {
                 if (a.NIF == -1)
                     continue;
-                if (a.Equals(c) || (numCliente >= MAXCLIENTES))
+                if (a.Equals(c) /*|| (numCliente >= MAXCLIENTES)*/)
                     return false;
             }
             listaClientes.Add(c);

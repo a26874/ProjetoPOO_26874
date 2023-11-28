@@ -20,18 +20,13 @@ namespace Pessoas
     {
         #region ATRIBUTOS
         private int nif;
-        private static int numClientes=0; //
         #endregion
 
         #region COMPORTAMENTO
 
         #region CONSTRUTORES     
         
-        static Cliente()
-        {
-            numClientes = 0;
-        }
-
+        
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -41,7 +36,6 @@ namespace Pessoas
             Contacto = -1;
             Morada = new Morada(string.Empty,string.Empty,string.Empty);
             nif = -1;
-            numClientes = 0;
         }
         /// <summary>
         /// Construtor por parametros.
@@ -150,9 +144,9 @@ namespace Pessoas
             return string.Format("Nome:{0} | Contacto:{1} | NIF:{2}", Nome, Contacto, nif);
         }
         /// <summary>
-        /// Faz a comparação de dois clientes.
+        /// Compara dois clientes.
         /// </summary>
-        /// <param name="obj">The object.</param>
+        /// <param name="a"></param>
         /// <returns></returns>
         public int CompareTo(Cliente a)
         {

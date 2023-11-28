@@ -81,7 +81,7 @@ namespace Assistencia
             {
                 if (b.Id == -1)
                     continue;
-                if (b.Equals(a) || (numAssist >= MAXASSISTENCIAS))
+                if (b.Equals(a) /*|| (numAssist >= MAXASSISTENCIAS)*/)
                     return false;
             }
             listaAssistencias.Add(a);

@@ -18,12 +18,13 @@ namespace ProjetoPOO_26874
             RegistoProdutos listaProdutos = new RegistoProdutos();
             RegistoProblemas listaSolucoes = new RegistoProblemas();
 
-            //Nova assistencias
-            Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
-            Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
-            Assist a3 = new Assist(new DateTime(2023, 11, 1, 13, 45, 44), new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
-            Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
-            Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
+            listaAssist.LerFicheiroAssistencia("RegistoAssistencias.dat");
+            ////Nova assistencias
+            //Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
+            //Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
+            //Assist a3 = new Assist(new DateTime(2023, 11, 1, 13, 45, 44), new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
+            //Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
+            //Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
 
             //Criação de um novo cliente
             Cliente c1 = new Cliente("Marco", 94829, new Morada("Braga", "4720-452", "Amares"), 1874);
@@ -49,8 +50,6 @@ namespace ProjetoPOO_26874
             Operador op4 = new Operador("Rui", 14, 11123, new Morada("Braga", "4991-242", "VilaVerde"));
             Operador op5 = new Operador("Luis", 25, 2444, new Morada("Porto", "4221-112", "Arouca"));
             Operador op6 = new Operador("Diogo", 6, 4959, new Morada("Braga", "4872-111", "Barcelos"));
-
-            int numeroOperadores = listaOperadores.NumeroOperadoresExistentes();
 
             //Inserir operadores.
             listaOperadores.InsereOperador(op1);
@@ -120,34 +119,34 @@ namespace ProjetoPOO_26874
 
 
 
-            listaAssist.InsereAssistLista(a1);
-            listaAssist.InsereAssistLista(a2);
-            listaAssist.InsereAssistLista(a3);
-            listaAssist.InsereAssistLista(a4);
-            listaAssist.InsereAssistLista(a5);
-            
-
-
-            listaAssist.InsereClienteAssist(a1, listaClientes.ObterClientes);
-            listaAssist.InsereClienteAssist(a2, listaClientes.ObterClientes);
-            listaAssist.InsereClienteAssist(a3, listaClientes.ObterClientes);
-            listaAssist.InsereClienteAssist(a4, listaClientes.ObterClientes);
-            listaAssist.InsereClienteAssist(a5, listaClientes.ObterClientes);
-
-            listaAssist.InsereOperadorAssist(a1, listaOperadores.ObterOperadores);
-            listaAssist.InsereOperadorAssist(a2, listaOperadores.ObterOperadores);
-            listaAssist.InsereOperadorAssist(a3, listaOperadores.ObterOperadores);
-            listaAssist.InsereOperadorAssist(a4, listaOperadores.ObterOperadores);
-            listaAssist.InsereOperadorAssist(a5, listaOperadores.ObterOperadores);
+            //listaAssist.InsereAssistLista(a1);
+            //listaAssist.InsereAssistLista(a2);
+            //listaAssist.InsereAssistLista(a3);
+            //listaAssist.InsereAssistLista(a4);
+            //listaAssist.InsereAssistLista(a5);
 
 
 
-            listaAssist.ConcluirAssistencia(a1);
-            Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
-            listaAssist.RegistoAvaliacao(a1, clsA1);
-            listaAssist.ConcluirAssistencia(a2);
-            Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
-            listaAssist.RegistoAvaliacao(a2, clsA2);
+            //listaAssist.InsereClienteAssist(a1, listaClientes.ObterClientes);
+            //listaAssist.InsereClienteAssist(a2, listaClientes.ObterClientes);
+            //listaAssist.InsereClienteAssist(a3, listaClientes.ObterClientes);
+            //listaAssist.InsereClienteAssist(a4, listaClientes.ObterClientes);
+            //listaAssist.InsereClienteAssist(a5, listaClientes.ObterClientes);
+
+            //listaAssist.InsereOperadorAssist(a1, listaOperadores.ObterOperadores);
+            //listaAssist.InsereOperadorAssist(a2, listaOperadores.ObterOperadores);
+            //listaAssist.InsereOperadorAssist(a3, listaOperadores.ObterOperadores);
+            //listaAssist.InsereOperadorAssist(a4, listaOperadores.ObterOperadores);
+            //listaAssist.InsereOperadorAssist(a5, listaOperadores.ObterOperadores);
+
+
+
+            //listaAssist.ConcluirAssistencia(a1);
+            //Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
+            //listaAssist.RegistoAvaliacao(a1, clsA1);
+            //listaAssist.ConcluirAssistencia(a2);
+            //Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
+            //listaAssist.RegistoAvaliacao(a2, clsA2);
 
 
             //Assistencias
@@ -168,6 +167,8 @@ namespace ProjetoPOO_26874
 
             listaOperadores.GravarFicheiroOperadores("RegistoOperadores.dat");
             listaOperadores.LerFicheiroOperadores("RegistoOperadores.dat");
+
+            IO.NumeroClientes(listaClientes.ObterClientes);
         }
     }
 }

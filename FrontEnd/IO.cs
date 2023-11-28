@@ -182,6 +182,18 @@ namespace FrontEnd
                 }
             }
         }
+        /// <summary>
+        /// Mostra na consola o numero de clientes existentes.
+        /// </summary>
+        /// <param name="listaClientes"></param>
+        public static void NumeroClientes(List<Cliente> listaClientes)
+        {
+            Console.WriteLine(listaClientes.Count);
+        }
+        public static void AssistenciasRealizadas(List<Assist> listaAssistencias)
+        {
+
+        }
         #endregion
 
         #endregion

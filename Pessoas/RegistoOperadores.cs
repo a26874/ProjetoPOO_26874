@@ -77,7 +77,7 @@ namespace Pessoas
             {
                 if (a.Id == -1)
                     continue;
-                if (a.Equals(o) || numOperadores >= MAXOPERADORES) 
+                if (a.Equals(o) /*|| numOperadores >= MAXOPERADORES*/) 
                     return false;
             }
             listaOperadores.Add(o);
