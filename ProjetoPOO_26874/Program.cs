@@ -25,7 +25,7 @@ namespace ProjetoPOO_26874
             listaSolucoes.LerFicheiroSolucoes("RegistoSolucoes.dat");
             listaAssist.LerFicheiroAssistencia("RegistoAssistencias.dat");
             #region IO dados
-            ////Nova assistencias
+            //Nova assistencias
             //Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
             //Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
             //Assist a3 = new Assist(new DateTime(2023, 11, 1, 13, 45, 44), new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
@@ -128,13 +128,13 @@ namespace ProjetoPOO_26874
 
             #region IODADOS
 
-            ProblemasCon prob1 = new ProblemasCon("Atendimento-Duvidas", 1, "Ditar problemas e conforme o numero digitado, apresentar solucao");
-            ProblemasCon prob2 = new ProblemasCon("Entregas-Informacao", 2, "Oferecer detalhes sobre o estado de entrega");
-            ProblemasCon prob4 = new ProblemasCon("Assistencia-Servico Manutencao", 4, "Enviar um funcionario ao local desejado");
+            //ProblemasCon prob1 = new ProblemasCon("Atendimento-Duvidas", 1, "Ditar problemas e conforme o numero digitado, apresentar solucao");
+            //ProblemasCon prob2 = new ProblemasCon("Entregas-Informacao", 2, "Oferecer detalhes sobre o estado de entrega");
+            //ProblemasCon prob4 = new ProblemasCon("Assistencia-Servico Manutencao", 4, "Enviar um funcionario ao local desejado");
 
-            listaSolucoes.InserirSolucao(prob1);
-            listaSolucoes.InserirSolucao(prob2);
-            listaSolucoes.InserirSolucao(prob4);
+            //listaSolucoes.InserirSolucao(prob1);
+            //listaSolucoes.InserirSolucao(prob2);
+            //listaSolucoes.InserirSolucao(prob4);
 
 
    
@@ -185,22 +185,9 @@ namespace ProjetoPOO_26874
             listaSolucoes.GravarFicheiroSolucoes("RegistoSolucoes.dat");
             
             Cliente teste = new Cliente("Marcooo",240, new Morada("asdqq", "qqqqq", "lllqq"),87927);
-            try
-            {
-                IO.ExisteCliente(listaClientes.ObterClientes,teste);
-            }
-            catch (ClienteNaoExisteException e) 
-            { 
-                Console.WriteLine(e.Message);            
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("teste");
-            }
+
+            IO.ExisteCliente(listaClientes.ObterClientes, teste);
+            IO.ExisteSolucaoProblema(listaSolucoes.ObterSolucoes, listaAssist.ObterAssistencias, 3);
 
         }
     }

@@ -8,12 +8,11 @@
 **/
 
 using Assistencia;
+using Excecoes;
+using Outros;
 using Pessoas;
 using System;
-using Outros;
-using Excecoes;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace FrontEnd
 {
@@ -58,7 +57,7 @@ namespace FrontEnd
         {
             foreach (Assist a in listaAssistencias.ObterAssistencias)
             {
-                if (ReferenceEquals(a,null) || a.Id == -1)
+                if (ReferenceEquals(a, null) || a.Id == -1)
                     continue;
                 Console.WriteLine(a.ToString());
                 if (a.estadoA.Ativo == false)
@@ -79,7 +78,7 @@ namespace FrontEnd
         {
             foreach (Cliente c in listaClientes.ObterClientes)
             {
-                if (ReferenceEquals(c,null)|| c.NIF == -1 )
+                if (ReferenceEquals(c, null) || c.NIF == -1)
                     continue;
                 Console.WriteLine(c.ToString());
             }
@@ -92,7 +91,7 @@ namespace FrontEnd
         {
             foreach (Operador o in listaOperadores.ObterOperadores)
             {
-                if (ReferenceEquals(o,null)||o.Id == -1)
+                if (ReferenceEquals(o, null) || o.Id == -1)
                     continue;
                 Console.WriteLine(o.ToString());
             }
@@ -133,7 +132,7 @@ namespace FrontEnd
         {
             foreach (Produto p in listaProdutos.ObterProdutos)
             {
-                if (ReferenceEquals(p,null)||p.Id == 0)
+                if (ReferenceEquals(p, null) || p.Id == 0)
                     continue;
                 Console.WriteLine(p.ToString());
                 MostrarCategorias(p.Categorias);
@@ -171,7 +170,7 @@ namespace FrontEnd
         /// <param name="listaClientes">The lista clientes.</param>
         public static void MostrarFichaClientesCompleto(List<Cliente> listaClientes)
         {
-            foreach(Cliente c in listaClientes)
+            foreach (Cliente c in listaClientes)
             {
                 if (ReferenceEquals(c, null) || c.NIF == -1)
                     continue;
@@ -192,13 +191,70 @@ namespace FrontEnd
         {
             Console.WriteLine(listaClientes.Count);
         }
+        /// <summary>
+        /// Metodo para verificar se existe um cliente, na lista de clientes.
+        /// </summary>
+        /// <param name="listaClientes">The lista clientes.</param>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.ClienteNaoExisteException">Cliente não existe.</exception>
         public static bool ExisteCliente(List<Cliente> listaClientes, Cliente a)
         {
-            if (listaClientes.Contains(a))
-                return true;
-            else
-                throw new ClienteNaoExisteException("Nao foi possivel encontrar o cliente " + a.Nome);
+            try
+            {
+                if (!listaClientes.Contains(a))
+                    throw new ClienteNaoExisteException("Cliente nao existe.");
+            }
+            catch (ClienteNaoExisteException e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            return true;
         }
+        /// <summary>
+        /// Verifica se existe uma solucao para um determinado tipo de assitencia de um problema.
+        /// </summary>
+        /// <param name="listaSolucoes">The lista solucoes.</param>
+        /// <param name="listaAssitencias">The lista assitencias.</param>
+        /// <param name="tipoId">The tipo identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.NaoExisteSolucaoException">O problema ainda nao tem solucao.</exception>
+        public static bool ExisteSolucaoProblema(List<ProblemasCon> listaSolucoes, List<Assist> listaAssitencias, int tipoId)
+        {
+            bool existeSolucao = false;
+            foreach (Assist a in listaAssitencias)
+            {
+                if (a.tipoAssis.Id == tipoId)
+                {
+                    foreach (ProblemasCon b in listaSolucoes)
+                    {
+                        if (b.Equals(a.tipoAssis))
+                        {
+                            existeSolucao = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            try
+            {
+                if (existeSolucao)
+                    return true;
+                else
+                    throw new NaoExisteSolucaoException("O problema ainda nao tem solucao.");
+            }
+            catch (NaoExisteSolucaoException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return false;
+        }
+
         #endregion
 
         #endregion

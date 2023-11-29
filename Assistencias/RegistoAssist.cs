@@ -233,23 +233,41 @@ namespace Assistencia
         /// <returns></returns>
         public bool GravarFicheiroAssistencias(string nomeFicheiro)
         {
-            Stream ficheiro = null;
-
-            if (!File.Exists(nomeFicheiro))
-                ficheiro = File.Open(nomeFicheiro, FileMode.Create);
-            else
-                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-            if (ficheiro == null)
-                return false;
-            else
+            try
             {
-                BinaryFormatter b = new BinaryFormatter();
-                b.Serialize(ficheiro, listaAssistencias);
-                ficheiro.Close();
-                return true;
+                using (Stream ficheiro = File.Open(nomeFicheiro, FileMode.Create))
+                {
+                    BinaryFormatter b = new BinaryFormatter();
+                    b.Serialize(ficheiro, listaAssistencias);
+                    ficheiro.Close();
+                }
             }
+            catch (EscritaFicheiroAssistException e)
+            {
+                throw new EscritaFicheiroAssistException("Erro ao gravar o ficheiro." + e.Message);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message); 
+                return false;
+            }
+            return true;
 
+            //Stream ficheiro = null;
 
+            //if (!File.Exists(nomeFicheiro))
+            //    ficheiro = File.Open(nomeFicheiro, FileMode.Create);
+            //else
+            //    ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+            //if (ficheiro == null)
+            //    return false;
+            //else
+            //{
+            //    BinaryFormatter b = new BinaryFormatter();
+            //    b.Serialize(ficheiro, listaAssistencias);
+            //    ficheiro.Close();
+            //    return true;
+            //}
         }
         /// <summary>
         /// Lê o ficheiro assistencias.
