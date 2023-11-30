@@ -93,7 +93,7 @@ namespace GereAssistencias
                 aux = RegrasDeNegocio.InsereOperador(op1);
             }
             catch (OperadorException e)
-            {
+            { 
                 Console.WriteLine(e.Message);
             }
 
