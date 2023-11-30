@@ -10,7 +10,7 @@
 using Assistencia;
 using System;
 
-namespace Outros
+namespace ObjetosNegocio
 {
     [Serializable]
     /// <summary>

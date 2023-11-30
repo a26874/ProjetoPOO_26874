@@ -55,4 +55,30 @@ namespace Excecoes
     {
         public NaoExisteSolucaoException(string message) : base(message) { }
     }
+    
+    public class AssistException : Exception 
+    { 
+        public AssistException() { }
+
+        public AssistException(string message) : base(message) { }
+    }
+
+    public class ClienteException : Exception
+    {
+        public ClienteException() { }
+
+        public ClienteException(string message) : base(message)
+        {
+
+        }
+    }
+    public class OperadorException : Exception
+    {
+        public OperadorException() { }
+
+        public OperadorException(string message) : base(message)
+        {
+
+        }
+    }
 }

@@ -6,29 +6,28 @@
 *   <date>2023 10/30/2023 1:26:01 PM</date>
 *	<description></description>
 **/
-using Interfaces;
-using Outros;
-using Pessoas;
-using Excecoes;
+
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Linq;
+using ObjetosNegocio;
+using Outros;
+using Excecoes;
 
-namespace Assistencia
+namespace Dados
 {
     [Serializable]
     /// <summary>
     /// Classe para registar assistências.
     /// </summary>
-    public class RegistoAssist : IRegistoAssist
+    public class RegistoAssist /*: IRegistoAssist*/
     {
-        const int MAXASSISTENCIAS = 5;
 
         #region ATRIBUTOS
-        private int numAssist;
-        private List<Assist> listaAssistencias;
+        private static int numAssist;
+        private static List<Assist> listaAssistencias;
         private static int assistenciasRealizadas;
         #endregion
 
@@ -41,13 +40,14 @@ namespace Assistencia
         static RegistoAssist()
         {
             assistenciasRealizadas = 0;
+            listaAssistencias = new List<Assist>();
         }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
         public RegistoAssist()
         {
-            listaAssistencias = new List<Assist>();
+
         }
 
         #endregion
@@ -76,13 +76,13 @@ namespace Assistencia
         /// </summary>
         /// <param name="a">a.</param>
         /// <returns></returns>
-        public bool InsereAssistLista(Assist a)
+        public static bool InsereAssistLista(Assist a)
         {
             foreach(Assist b in listaAssistencias)
             {
                 if (b.Id == -1)
                     continue;
-                if (b.Equals(a) /*|| (numAssist >= MAXASSISTENCIAS)*/)
+                if (b.Equals(a))
                     return false;
             }
             listaAssistencias.Add(a);
@@ -95,23 +95,20 @@ namespace Assistencia
         /// <param name="a">a.</param>
         /// <param name="listaClientes">The lista clientes.</param>
         /// <returns></returns>
-        public bool InsereClienteAssist(Assist a, List<Cliente> listaClientes)
+        public static bool InsereClienteAssistLista(Assist a, Cliente c)
         {
             foreach(Assist b in listaAssistencias)
             {
                 if (ReferenceEquals(b,null)||b.Id == -1)
                     continue;
-                if(b.Id == a.Id)
-                    foreach (Cliente c in listaClientes)
-                    {
-                        if (ReferenceEquals(c,null) ||c.NIF == -1)
-                            continue;
-                        if (b.ClienteNIF == c.NIF)
-                        {
-                            b.Cliente = c;
-                            return true;
-                        }
-                    }
+
+                if ((ReferenceEquals(b.Cliente, null) || b.Cliente == c) && !ReferenceEquals(a.Cliente, null))
+                    throw new AssistException("Ja existe cliente nesta assistencia.");
+                if (b.Id == a.Id && a.ClienteNIF == c.NIF)
+                {
+                    b.Cliente = c;
+                    return true;
+                }
             }
             return false;
         }
@@ -287,6 +284,16 @@ namespace Assistencia
                 ficheiro.Close();
                 return true;
             }
+        }
+
+        public static bool MostrarListaAssistencias()
+        {
+            if (listaAssistencias.Count == 0) return false;
+            foreach(Assist a in listaAssistencias)
+            {
+                Console.WriteLine(a.ToString());
+            }
+            return true;
         }
         #endregion
 

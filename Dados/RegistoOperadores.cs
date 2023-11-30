@@ -11,20 +11,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using Excecoes;
+using ObjetosNegocio;
 
-namespace Pessoas
+namespace Dados
 {
     [Serializable]
     /// <summary>
     /// Classe para registo de operadores existentes.
     /// </summary>
-    public class RegistoOperadores
+    public class RegistoOperadores 
     {
-        const int MAXOPERADORES = 5;
-
         #region ATRIBUTOS
-        private int numOperadores;
-        private List<Operador> listaOperadores;
+        private static int numOperadores;
+        private static List<Operador> listaOperadores;
         private static int numeroOperadoresExistentes;
         #endregion
 
@@ -37,13 +37,13 @@ namespace Pessoas
         static RegistoOperadores()
         {
             numeroOperadoresExistentes = 0;
+            listaOperadores = new List<Operador>();
         }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
         public RegistoOperadores()
         {
-            listaOperadores = new List<Operador>();
         }
         #endregion
 
@@ -71,14 +71,14 @@ namespace Pessoas
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
-        public bool InsereOperador(Operador o)
+        public static bool InsereOperadorLista(Operador o)
         {
             foreach(Operador a in  listaOperadores)
             {
                 if (a.Id == -1)
                     continue;
-                if (a.Equals(o) /*|| numOperadores >= MAXOPERADORES*/) 
-                    return false;
+                if (a.Equals(o))
+                    throw new OperadorException("O operador ja existe ");
             }
             listaOperadores.Add(o);
             numOperadores++;

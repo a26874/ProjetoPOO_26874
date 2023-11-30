@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assistencias, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assistencias\bin\Debug\Assistencias.dll</HintPath>
+    <Reference Include="ObjetosNegocio">
+      <HintPath>..\ObjetosNegocio\bin\Debug\ObjetosNegocio.dll</HintPath>
     </Reference>
     <Reference Include="Outros, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

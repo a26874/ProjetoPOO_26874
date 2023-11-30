@@ -11,8 +11,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-
-namespace Outros
+using ObjetosNegocio;
+namespace Dados
 {
     /// <summary>
     /// Classe para registo de listaSolucoes conhecidos.

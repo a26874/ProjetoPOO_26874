@@ -9,8 +9,9 @@
 
 using System;
 using System.Collections.Generic;
+using Outros;
 
-namespace Outros
+namespace ObjetosNegocio
 {
     [Serializable]
     /// <summary>

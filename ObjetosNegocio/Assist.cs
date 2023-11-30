@@ -7,10 +7,10 @@
 *	<description></description>
 **/
 using System;
-using Pessoas;
+using Assistencia;
 using Outros;
 
-namespace Assistencia
+namespace ObjetosNegocio
 {
     [Serializable]
     /// <summary>

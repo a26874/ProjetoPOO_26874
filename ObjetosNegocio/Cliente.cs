@@ -9,8 +9,9 @@
 
 
 using System;
+using Pessoas;
 
-namespace Pessoas
+namespace ObjetosNegocio
 {
     [Serializable]
     /// <summary>

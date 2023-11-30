@@ -1,60 +1,53 @@
 ﻿/*
-*	<copyright file="Pessoas" company="IPCA">
+*	<copyright file="RegistoProdutos" company="IPCA">
 *	</copyright>
 * 	<author>Marco Macedo</author>
 *	<contact>a26874@alunos.ipca.pt</contact>
-*   <date>2023 11/1/2023 8:16:49 PM</date>
+*   <date>2023 11/10/2023 10:09:25 AM</date>
 *	<description></description>
 **/
 
-using Interfaces;
+
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using ObjetosNegocio;
 
-namespace Pessoas
+namespace Dados
 {
     /// <summary>
-    /// Classe para armazenamento de vários clientes.
+    /// Classe para registo de produtos.
     /// </summary>
-    public class RegistoClientes : IRegistoClientes
+    public class RegistoProdutos
     {
+        const int MAXPRODUTOS = 5;
 
         #region ATRIBUTOS
-        private int numCliente;
-        private List<Cliente> listaClientes;
-        private static int numeroClientesExistentes;
+        private int numProdutos;
+        private List<Produto> listaProdutos;
         #endregion
 
         #region COMPORTAMENTO
 
         #region CONSTRUTORES        
-        static RegistoClientes()
-        {
-            numeroClientesExistentes = 0;
-        }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
-        public RegistoClientes()
+        public RegistoProdutos()
         {
-            listaClientes = new List<Cliente>();
+            listaProdutos = new List<Produto>();
         }
         #endregion
 
-        #region PROPRIEDADES        
+        #region PROPRIEDADES
         /// <summary>
-        /// Retorna a array de clientes.
+        /// Retorna a array de produtos.
         /// </summary>
-        /// <value>
-        /// Obter clientes.
-        /// </value>
-        public List<Cliente> ObterClientes
+        public List<Produto> ObterProdutos
         {
-            get { return listaClientes.ToList(); }
+            get { return listaProdutos.ToList(); }
         }
-
         #endregion
 
         #region OPERADORES
@@ -67,69 +60,58 @@ namespace Pessoas
 
         #region OUTROS METODOS
         /// <summary>
-        /// Insere um cliente, na lista de clientes.
+        /// Inserir um novo produto na array de produtos.
         /// </summary>
-        /// <param name="c">The c.</param>
+        /// <param name="p"></param>
         /// <returns></returns>
-        public bool InsereCliente(Cliente c)
+        public bool InserirProduto(Produto p)
         {
-            //Verificar se a já existe!!! && se existe espaço
-            foreach (Cliente a in listaClientes)
+            foreach (Produto aux in listaProdutos)
             {
-                if (a.NIF == -1)
+                if (p.Id == -1)
                     continue;
-                if (a.Equals(c))
+                if (aux.Equals(p) || numProdutos > MAXPRODUTOS)
                     return false;
             }
-            listaClientes.Add(c);
-            numCliente++;
-            numeroClientesExistentes = listaClientes.Count;
+            listaProdutos.Add(p);
+            numProdutos++;
             return true;
         }
         /// <summary>
-        /// Limpa a lista de clientes.
+        /// Remove todos os produtos do array.
         /// </summary>
         /// <returns></returns>
-        public bool RemoverClientes()
+        public bool RemoverProdutos()
         {
-            listaClientes.Clear();
-            numeroClientesExistentes = 0;
-            numCliente = 0;
+            listaProdutos.Clear();
+            numProdutos = 0;
             return true;
         }
         /// <summary>
-        /// Dado um certo cliente, esse mesmo é removido da lista de clientes.
+        /// Remove um produto especifico.
         /// </summary>
-        /// <param name="c">The c.</param>
+        /// <param name="p">The p.</param>
         /// <returns></returns>
-        public bool RemoverClienteEspecifico(Cliente c)
+        public bool RemoverProdutoEspecifico(Produto p)
         {
-            if (listaClientes.Remove(c))
+            if (listaProdutos.Remove(p))
                 return true;
             return false;
         }
         /// <summary>
-        /// Ordena a lista de clientes, pelo seu NIF.
-        /// </summary>
-        public void OrdenarClientes()
-        {
-            //listaClientes.Sort((c1, c2) => c1.NIF.CompareTo(c2.NIF));
-            listaClientes.Sort();
-        }
-        /// <summary>
-        /// Retorna o numero de clientes existentes.
+        /// Retorna o numero de produtos existentes.
         /// </summary>
         /// <returns></returns>
-        public int NumeroClientesExistentes()
+        public int NumeroProdutosExistentes()
         {
-            return listaClientes.Count;
+            return listaProdutos.Count;
         }
         /// <summary>
-        /// Grava em ficheiro binário todos os clientes.
+        /// Grava em ficheiro binário os produtos.
         /// </summary>
         /// <param name="nomeFicheiro"></param>
         /// <returns></returns>
-        public bool GravarFicheiroClientes(string nomeFicheiro)
+        public bool GravarFicheiroProdutos(string nomeFicheiro)
         {
             Stream ficheiro = null;
             if (!File.Exists(nomeFicheiro))
@@ -141,17 +123,17 @@ namespace Pessoas
             else
             {
                 BinaryFormatter b = new BinaryFormatter();
-                b.Serialize(ficheiro, listaClientes);
+                b.Serialize(ficheiro, listaProdutos);
                 ficheiro.Close();
                 return true;
             }
         }
         /// <summary>
-        /// Le do ficheiro de clientes, todos os clientes.
+        /// Le do ficheiro Produtos, todos os produtos.
         /// </summary>
         /// <param name="nomeFicheiro"></param>
         /// <returns></returns>
-        public bool LerFicheiroClientes(string nomeFicheiro)
+        public bool LerFicheiroProdutos(string nomeFicheiro)
         {
             Stream ficheiro = null;
             if (!File.Exists(nomeFicheiro))
@@ -160,7 +142,7 @@ namespace Pessoas
             {
                 ficheiro = File.Open(nomeFicheiro, FileMode.Open);
                 BinaryFormatter b = new BinaryFormatter();
-                listaClientes = (List<Cliente>)b.Deserialize(ficheiro);
+                listaProdutos = (List<Produto>)b.Deserialize(ficheiro);
                 ficheiro.Close();
                 return true;
             }

@@ -7,7 +7,7 @@
 *	<description></description>
 **/
 
-using Pessoas;
+using ObjetosNegocio;
 
 namespace Interfaces
 {

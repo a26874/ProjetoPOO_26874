@@ -7,7 +7,7 @@
 *	<description></description>
 **/
 
-using Pessoas;
+using ObjetosNegocio;
 
 namespace Interfaces
 {
@@ -16,7 +16,6 @@ namespace Interfaces
         bool InsereOperador(Operador o);
         bool RemoverOperadores();
         bool RemoverOperadorEspecifico(Operador o);
-        void BubbleSortOperadores();
         int NumeroOperadoresExistentes();
     }
 }

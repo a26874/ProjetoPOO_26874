@@ -10,8 +10,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Outros;
 
-namespace Outros
+namespace Dados
 {
     /// <summary>
     /// Classe para registo de categorias.

@@ -7,10 +7,9 @@
 *	<description></description>
 **/
 
-using Pessoas;
-using Assistencia;
 using Outros;
 using System.Collections.Generic;
+using ObjetosNegocio;
 
 namespace Interfaces
 {
