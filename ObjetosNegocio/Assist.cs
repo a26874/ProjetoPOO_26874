@@ -30,6 +30,7 @@ namespace ObjetosNegocio
         private Cliente cliente;
         private Operador operador;
         private Avaliacao classificacao;
+        private ProblemasCon solucao;
         private static int contIdAssistencia;
 
         #endregion
@@ -173,6 +174,17 @@ namespace ObjetosNegocio
         {
             get { return classificacao; }
             set { classificacao = value; }
+        }
+        /// <summary>
+        /// Manipulacao da variavel Solucao.
+        /// </summary>
+        /// <value>
+        /// The solucao.
+        /// </value>
+        public ProblemasCon Solucao
+        {
+            get { return solucao;}
+            set { solucao = value; }
         }
         #endregion
 

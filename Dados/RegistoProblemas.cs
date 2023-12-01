@@ -20,19 +20,22 @@ namespace Dados
     public class RegistoProblemas
     {
         #region ATRIBUTOS
-        private int numProblemas;
-        private List<ProblemasCon> listaSolucoes;
+        private static int numProblemas;
+        private static List<ProblemasCon> listaSolucoes;
         #endregion
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES        
+        #region CONSTRUTORES    
+        static RegistoProblemas()
+        {
+            listaSolucoes = new List<ProblemasCon>();
+        }
         /// <summary>
         /// Construtor para inicializar um novo registo de ProblemasConhecidos.
         /// </summary>
         public RegistoProblemas()
         {
-            listaSolucoes = new List<ProblemasCon>();
         }
         #endregion
 
@@ -63,7 +66,7 @@ namespace Dados
         /// </summary>
         /// <param name="p">The p.</param>
         /// <returns></returns>
-        public bool InserirSolucao(ProblemasCon p)
+        public static bool InserirSolucaoLista(ProblemasCon p)
         {
             foreach (ProblemasCon aux in listaSolucoes)
             {
@@ -140,6 +143,25 @@ namespace Dados
                 ficheiro.Close();
                 return true;
             }
+        }
+        /// <summary>
+        /// Dado um id de um tipo de assistência, verifica se existe solução para a mesma
+        /// </summary>
+        /// <param name="tipoAssistId">The tipo assist identifier.</param>
+        /// <param name="problemaInserir">The problema inserir.</param>
+        /// <returns></returns>
+        public static bool ExisteSolucao(int tipoAssistId, out ProblemasCon problemaInserir)
+        {
+            foreach(ProblemasCon p in listaSolucoes)
+            {
+                if (tipoAssistId == p.Id)
+                {
+                    problemaInserir = p;
+                    return true;
+                }
+            }
+            problemaInserir=null;
+            return false;
         }
         #endregion
 

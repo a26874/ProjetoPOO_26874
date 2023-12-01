@@ -145,6 +145,42 @@ namespace RegrasNegocio
                 throw new OperadorException(e.Message + "-" + "A assistencia " + a.Id + " ja tem operador");
             }
         }
+        public static bool InsereSolucao(ProblemasCon p)
+        {
+            if (p.Id == -1 || ReferenceEquals(p, null))
+                return false;
+            try
+            {
+                RegistoProblemas.InserirSolucaoLista(p);
+                return true;
+            }
+            catch(ProblemaException e)
+            {
+                throw new ProblemaException(e.Message + "-" + "Ja existe esta solucao na lista de solucoes.");
+            }
+        }
+        /// <summary>
+        /// Insere uma solução de um problema na assistência.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.AssistException"></exception>
+        public static bool InsereSolucaoAssitencia(Assist a)
+        {
+            ProblemasCon problemaInserir = null;
+            if (ReferenceEquals(a, null))
+                return false;
+            try
+            {
+                RegistoProblemas.ExisteSolucao(a.tipoAssis.Id, out problemaInserir);
+                RegistoAssist.InsereSolucaoAssitLista(a, problemaInserir);
+                return true;
+            }
+            catch (AssistException e)
+            {
+                throw new AssistException(e.Message + "-" + "A assistencia " + a.Id + " ja tem solucao");
+            }
+        }
         /// <summary>
         /// Mostra as assistencias na consola.
         /// </summary>

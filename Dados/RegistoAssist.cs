@@ -90,11 +90,12 @@ namespace Dados
             return true;
         }
         /// <summary>
-        /// Insere um cliente numa assistencia.
+        /// Insere um cliente na lista de assistências.
         /// </summary>
         /// <param name="a">a.</param>
-        /// <param name="listaClientes">The lista clientes.</param>
+        /// <param name="c">The c.</param>
         /// <returns></returns>
+        /// <exception cref="Excecoes.ClienteException">Ja existe cliente nesta assistencia</exception>
         public static bool InsereClienteAssistLista(Assist a, Cliente c)
         {
             foreach(Assist b in listaAssistencias)
@@ -113,11 +114,12 @@ namespace Dados
             return false;
         }
         /// <summary>
-        /// Insere um operador numa assistência.
+        /// Insere um operador na lista de assistências.
         /// </summary>
         /// <param name="a">a.</param>
-        /// <param name="listaOperadores">The lista operadores.</param>
+        /// <param name="o">The o.</param>
         /// <returns></returns>
+        /// <exception cref="Excecoes.OperadorException">Ja existe operador nesta assistencia</exception>
         public static bool InsereOperadorAssistLista(Assist a, Operador o)
         {
             foreach (Assist b in listaAssistencias)
@@ -125,10 +127,35 @@ namespace Dados
                 if (ReferenceEquals(b, null) || b.Id == -1)
                     continue;
                 if ((ReferenceEquals(b.Operador, null) || b.Operador == o) && !ReferenceEquals(a.Operador, null))
-                    throw new OperadorException("Ja existe operador nesta assitencia");
+                    throw new OperadorException("Ja existe operador nesta assistencia");
                 if (b.Id == a.Id && a.OperadorId == o.Id)
                 {
                     b.Operador = o;
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Insere uma solucao, caso exista para a assistência pedida.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.OperadorException">Ja existe operador nesta assistencia</exception>
+        public static bool InsereSolucaoAssitLista(Assist a, ProblemasCon p)
+        {
+            foreach(Assist b in listaAssistencias)
+            {
+                if (ReferenceEquals(b, null) || b.Id == -1)
+                    continue;
+                if (ReferenceEquals(p, null))
+                    return false;
+                else if ((ReferenceEquals(b.Solucao, null) || b.Solucao == p) && !ReferenceEquals(a.Solucao, null))
+                    throw new AssistException("Ja existe solucao para esta assistencia.");
+                if (b.Id == a.Id/* && a.Solucao.Id== p.Id*/)
+                {
+                    b.Solucao = p;
                     return true;
                 }
             }
@@ -287,6 +314,8 @@ namespace Dados
             if (listaAssistencias.Count == 0) return false;
             foreach(Assist a in listaAssistencias)
             {
+                if (a.Solucao is null)
+                    continue;
                 Console.WriteLine(a.ToString());
             }
             return true;

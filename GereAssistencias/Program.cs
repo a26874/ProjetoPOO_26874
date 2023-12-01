@@ -129,6 +129,43 @@ namespace GereAssistencias
             }
             ////bool teste2 = listaOperadores.InsereOperador(op6);
 
+            //Mostrar assistências.
+
+            //Criar soluções e inserir numa assistência.
+
+            ProblemasCon prob1 = new ProblemasCon("Atendimento-Duvidas", 1, "Ditar problemas e conforme o numero digitado, apresentar solucao");
+            ProblemasCon prob2 = new ProblemasCon("Entregas-Informacao", 2, "Oferecer detalhes sobre o estado de entrega");
+            ProblemasCon prob4 = new ProblemasCon("Assistencia-Servico Manutencao", 4, "Enviar um funcionario ao local desejado");
+
+            try
+            {
+                bool aux = RegrasDeNegocio.InsereSolucao(prob1);
+                aux = RegrasDeNegocio.InsereSolucao(prob2);
+                aux = RegrasDeNegocio.InsereSolucao(prob4);
+            }
+            catch (ProblemaException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                bool aux = RegrasDeNegocio.InsereSolucaoAssitencia(a1);
+                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a2);
+                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a3);
+                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a4);
+                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a5);
+                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a6);
+            }
+            catch(ProblemaException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+            RegrasDeNegocio.MostrarAssistencias();
+
+
 
             #endregion
 

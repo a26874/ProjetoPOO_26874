@@ -81,4 +81,10 @@ namespace Excecoes
 
         }
     }
+    public class ProblemaException : Exception
+    {
+        public ProblemaException() { }
+
+        public ProblemaException(string message) : base(message) { }
+    }
 }
