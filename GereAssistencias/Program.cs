@@ -109,24 +109,24 @@ namespace GereAssistencias
                 aux = RegrasDeNegocio.InsereClienteAssistencia(a6);
                 aux = RegrasDeNegocio.InsereClienteAssistencia(a1);
             }
-            catch (AssistException e)
+            catch (ClienteException e)
             {
                 Console.WriteLine(e.Message);
             }
 
-            //try
-            //{
-            //    bool aux = RegrasDeNegocio.InsereOperadorAssistencia(op1);
-            //    aux = RegrasDeNegocio.InsereOperadorAssistencia(op2);
-            //    aux = RegrasDeNegocio.InsereOperadorAssistencia(op3);
-            //    aux = RegrasDeNegocio.InsereOperadorAssistencia(op4);
-            //    aux = RegrasDeNegocio.InsereOperadorAssistencia(op5);
-            //    aux = RegrasDeNegocio.InsereOperadorAssistencia(op6);
-            //}
-            //catch(OperadorException e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
+            try
+            {
+                bool aux = RegrasDeNegocio.InsereOperadorAssistencia(a1);
+                aux = RegrasDeNegocio.InsereOperadorAssistencia(a2);
+                aux = RegrasDeNegocio.InsereOperadorAssistencia(a3);
+                aux = RegrasDeNegocio.InsereOperadorAssistencia(a4);
+                aux = RegrasDeNegocio.InsereOperadorAssistencia(a5);
+                aux = RegrasDeNegocio.InsereOperadorAssistencia(a6);
+            }
+            catch (OperadorException e)
+            {
+                Console.WriteLine(e.Message);
+            }
             ////bool teste2 = listaOperadores.InsereOperador(op6);
 
 

@@ -99,30 +99,51 @@ namespace RegrasNegocio
                 throw new OperadorException(e.Message + "-"+"Falha ao inserir o operador.");
             }
         }
+        /// <summary>
+        /// Recebe uma assistência e reencaminha para a lista de assistências e insere um cliente caso exista.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.ClienteException"></exception>
         public static bool InsereClienteAssistencia(Assist a)
         {
             Cliente clienteInserir = null;
             if (ReferenceEquals(a, null))
                 return false;
+
             try
             {
                 RegistoClientes.ExisteCliente(a.ClienteNIF, out clienteInserir);
-            }
-            catch (ClienteException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            try
-            {
                 RegistoAssist.InsereClienteAssistLista(a, clienteInserir);
                 return true;
             }
-            catch(AssistException e)
+            catch (ClienteException e)
             {
-                throw new AssistException(e.Message + "-" + "Falha ao inserir cliente na assistencia.");
+                throw new ClienteException(e.Message + "-" + "A assistencia " + a.Id + " ja tem cliente");
             }
+        }
+        /// <summary>
+        /// Recebe uma assistência e reencaminha para a lista de assistências e insere um cliente caso exista.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.OperadorException"></exception>
+        public static bool InsereOperadorAssistencia(Assist a)
+        {
+            Operador operadorInserir = null;
+            if (ReferenceEquals(a,null))
+                return false;
 
-            
+            try
+            {
+                RegistoOperadores.ExisteOperador(a.OperadorId, out operadorInserir);
+                RegistoAssist.InsereOperadorAssistLista(a, operadorInserir);
+                return true;
+            }
+            catch (OperadorException e)
+            {
+                throw new OperadorException(e.Message + "-" + "A assistencia " + a.Id + " ja tem operador");
+            }
         }
         /// <summary>
         /// Mostra as assistencias na consola.

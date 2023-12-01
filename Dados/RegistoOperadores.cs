@@ -164,6 +164,25 @@ namespace Dados
                 return true;
             }
         }
+        /// <summary>
+        /// Dado um id de um operador, verifica se ele existe na lista de operadores.
+        /// </summary>
+        /// <param name="opId">The op identifier.</param>
+        /// <param name="operadorInserir">The operador inserir.</param>
+        /// <returns></returns>
+        public static bool ExisteOperador(int opId, out Operador operadorInserir)
+        {
+            foreach(Operador o in listaOperadores)
+            {
+                if (o.Id == opId)
+                {
+                    operadorInserir = o;
+                    return true;
+                }
+            }
+            operadorInserir = null;
+            return false;
+        }
         #endregion
 
         #endregion

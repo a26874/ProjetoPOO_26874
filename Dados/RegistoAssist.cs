@@ -103,7 +103,7 @@ namespace Dados
                     continue;
 
                 if ((ReferenceEquals(b.Cliente, null) || b.Cliente == c) && !ReferenceEquals(a.Cliente, null))
-                    throw new AssistException("Ja existe cliente nesta assistencia.");
+                    throw new ClienteException("Ja existe cliente nesta assistencia");
                 if (b.Id == a.Id && a.ClienteNIF == c.NIF)
                 {
                     b.Cliente = c;
@@ -118,23 +118,19 @@ namespace Dados
         /// <param name="a">a.</param>
         /// <param name="listaOperadores">The lista operadores.</param>
         /// <returns></returns>
-        public bool InsereOperadorAssist(Assist a, List<Operador> listaOperadores)
+        public static bool InsereOperadorAssistLista(Assist a, Operador o)
         {
-            foreach(Assist b in listaAssistencias)
+            foreach (Assist b in listaAssistencias)
             {
                 if (ReferenceEquals(b, null) || b.Id == -1)
                     continue;
-                if (b.Id == a.Id)
-                    foreach (Operador o in listaOperadores)
-                    {
-                        if (ReferenceEquals(o, null) || o.Id == -1)
-                            continue;
-                        if (b.OperadorId == o.Id)
-                        {
-                            b.Operador = o;
-                            return true;
-                        }
-                    }
+                if ((ReferenceEquals(b.Operador, null) || b.Operador == o) && !ReferenceEquals(a.Operador, null))
+                    throw new OperadorException("Ja existe operador nesta assitencia");
+                if (b.Id == a.Id && a.OperadorId == o.Id)
+                {
+                    b.Operador = o;
+                    return true;
+                }
             }
             return false;
         }
