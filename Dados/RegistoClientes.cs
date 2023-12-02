@@ -13,6 +13,8 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using ObjetosNegocio;
 using Interfaces;
+using Excecoes;
+using System.Net;
 
 namespace Dados
 {
@@ -55,7 +57,7 @@ namespace Dados
         /// <value>
         /// Obter clientes.
         /// </value>
-        public static List<Cliente> ObterClientes
+        public List<Cliente> ObterClientes
         {
             get { return listaClientes.ToList(); }
         }
@@ -89,7 +91,30 @@ namespace Dados
             listaClientes.Add(c);
             numCliente++;
             numeroClientesExistentes = listaClientes.Count;
+            listaClientes.Sort();
             return true;
+        }
+        /// <summary>
+        /// Insere saldo num cliente.
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <returns></returns>
+        public static bool InsereSaldo(Cliente c, int valor)
+        {
+            foreach(Cliente a in listaClientes)
+            {
+                if (a.Equals(c))
+                {
+                    if (a.Saldo == 0)
+                    {
+                        a.Saldo = valor;
+                        return true;
+                    }
+                    else
+                        throw new ClienteException("Cliente ja tem saldo, carregue.");
+                }
+            }
+            throw new ClienteException("Cliente não existe na nossa base de dados");
         }
         /// <summary>
         /// Limpa a lista de clientes.

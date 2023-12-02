@@ -21,6 +21,7 @@ namespace ObjetosNegocio
     {
         #region ATRIBUTOS
         private int nif;
+        private int saldo;
         #endregion
 
         #region COMPORTAMENTO
@@ -68,6 +69,23 @@ namespace ObjetosNegocio
             {
                 if (value > 0)
                 { nif = value; }
+            }
+        }
+        /// <summary>
+        /// manipulacao da variavel saldo.
+        /// </summary>
+        /// <value>
+        /// The saldo.
+        /// </value>
+        public int Saldo
+        {
+            get { return saldo; }
+            set
+            {
+                if(value > 0)
+                {
+                    saldo = value;
+                }
             }
         }
         #endregion

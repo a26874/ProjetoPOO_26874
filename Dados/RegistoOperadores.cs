@@ -83,6 +83,7 @@ namespace Dados
             listaOperadores.Add(o);
             numOperadores++;
             numeroOperadoresExistentes++;
+            listaOperadores.Sort();
             return true;
         }
         /// <summary>

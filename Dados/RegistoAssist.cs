@@ -80,13 +80,14 @@ namespace Dados
         {
             foreach(Assist b in listaAssistencias)
             {
-                if (b.Id == -1)
-                    continue;
                 if (b.Equals(a))
-                    return false;
+                {
+                    throw new AssistException("Ja existe esta assistencia");
+                }
             }
             listaAssistencias.Add(a);
             numAssist++;
+            listaAssistencias.Sort();
             return true;
         }
         /// <summary>
@@ -151,7 +152,7 @@ namespace Dados
                     continue;
                 if (ReferenceEquals(p, null))
                     return false;
-                else if ((ReferenceEquals(b.Solucao, null) || b.Solucao == p) && !ReferenceEquals(a.Solucao, null))
+                else if ((ReferenceEquals(b.Solucao, null) || a.Solucao == p) && !ReferenceEquals(a.Solucao, null))
                     throw new AssistException("Ja existe solucao para esta assistencia.");
                 if (b.Id == a.Id/* && a.Solucao.Id== p.Id*/)
                 {
@@ -160,6 +161,10 @@ namespace Dados
                 }
             }
             return false;
+        }
+        public static List<Assist> EnviarTodasAssistencias()
+        {
+            return listaAssistencias.ToList();
         }
         /// <summary>
         /// Remove todas as assistencias da lista de assitencias.
@@ -185,7 +190,7 @@ namespace Dados
         /// <summary>
         /// Ordena as assistencias.
         /// </summary>
-        public void OrdenarAssistencias()
+        public static void OrdenarAssistencias()
         {
             //Perguntar professor.
             //listaAssistencias.Sort((a1,a2) => a1.Id.CompareTo(a2.Id));
@@ -197,12 +202,10 @@ namespace Dados
         /// </summary>
         /// <param name="a">a.</param>
         /// <returns></returns>
-        public bool ConcluirAssistencia(Assist a)
+        public static bool ConcluirAssistencia(Assist a)
         {
             foreach(Assist b in listaAssistencias)
             {
-                if (ReferenceEquals(b,null) || b.Id == -1)
-                    continue;
                 if(b.Equals(a))
                 {
                     if (b.estadoA.Ativo == false)
@@ -213,7 +216,7 @@ namespace Dados
                     return true;
                 }
             }
-            return false;
+            throw new AssistException("Assistência ja concluida.");
         }
         /// <summary>
         /// Retorna o numero de assistencias realizadas.
@@ -229,12 +232,10 @@ namespace Dados
         /// <param name="a">a.</param>
         /// <param name="cls">The CLS.</param>
         /// <returns></returns>
-        public bool RegistoAvaliacao(Assist a, Avaliacao cls)
+        public static bool RegistoAvaliacao(Assist a, Avaliacao cls)
         {
             foreach (Assist b in listaAssistencias)
             {
-                if (ReferenceEquals(b,null) || b.Id == -1)
-                    continue;
                 if (b.Equals(a))
                 {
                     if (b.Classificacao.Pontuacao == -1)
@@ -307,18 +308,6 @@ namespace Dados
                 ficheiro.Close();
                 return true;
             }
-        }
-
-        public static bool MostrarListaAssistencias()
-        {
-            if (listaAssistencias.Count == 0) return false;
-            foreach(Assist a in listaAssistencias)
-            {
-                if (a.Solucao is null)
-                    continue;
-                Console.WriteLine(a.ToString());
-            }
-            return true;
         }
         #endregion
 

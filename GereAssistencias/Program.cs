@@ -2,6 +2,7 @@
 using Assistencia;
 using Excecoes;
 using ObjetosNegocio;
+using Outros;
 using Pessoas;
 using RegrasNegocio;
 using System;
@@ -57,8 +58,9 @@ namespace GereAssistencias
             Cliente c4 = new Cliente("Macedo", 274, new Morada("Porto", "4218-211", "Arouca"), 1759);
             Cliente c5 = new Cliente("Nuno", 974, new Morada("Porto", "4117-222", "Espinho"), 1911);
             Cliente c6 = new Cliente("Flavia", 244, new Morada("Porto", "478-222", "Arcos"), 1898);
+            Cliente c7 = new Cliente("teste", 4885, new Morada("Porto", "478-222", "Arcos"), 2424);
 
-            ////Inserir clientes na lista de clientes
+            ////Inserir clientes na lista de clientes e saldos.
             try
             {
                 bool aux = RegrasDeNegocio.InsereCliente(c1);
@@ -69,6 +71,23 @@ namespace GereAssistencias
                 aux = RegrasDeNegocio.InsereCliente(c6);
             }
             catch (ClienteException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+            try
+            {
+                bool aux = RegrasDeNegocio.InsereSaldoCliente(c1, 20000);
+                aux = RegrasDeNegocio.InsereSaldoCliente(c2, 10000);
+                aux = RegrasDeNegocio.InsereSaldoCliente(c3, 2488);
+                aux = RegrasDeNegocio.InsereSaldoCliente(c4, 100);
+                aux = RegrasDeNegocio.InsereSaldoCliente(c5, 1220);
+                aux = RegrasDeNegocio.InsereSaldoCliente(c6, 5900);
+                aux = RegrasDeNegocio.InsereSaldoCliente(c1, 282848);
+                aux = RegrasDeNegocio.InsereSaldoCliente(c7, 20000);
+            }
+            catch(ClienteException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -129,8 +148,6 @@ namespace GereAssistencias
             }
             ////bool teste2 = listaOperadores.InsereOperador(op6);
 
-            //Mostrar assistências.
-
             //Criar soluções e inserir numa assistência.
 
             ProblemasCon prob1 = new ProblemasCon("Atendimento-Duvidas", 1, "Ditar problemas e conforme o numero digitado, apresentar solucao");
@@ -163,37 +180,49 @@ namespace GereAssistencias
             }
 
 
-            RegrasDeNegocio.MostrarAssistencias();
 
 
 
+            ////listaAssist.ConcluirAssistencia(a1);
+            ////Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
+            ////listaAssist.RegistoAvaliacao(a1, clsA1);
+            ////listaAssist.ConcluirAssistencia(a2);
+            ////Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
+            ////listaAssist.RegistoAvaliacao(a2, clsA2);
+
+            Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
+            Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
+
+            try
+            {
+                bool aux = RegrasDeNegocio.ConcluirAssistencia(a1, clsA1);
+                aux = RegrasDeNegocio.ConcluirAssistencia(a2, clsA2);
+            }
+            catch (AssistException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            Console.WriteLine("Assitencias concluidas:");
+            RegrasDeNegocio.MostrarAssistenciasConcluidas();
+            Console.WriteLine("Assistencias por concluir:");
+            RegrasDeNegocio.MostrarAssistenciasAtivas();
+
+            Console.WriteLine("\n\n\n");
+            RegrasDeNegocio.MostrarTodasAssistencias();
+
+            Console.WriteLine("\n\n\n");
+
+            RegrasDeNegocio.MostrarTodosClientes();
+            Console.WriteLine("\n\n\n");
+
+            RegrasDeNegocio.MostrarTodosOperadores();
+            Console.WriteLine("\n\n\n");
+
+            RegrasDeNegocio.MostrarFichaClientesCompleto();
             #endregion
 
-            ////Print de cada lista
-            //Console.WriteLine("Operadores:");
-            ////Operadores
-            //IO.MostrarOperadores(listaOperadores);
-
-            //Console.WriteLine("Clientes");
-            ////Clientes
-            //IO.MostrarClientes(listaClientes);
-
-            //#region IOdados
-            ////bool resultadoClientes = listaClientes.RemoverClienteEspecifico(new Cliente("teste", 9191, new Morada("asd", "asdad", "asdasda"), 82748));
-            ////bool resultadoClientes2 = listaClientes.RemoverClienteEspecifico(c3);
-            ////Console.WriteLine(resultadoClientes);
-            ////Console.WriteLine(resultadoClientes2);
-            ////Console.WriteLine("Clientes removidos");
-            //////Clientes removidos
-            ////IO.MostrarClientes(listaClientes);
-
-            ////bool resultadoOperador = listaOperadores.RemoverOperadorEspecifico(new Operador("teste", 187, 9888, new Morada("asda", "qwdq", "awsdd")));
-            ////bool resultadoOperador2 = listaOperadores.RemoverOperadorEspecifico(op2);
-            ////Console.WriteLine(resultadoOperador);
-            ////Console.WriteLine(resultadoOperador2);
-            ////Console.WriteLine("Operadores removidos");
-            //////Operadores removidos
-            ////IO.MostrarOperadores(listaOperadores);
+            
 
 
             ////Produtos
@@ -273,7 +302,7 @@ namespace GereAssistencias
             ////Assistencias
             //Console.WriteLine();
             //Console.WriteLine("Assistencias:");
-            //IO.MostrarAssistencias(listaAssist, listaSolucoes);
+            //IO.MostrarTodasAssistencias(listaAssist, listaSolucoes);
             //Console.WriteLine("Clientes com morada:");
             //IO.MostrarFichaClientesCompleto(listaClientes.ObterClientes);
 
