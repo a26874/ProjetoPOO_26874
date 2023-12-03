@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using ObjetosNegocio;
+using Outros;
 
 namespace Dados
 {
@@ -21,11 +22,9 @@ namespace Dados
     /// </summary>
     public class RegistoProdutos
     {
-        const int MAXPRODUTOS = 5;
-
         #region ATRIBUTOS
-        private int numProdutos;
-        private List<Produto> listaProdutos;
+        private static int numProdutos;
+        private static List<Produto> listaProdutos;
         #endregion
 
         #region COMPORTAMENTO
@@ -34,9 +33,14 @@ namespace Dados
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
-        public RegistoProdutos()
+        static RegistoProdutos()
         {
             listaProdutos = new List<Produto>();
+        }
+
+        public RegistoProdutos()
+        {
+
         }
         #endregion
 
@@ -64,17 +68,16 @@ namespace Dados
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public bool InserirProduto(Produto p)
+        public static bool InserirProduto(Produto p)
         {
             foreach (Produto aux in listaProdutos)
             {
-                if (p.Id == -1)
-                    continue;
-                if (aux.Equals(p) || numProdutos > MAXPRODUTOS)
+                if (aux.Equals(p))
                     return false;
             }
             listaProdutos.Add(p);
             numProdutos++;
+            listaProdutos.Sort();
             return true;
         }
         /// <summary>
@@ -146,6 +149,24 @@ namespace Dados
                 ficheiro.Close();
                 return true;
             }
+        }
+        /// <summary>
+        /// Insere categorias num produto.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="categorias">The categorias.</param>
+        /// <returns></returns>
+        public static bool InserirCategorias(Produto p, List<Categoria> categorias)
+        {
+            foreach(Produto a in listaProdutos)
+            {
+                if (a.Id == p.Id)
+                {
+                    a.Categorias = categorias;
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 

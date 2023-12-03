@@ -58,16 +58,6 @@ namespace ObjetosNegocio
             operadorId = -1;
         }
         /// <summary>
-        /// Construtor com 2 parametros para teste.
-        /// </summary>
-        /// <param name="idAssistencia"></param>
-        /// <param name="dataAssistencia"></param>
-        public Assist(int idAssistencia, DateTime dataAssistencia)
-        {
-            this.idAssistencia = idAssistencia;
-            this.dataAssistencia = dataAssistencia;
-        }
-        /// <summary>
         /// Construtor com todos os parametros.
         /// </summary>
         /// <param name="dataAssistencia"></param>

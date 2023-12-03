@@ -17,11 +17,12 @@ namespace ObjetosNegocio
     /// <summary>
     /// Classe para descrever um produto.
     /// </summary>
-    public class Produto
+    public class Produto : IComparable<Produto>
     {
         #region ATRIBUTOS
         private string nome;
         private int id;
+        private static int contIdProduto;
         private int preco;
         private string descricao;
         List<Categoria> categorias;
@@ -29,7 +30,11 @@ namespace ObjetosNegocio
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES        
+        #region CONSTRUTORES     
+        static Produto()
+        {
+            contIdProduto = 1;
+        }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -47,13 +52,15 @@ namespace ObjetosNegocio
         /// <param name="i">The i.</param>
         /// <param name="p">The p.</param>
         /// <param name="d">The d.</param>
-        public Produto(string n, int i, int p, string d, List<Categoria> categoria)
+        public Produto(string n, int p, string d/*, List<Categoria> categoria*/)
         {
+            id = contIdProduto;
+            if (id >= 1)
+                id = contIdProduto++;
             nome = n;
-            id = i;
             preco = p;
             descricao = d;
-            categorias = categoria;
+            //categorias = categoria;
         }
         #endregion
 
@@ -181,6 +188,22 @@ namespace ObjetosNegocio
         public string FichaProduto()
         {
             return string.Format("Nome:{0}\nID:{1}\nPreco:{2}\nDescricao:{3}", nome, id, preco, descricao);
+        }
+        /// <summary>
+        /// Compara produtos a partir do seu ID.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        public int CompareTo(Produto p)
+        {
+            if (p is null)
+                return 1;
+            if (id< p.id)
+                return -1;
+            else if (id > p.id)
+                return 1;
+            else
+                return 0;
         }
         #endregion
 

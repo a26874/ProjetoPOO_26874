@@ -18,6 +18,7 @@ namespace Outros
     public class Categoria
     {
         #region ATRIBUTOS
+        private int idProduto;
         private string nomeCategoria;
         #endregion
 
@@ -35,8 +36,9 @@ namespace Outros
         /// Construtor com parametros
         /// </summary>
         /// <param name="nomeCategoria"></param>
-        public Categoria(string nomeCategoria)
+        public Categoria(string nomeCategoria, int idProduto)
         {
+            this.idProduto = idProduto;
             this.nomeCategoria = nomeCategoria;
         }
         #endregion
@@ -50,6 +52,16 @@ namespace Outros
             get { return nomeCategoria; }
             set { nomeCategoria = value; }
         }
+        /// <summary>
+        /// Devolve o IdProduto.
+        /// </summary>
+        /// <value>
+        /// The identifier produto.
+        /// </value>
+        public int IdProduto
+        {
+            get { return idProduto; }
+        }
         #endregion
 
         /// <summary>
@@ -59,7 +71,7 @@ namespace Outros
         /// <param name="b"></param>
         /// <returns></returns>
         #region OPERADORES
-        public static bool operator == (Categoria a, Categoria b)
+        public static bool operator ==(Categoria a, Categoria b)
         {
             if (a.nomeCategoria == b.nomeCategoria)
                 return true;
@@ -71,7 +83,7 @@ namespace Outros
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static bool operator != (Categoria a, Categoria b)
+        public static bool operator !=(Categoria a, Categoria b)
         {
             return !(a == b);
         }
@@ -88,7 +100,7 @@ namespace Outros
         {
             if (obj is Categoria)
             {
-                Categoria c = (Categoria) obj;
+                Categoria c = (Categoria)obj;
                 if (this == c)
                     return true;
             }

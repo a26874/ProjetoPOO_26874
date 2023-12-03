@@ -83,8 +83,6 @@ namespace Dados
             //Verificar se a já existe!!! && se existe espaço
             foreach (Cliente a in listaClientes)
             {
-                if (a.NIF == -1)
-                    continue;
                 if (a.Equals(c))
                     return false;
             }

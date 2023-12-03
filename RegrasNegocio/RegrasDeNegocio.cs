@@ -13,6 +13,7 @@ using ObjetosNegocio;
 using Outros;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace RegrasNegocio
@@ -288,6 +289,62 @@ namespace RegrasNegocio
             }
         }
         /// <summary>
+        /// Insere um produto na lista de produtos.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.ProdutosException"></exception>
+        public static bool InserirProdutoLista(Produto p)
+        {
+            try
+            {
+                RegistoProdutos.InserirProduto(p);
+                return true;
+            }
+            catch(ProdutosException e)
+            {
+                throw new ProdutosException(e.Message + "-" + "Falha ao inserir o produto.");
+            }
+        }
+        /// <summary>
+        /// Insere categorias numa lista.
+        /// </summary>
+        /// <param name="nomeCategoria">The nome categoria.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.CategoriaException"></exception>
+        public static bool InserirCategoriasLista(string nomeCategoria, int idProd)
+        {
+            try
+            {
+                RegistoCategorias.InserirCategoria(nomeCategoria, idProd);
+                return true;
+            }
+            catch (CategoriaException e)
+            {
+                throw new CategoriaException(e.Message + "-" + "Falha ao inserir categoria");
+            }
+        }
+        /// <summary>
+        /// Insere categorias num produto.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.CategoriaException"></exception>
+        public static bool InserirCategoriasProduto(Produto p)
+        {
+            List<Categoria> categoriasInserir;
+            try
+            {
+                RegistoCategorias.ExisteCategoriasProduto(p.Id, out categoriasInserir);
+                RegistoProdutos.InserirCategorias(p, categoriasInserir.ToList());
+                return true;
+            }
+            catch (CategoriaException e)
+            {
+                throw new CategoriaException(e.Message);
+            }
+        }
+        /// <summary>
         /// De todas as assistencias, mostra o preço da mais cara.
         /// </summary>
         /// <param name="listaAssistencias">The lista assistencias.</param>
@@ -319,8 +376,9 @@ namespace RegrasNegocio
         /// Mostra os produtos.
         /// </summary>
         /// <param name="listaProdutos">The lista produtos.</param>
-        public static void MostrarProdutos(RegistoProdutos listaProdutos)
+        public static void MostrarProdutos()
         {
+            RegistoProdutos listaProdutos = new RegistoProdutos();
             foreach (Produto p in listaProdutos.ObterProdutos)
             {
                 if (ReferenceEquals(p, null) || p.Id == 0)

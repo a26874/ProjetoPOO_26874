@@ -47,7 +47,7 @@ namespace Excecoes
     public class EscritaFicheiroOperadoresException : Exception
     {
         public EscritaFicheiroOperadoresException() { }
-    
+
         public EscritaFicheiroOperadoresException(string message) : base(message) { }
     }
 
@@ -55,9 +55,9 @@ namespace Excecoes
     {
         public NaoExisteSolucaoException(string message) : base(message) { }
     }
-    
-    public class AssistException : Exception 
-    { 
+
+    public class AssistException : Exception
+    {
         public AssistException() { }
 
         public AssistException(string message) : base(message) { }
@@ -87,4 +87,18 @@ namespace Excecoes
 
         public ProblemaException(string message) : base(message) { }
     }
+    public class ProdutosException : Exception
+    {
+        public ProdutosException() { }
+
+        public ProdutosException(string message) : base(message) { }
+    }
+
+    public class CategoriaException : Exception
+    {
+        public CategoriaException() { }
+
+        public CategoriaException(string message) : base(message) { }
+    }
+
 }

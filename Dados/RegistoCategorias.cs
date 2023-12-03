@@ -9,6 +9,7 @@
 
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Outros;
 
@@ -19,10 +20,10 @@ namespace Dados
     /// </summary>
     public class RegistoCategorias
     {
-        const int MAXCAT = 2;
         #region ATRIBUTOS
-        private int numCategorias;
-        private List<Categoria> listaCategorias;
+        private static int numCategorias;
+        private static List<Categoria> listaCategorias;
+        private List<Categoria> categorias;
         #endregion
 
         #region COMPORTAMENTO
@@ -31,9 +32,13 @@ namespace Dados
         /// <summary>
         /// Construtor para inicializar um novo registo de categorias.
         /// </summary>
-        public RegistoCategorias()
+        static RegistoCategorias()
         {
             listaCategorias = new List<Categoria>();
+        }
+        public RegistoCategorias()
+        {
+            categorias = new List<Categoria>();
         }
         #endregion
 
@@ -64,21 +69,35 @@ namespace Dados
         /// </summary>
         /// <param name="nomeCategoria">The nome categoria.</param>
         /// <returns></returns>
-        public bool InserirCategoria(string nomeCategoria)
+        public static bool InserirCategoria(string nomeCategoria, int idProd)
         {
             foreach (Categoria aux in listaCategorias)
             {
                 if (aux.NomeCategoria == string.Empty)
                     continue;
-                if (aux.NomeCategoria == nomeCategoria|| numCategorias > MAXCAT)
+                if (aux.NomeCategoria == nomeCategoria)
                     return false;
             }
-            Categoria c = new Categoria(nomeCategoria);
+            Categoria c = new Categoria(nomeCategoria, idProd);
             listaCategorias.Add(c);
             numCategorias++;
             return true;
         }
-
+        public static bool ExisteCategoriasProduto(int idProduto, out List<Categoria> categoriasInserir)
+        {
+            categoriasInserir = new List<Categoria>();
+            foreach(Categoria c in listaCategorias)
+            {
+                if (c.IdProduto == idProduto)
+                {
+                    categoriasInserir.Add(c);
+                }
+            }
+            if (categoriasInserir.Count > 0)
+                return true;
+            categoriasInserir = null;
+            return false;
+        }
         #endregion
 
         #endregion

@@ -13,12 +13,6 @@ namespace GereAssistencias
     {
         static void Main(string[] args)
         {
-            //Lista de registo Assistencias, Clientes, Operadores, produtos 
-            //RegistoAssist listaAssist = new RegistoAssist();
-            //RegistoClientes listaClientes = new RegistoClientes();
-            //RegistoOperadores listaOperadores = new RegistoOperadores();
-            //RegistoProdutos listaProdutos = new RegistoProdutos();
-            //RegistoProblemas listaSolucoes = new RegistoProblemas();
 
             //listaClientes.LerFicheiroClientes("RegistoClientes.dat");
             //listaOperadores.LerFicheiroOperadores("RegistoOperadores.dat");
@@ -179,17 +173,6 @@ namespace GereAssistencias
                 Console.WriteLine(e.Message);
             }
 
-
-
-
-
-            ////listaAssist.ConcluirAssistencia(a1);
-            ////Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
-            ////listaAssist.RegistoAvaliacao(a1, clsA1);
-            ////listaAssist.ConcluirAssistencia(a2);
-            ////Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
-            ////listaAssist.RegistoAvaliacao(a2, clsA2);
-
             Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
             Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
 
@@ -220,16 +203,54 @@ namespace GereAssistencias
             Console.WriteLine("\n\n\n");
 
             RegrasDeNegocio.MostrarFichaClientesCompleto();
-            #endregion
 
-            
+            Produto produto1 = new Produto("Telemovel", 300, "SAMSUNG");
+            Produto produto2 = new Produto("PC Portatil", 2000, "Lenovo");
+            try
+            {
+                bool aux = RegrasDeNegocio.InserirProdutoLista(produto1);
+                aux = RegrasDeNegocio.InserirProdutoLista(produto2);
+            }
+            catch(ProdutosException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
+            try
+            {
+                bool aux = RegrasDeNegocio.InserirCategoriasLista("SMARTPHONE",1);
+                aux = RegrasDeNegocio.InserirCategoriasLista("5G",1);
+                aux = RegrasDeNegocio.InserirCategoriasLista("Portatil", 2);
+            }
+            catch(CategoriaException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                bool aux = RegrasDeNegocio.InserirCategoriasProduto(produto1);
+                aux = RegrasDeNegocio.InserirCategoriasProduto(produto2);
+            }
+            catch(ProdutosException e)
+            { 
+                Console.WriteLine(e.Message); 
+            }
+
+            RegrasDeNegocio.MostrarProdutos();
 
             ////Produtos
             ////RegistoCategorias listaCategoriasProd1 = new RegistoCategorias();
             //////listaCategoriasProd1.InserirCategoria("SMARTPHONE");
             //////listaCategoriasProd1.InserirCategoria("5G");
             ////Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategoriasProd1.ObterCategorias);
+
+
+            #endregion
+
+
+
+
 
 
             ////listaProdutos.InserirProduto(prdt1);
@@ -258,44 +279,7 @@ namespace GereAssistencias
 
             //#region IODADOS
 
-            ////ProblemasCon prob1 = new ProblemasCon("Atendimento-Duvidas", 1, "Ditar problemas e conforme o numero digitado, apresentar solucao");
-            ////ProblemasCon prob2 = new ProblemasCon("Entregas-Informacao", 2, "Oferecer detalhes sobre o estado de entrega");
-            ////ProblemasCon prob4 = new ProblemasCon("Assistencia-Servico Manutencao", 4, "Enviar um funcionario ao local desejado");
 
-            ////listaSolucoes.InserirSolucao(prob1);
-            ////listaSolucoes.InserirSolucao(prob2);
-            ////listaSolucoes.InserirSolucao(prob4);
-
-
-
-            ////listaAssist.InsereAssistLista(a1);
-            ////listaAssist.InsereAssistLista(a2);
-            ////listaAssist.InsereAssistLista(a3);
-            ////listaAssist.InsereAssistLista(a4);
-            ////listaAssist.InsereAssistLista(a5);
-
-
-
-            ////listaAssist.InsereClienteAssist(a1, listaClientes.ObterClientes);
-            ////listaAssist.InsereClienteAssist(a2, listaClientes.ObterClientes);
-            ////listaAssist.InsereClienteAssist(a3, listaClientes.ObterClientes);
-            ////listaAssist.InsereClienteAssist(a4, listaClientes.ObterClientes);
-            ////listaAssist.InsereClienteAssist(a5, listaClientes.ObterClientes);
-
-            ////listaAssist.InsereOperadorAssist(a1, listaOperadores.ObterOperadores);
-            ////listaAssist.InsereOperadorAssist(a2, listaOperadores.ObterOperadores);
-            ////listaAssist.InsereOperadorAssist(a3, listaOperadores.ObterOperadores);
-            ////listaAssist.InsereOperadorAssist(a4, listaOperadores.ObterOperadores);
-            ////listaAssist.InsereOperadorAssist(a5, listaOperadores.ObterOperadores);
-
-
-
-            ////listaAssist.ConcluirAssistencia(a1);
-            ////Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
-            ////listaAssist.RegistoAvaliacao(a1, clsA1);
-            ////listaAssist.ConcluirAssistencia(a2);
-            ////Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
-            ////listaAssist.RegistoAvaliacao(a2, clsA2);
 
             //#endregion
 
