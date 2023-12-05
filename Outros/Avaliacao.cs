@@ -148,6 +148,14 @@ namespace Outros
         {
             return string.Format("Pontuacao:{0}\nDescricao:{1}\nMelhorias:{2}\n", pontuacao, descricao, melhorias);
         }
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public Avaliacao Clone()
+        {
+            return new Avaliacao(descricao, pontuacao, melhorias);
+        }
         #endregion
 
         #endregion

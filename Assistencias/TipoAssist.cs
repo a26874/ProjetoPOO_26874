@@ -162,6 +162,14 @@ namespace Assistencia
         {
             return string.Format("Descricao:{0}|Tipo:{1}|ID:{2}|Preco:{3}", desc, nomeTipo, id, preco);
         }
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public TipoAssist Clone()
+        {
+            return new TipoAssist(desc,nomeTipo, id, preco);
+        }
         #endregion
 
         #endregion

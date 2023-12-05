@@ -42,6 +42,9 @@ namespace RegrasNegocio
         #endregion
 
         #region OUTROS METODOS        
+
+        #region ASSISTENCIAS
+
         /// <summary>
         /// Recebe uma assistência e reencaminha a mesma para os dados a inserir.
         /// </summary>
@@ -59,65 +62,7 @@ namespace RegrasNegocio
             }
             catch (AssistException e)
             {
-                throw new AssistException("Falha ao inserir assistencia." + "-"+ e.Message);
-            }
-        }
-        /// <summary>
-        /// Recebe um cliente e reencaminha o mesmo para a "base de dados".
-        /// </summary>
-        /// <param name="c">The c.</param>
-        /// <returns></returns>
-        /// <exception cref="Excecoes.ClienteException">Falha ao inserir o cliente.</exception>
-        public static bool InsereCliente(Cliente c)
-        {
-            if (c.NIF == -1 || c.Contacto == -1)
-                return false;
-            try
-            {
-                RegistoClientes.InsereClienteLista(c);
-                return true;
-            }
-            catch (ClienteException e)
-            {
-                throw new ClienteException("Falha ao inserir o cliente.");
-            }
-        }
-        /// <summary>
-        /// Insere saldo num cliente.
-        /// </summary>
-        /// <param name="c">The c.</param>
-        /// <param name="valor">The valor.</param>
-        /// <returns></returns>
-        /// <exception cref="Excecoes.ClienteException">Falha ao inserir saldo" + " - " + e.Message</exception>
-        public static bool InsereSaldoCliente(Cliente c, int valor)
-        {
-            try
-            {
-                return RegistoClientes.InsereSaldo(c, valor);
-            }
-            catch (ClienteException e)
-            {
-                throw new ClienteException(" Falha ao inserir saldo" + " - " + e.Message );
-            }
-        }
-        /// <summary>
-        /// Recebe um operador e reencaminha o mesmo para a "base de dados".
-        /// </summary>
-        /// <param name="o">The o.</param>
-        /// <returns></returns>
-        /// <exception cref="OperadorException">Falha ao inserir o operador.</exception>
-        public static bool InsereOperador(Operador o)
-        {
-            if (o.Id == -1 || o.Contacto == -1)
-                return false;
-            try
-            {
-                RegistoOperadores.InsereOperadorLista(o);
-                return true;
-            }
-            catch(OperadorException e)
-            {
-                throw new OperadorException(e.Message + "-"+"Falha ao inserir o operador.");
+                throw new AssistException("Falha ao inserir assistencia." + "-" + e.Message);
             }
         }
         /// <summary>
@@ -152,7 +97,7 @@ namespace RegrasNegocio
         public static bool InsereOperadorAssistencia(Assist a)
         {
             Operador operadorInserir = null;
-            if (ReferenceEquals(a,null))
+            if (ReferenceEquals(a, null))
                 return false;
 
             try
@@ -164,26 +109,6 @@ namespace RegrasNegocio
             catch (OperadorException e)
             {
                 throw new OperadorException(e.Message + "-" + "A assistencia " + a.Id + " ja tem operador");
-            }
-        }
-        /// <summary>
-        /// Insere uma solução na lista de soluções.
-        /// </summary>
-        /// <param name="p">The p.</param>
-        /// <returns></returns>
-        /// <exception cref="Excecoes.ProblemaException"></exception>
-        public static bool InsereSolucao(ProblemasCon p)
-        {
-            if (p.Id == -1 || ReferenceEquals(p, null))
-                return false;
-            try
-            {
-                RegistoProblemas.InserirSolucaoLista(p);
-                return true;
-            }
-            catch(ProblemaException e)
-            {
-                throw new ProblemaException(e.Message + "-" + "Ja existe esta solucao na lista de solucoes.");
             }
         }
         /// <summary>
@@ -212,13 +137,17 @@ namespace RegrasNegocio
         /// Mostra todas as assistências.
         /// </summary>
         /// <returns></returns>
-        public static void MostrarTodasAssistencias()
+        public static List<Assist> MostrarTodasAssistencias()
         {
-            RegistoAssist listaAssist = new RegistoAssist();
-            foreach (Assist a in listaAssist.ObterAssistencias)
+            RegistoAssist aux = new RegistoAssist();
+            List<Assist> listaOriginal = aux.ObterAssistencias;
+            //listaOriginal = aux.ObterAssistencias;
+            //List<Assist> todasAssist = listaOriginal.Select(Assist => Assist.Clone()).ToList();
+            foreach (Assist a in listaOriginal)
             {
-                Console.WriteLine(a.ToString());
+                a.tipoAssis.Id = 20000;
             }
+            return listaOriginal;
         }
         /// <summary>
         /// Recebe todas as assistências e apenas mostra as ativas.
@@ -261,9 +190,65 @@ namespace RegrasNegocio
                 RegistoAssist.RegistoAvaliacao(a, cls);
                 return true;
             }
-            catch(AssistException e)
+            catch (AssistException e)
             {
                 throw new AssistException("Nao foi possivel concluir a assistencia" + "-" + e.Message);
+            }
+        }
+        /// <summary>
+        /// De todas as assistencias, mostra o preço da mais cara.
+        /// </summary>
+        /// <param name="listaAssistencias">The lista assistencias.</param>
+        /// <returns></returns>
+        public static int MostrarAssistenciaMaisCara(RegistoAssist listaAssistencias)
+        {
+            int maisCaro = 0;
+            foreach (Assist a in listaAssistencias.ObterAssistencias)
+            {
+                if (a.tipoAssis.Preco > maisCaro && a.tipoAssis.Preco != -1)
+                    maisCaro = a.tipoAssis.Preco;
+            }
+            return maisCaro;
+        }
+        #endregion
+
+        #region CLIENTES
+        /// <summary>
+        /// Recebe um cliente e reencaminha o mesmo para a "base de dados".
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.ClienteException">Falha ao inserir o cliente.</exception>
+        public static bool InsereCliente(Cliente c)
+        {
+            if (c.NIF == -1 || c.Contacto == -1)
+                return false;
+            try
+            {
+                RegistoClientes.InsereClienteLista(c);
+                return true;
+            }
+            catch (ClienteException e)
+            {
+                throw new ClienteException("Falha ao inserir o cliente.");
+            }
+        }
+        /// <summary>
+        /// Insere saldo num cliente.
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <param name="valor">The valor.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.ClienteException">Falha ao inserir saldo" + " - " + e.Message</exception>
+        public static bool InsereSaldoCliente(Cliente c, int valor)
+        {
+            try
+            {
+                return RegistoClientes.InsereSaldo(c, valor);
+            }
+            catch (ClienteException e)
+            {
+                throw new ClienteException(" Falha ao inserir saldo" + " - " + e.Message);
             }
         }
         /// <summary>
@@ -272,9 +257,49 @@ namespace RegrasNegocio
         public static void MostrarTodosClientes()
         {
             RegistoClientes listaClientes = new RegistoClientes();
-            foreach(Cliente c in listaClientes.ObterClientes)
+            foreach (Cliente c in listaClientes.ObterClientes)
             {
-                Console.WriteLine(c.ToString());   
+                Console.WriteLine(c.ToString());
+            }
+        }
+        /// <summary>
+        /// Mostra a ficha completa de um cliente.
+        /// </summary>
+        public static void MostrarFichaClientesCompleto()
+        {
+            RegistoClientes listaClientes = new RegistoClientes();
+            foreach (Cliente c in listaClientes.ObterClientes)
+            {
+                Console.WriteLine(c.ToString());
+                if (ReferenceEquals(c.Morada, null) || c.Morada.CodPostal == string.Empty)
+                    continue;
+                else
+                {
+                    Console.WriteLine(c.Morada.ToString());
+                }
+            }
+        }
+        #endregion
+
+        #region OPERADORES
+        /// <summary>
+        /// Recebe um operador e reencaminha o mesmo para a "base de dados".
+        /// </summary>
+        /// <param name="o">The o.</param>
+        /// <returns></returns>
+        /// <exception cref="OperadorException">Falha ao inserir o operador.</exception>
+        public static bool InsereOperador(Operador o)
+        {
+            if (o.Id == -1 || o.Contacto == -1)
+                return false;
+            try
+            {
+                RegistoOperadores.InsereOperadorLista(o);
+                return true;
+            }
+            catch (OperadorException e)
+            {
+                throw new OperadorException(e.Message + "-" + "Falha ao inserir o operador.");
             }
         }
         /// <summary>
@@ -288,6 +313,60 @@ namespace RegrasNegocio
                 Console.WriteLine(o.ToString());
             }
         }
+        #endregion
+
+        #region SOLUCOES
+
+        /// <summary>
+        /// Insere uma solução na lista de soluções.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.ProblemaException"></exception>
+        public static bool InsereSolucao(ProblemasCon p)
+        {
+            if (p.Id == -1 || ReferenceEquals(p, null))
+                return false;
+            try
+            {
+                RegistoProblemas.InserirSolucaoLista(p);
+                return true;
+            }
+            catch(ProblemaException e)
+            {
+                throw new ProblemaException(e.Message + "-" + "Ja existe esta solucao na lista de solucoes.");
+            }
+        }
+        /// <summary>
+        /// Se existir solucao para um problema, ela e mostrada.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="p">The p.</param>
+        public static void MostrarSolucao(Assist a, ProblemasCon p)
+        {
+            bool existeSolucao = a.ExisteSolucao(a, p);
+            if (existeSolucao)
+            {
+                Console.WriteLine(p.ToString());
+            }
+        }
+        /// <summary>
+        /// Mostra todas as solucoes disponiveis.
+        /// </summary>
+        /// <param name="listaSolucoes">The lista solucoes.</param>
+        public static void MostrarSolucoesExistentes(RegistoProblemas listaSolucoes)
+        {
+            foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
+            {
+                if (p.Id == -1)
+                    continue;
+                Console.WriteLine(p.ToString());
+            }
+        }
+        #endregion
+
+        #region PRODUTOS
+
         /// <summary>
         /// Insere um produto na lista de produtos.
         /// </summary>
@@ -344,21 +423,7 @@ namespace RegrasNegocio
                 throw new CategoriaException(e.Message);
             }
         }
-        /// <summary>
-        /// De todas as assistencias, mostra o preço da mais cara.
-        /// </summary>
-        /// <param name="listaAssistencias">The lista assistencias.</param>
-        /// <returns></returns>
-        public static int MostrarAssistenciaMaisCara(RegistoAssist listaAssistencias)
-        {
-            int maisCaro = 0;
-            foreach (Assist a in listaAssistencias.ObterAssistencias)
-            {
-                if (a.tipoAssis.Preco > maisCaro && a.tipoAssis.Preco != -1)
-                    maisCaro = a.tipoAssis.Preco;
-            }
-            return maisCaro;
-        }
+
         /// <summary>
         /// Mostra as categorias de um produto.
         /// </summary>
@@ -387,49 +452,8 @@ namespace RegrasNegocio
                 MostrarCategorias(p.Categorias);
             }
         }
-        /// <summary>
-        /// Se existir solucao para um problema, ela e mostrada.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <param name="p">The p.</param>
-        public static void MostrarSolucao(Assist a, ProblemasCon p)
-        {
-            bool existeSolucao = a.ExisteSolucao(a, p);
-            if (existeSolucao)
-            {
-                Console.WriteLine(p.ToString());
-            }
-        }
-        /// <summary>
-        /// Mostra todas as solucoes disponiveis.
-        /// </summary>
-        /// <param name="listaSolucoes">The lista solucoes.</param>
-        public static void MostrarSolucoesExistentes(RegistoProblemas listaSolucoes)
-        {
-            foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
-            {
-                if (p.Id == -1)
-                    continue;
-                Console.WriteLine(p.ToString());
-            }
-        }
-        /// <summary>
-        /// Mostra a ficha completa de um cliente.
-        /// </summary>
-        public static void MostrarFichaClientesCompleto()
-        {
-            RegistoClientes listaClientes = new RegistoClientes();
-            foreach (Cliente c in listaClientes.ObterClientes)
-            {
-                Console.WriteLine(c.ToString());
-                if (ReferenceEquals(c.Morada, null) || c.Morada.CodPostal == string.Empty)
-                    continue;
-                else
-                {
-                    Console.WriteLine(c.Morada.ToString());
-                }
-            }
-        }
+        #endregion
+
         /// <summary>
         /// Mostra na consola o numero de clientes existentes.
         /// </summary>

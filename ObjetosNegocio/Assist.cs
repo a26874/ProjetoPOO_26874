@@ -25,7 +25,7 @@ namespace ObjetosNegocio
         private TipoAssist tipoAssistencia;
         private EstadoAssist estadoAssistencia;
         //Conforme cliente e operador ID, vai buscar à array de clientes o cliente com o ID pretendido e o operador com o ID pretendido.
-        private int clienteNIF;
+        private int clienteNif;
         private int operadorId;
         private Cliente cliente;
         private Operador operador;
@@ -73,11 +73,25 @@ namespace ObjetosNegocio
             this.dataAssistencia = dataAssistencia;
             tipoAssistencia = tipoA;
             estadoAssistencia = estadoA;
-            this.clienteNIF = clienteNIF;
+            this.clienteNif = clienteNIF;
             this.operadorId = operadorId;
             classificacao = new Avaliacao();
             solucao = new ProblemasCon();
         }
+        protected Assist(int idAssistencia, DateTime dataAssistencia, TipoAssist tipoAssistencia, EstadoAssist estadoAssistencia, int clienteNif, int operadorId, Cliente cliente, Operador operador, Avaliacao classificacao, ProblemasCon solucao)
+        {
+            this.idAssistencia = idAssistencia;
+            this.dataAssistencia = dataAssistencia;
+            this.tipoAssistencia = tipoAssistencia;
+            this.estadoAssistencia = estadoAssistencia;
+            this.clienteNif = clienteNif;
+            this.operadorId = operadorId;
+            this.cliente = cliente;
+            this.operador = operador;
+            this.classificacao = classificacao;
+            this.solucao = solucao;
+        }
+
 
         #endregion
 
@@ -125,8 +139,8 @@ namespace ObjetosNegocio
         /// </value>
         public int ClienteNIF
         {
-            get { return clienteNIF; }
-            set { clienteNIF = value; }
+            get { return clienteNif; }
+            set { clienteNif = value; }
         }
         /// <summary>
         /// Manipulacao da variavel operadorID
@@ -280,6 +294,20 @@ namespace ObjetosNegocio
                 return 1;
             else
                 return 0;
+        }
+        public Assist Clone()
+        {
+            return new Assist(
+                idAssistencia,
+                dataAssistencia, 
+                tipoAssistencia.Clone(), 
+                estadoAssistencia.Clone(), 
+                clienteNif, 
+                operadorId, 
+                cliente.Clone(), 
+                operador.Clone(), 
+                classificacao.Clone(), 
+                solucao.Clone());
         }
         #endregion
 

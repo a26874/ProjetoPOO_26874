@@ -6,6 +6,8 @@ using Outros;
 using Pessoas;
 using RegrasNegocio;
 using System;
+using System.CodeDom;
+using System.Collections.Generic;
 
 namespace GereAssistencias
 {
@@ -20,6 +22,7 @@ namespace GereAssistencias
             //listaSolucoes.LerFicheiroSolucoes("RegistoSolucoes.dat");
             //listaAssist.LerFicheiroAssistencia("RegistoAssistencias.dat");
 
+            List<Assist> assists = new List<Assist>();
             #region IO dados
             //Nova assistencias
             Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
@@ -29,6 +32,25 @@ namespace GereAssistencias
             Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
             Assist a6 = new Assist(new DateTime(2023, 5, 15, 11, 9, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 5000), new EstadoAssist("Ativo", true), 1266, 12);
 
+            //testes
+            assists.Add(a1);
+            assists.Add(a2);
+            assists.Add(a3);
+            assists.Add(a4);
+            assists.Add(a1);
+            assists.Add(a5);
+            assists.Add(a6);
+            foreach (Assist a in assists)
+            {
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereAssistencia(a);
+                }
+                catch (AssistException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
             try
             {
                 bool aux = RegrasDeNegocio.InsereAssistencia(a1);
@@ -172,6 +194,10 @@ namespace GereAssistencias
             {
                 Console.WriteLine(e.Message);
             }
+            catch(AssistException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
             Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
@@ -192,8 +218,22 @@ namespace GereAssistencias
             RegrasDeNegocio.MostrarAssistenciasAtivas();
 
             Console.WriteLine("\n\n\n");
-            RegrasDeNegocio.MostrarTodasAssistencias();
+            List<Assist> todasAssist = new List<Assist>();
+            todasAssist = RegrasDeNegocio.MostrarTodasAssistencias();
 
+
+            foreach (Assist a in todasAssist)
+            {
+                Console.WriteLine(a.ToString());
+            }
+
+            todasAssist = RegrasDeNegocio.MostrarTodasAssistencias();
+
+
+            foreach (Assist a in todasAssist)
+            {
+                Console.WriteLine(a.ToString());
+            }
             Console.WriteLine("\n\n\n");
 
             RegrasDeNegocio.MostrarTodosClientes();
@@ -239,11 +279,6 @@ namespace GereAssistencias
 
             RegrasDeNegocio.MostrarProdutos();
 
-            ////Produtos
-            ////RegistoCategorias listaCategoriasProd1 = new RegistoCategorias();
-            //////listaCategoriasProd1.InserirCategoria("SMARTPHONE");
-            //////listaCategoriasProd1.InserirCategoria("5G");
-            ////Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategoriasProd1.ObterCategorias);
 
 
             #endregion

@@ -179,7 +179,14 @@ namespace ObjetosNegocio
             else
                 return 0;
         }
-
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public Cliente Clone()
+        {
+            return new Cliente(Nome, Contacto, Morada, nif);
+        }
         #endregion
 
         #endregion
