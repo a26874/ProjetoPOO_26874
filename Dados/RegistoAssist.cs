@@ -63,8 +63,7 @@ namespace Dados
         {
             get 
             {
-                List<Assist> copiaAssists = new List<Assist> (listaAssistencias);
-                return copiaAssists; 
+                return listaAssistencias.ToList();
             }
         }
 

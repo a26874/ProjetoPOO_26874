@@ -25,7 +25,7 @@ namespace ObjetosNegocio
         private static int contIdProduto;
         private int preco;
         private string descricao;
-        List<Categoria> categorias;
+        List<Categoria> categorias; 
         #endregion
 
         #region COMPORTAMENTO
@@ -52,7 +52,7 @@ namespace ObjetosNegocio
         /// <param name="i">The i.</param>
         /// <param name="p">The p.</param>
         /// <param name="d">The d.</param>
-        public Produto(string n, int p, string d/*, List<Categoria> categoria*/)
+        public Produto(string n, int p, string d)
         {
             id = contIdProduto;
             if (id >= 1)
@@ -60,7 +60,14 @@ namespace ObjetosNegocio
             nome = n;
             preco = p;
             descricao = d;
-            //categorias = categoria;
+        }
+        protected Produto(string nome, int id, int preco, string descricao, List<Categoria> categorias)
+        {
+            this.nome = nome;
+            this.id = id;
+            this.preco = preco;
+            this.descricao = descricao;
+            this.categorias = categorias;
         }
         #endregion
 
@@ -204,6 +211,20 @@ namespace ObjetosNegocio
                 return 1;
             else
                 return 0;
+        }
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public Produto Clone()
+        {
+            List<Categoria> listaCategorias = new List<Categoria>();
+            foreach (Categoria c in categorias)
+            {
+                Categoria clone = c.Clone();
+                listaCategorias.Add(clone);
+            }
+            return new Produto(nome, id, preco, descricao, listaCategorias);
         }
         #endregion
 

@@ -140,40 +140,49 @@ namespace RegrasNegocio
         public static List<Assist> MostrarTodasAssistencias()
         {
             RegistoAssist aux = new RegistoAssist();
-            List<Assist> listaOriginal = aux.ObterAssistencias;
+            List<Assist> copiaListaAssists = new List<Assist>(); 
             //listaOriginal = aux.ObterAssistencias;
             //List<Assist> todasAssist = listaOriginal.Select(Assist => Assist.Clone()).ToList();
-            foreach (Assist a in listaOriginal)
+            foreach (Assist a in aux.ObterAssistencias)
             {
-                a.tipoAssis.Id = 20000;
+                Assist clone = a.Clone();
+                copiaListaAssists.Add(clone);
             }
-            return listaOriginal;
+            return copiaListaAssists;
         }
         /// <summary>
         /// Recebe todas as assistências e apenas mostra as ativas.
         /// </summary>
-        public static void MostrarAssistenciasAtivas()
+        public static List<Assist> MostrarAssistenciasAtivas()
         {
-            RegistoAssist listaAssist = new RegistoAssist();
-            foreach (Assist a in listaAssist.ObterAssistencias)
+            RegistoAssist aux = new RegistoAssist();
+            List<Assist> copiaListaAssistsAtivas = new List<Assist>();
+            foreach(Assist a in aux.ObterAssistencias)
             {
                 if (a.estadoA.DescEstado == "Ativo" && a.estadoA.Ativo == true)
-                    Console.WriteLine(a.ToString());
+                {
+                    Assist clone = a.Clone();
+                    copiaListaAssistsAtivas.Add(clone);
+                }
             }
+            return copiaListaAssistsAtivas;
         }
         /// <summary>
         /// Recebe todas as assistências e apenas mostra as concluidas.
         /// </summary>
-        public static void MostrarAssistenciasConcluidas()
+        public static List<Assist> MostrarAssistenciasConcluidas()
         {
-            RegistoAssist listaAssist = new RegistoAssist();
-            foreach (Assist a in listaAssist.ObterAssistencias)
+            RegistoAssist aux = new RegistoAssist();
+            List<Assist> copiaListaAssistsConcluidas = new List<Assist>();
+            foreach (Assist a in aux.ObterAssistencias)
             {
                 if (a.estadoA.DescEstado == "Completado" && a.estadoA.Ativo == false)
                 {
-                    Console.WriteLine(a.ToString());
+                    Assist clone = a.Clone();
+                    copiaListaAssistsConcluidas.Add(clone);
                 }
             }
+            return copiaListaAssistsConcluidas;
         }
         /// <summary>
         /// Conclui uma assistência e regista a sua avaliação.
@@ -254,30 +263,31 @@ namespace RegrasNegocio
         /// <summary>
         /// Mostra todos os clientes existentes.
         /// </summary>
-        public static void MostrarTodosClientes()
+        public static List<Cliente> MostrarTodosClientes()
         {
-            RegistoClientes listaClientes = new RegistoClientes();
-            foreach (Cliente c in listaClientes.ObterClientes)
+            RegistoClientes aux = new RegistoClientes();
+            List<Cliente> listaClientes = new List<Cliente>();
+
+            foreach (Cliente c in aux.ObterClientes)
             {
-                Console.WriteLine(c.ToString());
+                Cliente clone = c.Clone();
+                listaClientes.Add(clone);
             }
+            return listaClientes;
         }
         /// <summary>
         /// Mostra a ficha completa de um cliente.
         /// </summary>
-        public static void MostrarFichaClientesCompleto()
+        public static List<Cliente> MostrarFichaClientesCompleto()
         {
-            RegistoClientes listaClientes = new RegistoClientes();
-            foreach (Cliente c in listaClientes.ObterClientes)
+            RegistoClientes aux = new RegistoClientes();
+            List<Cliente> listaClientes = new List<Cliente>();
+            foreach (Cliente c in aux.ObterClientes)
             {
-                Console.WriteLine(c.ToString());
-                if (ReferenceEquals(c.Morada, null) || c.Morada.CodPostal == string.Empty)
-                    continue;
-                else
-                {
-                    Console.WriteLine(c.Morada.ToString());
-                }
+                Cliente clone = c.Clone();
+                listaClientes.Add(clone);
             }
+            return listaClientes;
         }
         #endregion
 
@@ -305,13 +315,16 @@ namespace RegrasNegocio
         /// <summary>
         /// Mostra todos os operadores existentes.
         /// </summary>
-        public static void MostrarTodosOperadores()
+        public static List<Operador> MostrarTodosOperadores()
         {
-            RegistoOperadores listaOperadores = new RegistoOperadores();
-            foreach (Operador o in listaOperadores.ObterOperadores)
+            RegistoOperadores aux = new RegistoOperadores();
+            List<Operador> listaOperadores = new List<Operador>();
+            foreach (Operador o in aux.ObterOperadores)
             {
-                Console.WriteLine(o.ToString());
+                Operador clone = o.Clone();
+                listaOperadores.Add(clone);
             }
+            return listaOperadores;
         }
         #endregion
 
@@ -428,29 +441,31 @@ namespace RegrasNegocio
         /// Mostra as categorias de um produto.
         /// </summary>
         /// <param name="listaCategorias">The lista categorias.</param>
-        public static void MostrarCategorias(List<Categoria> listaCategorias)
+        public static List<Categoria> MostrarCategorias()
         {
-            foreach (Categoria c in listaCategorias)
+            RegistoCategorias aux = new RegistoCategorias();
+            List<Categoria> listaCategorias = new List<Categoria>();
+            foreach (Categoria c in aux.ObterCategorias)
             {
-                if (c.NomeCategoria == string.Empty)
-                    continue;
-                Console.WriteLine(c.ToString());
+                Categoria clone = c.Clone();
+                listaCategorias.Add(clone);
             }
+            return listaCategorias;
         }
         /// <summary>
-        /// Mostra os produtos.
+        /// Retorna em uma lista todos os produtos existentes.
         /// </summary>
-        /// <param name="listaProdutos">The lista produtos.</param>
-        public static void MostrarProdutos()
+        /// <returns></returns>
+        public static List<Produto> MostrarProdutos()
         {
-            RegistoProdutos listaProdutos = new RegistoProdutos();
-            foreach (Produto p in listaProdutos.ObterProdutos)
+            RegistoProdutos aux = new RegistoProdutos();
+            List<Produto> listaProdutos = new List<Produto>();
+            foreach (Produto p in aux.ObterProdutos)
             {
-                if (ReferenceEquals(p, null) || p.Id == 0)
-                    continue;
-                Console.WriteLine(p.ToString());
-                MostrarCategorias(p.Categorias);
+                Produto clone = p.Clone();
+                listaProdutos.Add(clone);
             }
+            return listaProdutos;
         }
         #endregion
 
