@@ -212,13 +212,26 @@ namespace RegrasNegocio
         /// Mostra todas as assistências.
         /// </summary>
         /// <returns></returns>
-        public static void MostrarTodasAssistencias()
+        public static List<Assist> MostrarTodasAssistencias()
         {
-            RegistoAssist listaAssist = new RegistoAssist();
-            foreach (Assist a in listaAssist.ObterAssistencias)
+            RegistoAssist aux= new RegistoAssist();
+            List<Assist> todasAssists = new List<Assist>();
+            todasAssists = aux.ObterAssistencias.co;
+            foreach (Assist a in todasAssists)
             {
-                Console.WriteLine(a.ToString());
+                a.tipoAssis.Id = 2000;
             }
+            return todasAssists;
+            //try
+            //{
+            //    todasAssists
+            //    return todasAssists;
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
+            //return todasAssists;
         }
         /// <summary>
         /// Recebe todas as assistências e apenas mostra as ativas.
@@ -235,17 +248,17 @@ namespace RegrasNegocio
         /// <summary>
         /// Recebe todas as assistências e apenas mostra as concluidas.
         /// </summary>
-        public static void MostrarAssistenciasConcluidas()
-        {
-            RegistoAssist listaAssist = new RegistoAssist();
-            foreach (Assist a in listaAssist.ObterAssistencias)
-            {
-                if (a.estadoA.DescEstado == "Completado" && a.estadoA.Ativo == false)
-                {
-                    Console.WriteLine(a.ToString());
-                }
-            }
-        }
+        //public static List<Assist> MostrarAssistenciasConcluidas(List<Assist> todasAssistsConcluidas)
+        //{
+        //    //List<Assist> todasAssists = RegistoAssist.ObterAssists();
+        //    foreach (Assist a in todasAssists)
+        //    {
+        //        if (a.estadoA.DescEstado == "Completado" && a.estadoA.Ativo == false)
+        //            todasAssistsConcluidas.Add(a);
+        //        a.tipoAssis.Id = 2000;
+        //    }
+        //    return todasAssistsConcluidas;
+        //}
         /// <summary>
         /// Conclui uma assistência e regista a sua avaliação.
         /// </summary>
@@ -373,9 +386,8 @@ namespace RegrasNegocio
             }
         }
         /// <summary>
-        /// Mostra os produtos.
+        /// Mostra todos os produtos.
         /// </summary>
-        /// <param name="listaProdutos">The lista produtos.</param>
         public static void MostrarProdutos()
         {
             RegistoProdutos listaProdutos = new RegistoProdutos();

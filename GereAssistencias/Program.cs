@@ -6,6 +6,7 @@ using Outros;
 using Pessoas;
 using RegrasNegocio;
 using System;
+using System.Collections.Generic;
 
 namespace GereAssistencias
 {
@@ -186,14 +187,33 @@ namespace GereAssistencias
                 Console.WriteLine(e.Message);
             }
 
+            List<Assist> todasAssistsConcluidas = new List<Assist>();
+
             Console.WriteLine("Assitencias concluidas:");
-            RegrasDeNegocio.MostrarAssistenciasConcluidas();
+            //RegrasDeNegocio.MostrarAssistenciasConcluidas(todasAssistsConcluidas);
+            //foreach (Assist a in todasAssistsConcluidas)
+            //{
+            //    Console.WriteLine(a.ToString());
+            //}
             Console.WriteLine("Assistencias por concluir:");
             RegrasDeNegocio.MostrarAssistenciasAtivas();
 
             Console.WriteLine("\n\n\n");
+            List<Assist> todasAssists = new List<Assist>();
+
+            todasAssists = RegrasDeNegocio.MostrarTodasAssistencias();
+            foreach (Assist a in todasAssists)
+            {
+                Console.WriteLine(a.ToString());
+            }
+            List<Assist> todasAssists2 = new List<Assist>();
+
             RegrasDeNegocio.MostrarTodasAssistencias();
 
+            foreach (Assist a in todasAssists)
+            {
+                Console.WriteLine(a.ToString());
+            }
             Console.WriteLine("\n\n\n");
 
             RegrasDeNegocio.MostrarTodosClientes();
