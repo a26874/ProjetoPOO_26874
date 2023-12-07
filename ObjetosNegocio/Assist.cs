@@ -201,7 +201,7 @@ namespace ObjetosNegocio
         /// <param name="b">The b.</param>
         public static bool operator == (Assist a, Assist b)
         {
-            if ((a.idAssistencia == b.idAssistencia) && (a.dataAssistencia == b.dataAssistencia) && (a.tipoAssistencia.Id == b.tipoAssistencia.Id ))
+            if ((a.dataAssistencia == b.dataAssistencia) && (a.tipoAssistencia.Id == b.tipoAssistencia.Id ))
                 return true;
             return false;
         }
