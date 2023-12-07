@@ -42,6 +42,9 @@ namespace RegrasNegocio
         #endregion
 
         #region OUTROS METODOS        
+
+        #region ASSISTENCIAS
+
         /// <summary>
         /// Recebe uma assistência e reencaminha a mesma para os dados a inserir.
         /// </summary>
@@ -59,9 +62,166 @@ namespace RegrasNegocio
             }
             catch (AssistException e)
             {
-                throw new AssistException("Falha ao inserir assistencia." + "-"+ e.Message);
+                throw new AssistException("Falha ao inserir assistencia." + "-" + e.Message);
             }
         }
+        /// <summary>
+        /// Recebe uma assistência e reencaminha para a lista de assistências e insere um cliente caso exista.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.ClienteException"></exception>
+        public static bool InsereClienteAssistencia(Assist a)
+        {
+            Cliente clienteInserir = null;
+            if (ReferenceEquals(a, null))
+                return false;
+
+            try
+            {
+                RegistoClientes.ExisteCliente(a.ClienteNIF, out clienteInserir);
+                RegistoAssist.InsereClienteAssistLista(a, clienteInserir);
+                return true;
+            }
+            catch (ClienteException e)
+            {
+                throw new ClienteException(e.Message + "-" + "A assistencia " + a.Id + " ja tem cliente");
+            }
+        }
+        /// <summary>
+        /// Recebe uma assistência e reencaminha para a lista de assistências e insere um cliente caso exista.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.OperadorException"></exception>
+        public static bool InsereOperadorAssistencia(Assist a)
+        {
+            Operador operadorInserir = null;
+            if (ReferenceEquals(a, null))
+                return false;
+
+            try
+            {
+                RegistoOperadores.ExisteOperador(a.OperadorId, out operadorInserir);
+                RegistoAssist.InsereOperadorAssistLista(a, operadorInserir);
+                return true;
+            }
+            catch (OperadorException e)
+            {
+                throw new OperadorException(e.Message + "-" + "A assistencia " + a.Id + " ja tem operador");
+            }
+        }
+        /// <summary>
+        /// Insere uma solução de um problema na assistência.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.AssistException"></exception>
+        public static bool InsereSolucaoAssitencia(Assist a)
+        {
+            ProblemasCon problemaInserir;
+            if (ReferenceEquals(a, null))
+                return false;
+            try
+            {
+                RegistoProblemas.ExisteSolucao(a.tipoAssis.Id, out problemaInserir);
+                RegistoAssist.InsereSolucaoAssitLista(a, problemaInserir);
+                return true;
+            }
+            catch (AssistException e)
+            {
+                throw new AssistException(e.Message + "-" + "A assistencia " + a.Id + " ja tem solucao");
+            }
+        }
+        /// <summary>
+        /// Mostra todas as assistências.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Assist> MostrarTodasAssistencias()
+        {
+            RegistoAssist aux = new RegistoAssist();
+            List<Assist> copiaListaAssists = new List<Assist>(); 
+            //listaOriginal = aux.ObterAssistencias;
+            //List<Assist> todasAssist = listaOriginal.Select(Assist => Assist.Clone()).ToList();
+            foreach (Assist a in aux.ObterAssistencias)
+            {
+                Assist clone = a.Clone();
+                copiaListaAssists.Add(clone);
+            }
+            return copiaListaAssists;
+        }
+        /// <summary>
+        /// Recebe todas as assistências e apenas mostra as ativas.
+        /// </summary>
+        public static List<Assist> MostrarAssistenciasAtivas()
+        {
+            RegistoAssist aux = new RegistoAssist();
+            List<Assist> copiaListaAssistsAtivas = new List<Assist>();
+            foreach(Assist a in aux.ObterAssistencias)
+            {
+                if (a.estadoA.DescEstado == "Ativo" && a.estadoA.Ativo == true)
+                {
+                    Assist clone = a.Clone();
+                    copiaListaAssistsAtivas.Add(clone);
+                }
+            }
+            return copiaListaAssistsAtivas;
+        }
+        /// <summary>
+        /// Recebe todas as assistências e apenas mostra as concluidas.
+        /// </summary>
+        public static List<Assist> MostrarAssistenciasConcluidas()
+        {
+            RegistoAssist aux = new RegistoAssist();
+            List<Assist> copiaListaAssistsConcluidas = new List<Assist>();
+            foreach (Assist a in aux.ObterAssistencias)
+            {
+                if (a.estadoA.DescEstado == "Completado" && a.estadoA.Ativo == false)
+                {
+                    Assist clone = a.Clone();
+                    copiaListaAssistsConcluidas.Add(clone);
+                }
+            }
+            return copiaListaAssistsConcluidas;
+        }
+        /// <summary>
+        /// Conclui uma assistência e regista a sua avaliação.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="cls">The CLS.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.AssistException">Nao foi possivel concluir a assistencia" + "-" + e.Message</exception>
+        public static bool ConcluirAssistencia(Assist a, Avaliacao cls)
+        {
+            try
+            {
+                RegistoAssist.ConcluirAssistencia(a);
+                RegistoAssist.RegistoAvaliacao(a, cls);
+                return true;
+            }
+            catch (AssistException e)
+            {
+                throw new AssistException("Nao foi possivel concluir a assistencia" + "-" + e.Message);
+            }
+        }
+        /// <summary>
+        /// De todas as assistencias, mostra o preço da mais cara.
+        /// </summary>
+        /// <param name="listaAssistencias">The lista assistencias.</param>
+        /// <returns></returns>
+        public static int MostrarAssistenciaMaisCara(RegistoAssist listaAssistencias)
+        {
+            int maisCaro = 0;
+            foreach (Assist a in listaAssistencias.ObterAssistencias)
+            {
+                if (a.tipoAssis.Preco > maisCaro && a.tipoAssis.Preco != -1)
+                    maisCaro = a.tipoAssis.Preco;
+            }
+            return maisCaro;
+        }
+        #endregion
+
+        #region CLIENTES
         /// <summary>
         /// Recebe um cliente e reencaminha o mesmo para a "base de dados".
         /// </summary>
@@ -97,9 +257,41 @@ namespace RegrasNegocio
             }
             catch (ClienteException e)
             {
-                throw new ClienteException(" Falha ao inserir saldo" + " - " + e.Message );
+                throw new ClienteException(" Falha ao inserir saldo" + " - " + e.Message);
             }
         }
+        /// <summary>
+        /// Mostra todos os clientes existentes.
+        /// </summary>
+        public static List<Cliente> MostrarTodosClientes()
+        {
+            RegistoClientes aux = new RegistoClientes();
+            List<Cliente> listaClientes = new List<Cliente>();
+
+            foreach (Cliente c in aux.ObterClientes)
+            {
+                Cliente clone = c.Clone();
+                listaClientes.Add(clone);
+            }
+            return listaClientes;
+        }
+        /// <summary>
+        /// Mostra a ficha completa de um cliente.
+        /// </summary>
+        public static List<Cliente> MostrarFichaClientesCompleto()
+        {
+            RegistoClientes aux = new RegistoClientes();
+            List<Cliente> listaClientes = new List<Cliente>();
+            foreach (Cliente c in aux.ObterClientes)
+            {
+                Cliente clone = c.Clone();
+                listaClientes.Add(clone);
+            }
+            return listaClientes;
+        }
+        #endregion
+
+        #region OPERADORES
         /// <summary>
         /// Recebe um operador e reencaminha o mesmo para a "base de dados".
         /// </summary>
@@ -115,57 +307,29 @@ namespace RegrasNegocio
                 RegistoOperadores.InsereOperadorLista(o);
                 return true;
             }
-            catch(OperadorException e)
-            {
-                throw new OperadorException(e.Message + "-"+"Falha ao inserir o operador.");
-            }
-        }
-        /// <summary>
-        /// Recebe uma assistência e reencaminha para a lista de assistências e insere um cliente caso exista.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <returns></returns>
-        /// <exception cref="Excecoes.ClienteException"></exception>
-        public static bool InsereClienteAssistencia(Assist a)
-        {
-            Cliente clienteInserir = null;
-            if (ReferenceEquals(a, null))
-                return false;
-
-            try
-            {
-                RegistoClientes.ExisteCliente(a.ClienteNIF, out clienteInserir);
-                RegistoAssist.InsereClienteAssistLista(a, clienteInserir);
-                return true;
-            }
-            catch (ClienteException e)
-            {
-                throw new ClienteException(e.Message + "-" + "A assistencia " + a.Id + " ja tem cliente");
-            }
-        }
-        /// <summary>
-        /// Recebe uma assistência e reencaminha para a lista de assistências e insere um cliente caso exista.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <returns></returns>
-        /// <exception cref="Excecoes.OperadorException"></exception>
-        public static bool InsereOperadorAssistencia(Assist a)
-        {
-            Operador operadorInserir = null;
-            if (ReferenceEquals(a,null))
-                return false;
-
-            try
-            {
-                RegistoOperadores.ExisteOperador(a.OperadorId, out operadorInserir);
-                RegistoAssist.InsereOperadorAssistLista(a, operadorInserir);
-                return true;
-            }
             catch (OperadorException e)
             {
-                throw new OperadorException(e.Message + "-" + "A assistencia " + a.Id + " ja tem operador");
+                throw new OperadorException(e.Message + "-" + "Falha ao inserir o operador.");
             }
         }
+        /// <summary>
+        /// Mostra todos os operadores existentes.
+        /// </summary>
+        public static List<Operador> MostrarTodosOperadores()
+        {
+            RegistoOperadores aux = new RegistoOperadores();
+            List<Operador> listaOperadores = new List<Operador>();
+            foreach (Operador o in aux.ObterOperadores)
+            {
+                Operador clone = o.Clone();
+                listaOperadores.Add(clone);
+            }
+            return listaOperadores;
+        }
+        #endregion
+
+        #region SOLUCOES
+
         /// <summary>
         /// Insere uma solução na lista de soluções.
         /// </summary>
@@ -187,120 +351,35 @@ namespace RegrasNegocio
             }
         }
         /// <summary>
-        /// Insere uma solução de um problema na assistência.
+        /// Se existir solucao para um problema, ela e mostrada.
         /// </summary>
         /// <param name="a">a.</param>
-        /// <returns></returns>
-        /// <exception cref="Excecoes.AssistException"></exception>
-        public static bool InsereSolucaoAssitencia(Assist a)
+        /// <param name="p">The p.</param>
+        public static void MostrarSolucao(Assist a, ProblemasCon p)
         {
-            ProblemasCon problemaInserir;
-            if (ReferenceEquals(a, null))
-                return false;
-            try
+            bool existeSolucao = a.ExisteSolucao(a, p);
+            if (existeSolucao)
             {
-                RegistoProblemas.ExisteSolucao(a.tipoAssis.Id, out problemaInserir);
-                RegistoAssist.InsereSolucaoAssitLista(a, problemaInserir);
-                return true;
-            }
-            catch (AssistException e)
-            {
-                throw new AssistException(e.Message + "-" + "A assistencia " + a.Id + " ja tem solucao");
+                Console.WriteLine(p.ToString());
             }
         }
         /// <summary>
-        /// Mostra todas as assistências.
+        /// Mostra todas as solucoes disponiveis.
         /// </summary>
-        /// <returns></returns>
-        public static List<Assist> MostrarTodasAssistencias()
+        /// <param name="listaSolucoes">The lista solucoes.</param>
+        public static void MostrarSolucoesExistentes(RegistoProblemas listaSolucoes)
         {
-            RegistoAssist aux= new RegistoAssist();
-            List<Assist> todasAssists = new List<Assist>();
-            todasAssists = aux.ObterAssistencias.co;
-            foreach (Assist a in todasAssists)
+            foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
             {
-                a.tipoAssis.Id = 2000;
-            }
-            return todasAssists;
-            //try
-            //{
-            //    todasAssists
-            //    return todasAssists;
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
-            //return todasAssists;
-        }
-        /// <summary>
-        /// Recebe todas as assistências e apenas mostra as ativas.
-        /// </summary>
-        public static void MostrarAssistenciasAtivas()
-        {
-            RegistoAssist listaAssist = new RegistoAssist();
-            foreach (Assist a in listaAssist.ObterAssistencias)
-            {
-                if (a.estadoA.DescEstado == "Ativo" && a.estadoA.Ativo == true)
-                    Console.WriteLine(a.ToString());
+                if (p.Id == -1)
+                    continue;
+                Console.WriteLine(p.ToString());
             }
         }
-        /// <summary>
-        /// Recebe todas as assistências e apenas mostra as concluidas.
-        /// </summary>
-        //public static List<Assist> MostrarAssistenciasConcluidas(List<Assist> todasAssistsConcluidas)
-        //{
-        //    //List<Assist> todasAssists = RegistoAssist.ObterAssists();
-        //    foreach (Assist a in todasAssists)
-        //    {
-        //        if (a.estadoA.DescEstado == "Completado" && a.estadoA.Ativo == false)
-        //            todasAssistsConcluidas.Add(a);
-        //        a.tipoAssis.Id = 2000;
-        //    }
-        //    return todasAssistsConcluidas;
-        //}
-        /// <summary>
-        /// Conclui uma assistência e regista a sua avaliação.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <param name="cls">The CLS.</param>
-        /// <returns></returns>
-        /// <exception cref="Excecoes.AssistException">Nao foi possivel concluir a assistencia" + "-" + e.Message</exception>
-        public static bool ConcluirAssistencia(Assist a, Avaliacao cls)
-        {
-            try
-            {
-                RegistoAssist.ConcluirAssistencia(a);
-                RegistoAssist.RegistoAvaliacao(a, cls);
-                return true;
-            }
-            catch(AssistException e)
-            {
-                throw new AssistException("Nao foi possivel concluir a assistencia" + "-" + e.Message);
-            }
-        }
-        /// <summary>
-        /// Mostra todos os clientes existentes.
-        /// </summary>
-        public static void MostrarTodosClientes()
-        {
-            RegistoClientes listaClientes = new RegistoClientes();
-            foreach(Cliente c in listaClientes.ObterClientes)
-            {
-                Console.WriteLine(c.ToString());   
-            }
-        }
-        /// <summary>
-        /// Mostra todos os operadores existentes.
-        /// </summary>
-        public static void MostrarTodosOperadores()
-        {
-            RegistoOperadores listaOperadores = new RegistoOperadores();
-            foreach (Operador o in listaOperadores.ObterOperadores)
-            {
-                Console.WriteLine(o.ToString());
-            }
-        }
+        #endregion
+
+        #region PRODUTOS
+
         /// <summary>
         /// Insere um produto na lista de produtos.
         /// </summary>
@@ -357,91 +436,39 @@ namespace RegrasNegocio
                 throw new CategoriaException(e.Message);
             }
         }
-        /// <summary>
-        /// De todas as assistencias, mostra o preço da mais cara.
-        /// </summary>
-        /// <param name="listaAssistencias">The lista assistencias.</param>
-        /// <returns></returns>
-        public static int MostrarAssistenciaMaisCara(RegistoAssist listaAssistencias)
-        {
-            int maisCaro = 0;
-            foreach (Assist a in listaAssistencias.ObterAssistencias)
-            {
-                if (a.tipoAssis.Preco > maisCaro && a.tipoAssis.Preco != -1)
-                    maisCaro = a.tipoAssis.Preco;
-            }
-            return maisCaro;
-        }
+
         /// <summary>
         /// Mostra as categorias de um produto.
         /// </summary>
         /// <param name="listaCategorias">The lista categorias.</param>
-        public static void MostrarCategorias(List<Categoria> listaCategorias)
+        public static List<Categoria> MostrarCategorias()
         {
-            foreach (Categoria c in listaCategorias)
+            RegistoCategorias aux = new RegistoCategorias();
+            List<Categoria> listaCategorias = new List<Categoria>();
+            foreach (Categoria c in aux.ObterCategorias)
             {
-                if (c.NomeCategoria == string.Empty)
-                    continue;
-                Console.WriteLine(c.ToString());
+                Categoria clone = c.Clone();
+                listaCategorias.Add(clone);
             }
+            return listaCategorias;
         }
         /// <summary>
-        /// Mostra todos os produtos.
+        /// Retorna em uma lista todos os produtos existentes.
         /// </summary>
-        public static void MostrarProdutos()
+        /// <returns></returns>
+        public static List<Produto> MostrarProdutos()
         {
-            RegistoProdutos listaProdutos = new RegistoProdutos();
-            foreach (Produto p in listaProdutos.ObterProdutos)
+            RegistoProdutos aux = new RegistoProdutos();
+            List<Produto> listaProdutos = new List<Produto>();
+            foreach (Produto p in aux.ObterProdutos)
             {
-                if (ReferenceEquals(p, null) || p.Id == 0)
-                    continue;
-                Console.WriteLine(p.ToString());
-                MostrarCategorias(p.Categorias);
+                Produto clone = p.Clone();
+                listaProdutos.Add(clone);
             }
+            return listaProdutos;
         }
-        /// <summary>
-        /// Se existir solucao para um problema, ela e mostrada.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <param name="p">The p.</param>
-        public static void MostrarSolucao(Assist a, ProblemasCon p)
-        {
-            bool existeSolucao = a.ExisteSolucao(a, p);
-            if (existeSolucao)
-            {
-                Console.WriteLine(p.ToString());
-            }
-        }
-        /// <summary>
-        /// Mostra todas as solucoes disponiveis.
-        /// </summary>
-        /// <param name="listaSolucoes">The lista solucoes.</param>
-        public static void MostrarSolucoesExistentes(RegistoProblemas listaSolucoes)
-        {
-            foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
-            {
-                if (p.Id == -1)
-                    continue;
-                Console.WriteLine(p.ToString());
-            }
-        }
-        /// <summary>
-        /// Mostra a ficha completa de um cliente.
-        /// </summary>
-        public static void MostrarFichaClientesCompleto()
-        {
-            RegistoClientes listaClientes = new RegistoClientes();
-            foreach (Cliente c in listaClientes.ObterClientes)
-            {
-                Console.WriteLine(c.ToString());
-                if (ReferenceEquals(c.Morada, null) || c.Morada.CodPostal == string.Empty)
-                    continue;
-                else
-                {
-                    Console.WriteLine(c.Morada.ToString());
-                }
-            }
-        }
+        #endregion
+
         /// <summary>
         /// Mostra na consola o numero de clientes existentes.
         /// </summary>

@@ -22,7 +22,7 @@ namespace Dados
     /// <summary>
     /// Classe para registar assistências.
     /// </summary>
-    public class RegistoAssist /*: IRegistoAssist*/
+    public class RegistoAssist 
     {
 
         #region ATRIBUTOS
@@ -61,7 +61,10 @@ namespace Dados
         /// </value>
         public List<Assist> ObterAssistencias
         {
-            get { return listaAssistencias.ToList(); }
+            get 
+            {
+                return listaAssistencias.ToList();
+            }
         }
 
         #endregion

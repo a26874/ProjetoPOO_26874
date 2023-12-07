@@ -33,9 +33,10 @@ namespace Outros
             nomeCategoria = string.Empty;
         }
         /// <summary>
-        /// Construtor com parametros
+        /// Construtor com parametros.
         /// </summary>
-        /// <param name="nomeCategoria"></param>
+        /// <param name="nomeCategoria">The nome categoria.</param>
+        /// <param name="idProduto">The identifier produto.</param>
         public Categoria(string nomeCategoria, int idProduto)
         {
             this.idProduto = idProduto;
@@ -132,7 +133,14 @@ namespace Outros
         {
             return string.Format("Categoria:{0}", nomeCategoria);
         }
-
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public Categoria Clone()
+        {
+            return new Categoria(nomeCategoria, idProduto);
+        }
         #endregion
 
         #endregion

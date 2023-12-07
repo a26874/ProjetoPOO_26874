@@ -53,6 +53,14 @@ namespace ObjetosNegocio
             Morada = m;
             nif = ni;
         }
+        protected Cliente(string n, int c, Morada m, int ni, int saldo)
+        {
+            Nome = n;
+            Contacto = c;
+            Morada = m;
+            nif = ni;
+            this.saldo = saldo;
+        }
         #endregion
 
         #region PROPRIEDADES        
@@ -179,7 +187,14 @@ namespace ObjetosNegocio
             else
                 return 0;
         }
-
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public Cliente Clone()
+        {
+            return new Cliente(Nome, Contacto, Morada, nif, saldo);
+        }
         #endregion
 
         #endregion

@@ -158,7 +158,14 @@ namespace ObjetosNegocio
             else
                 return 0;
         }
-
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public Operador Clone()
+        {
+            return new Operador(Nome, id, Contacto, Morada);
+        }
         #endregion
 
         #endregion

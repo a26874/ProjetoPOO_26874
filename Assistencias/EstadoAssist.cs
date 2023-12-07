@@ -110,6 +110,14 @@ namespace Assistencia
         {
             return string.Format("Descricao:{0}|Ativo:{1}", descEstadoAssistencia, servicoAtivo.ToString());
         }
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public EstadoAssist Clone()
+        {
+            return new EstadoAssist(descEstadoAssistencia, servicoAtivo);
+        }
         #endregion
 
         #endregion

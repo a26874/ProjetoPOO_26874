@@ -159,6 +159,14 @@ namespace ObjetosNegocio
         {
             return base.GetHashCode();
         }
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public ProblemasCon Clone()
+        {
+            return new ProblemasCon(descProblema, id, resolucaoProblema);
+        }
         #endregion
 
         #region OUTROS METODOS        

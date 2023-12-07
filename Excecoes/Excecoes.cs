@@ -50,19 +50,28 @@ namespace Excecoes
 
         public EscritaFicheiroOperadoresException(string message) : base(message) { }
     }
-
+    /// <summary>
+    /// Exceção para Soluções.
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public class NaoExisteSolucaoException : Exception
     {
         public NaoExisteSolucaoException(string message) : base(message) { }
     }
-
+    /// <summary>
+    /// Exceção para assistências.
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public class AssistException : Exception
     {
         public AssistException() { }
 
         public AssistException(string message) : base(message) { }
     }
-
+    /// <summary>
+    /// Exceção para Clientes.
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public class ClienteException : Exception
     {
         public ClienteException() { }
@@ -72,6 +81,10 @@ namespace Excecoes
 
         }
     }
+    /// <summary>
+    /// Exceção para operadores.
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public class OperadorException : Exception
     {
         public OperadorException() { }
@@ -81,19 +94,30 @@ namespace Excecoes
 
         }
     }
+    /// <summary>
+    /// Exceção para solucoes.
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public class ProblemaException : Exception
     {
         public ProblemaException() { }
 
         public ProblemaException(string message) : base(message) { }
     }
+    /// <summary>
+    /// Exceção para produtos.
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public class ProdutosException : Exception
     {
         public ProdutosException() { }
 
         public ProdutosException(string message) : base(message) { }
     }
-
+    /// <summary>
+    /// Exceção para categorias.
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public class CategoriaException : Exception
     {
         public CategoriaException() { }

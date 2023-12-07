@@ -21,6 +21,7 @@ namespace GereAssistencias
             //listaSolucoes.LerFicheiroSolucoes("RegistoSolucoes.dat");
             //listaAssist.LerFicheiroAssistencia("RegistoAssistencias.dat");
 
+            List<Assist> assistsInserir = new List<Assist>();
             #region IO dados
             //Nova assistencias
             Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
@@ -30,22 +31,26 @@ namespace GereAssistencias
             Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
             Assist a6 = new Assist(new DateTime(2023, 5, 15, 11, 9, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 5000), new EstadoAssist("Ativo", true), 1266, 12);
 
-            try
+            assistsInserir.Add(a1);
+            assistsInserir.Add(a2);
+            assistsInserir.Add(a3);
+            assistsInserir.Add(a4);
+            assistsInserir.Add(a1); //Falha, já existe.
+            assistsInserir.Add(a5);
+            assistsInserir.Add(a6);
+            foreach (Assist a in assistsInserir)
             {
-                bool aux = RegrasDeNegocio.InsereAssistencia(a1);
-                aux = RegrasDeNegocio.InsereAssistencia(a2);
-                aux = RegrasDeNegocio.InsereAssistencia(a3);
-                aux = RegrasDeNegocio.InsereAssistencia(a4);
-                aux = RegrasDeNegocio.InsereAssistencia(a5);
-                aux = RegrasDeNegocio.InsereAssistencia(a6);
-            }
-            catch (AssistException e)
-            {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereAssistencia(a);
+                }
+                catch (AssistException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
-            //Mostrar Assistências
-
+            List<Cliente> clientesInserir = new List<Cliente>();
             ////Criação de um novo cliente
             Cliente c1 = new Cliente("Marco", 94829, new Morada("Braga", "4720-452", "Amares"), 1874);
             Cliente c2 = new Cliente("Ruben", 9421474, new Morada("Braga", "4122-862", "VilaVerde"), 1676);
@@ -55,38 +60,42 @@ namespace GereAssistencias
             Cliente c6 = new Cliente("Flavia", 244, new Morada("Porto", "478-222", "Arcos"), 1898);
             Cliente c7 = new Cliente("teste", 4885, new Morada("Porto", "478-222", "Arcos"), 2424);
 
+            clientesInserir.Add(c1);
+            clientesInserir.Add(c2);
+            clientesInserir.Add(c3);
+            clientesInserir.Add(c1); //Falha, já existe. Na parte do saldo, falha também no c1, pois ele já o tem.
+            clientesInserir.Add(c4);
+            clientesInserir.Add(c5);
+            clientesInserir.Add(c6);
+            clientesInserir.Add(c7);
+
             ////Inserir clientes na lista de clientes e saldos.
-            try
+            foreach (Cliente c in clientesInserir)
             {
-                bool aux = RegrasDeNegocio.InsereCliente(c1);
-                aux = RegrasDeNegocio.InsereCliente(c2);
-                aux = RegrasDeNegocio.InsereCliente(c3);
-                aux = RegrasDeNegocio.InsereCliente(c4);
-                aux = RegrasDeNegocio.InsereCliente(c5);
-                aux = RegrasDeNegocio.InsereCliente(c6);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereCliente(c);
+                }
+                catch (ClienteException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
-            catch (ClienteException e)
+
+            foreach (Cliente c in clientesInserir)
             {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereSaldoCliente(c, 2000);
+                }
+                catch (ClienteException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
 
-            try
-            {
-                bool aux = RegrasDeNegocio.InsereSaldoCliente(c1, 20000);
-                aux = RegrasDeNegocio.InsereSaldoCliente(c2, 10000);
-                aux = RegrasDeNegocio.InsereSaldoCliente(c3, 2488);
-                aux = RegrasDeNegocio.InsereSaldoCliente(c4, 100);
-                aux = RegrasDeNegocio.InsereSaldoCliente(c5, 1220);
-                aux = RegrasDeNegocio.InsereSaldoCliente(c6, 5900);
-                aux = RegrasDeNegocio.InsereSaldoCliente(c1, 282848);
-                aux = RegrasDeNegocio.InsereSaldoCliente(c7, 20000);
-            }
-            catch(ClienteException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
+            List<Operador> operadoresInserir = new List<Operador>();
             ////Criar novos operadores
             Operador op1 = new Operador("Marco", 12, 2487, new Morada("Braga", "4720-444", "Amares"));
             Operador op2 = new Operador("Joao", 2, 2222, new Morada("Braga", "4700-124", "VilaVerde"));
@@ -95,85 +104,94 @@ namespace GereAssistencias
             Operador op5 = new Operador("Luis", 25, 2444, new Morada("Porto", "4221-112", "Arouca"));
             Operador op6 = new Operador("Diogo", 6, 4959, new Morada("Braga", "4872-111", "Barcelos"));
 
+            operadoresInserir.Add(op1);
+            operadoresInserir.Add(op2);
+            operadoresInserir.Add(op3);
+            operadoresInserir.Add(op4);
+            operadoresInserir.Add(op5);
+            operadoresInserir.Add(op6);
+            operadoresInserir.Add(op1); //Falha ao inserir.
+
             ////Inserir operadores.
-            try
+            foreach (Operador o in operadoresInserir)
             {
-                bool aux = RegrasDeNegocio.InsereOperador(op1);
-                aux = RegrasDeNegocio.InsereOperador(op2);
-                aux = RegrasDeNegocio.InsereOperador(op3);
-                aux = RegrasDeNegocio.InsereOperador(op4);
-                aux = RegrasDeNegocio.InsereOperador(op5);
-                aux = RegrasDeNegocio.InsereOperador(op6);
-                aux = RegrasDeNegocio.InsereOperador(op1);
-            }
-            catch (OperadorException e)
-            { 
-                Console.WriteLine(e.Message);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereOperador(o);
+                }
+                catch (OperadorException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
             //Inserir clientes e operadores na assitência.
 
-            try
+            foreach (Assist a in assistsInserir)
             {
-                bool aux = RegrasDeNegocio.InsereClienteAssistencia(a1);
-                aux = RegrasDeNegocio.InsereClienteAssistencia(a2);
-                aux = RegrasDeNegocio.InsereClienteAssistencia(a3);
-                aux = RegrasDeNegocio.InsereClienteAssistencia(a4);
-                aux = RegrasDeNegocio.InsereClienteAssistencia(a5);
-                aux = RegrasDeNegocio.InsereClienteAssistencia(a6);
-                aux = RegrasDeNegocio.InsereClienteAssistencia(a1);
-            }
-            catch (ClienteException e)
-            {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereClienteAssistencia(a);
+                }
+                catch (ClienteException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
-            try
+            foreach (Assist a in assistsInserir)
             {
-                bool aux = RegrasDeNegocio.InsereOperadorAssistencia(a1);
-                aux = RegrasDeNegocio.InsereOperadorAssistencia(a2);
-                aux = RegrasDeNegocio.InsereOperadorAssistencia(a3);
-                aux = RegrasDeNegocio.InsereOperadorAssistencia(a4);
-                aux = RegrasDeNegocio.InsereOperadorAssistencia(a5);
-                aux = RegrasDeNegocio.InsereOperadorAssistencia(a6);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereOperadorAssistencia(a);
+                }
+                catch (OperadorException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
-            catch (OperadorException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            ////bool teste2 = listaOperadores.InsereOperador(op6);
+
 
             //Criar soluções e inserir numa assistência.
 
+            List<ProblemasCon> solucoesInserir = new List<ProblemasCon>();
             ProblemasCon prob1 = new ProblemasCon("Atendimento-Duvidas", 1, "Ditar problemas e conforme o numero digitado, apresentar solucao");
             ProblemasCon prob2 = new ProblemasCon("Entregas-Informacao", 2, "Oferecer detalhes sobre o estado de entrega");
             ProblemasCon prob4 = new ProblemasCon("Assistencia-Servico Manutencao", 4, "Enviar um funcionario ao local desejado");
 
-            try
+            solucoesInserir.Add(prob1);
+            solucoesInserir.Add(prob2);
+            solucoesInserir.Add(prob4);
+
+            foreach (ProblemasCon p in solucoesInserir)
             {
-                bool aux = RegrasDeNegocio.InsereSolucao(prob1);
-                aux = RegrasDeNegocio.InsereSolucao(prob2);
-                aux = RegrasDeNegocio.InsereSolucao(prob4);
-            }
-            catch (ProblemaException e)
-            {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereSolucao(p);
+                }
+                catch (ProblemaException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
-            try
+            foreach (Assist a in assistsInserir)
             {
-                bool aux = RegrasDeNegocio.InsereSolucaoAssitencia(a1);
-                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a2);
-                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a3);
-                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a4);
-                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a5);
-                aux = RegrasDeNegocio.InsereSolucaoAssitencia(a6);
-            }
-            catch(ProblemaException e)
-            {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InsereSolucaoAssitencia(a);
+                }
+                catch (ProblemaException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (AssistException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
+            //Criar avaliações e atribuir a assistências.
             Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
             Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
 
@@ -187,62 +205,99 @@ namespace GereAssistencias
                 Console.WriteLine(e.Message);
             }
 
-            List<Assist> todasAssistsConcluidas = new List<Assist>();
-
+            //Output de assistências concluidas.
             Console.WriteLine("Assitencias concluidas:");
-            //RegrasDeNegocio.MostrarAssistenciasConcluidas(todasAssistsConcluidas);
-            //foreach (Assist a in todasAssistsConcluidas)
-            //{
-            //    Console.WriteLine(a.ToString());
-            //}
+            List<Assist> todasAssistConcluidas = RegrasDeNegocio.MostrarAssistenciasConcluidas();
+            foreach (Assist a in todasAssistConcluidas)
+            {
+                Console.WriteLine(a.ToString());
+            }
+
+            Console.WriteLine("\n\n\n");
+
+            //Output de assistências por concluir.
             Console.WriteLine("Assistencias por concluir:");
-            RegrasDeNegocio.MostrarAssistenciasAtivas();
-
-            Console.WriteLine("\n\n\n");
-            List<Assist> todasAssists = new List<Assist>();
-
-            todasAssists = RegrasDeNegocio.MostrarTodasAssistencias();
-            foreach (Assist a in todasAssists)
+            List<Assist> todasAssistAtivas = RegrasDeNegocio.MostrarAssistenciasAtivas();
+            foreach (Assist a in todasAssistAtivas)
             {
                 Console.WriteLine(a.ToString());
             }
-            List<Assist> todasAssists2 = new List<Assist>();
 
-            RegrasDeNegocio.MostrarTodasAssistencias();
+            Console.WriteLine("\n\n\n");
 
-            foreach (Assist a in todasAssists)
+            //Output de todas as assistências.
+            List<Assist> todasAssist = RegrasDeNegocio.MostrarTodasAssistencias();
+
+            foreach (Assist a in todasAssist)
             {
                 Console.WriteLine(a.ToString());
             }
+
             Console.WriteLine("\n\n\n");
 
-            RegrasDeNegocio.MostrarTodosClientes();
+            //Output de todos os clientes.
+            List<Cliente> todosClientes = RegrasDeNegocio.MostrarTodosClientes();
+
+            foreach (Cliente c in todosClientes)
+            {
+                Console.WriteLine(c.ToString());
+            }
+
             Console.WriteLine("\n\n\n");
 
-            RegrasDeNegocio.MostrarTodosOperadores();
+            //Output de todos os operadores.
+            List<Operador> todosOperadores = RegrasDeNegocio.MostrarTodosOperadores();
+
+            foreach (Operador o in todosOperadores)
+            {
+                Console.WriteLine(o.ToString());
+            }
+
             Console.WriteLine("\n\n\n");
 
-            RegrasDeNegocio.MostrarFichaClientesCompleto();
+            //Output de todos os clientes com morada.
+            List<Cliente> todosClientesCompleto = RegrasDeNegocio.MostrarFichaClientesCompleto();
 
+            foreach (Cliente c in todosClientesCompleto)
+            {
+                Console.WriteLine(c.ToString());
+                if (ReferenceEquals(c.Morada, null) || c.Morada.CodPostal == string.Empty)
+                    continue;
+                else
+                {
+                    Console.WriteLine(c.Morada.ToString());
+                }
+            }
+
+
+            // Criação de produtos.
+            List<Produto> produtosInserir = new List<Produto>();
             Produto produto1 = new Produto("Telemovel", 300, "SAMSUNG");
             Produto produto2 = new Produto("PC Portatil", 2000, "Lenovo");
-            try
+
+            produtosInserir.Add(produto1);
+            produtosInserir.Add(produto2);
+
+            foreach (Produto p in produtosInserir)
             {
-                bool aux = RegrasDeNegocio.InserirProdutoLista(produto1);
-                aux = RegrasDeNegocio.InserirProdutoLista(produto2);
-            }
-            catch(ProdutosException e)
-            {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    bool aux = RegrasDeNegocio.InserirProdutoLista(p);
+                }
+                catch (ProdutosException e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
             }
 
+            //Criação de categorias.
             try
             {
-                bool aux = RegrasDeNegocio.InserirCategoriasLista("SMARTPHONE",1);
-                aux = RegrasDeNegocio.InserirCategoriasLista("5G",1);
+                bool aux = RegrasDeNegocio.InserirCategoriasLista("SMARTPHONE", 1);
+                aux = RegrasDeNegocio.InserirCategoriasLista("5G", 1);
                 aux = RegrasDeNegocio.InserirCategoriasLista("Portatil", 2);
             }
-            catch(CategoriaException e)
+            catch (CategoriaException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -252,18 +307,24 @@ namespace GereAssistencias
                 bool aux = RegrasDeNegocio.InserirCategoriasProduto(produto1);
                 aux = RegrasDeNegocio.InserirCategoriasProduto(produto2);
             }
-            catch(ProdutosException e)
-            { 
-                Console.WriteLine(e.Message); 
+            catch (ProdutosException e)
+            {
+                Console.WriteLine(e.Message);
             }
 
-            RegrasDeNegocio.MostrarProdutos();
-
-            ////Produtos
-            ////RegistoCategorias listaCategoriasProd1 = new RegistoCategorias();
-            //////listaCategoriasProd1.InserirCategoria("SMARTPHONE");
-            //////listaCategoriasProd1.InserirCategoria("5G");
-            ////Produto prdt1 = new Produto("Telemovel", 1, 2000, "SAMSUNG", listaCategoriasProd1.ObterCategorias);
+            List<Produto> listaProdutos = RegrasDeNegocio.MostrarProdutos();
+            List<Categoria> listaCategorias = RegrasDeNegocio.MostrarCategorias();
+            foreach (Produto p in listaProdutos)
+            {
+                if (ReferenceEquals(p, null) || p.Id == 0)
+                    continue;
+                Console.WriteLine(p.ToString());
+                foreach(Categoria c in listaCategorias)
+                {
+                    if (p.Id == c.IdProduto)
+                        Console.WriteLine(c.ToString());
+                }
+            }
 
 
             #endregion
@@ -273,55 +334,13 @@ namespace GereAssistencias
 
 
 
-            ////listaProdutos.InserirProduto(prdt1);
 
-            ////RegistoCategorias listaCategorias = new RegistoCategorias();
-            ////listaCategorias.InserirCategoria("TABLET");
-            ////listaCategorias.InserirCategoria("IOS");
-            ////Produto produto2 = new Produto("Tablet", 2, 2500, "Apple", listaCategorias.ObterCategorias);
-
-            ////listaProdutos.InserirProduto(produto2);
-
-            //#endregion
-
-            //Console.WriteLine("Produtos e as suas categorias:");
-            //IO.MostrarProdutos(listaProdutos);
-
-            ////Ordenar Clientes
-            //listaClientes.OrdenarClientes();
-            //Console.WriteLine("Ordenado por NIF");
-            //IO.MostrarClientes(listaClientes);
-
-            ////BubbleSortOperadores
-            //listaOperadores.OrdenarOperadores();
-            //Console.WriteLine("Ordenado por ID");
-            //IO.MostrarOperadores(listaOperadores);
-
-            //#region IODADOS
-
-
-
-            //#endregion
-
-            ////Assistencias
-            //Console.WriteLine();
-            //Console.WriteLine("Assistencias:");
-            //IO.MostrarTodasAssistencias(listaAssist, listaSolucoes);
-            //Console.WriteLine("Clientes com morada:");
-            //IO.MostrarFichaClientesCompleto(listaClientes.ObterClientes);
-
-            //IO.NumeroClientes(listaClientes.ObterClientes);
 
             //listaAssist.GravarFicheiroAssistencias("RegistoAssistencias.dat");
             //listaClientes.GravarFicheiroClientes("RegistoClientes.dat");
             //listaOperadores.GravarFicheiroOperadores("RegistoOperadores.dat");
             //listaProdutos.GravarFicheiroProdutos("RegistoProdutos.dat");
             //listaSolucoes.GravarFicheiroSolucoes("RegistoSolucoes.dat");
-
-            //Cliente teste = new Cliente("Marcooo", 240, new Morada("asdqq", "qqqqq", "lllqq"), 87927);
-
-            //IO.ExisteCliente(listaClientes.ObterClientes, teste);
-            //IO.ExisteSolucaoProblema(listaSolucoes.ObterSolucoes, listaAssist.ObterAssistencias, 3);
 
         }
     }
