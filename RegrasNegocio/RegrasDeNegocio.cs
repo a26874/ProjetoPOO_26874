@@ -72,7 +72,7 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.ClienteException"></exception>
         public static bool InsereClienteAssistencia(Assist a)
         {
-            Cliente clienteInserir = null;
+            Cliente clienteInserir;
             if (ReferenceEquals(a, null))
                 return false;
 
@@ -95,7 +95,7 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.OperadorException"></exception>
         public static bool InsereOperadorAssistencia(Assist a)
         {
-            Operador operadorInserir = null;
+            Operador operadorInserir;
             if (ReferenceEquals(a, null))
                 return false;
 
@@ -124,7 +124,7 @@ namespace RegrasNegocio
             try
             {
                 RegistoProblemas.ExisteSolucao(a.tipoAssis.Id, out problemaInserir);
-                RegistoAssist.InsereSolucaoAssitLista(a, problemaInserir);
+                RegistoAssist.InsereSolucaoAssistLista(a, problemaInserir);
                 return true;
             }
             catch (AssistException e)
@@ -218,6 +218,42 @@ namespace RegrasNegocio
             }
             return maisCaro;
         }
+        /// <summary>
+        /// Grava toda a informação acerca das assistências.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.EscritaFicheiro"></exception>
+        public static bool GravarFicheiroAssist(string nomeFicheiro)
+        {
+            try
+            {
+                RegistoAssist.GravarFicheiroAssistencias(nomeFicheiro);
+                return true;
+            }
+            catch(EscritaFicheiro e)
+            {
+                throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");
+            }
+        }
+        /// <summary>
+        /// Lê toda a informação guardada em ficheiro, acerca das assistências.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.LeituraFicheiro"></exception>
+        public static bool LerFicheiroAssist(string nomeFicheiro)
+        {
+            try
+            {
+                RegistoAssist.LerFicheiroAssistencia(nomeFicheiro);
+                return true;
+            }
+            catch (LeituraFicheiro e)
+            {
+                throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro.");
+            }
+        }
         #endregion
 
         #region CLIENTES
@@ -287,6 +323,42 @@ namespace RegrasNegocio
             }
             return listaClientes;
         }
+        /// <summary>
+        /// Grava toda a informação acerca de clientes.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.EscritaFicheiro"></exception>
+        public static bool GravarFicheiroClientes(string nomeFicheiro)
+        {
+            try
+            {
+                RegistoClientes.GravarFicheiroClientes(nomeFicheiro);
+                return true;
+            }
+            catch (EscritaFicheiro e)
+            {
+                throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");
+            }
+        }
+        /// <summary>
+        /// Lê toda a informação guardada em ficheiro, dos clientes.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.LeituraFicheiro"></exception>
+        public static bool LerFicheiroClientes(string nomeFicheiro)
+        {
+            try
+            {
+                RegistoClientes.LerFicheiroClientes(nomeFicheiro);
+                return true;
+            }
+            catch (LeituraFicheiro e)
+            {
+                throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro.");
+            }
+        }
         #endregion
 
         #region OPERADORES
@@ -324,54 +396,40 @@ namespace RegrasNegocio
             }
             return listaOperadores;
         }
-        #endregion
-
-        #region SOLUCOES
-
         /// <summary>
-        /// Insere uma solução na lista de soluções.
+        /// Grava toda a informação acerca de operadores.
         /// </summary>
-        /// <param name="p">The p.</param>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
         /// <returns></returns>
-        /// <exception cref="Excecoes.ProblemaException"></exception>
-        public static bool InsereSolucao(ProblemasCon p)
+        /// <exception cref="Excecoes.EscritaFicheiro"></exception>
+        public static bool GravarFicheiroOperadores(string nomeFicheiro)
         {
-            if (p.Id == -1 || ReferenceEquals(p, null))
-                return false;
             try
             {
-                RegistoProblemas.InserirSolucaoLista(p);
+                RegistoOperadores.GravarFicheiroOperadores(nomeFicheiro);
                 return true;
             }
-            catch(ProblemaException e)
+            catch (EscritaFicheiro e)
             {
-                throw new ProblemaException(e.Message + "-" + "Ja existe esta solucao na lista de solucoes.");
+                throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");
             }
         }
         /// <summary>
-        /// Se existir solucao para um problema, ela e mostrada.
+        /// Lê toda a informação guardada, acerca dos operadores.
         /// </summary>
-        /// <param name="a">a.</param>
-        /// <param name="p">The p.</param>
-        public static void MostrarSolucao(Assist a, ProblemasCon p)
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.LeituraFicheiro"></exception>
+        public static bool LerFicheiroOperadores(string nomeFicheiro)
         {
-            bool existeSolucao = a.ExisteSolucao(a, p);
-            if (existeSolucao)
+            try
             {
-                Console.WriteLine(p.ToString());
+                RegistoOperadores.LerFicheiroOperadores(nomeFicheiro);
+                return true;
             }
-        }
-        /// <summary>
-        /// Mostra todas as solucoes disponiveis.
-        /// </summary>
-        /// <param name="listaSolucoes">The lista solucoes.</param>
-        public static void MostrarSolucoesExistentes(RegistoProblemas listaSolucoes)
-        {
-            foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
+            catch (LeituraFicheiro e)
             {
-                if (p.Id == -1)
-                    continue;
-                Console.WriteLine(p.ToString());
+                throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro.");
             }
         }
         #endregion
@@ -465,37 +523,95 @@ namespace RegrasNegocio
             }
             return listaProdutos;
         }
-        #endregion
-
         /// <summary>
-        /// Mostra na consola o numero de clientes existentes.
+        /// Grava toda a informação acerca dos produtos.
         /// </summary>
-        /// <param name="listaClientes"></param>
-        public static void NumeroClientes(List<Cliente> listaClientes)
-        {
-            Console.WriteLine(listaClientes.Count);
-        }
-        /// <summary>
-        /// Metodo para verificar se existe um cliente, na lista de clientes.
-        /// </summary>
-        /// <param name="listaClientes">The lista clientes.</param>
-        /// <param name="a">a.</param>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
         /// <returns></returns>
-        /// <exception cref="Excecoes.ClienteNaoExisteException">Cliente não existe.</exception>
-        public static bool ExisteCliente(List<Cliente> listaClientes, Cliente a)
+        /// <exception cref="Excecoes.EscritaFicheiro"></exception>
+        public static bool GravarFicheiroProdutos(string nomeFicheiro)
         {
             try
             {
-                if (!listaClientes.Contains(a))
-                    throw new ClienteNaoExisteException("Cliente nao existe.");
+                RegistoProdutos.GravarFicheiroProdutos(nomeFicheiro);
+                return true;
             }
-            catch (ClienteNaoExisteException e)
+            catch (EscritaFicheiro e)
             {
-                Console.WriteLine(e.Message);
-                return false;
+                throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");
             }
-            return true;
         }
+        /// <summary>
+        /// Lê toda a informação guardada em ficheiro, acerca dos produtos.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.LeituraFicheiro"></exception>
+        public static bool LerFicheiroProdutos(string nomeFicheiro)
+        {
+            try
+            {
+                RegistoProdutos.LerFicheiroProdutos(nomeFicheiro);
+                return true;
+            }
+            catch (LeituraFicheiro e)
+            {
+                throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro");
+            }
+        }
+        #endregion
+
+        #region SOLUCOES
+
+        /// <summary>
+        /// Insere uma solução na lista de soluções.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.ProblemaException"></exception>
+        public static bool InsereSolucao(ProblemasCon p)
+        {
+            if (p.Id == -1 || ReferenceEquals(p, null))
+                return false;
+            try
+            {
+                RegistoProblemas.InserirSolucaoLista(p);
+                return true;
+            }
+            catch(ProblemaException e)
+            {
+                throw new ProblemaException(e.Message + "-" + "Ja existe esta solucao na lista de solucoes.");
+            }
+        }
+        /// <summary>
+        /// Se existir solucao para um problema, ela e mostrada.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="p">The p.</param>
+        public static void MostrarSolucao(Assist a, ProblemasCon p)
+        {
+            bool existeSolucao = a.ExisteSolucao(a, p);
+            if (existeSolucao)
+            {
+                Console.WriteLine(p.ToString());
+            }
+        }
+        /// <summary>
+        /// Mostra todas as solucoes disponiveis.
+        /// </summary>
+        /// <param name="listaSolucoes">The lista solucoes.</param>
+        public static void MostrarSolucoesExistentes(RegistoProblemas listaSolucoes)
+        {
+            foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
+            {
+                if (p.Id == -1)
+                    continue;
+                Console.WriteLine(p.ToString());
+            }
+        }
+        #endregion
+
+
         /// <summary>
         /// Verifica se existe uma solucao para um determinado tipo de assitencia de um problema.
         /// </summary>
@@ -506,7 +622,7 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.NaoExisteSolucaoException">O problema ainda nao tem solucao.</exception>
         public static bool ExisteSolucaoProblema(List<ProblemasCon> listaSolucoes, List<Assist> listaAssitencias, int tipoId)
         {
-            bool existeSolucao = false;
+            bool existeSolucao;
             foreach (Assist a in listaAssitencias)
             {
                 if (a.tipoAssis.Id == tipoId)
@@ -521,24 +637,44 @@ namespace RegrasNegocio
                     }
                 }
             }
+            throw new NaoExisteSolucaoException("O problema ainda nao tem solucao.");
+        }
+        /// <summary>
+        /// Grava toda a informação acerca dos solucoes.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.EscritaFicheiro"></exception>
+        public static bool GravarFicheiroSolucoes(string nomeFicheiro)
+        {
             try
             {
-                if (existeSolucao)
-                    return true;
-                else
-                    throw new NaoExisteSolucaoException("O problema ainda nao tem solucao.");
+                RegistoProblemas.GravarFicheiroSolucoes(nomeFicheiro);
+                return true;
             }
-            catch (NaoExisteSolucaoException e)
+            catch (EscritaFicheiro e)
             {
-                Console.WriteLine(e.Message);
+                throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return false;
         }
-
+        /// <summary>
+        /// Lê toda a informação guardada em ficheiro, acerca das soluções.
+        /// </summary>
+        /// <param name="nomeFicheiro">The nome ficheiro.</param>
+        /// <returns></returns>
+        /// <exception cref="Excecoes.LeituraFicheiro"></exception>
+        public static bool LerFicheiroSolucoes(string nomeFicheiro)
+        {
+            try
+            {
+                RegistoProblemas.LerFicheiroSolucoes(nomeFicheiro);
+                return true;
+            }
+            catch(LeituraFicheiro e)
+            {
+                throw new LeituraFicheiro(e.Message + " - " + "Falha ao ler ficheiro.");
+            }
+        }
         #endregion
 
         #endregion

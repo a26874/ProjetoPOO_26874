@@ -102,10 +102,12 @@ namespace Dados
         /// <exception cref="Excecoes.ClienteException">Ja existe cliente nesta assistencia</exception>
         public static bool InsereClienteAssistLista(Assist a, Cliente c)
         {
-            foreach(Assist b in listaAssistencias)
+            if (!ReferenceEquals(a.Cliente, null))
+                throw new ClienteException("Ja existe cliente nesta assistencia");
+            foreach (Assist b in listaAssistencias)
             {
-                if ((ReferenceEquals(b.Cliente, null) || b.Cliente == c) && !ReferenceEquals(a.Cliente, null) || !ReferenceEquals(b.Cliente,null))
-                    throw new ClienteException("Ja existe cliente nesta assistencia");
+                //if ((ReferenceEquals(b.Cliente, null) || b.Cliente == c) && !ReferenceEquals(a.Cliente, null) || !ReferenceEquals(b.Cliente,null))
+                //    throw new ClienteException("Ja existe cliente nesta assistencia");
                 if (b.Id == a.Id && a.ClienteNIF == c.NIF)
                 {
                     b.Cliente = c;
@@ -123,12 +125,10 @@ namespace Dados
         /// <exception cref="Excecoes.OperadorException">Ja existe operador nesta assistencia</exception>
         public static bool InsereOperadorAssistLista(Assist a, Operador o)
         {
+            if (!ReferenceEquals(a.Operador, null))
+                throw new OperadorException("Ja existe operador nesta assistencia");
             foreach (Assist b in listaAssistencias)
             {
-                if (ReferenceEquals(b, null) || b.Id == -1)
-                    continue;
-                if ((ReferenceEquals(b.Operador, null) || b.Operador == o) && !ReferenceEquals(a.Operador, null) || !ReferenceEquals(b.Operador,null))
-                    throw new OperadorException("Ja existe operador nesta assistencia");
                 if (b.Id == a.Id && a.OperadorId == o.Id)
                 {
                     b.Operador = o;
@@ -144,17 +144,17 @@ namespace Dados
         /// <param name="p">The p.</param>
         /// <returns></returns>
         /// <exception cref="Excecoes.OperadorException">Ja existe operador nesta assistencia</exception>
-        public static bool InsereSolucaoAssitLista(Assist a, ProblemasCon p)
+        public static bool InsereSolucaoAssistLista(Assist a, ProblemasCon p)
         {
+            if (a.Solucao.Id != -1)
+                throw new AssistException("Ja existe solucao para esta assistencia.");
             foreach(Assist b in listaAssistencias)
             {
-                if (ReferenceEquals(b, null) || b.Id == -1)
-                    continue;
                 if (ReferenceEquals(p, null))
                     return false;
-                else if ((ReferenceEquals(b.Solucao, null) || a.Solucao == p) && !ReferenceEquals(a.Solucao, null))
-                    throw new AssistException("Ja existe solucao para esta assistencia.");
-                if (b.Id == a.Id/* && a.Solucao.Id== p.Id*/)
+                //else if ((ReferenceEquals(b.Solucao, null) || a.Solucao == p) && !ReferenceEquals(a.Solucao, null))
+                //    throw new AssistException("Ja existe solucao para esta assistencia.");
+                if (b.Id == a.Id && a.tipoAssis.Id == p.Id)
                 {
                     b.Solucao = p;
                     return true;
@@ -170,7 +170,7 @@ namespace Dados
         /// Remove todas as assistencias da lista de assitencias.
         /// </summary>
         /// <returns></returns>
-        public bool RemoverAssistencias()
+        public static bool RemoverAssistencias()
         {
             listaAssistencias.Clear();
             numAssist = 0;
@@ -181,7 +181,7 @@ namespace Dados
         /// </summary>
         /// <param name="a">a.</param>
         /// <returns></returns>
-        public bool RemoverAssistenciaEspecifica(Assist a)
+        public static bool RemoverAssistenciaEspecifica(Assist a)
         {
             if (listaAssistencias.Remove(a))
                 return true;
@@ -219,14 +219,6 @@ namespace Dados
             throw new AssistException("Assistência ja concluida.");
         }
         /// <summary>
-        /// Retorna o numero de assistencias realizadas.
-        /// </summary>
-        /// <returns></returns>
-        public int MostrarAssistenciasRealizadas()
-        {
-            return listaAssistencias.Count;
-        }
-        /// <summary>
         /// Registar avaliacao de uma assistencia.
         /// </summary>
         /// <param name="a">a.</param>
@@ -252,7 +244,7 @@ namespace Dados
         /// </summary>
         /// <param name="nomeFicheiro">The nome ficheiro.</param>
         /// <returns></returns>
-        public bool GravarFicheiroAssistencias(string nomeFicheiro)
+        public static bool GravarFicheiroAssistencias(string nomeFicheiro)
         {
             try
             {
@@ -261,18 +253,13 @@ namespace Dados
                     BinaryFormatter b = new BinaryFormatter();
                     b.Serialize(ficheiro, listaAssistencias);
                     ficheiro.Close();
+                    return true;
                 }
             }
-            catch (EscritaFicheiroAssistException e)
+            catch (EscritaFicheiro)
             {
-                throw new EscritaFicheiroAssistException("Erro ao gravar o ficheiro." + e.Message);
+                throw new EscritaFicheiro("Erro ao gravar o ficheiro de assistencias.");
             }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message); 
-                return false;
-            }
-            return true;
 
             //Stream ficheiro = null;
 
@@ -295,19 +282,25 @@ namespace Dados
         /// </summary>
         /// <param name="nomeFicheiro">The nome ficheiro.</param>
         /// <returns></returns>
-        public bool LerFicheiroAssistencia(string nomeFicheiro)
+        public static bool LerFicheiroAssistencia(string nomeFicheiro)
         {
             Stream ficheiro = null;
-            if (!File.Exists(nomeFicheiro))
-                return false;
-            else
+            try
             {
-                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-                BinaryFormatter b = new BinaryFormatter();
-                listaAssistencias = (List<Assist>)b.Deserialize(ficheiro);
-                ficheiro.Close();
-                return true;
+                if (!File.Exists(nomeFicheiro))
+                    return false;
+                using (ficheiro = File.Open(nomeFicheiro, FileMode.Open))
+                {
+                    BinaryFormatter b = new BinaryFormatter();
+                    listaAssistencias = (List<Assist>)b.Deserialize(ficheiro);
+                    ficheiro.Close();
+                    return true;
+                }
             }
+            catch (LeituraFicheiro)
+            {
+                throw new LeituraFicheiro("Erro ao ler o ficheiro assistencias.");
+            }    
         }
         #endregion
 

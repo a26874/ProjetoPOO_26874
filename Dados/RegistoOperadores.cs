@@ -129,40 +129,60 @@ namespace Dados
         /// </summary>
         /// <param name="nomeFicheiro"></param>
         /// <returns></returns>
-        public bool GravarFicheiroOperadores(string nomeFicheiro)
+        public static bool GravarFicheiroOperadores(string nomeFicheiro)
         {
-            Stream ficheiro = null;
-            if (!File.Exists(nomeFicheiro))
-                ficheiro = File.Open(nomeFicheiro, FileMode.Create);
-            else
-                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-            if (ficheiro == null)
-                return false;
-            else
+            try
             {
-                BinaryFormatter b = new BinaryFormatter();
-                b.Serialize(ficheiro, listaOperadores);
-                ficheiro.Close();
-                return true;
+                using (Stream ficheiro = File.Open(nomeFicheiro, FileMode.Create))
+                {
+                    BinaryFormatter b = new BinaryFormatter();
+                    b.Serialize(ficheiro, listaOperadores);
+                    ficheiro.Close();
+                    return true;
+                }
             }
+            catch (EscritaFicheiro)
+            {
+                throw new EscritaFicheiro("Erro ao gravar o ficheiro de operadores.");
+            }
+            //Stream ficheiro = null;
+            //if (!File.Exists(nomeFicheiro))
+            //    ficheiro = File.Open(nomeFicheiro, FileMode.Create);
+            //else
+            //    ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+            //if (ficheiro == null)
+            //    return false;
+            //else
+            //{
+            //    BinaryFormatter b = new BinaryFormatter();
+            //    b.Serialize(ficheiro, listaOperadores);
+            //    ficheiro.Close();
+            //    return true;
+            //}
         }
         /// <summary>
         /// Le o ficheiro de operadores.
         /// </summary>
         /// <param name="nomeFicheiro"></param>
         /// <returns></returns>
-        public bool LerFicheiroOperadores(string nomeFicheiro)
+        public static bool LerFicheiroOperadores(string nomeFicheiro)
         {
             Stream ficheiro = null;
-            if (!File.Exists(nomeFicheiro))
-                return false;
-            else
+            try
             {
-                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-                BinaryFormatter b = new BinaryFormatter();
-                listaOperadores = (List<Operador>)b.Deserialize(ficheiro);
-                ficheiro.Close();
-                return true;
+                if (!File.Exists(nomeFicheiro))
+                    return false;
+                using (ficheiro = File.Open(nomeFicheiro, FileMode.Open))
+                {
+                    BinaryFormatter b = new BinaryFormatter();
+                    listaOperadores = (List<Operador>)b.Deserialize(ficheiro);
+                    ficheiro.Close();
+                    return true;
+                }
+            }
+            catch (LeituraFicheiro)
+            {
+                throw new LeituraFicheiro("Erro ao ler o ficheiro de operadores.");
             }
         }
         /// <summary>

@@ -24,31 +24,18 @@ namespace Excecoes
     /// Exceção para escrita de assistências.
     /// </summary>
     /// <seealso cref="System.Exception" />
-    public class EscritaFicheiroAssistException : Exception
+    public class EscritaFicheiro : Exception
     {
-        public EscritaFicheiroAssistException() { }
+        public EscritaFicheiro() { }
 
-        public EscritaFicheiroAssistException(string message) : base(message) { }
+        public EscritaFicheiro(string message) : base(message) { }
     }
-    /// <summary>
-    /// Exceção para escrita de clientes.
-    /// </summary>
-    /// <seealso cref="System.Exception" />
-    public class EscritaFicheiroClientesException : Exception
-    {
-        public EscritaFicheiroClientesException() { }
 
-        public EscritaFicheiroClientesException(string message) : base(message) { }
-    }
-    /// <summary>
-    /// Exceção para escrita de operadores.
-    /// </summary>
-    /// <seealso cref="System.Exception" />
-    public class EscritaFicheiroOperadoresException : Exception
+    public class LeituraFicheiro : Exception
     {
-        public EscritaFicheiroOperadoresException() { }
+        public LeituraFicheiro() { }
 
-        public EscritaFicheiroOperadoresException(string message) : base(message) { }
+        public LeituraFicheiro (string message) : base(message) { }
     }
     /// <summary>
     /// Exceção para Soluções.

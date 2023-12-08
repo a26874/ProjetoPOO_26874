@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using Excecoes;
 using ObjetosNegocio;
 namespace Dados
 {
@@ -87,7 +88,7 @@ namespace Dados
         /// <param name="desc">The desc.</param>
         /// <param name="solucao">The solucao.</param>
         /// <returns></returns>
-        public bool EditarSolucao(ProblemasCon p, int id, string desc, string solucao)
+        public static bool EditarSolucao(ProblemasCon p, int id, string desc, string solucao)
         {
             foreach (ProblemasCon s in listaSolucoes)
             {
@@ -108,40 +109,60 @@ namespace Dados
         /// </summary>
         /// <param name="nomeFicheiro"></param>
         /// <returns></returns>
-        public bool GravarFicheiroSolucoes(string nomeFicheiro)
+        public static bool GravarFicheiroSolucoes(string nomeFicheiro)
         {
-            Stream ficheiro = null;
-            if (!File.Exists(nomeFicheiro))
-                ficheiro = File.Open(nomeFicheiro, FileMode.Create);
-            else
-                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-            if (ficheiro == null)
-                return false;
-            else
+            try
             {
-                BinaryFormatter b = new BinaryFormatter();
-                b.Serialize(ficheiro, listaSolucoes);
-                ficheiro.Close();
-                return true;
+                using (Stream ficheiro = File.Open(nomeFicheiro, FileMode.Create))
+                {
+                    BinaryFormatter b = new BinaryFormatter();
+                    b.Serialize(ficheiro, listaSolucoes);
+                    ficheiro.Close();
+                    return true;
+                }
             }
+            catch (EscritaFicheiro)
+            {
+                throw new EscritaFicheiro("Erro ao gravar o ficheiro de solucoes.");
+            }
+            //Stream ficheiro = null;
+            //if (!File.Exists(nomeFicheiro))
+            //    ficheiro = File.Open(nomeFicheiro, FileMode.Create);
+            //else
+            //    ficheiro = File.Open(nomeFicheiro, FileMode.Open);
+            //if (ficheiro == null)
+            //    return false;
+            //else
+            //{
+            //    BinaryFormatter b = new BinaryFormatter();
+            //    b.Serialize(ficheiro, listaSolucoes);
+            //    ficheiro.Close();
+            //    return true;
+            //}
         }
         /// <summary>
         /// Le do ficheiro de solucoes.
         /// </summary>
         /// <param name="nomeFicheiro"></param>
         /// <returns></returns>
-        public bool LerFicheiroSolucoes(string nomeFicheiro)
+        public static bool LerFicheiroSolucoes(string nomeFicheiro)
         {
             Stream ficheiro = null;
-            if (!File.Exists(nomeFicheiro))
-                return false;
-            else
+            try
             {
-                ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-                BinaryFormatter b = new BinaryFormatter();
-                listaSolucoes = (List<ProblemasCon>)b.Deserialize(ficheiro);
-                ficheiro.Close();
-                return true;
+                if (!File.Exists(nomeFicheiro))
+                    return false;
+                using (ficheiro = File.Open(nomeFicheiro, FileMode.Open))
+                {
+                    BinaryFormatter b = new BinaryFormatter();
+                    listaSolucoes = (List<ProblemasCon>)b.Deserialize(ficheiro);
+                    ficheiro.Close();
+                    return true;
+                }
+            }
+            catch (LeituraFicheiro)
+            {
+                throw new LeituraFicheiro("Erro ao ler o ficheiro de solucoes.");
             }
         }
         /// <summary>
