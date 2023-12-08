@@ -267,7 +267,6 @@ namespace RegrasNegocio
         {
             RegistoClientes aux = new RegistoClientes();
             List<Cliente> listaClientes = new List<Cliente>();
-
             foreach (Cliente c in aux.ObterClientes)
             {
                 Cliente clone = c.Clone();
