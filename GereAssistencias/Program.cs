@@ -21,8 +21,8 @@ namespace GereAssistencias
             //listaSolucoes.LerFicheiroSolucoes("RegistoSolucoes.dat");
             //listaAssist.LerFicheiroAssistencia("RegistoAssistencias.dat");
 
-            List<Assist> assistsInserir = new List<Assist>();
             #region IO dados
+            List<Assist> assistsInserir = new List<Assist>();
             //Nova assistencias
             Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
             Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
@@ -30,6 +30,7 @@ namespace GereAssistencias
             Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
             Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
             Assist a6 = new Assist(new DateTime(2023, 5, 15, 11, 9, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 5000), new EstadoAssist("Ativo", true), 1266, 12);
+            
 
             assistsInserir.Add(a1);
             assistsInserir.Add(a2);

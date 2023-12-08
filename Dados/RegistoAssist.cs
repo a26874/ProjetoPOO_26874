@@ -104,10 +104,7 @@ namespace Dados
         {
             foreach(Assist b in listaAssistencias)
             {
-                if (ReferenceEquals(b,null)||b.Id == -1)
-                    continue;
-
-                if ((ReferenceEquals(b.Cliente, null) || b.Cliente == c) && !ReferenceEquals(a.Cliente, null))
+                if ((ReferenceEquals(b.Cliente, null) || b.Cliente == c) && !ReferenceEquals(a.Cliente, null) || !ReferenceEquals(b.Cliente,null))
                     throw new ClienteException("Ja existe cliente nesta assistencia");
                 if (b.Id == a.Id && a.ClienteNIF == c.NIF)
                 {
@@ -130,7 +127,7 @@ namespace Dados
             {
                 if (ReferenceEquals(b, null) || b.Id == -1)
                     continue;
-                if ((ReferenceEquals(b.Operador, null) || b.Operador == o) && !ReferenceEquals(a.Operador, null))
+                if ((ReferenceEquals(b.Operador, null) || b.Operador == o) && !ReferenceEquals(a.Operador, null) || !ReferenceEquals(b.Operador,null))
                     throw new OperadorException("Ja existe operador nesta assistencia");
                 if (b.Id == a.Id && a.OperadorId == o.Id)
                 {
