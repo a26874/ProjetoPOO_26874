@@ -7,14 +7,14 @@
 *	<description></description>
 **/
 
-using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Generic;
-using System.Linq;
+using Excecoes;
 using ObjetosNegocio;
 using Outros;
-using Excecoes;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Dados
 {
@@ -22,7 +22,7 @@ namespace Dados
     /// <summary>
     /// Classe para registar assistências.
     /// </summary>
-    public class RegistoAssist 
+    public class RegistoAssist
     {
 
         #region ATRIBUTOS
@@ -61,7 +61,7 @@ namespace Dados
         /// </value>
         public List<Assist> ObterAssistencias
         {
-            get 
+            get
             {
                 return listaAssistencias.ToList();
             }
@@ -81,7 +81,7 @@ namespace Dados
         /// <returns></returns>
         public static bool InsereAssistLista(Assist a)
         {
-            foreach(Assist b in listaAssistencias)
+            foreach (Assist b in listaAssistencias)
             {
                 if (b.Equals(a))
                 {
@@ -148,7 +148,7 @@ namespace Dados
         {
             if (a.Solucao.Id != -1)
                 throw new AssistException("Ja existe solucao para esta assistencia.");
-            foreach(Assist b in listaAssistencias)
+            foreach (Assist b in listaAssistencias)
             {
                 if (ReferenceEquals(p, null))
                     return false;
@@ -202,21 +202,35 @@ namespace Dados
         /// </summary>
         /// <param name="a">a.</param>
         /// <returns></returns>
-        public static bool ConcluirAssistencia(Assist a)
+        public static bool ConcluirAssistencia(int idAssistencia, out Assist aux2)
         {
-            foreach(Assist b in listaAssistencias)
+            Assist aux = new Assist();
+            foreach (Assist b in listaAssistencias)
             {
-                if(b.Equals(a))
+                if (b.Id == idAssistencia)
                 {
-                    if (b.estadoA.Ativo == false)
-                        return false;
-                    b.estadoA.Ativo = false;
-                    b.estadoA.DescEstado = "Completado";
+                    aux = b;
+                    break;
+                }
+            }
+            foreach (Assist c in listaAssistencias)
+            {
+                if (c.Equals(aux))
+                {
+                    if (c.estadoA.Ativo == false)
+                    {
+                        aux2 = null;
+                        throw new AssistException("Assistência ja concluida.");
+                    }
+                    c.estadoA.Ativo = false;
+                    c.estadoA.DescEstado = "Completado";
                     assistenciasRealizadas++;
+                    aux2 = c;
                     return true;
                 }
             }
-            throw new AssistException("Assistência ja concluida.");
+            aux2 = null;
+            return false;
         }
         /// <summary>
         /// Registar avaliacao de uma assistencia.
@@ -300,7 +314,7 @@ namespace Dados
             catch (LeituraFicheiro)
             {
                 throw new LeituraFicheiro("Erro ao ler o ficheiro assistencias.");
-            }    
+            }
         }
         #endregion
 

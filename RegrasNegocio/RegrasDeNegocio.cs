@@ -190,17 +190,23 @@ namespace RegrasNegocio
         /// <param name="cls">The CLS.</param>
         /// <returns></returns>
         /// <exception cref="Excecoes.AssistException">Nao foi possivel concluir a assistencia" + "-" + e.Message</exception>
-        public static bool ConcluirAssistencia(Assist a, Avaliacao cls)
+        public static bool ConcluirAssistencia(int idAssist, Avaliacao cls)
         {
             try
             {
-                RegistoAssist.ConcluirAssistencia(a);
-                RegistoAssist.RegistoAvaliacao(a, cls);
+                Assist aux = new Assist();
+                RegistoAssist.ConcluirAssistencia(idAssist, out aux);
+                RegistoClientes.VerificaSaldo(aux);
+                RegistoAssist.RegistoAvaliacao(aux, cls);
                 return true;
             }
             catch (AssistException e)
             {
                 throw new AssistException("Nao foi possivel concluir a assistencia" + "-" + e.Message);
+            }
+            catch (ClienteException e)
+            {
+                throw new ClienteException("Nao foi possivel concluir a assistencia" + "-" + e.Message);
             }
         }
         /// <summary>
@@ -274,7 +280,7 @@ namespace RegrasNegocio
             }
             catch (ClienteException e)
             {
-                throw new ClienteException("Falha ao inserir o cliente.");
+                throw new ClienteException("Falha ao inserir o cliente." + e.Message);
             }
         }
         /// <summary>
@@ -496,7 +502,7 @@ namespace RegrasNegocio
         /// <summary>
         /// Mostra as categorias de um produto.
         /// </summary>
-        /// <param name="listaCategorias">The lista categorias.</param>
+        /// <returns></returns>
         public static List<Categoria> MostrarCategorias()
         {
             RegistoCategorias aux = new RegistoCategorias();
@@ -597,21 +603,14 @@ namespace RegrasNegocio
             }
         }
         /// <summary>
-        /// Mostra todas as solucoes disponiveis.
+        /// Devolve todas as soluções disponiveis.
         /// </summary>
-        /// <param name="listaSolucoes">The lista solucoes.</param>
-        public static void MostrarSolucoesExistentes(RegistoProblemas listaSolucoes)
+        /// <returns></returns>
+        public static List<ProblemasCon> MostrarSolucoesExistentes()
         {
-            foreach (ProblemasCon p in listaSolucoes.ObterSolucoes)
-            {
-                if (p.Id == -1)
-                    continue;
-                Console.WriteLine(p.ToString());
-            }
+            List < ProblemasCon > listaSolucoes = RegistoProblemas.ObterSolucoes;
+            return listaSolucoes;      
         }
-        #endregion
-
-
         /// <summary>
         /// Verifica se existe uma solucao para um determinado tipo de assitencia de um problema.
         /// </summary>
@@ -619,25 +618,25 @@ namespace RegrasNegocio
         /// <param name="listaAssitencias">The lista assitencias.</param>
         /// <param name="tipoId">The tipo identifier.</param>
         /// <returns></returns>
-        /// <exception cref="Excecoes.NaoExisteSolucaoException">O problema ainda nao tem solucao.</exception>
-        public static bool ExisteSolucaoProblema(List<ProblemasCon> listaSolucoes, List<Assist> listaAssitencias, int tipoId)
+        /// <exception cref="Excecoes.SolucaoException">O problema ainda nao tem solucao.</exception>
+        public static bool ExisteSolucaoProblema(int tipoId)
         {
-            bool existeSolucao;
-            foreach (Assist a in listaAssitencias)
+            List<Assist> listaAssistencias = RegistoAssist.EnviarTodasAssistencias();
+            List<ProblemasCon> listaSolucoes = RegistoProblemas.ObterSolucoes;
+            foreach (Assist a in listaAssistencias)
             {
                 if (a.tipoAssis.Id == tipoId)
                 {
-                    foreach (ProblemasCon b in listaSolucoes)
+                    foreach (ProblemasCon p in listaSolucoes)
                     {
-                        if (b.Equals(a.tipoAssis))
+                        if (p.Id == a.tipoAssis.Id)
                         {
-                            existeSolucao = true;
-                            break;
+                            return true;
                         }
                     }
                 }
             }
-            throw new NaoExisteSolucaoException("O problema ainda nao tem solucao.");
+            throw new SolucaoException("O problema ainda nao tem solucao.");
         }
         /// <summary>
         /// Grava toda a informação acerca dos solucoes.
@@ -670,11 +669,14 @@ namespace RegrasNegocio
                 RegistoProblemas.LerFicheiroSolucoes(nomeFicheiro);
                 return true;
             }
-            catch(LeituraFicheiro e)
+            catch (LeituraFicheiro e)
             {
                 throw new LeituraFicheiro(e.Message + " - " + "Falha ao ler ficheiro.");
             }
         }
+        #endregion
+
+
         #endregion
 
         #endregion

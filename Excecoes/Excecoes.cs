@@ -21,7 +21,7 @@ namespace Excecoes
         { }
     }
     /// <summary>
-    /// Exceção para escrita de assistências.
+    /// Exceção para escrita de ficheiros.
     /// </summary>
     /// <seealso cref="System.Exception" />
     public class EscritaFicheiro : Exception
@@ -31,6 +31,9 @@ namespace Excecoes
         public EscritaFicheiro(string message) : base(message) { }
     }
 
+    /// <summary>
+    /// Exceção para leitura de ficheiro.
+    /// </summary>
     public class LeituraFicheiro : Exception
     {
         public LeituraFicheiro() { }
@@ -41,9 +44,10 @@ namespace Excecoes
     /// Exceção para Soluções.
     /// </summary>
     /// <seealso cref="System.Exception" />
-    public class NaoExisteSolucaoException : Exception
+    public class SolucaoException : Exception
     {
-        public NaoExisteSolucaoException(string message) : base(message) { }
+        public SolucaoException() { }
+        public SolucaoException(string message) : base(message) { }
     }
     /// <summary>
     /// Exceção para assistências.
@@ -63,10 +67,7 @@ namespace Excecoes
     {
         public ClienteException() { }
 
-        public ClienteException(string message) : base(message)
-        {
-
-        }
+        public ClienteException(string message) : base(message){    }
     }
     /// <summary>
     /// Exceção para operadores.
@@ -76,10 +77,7 @@ namespace Excecoes
     {
         public OperadorException() { }
 
-        public OperadorException(string message) : base(message)
-        {
-
-        }
+        public OperadorException(string message) : base(message) { }
     }
     /// <summary>
     /// Exceção para solucoes.
@@ -111,5 +109,4 @@ namespace Excecoes
 
         public CategoriaException(string message) : base(message) { }
     }
-
 }

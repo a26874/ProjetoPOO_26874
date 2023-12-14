@@ -119,7 +119,6 @@ namespace ObjetosNegocio
         }
         #endregion
 
-
         #region OVERRIDES        
         /// <summary>
         /// Redefinição da override Equals.
@@ -159,14 +158,7 @@ namespace ObjetosNegocio
         {
             return base.GetHashCode();
         }
-        /// <summary>
-        /// Para clonar objetos da classe.
-        /// </summary>
-        /// <returns></returns>
-        public ProblemasCon Clone()
-        {
-            return new ProblemasCon(descProblema, id, resolucaoProblema);
-        }
+        
         #endregion
 
         #region OUTROS METODOS        
@@ -177,6 +169,14 @@ namespace ObjetosNegocio
         public string FichaProblemasCon()
         {
             return string.Format("Solucao:\nDescricao:{0}\nResolucao:{1}\n", descProblema, resolucaoProblema);
+        }
+        /// <summary>
+        /// Para clonar objetos da classe.
+        /// </summary>
+        /// <returns></returns>
+        public ProblemasCon Clone()
+        {
+            return new ProblemasCon(descProblema, id, resolucaoProblema);
         }
         #endregion
 

@@ -47,7 +47,7 @@ namespace Dados
         /// <value>
         /// The obter problemascon.
         /// </value>
-        public List<ProblemasCon> ObterSolucoes
+        static public List<ProblemasCon> ObterSolucoes
         {
             get { return listaSolucoes.ToList(); }
         }

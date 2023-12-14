@@ -65,13 +65,13 @@ namespace Outros
         }
         #endregion
 
+        #region OPERADORES
         /// <summary>
         /// Redefinição do operador ==.
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        #region OPERADORES
         public static bool operator ==(Categoria a, Categoria b)
         {
             if (a.nomeCategoria == b.nomeCategoria)

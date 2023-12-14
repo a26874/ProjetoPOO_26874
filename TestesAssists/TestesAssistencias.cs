@@ -10,6 +10,9 @@ namespace TestesAssists
     [TestClass]
     public class TestesAssistencias
     {
+        /// <summary>
+        /// Teste unitário para conseguir verificar erros ao inserir uma nova assistência.
+        /// </summary>
         [TestMethod]
         public void InsereAssistencia()
         {
@@ -43,7 +46,9 @@ namespace TestesAssists
             else
                 Assert.IsFalse(resultado, "Já existe.");
         }
-
+        /// <summary>
+        /// Teste unitário para verificar erros ao inserir um cliente numa assistencia.
+        /// </summary>
         [TestMethod]
         public void InsereClienteAssistencia()
         {
@@ -75,6 +80,9 @@ namespace TestesAssists
                 Assert.IsFalse(resultado, "Já algum cliente nesta assistência.");
         }
 
+        /// <summary>
+        /// Teste unitário para verificar erros ao inserir um operador numa assistencia.
+        /// </summary>
         [TestMethod]
         public void InsereOperadorAssistencia()
         {
@@ -108,6 +116,7 @@ namespace TestesAssists
                 Assert.IsFalse(resultado, "Ja existe algum operador nesta assistência.");
         }
 
+        
         [TestMethod]
         public void InsereSolucaoAssistencia()
         {
@@ -126,7 +135,7 @@ namespace TestesAssists
 
             bool resultado;
             try
-            {
+            {   
                 resultado = RegistoAssist.InsereSolucaoAssistLista(a1, prob1); // -> insere, não dá erro
                 resultado = RegistoAssist.InsereSolucaoAssistLista(a2, prob2); // -> não insere, pois não é o mesmo id de assistência.
                 resultado = RegistoAssist.InsereSolucaoAssistLista(a2, prob1); // -> insere, não dá erro
@@ -137,6 +146,7 @@ namespace TestesAssists
                 RegistoAssist.RemoverAssistencias();
             }
             //Verificação
+            Assert.IsFalse(resultado);
         }
     }
 }

@@ -84,11 +84,10 @@ namespace Dados
             foreach (Cliente a in listaClientes)
             {
                 if (a.Equals(c))
-                    return false;
+                    throw new ClienteException("Ja existe este cliente.");
             }
             listaClientes.Add(c);
             numCliente++;
-            numeroClientesExistentes = listaClientes.Count;
             listaClientes.Sort();
             return true;
         }
@@ -231,6 +230,24 @@ namespace Dados
             }
             clienteInserir =null;
             return false;
+        }
+        /// <summary>
+        /// Verifica se um cliente tem saldo para conseguir pagar a assistência.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        /// <exception cref="ClienteException"></exception>
+        public static bool VerificaSaldo(Assist a)
+        {
+            foreach (Cliente c in listaClientes)
+            {
+                if (c.NIF == a.Cliente.NIF && c.Saldo > a.tipoAssis.Preco)
+                {
+                    c.Saldo = c.Saldo- a.tipoAssis.Preco;
+                    return true;
+                }
+            }
+            throw new ClienteException("O cliente não tem saldo suficiente para concluir a assistencia.");
         }
         #endregion
 

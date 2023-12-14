@@ -295,6 +295,11 @@ namespace ObjetosNegocio
             else
                 return 0;
         }
+        /// <summary>
+        /// Metodo para dar deep clone de uma assistência, necessário para conseguir obter uma copia de raiz da lista de assistencias
+        /// dentro da "base de dados"
+        /// </summary>
+        /// <returns></returns>
         public Assist Clone()
         {
             return new Assist(

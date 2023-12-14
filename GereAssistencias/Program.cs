@@ -1,15 +1,10 @@
 ﻿
-using Assistencia;
 using Excecoes;
-using Microsoft.Win32;
 using ObjetosNegocio;
 using Outros;
-using Pessoas;
 using RegrasNegocio;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GereAssistencias
 {
@@ -17,12 +12,6 @@ namespace GereAssistencias
     {
         static void Main(string[] args)
         {
-
-            //listaClientes.LerFicheiroClientes("RegistoClientes.dat");
-            //listaOperadores.LerFicheiroOperadores("RegistoOperadores.dat");
-            //listaProdutos.LerFicheiroProdutos("RegistoProdutos.dat");
-            //listaSolucoes.LerFicheiroSolucoes("RegistoSolucoes.dat");
-            //listaAssist.LerFicheiroAssistencia("RegistoAssistencias.dat");
             try
             {
                 bool aux = RegrasDeNegocio.LerFicheiroClientes("RegistoClientes.dat");
@@ -31,10 +20,11 @@ namespace GereAssistencias
                 aux = RegrasDeNegocio.LerFicheiroSolucoes("RegistoSolucoes.dat");
                 aux = RegrasDeNegocio.LerFicheiroAssist("RegistoAssistencias.dat");
             }
-            catch(LeituraFicheiro e)
+            catch (LeituraFicheiro e)
             {
                 Console.WriteLine(e.Message);
             }
+
             #region IO dados
             //List<Assist> assistsInserir = new List<Assist>();
             ////Nova assistencias
@@ -44,7 +34,7 @@ namespace GereAssistencias
             //Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
             //Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
             //Assist a6 = new Assist(new DateTime(2023, 5, 15, 11, 9, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 5000), new EstadoAssist("Ativo", true), 1266, 12);
-            
+
 
             //assistsInserir.Add(a1);
             //assistsInserir.Add(a2);
@@ -206,23 +196,10 @@ namespace GereAssistencias
             //    }
             //}
 
-            ////Criar avaliações e atribuir a assistências.
-            //Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
-            //Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
-
-            //try
-            //{
-            //    bool aux = RegrasDeNegocio.ConcluirAssistencia(a1, clsA1);
-            //    aux = RegrasDeNegocio.ConcluirAssistencia(a2, clsA2);
-            //}
-            //catch (AssistException e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
 
 
 
-            // Criação de produtos.
+            ////Criação de produtos.
             //List<Produto> produtosInserir = new List<Produto>();
             //Produto produto1 = new Produto("Telemovel", 300, "SAMSUNG");
             //Produto produto2 = new Produto("PC Portatil", 2000, "Lenovo");
@@ -271,14 +248,14 @@ namespace GereAssistencias
             //    if (ReferenceEquals(p, null) || p.Id == 0)
             //        continue;
             //    Console.WriteLine(p.ToString());
-            //    foreach(Categoria c in listaCategorias)
+            //    foreach (Categoria c in listaCategorias)
             //    {
             //        if (p.Id == c.IdProduto)
             //            Console.WriteLine(c.ToString());
             //    }
             //}
 
-           
+
             #endregion
 
 
@@ -352,6 +329,37 @@ namespace GereAssistencias
             }
 
 
+
+
+            List<ProblemasCon> listaSolucoes = RegrasDeNegocio.MostrarSolucoesExistentes();
+            foreach (ProblemasCon p in listaSolucoes)
+            {
+                Console.WriteLine(p.ToString());
+            }
+            try
+            {
+                bool existeSolucao = RegrasDeNegocio.ExisteSolucaoProblema(10);
+            }
+            catch (SolucaoException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+            //Criar avaliações e atribuir a assistências.
+            Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
+            Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
+
+            try
+            {
+                bool aux = RegrasDeNegocio.ConcluirAssistencia(1, clsA1);
+                aux = RegrasDeNegocio.ConcluirAssistencia(2, clsA2);
+                aux = RegrasDeNegocio.ConcluirAssistencia(1, clsA2);
+            }
+            catch (AssistException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
 
             try
