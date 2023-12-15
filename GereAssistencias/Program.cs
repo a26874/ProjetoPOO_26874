@@ -1,7 +1,10 @@
 ﻿
+using Assistencia;
 using Excecoes;
+using Microsoft.Win32;
 using ObjetosNegocio;
 using Outros;
+using Pessoas;
 using RegrasNegocio;
 using System;
 using System.Collections.Generic;
@@ -259,6 +262,7 @@ namespace GereAssistencias
             #endregion
 
 
+
             //Output de assistências concluidas.
             Console.WriteLine("Assitencias concluidas:");
             List<Assist> todasAssistConcluidas = RegrasDeNegocio.MostrarAssistenciasConcluidas();
@@ -320,7 +324,7 @@ namespace GereAssistencias
             foreach (Cliente c in todosClientesCompleto)
             {
                 Console.WriteLine(c.ToString());
-                if (ReferenceEquals(c.Morada, null) || c.Morada.CodPostal == string.Empty)
+                if (c.Morada is null || c.Morada.CodPostal == string.Empty)
                     continue;
                 else
                 {
@@ -349,10 +353,10 @@ namespace GereAssistencias
             //Criar avaliações e atribuir a assistências.
             Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
             Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
-
+            Avaliacao clsA3 = new Avaliacao("asdasd", 9, "asdas");
             try
             {
-                bool aux = RegrasDeNegocio.ConcluirAssistencia(1, clsA1);
+                bool aux = RegrasDeNegocio.ConcluirAssistencia(3, clsA3);
                 aux = RegrasDeNegocio.ConcluirAssistencia(2, clsA2);
                 aux = RegrasDeNegocio.ConcluirAssistencia(1, clsA2);
             }
@@ -360,10 +364,19 @@ namespace GereAssistencias
             {
                 Console.WriteLine(e.Message);
             }
+            catch (ClienteException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
+
+
+            int numAssistRealizadas = RegrasDeNegocio.NumeroAssistRealizadas();
+
+            Console.WriteLine(numAssistRealizadas);
 
             try
-            {
+                {
                 bool aux = RegrasDeNegocio.GravarFicheiroAssist("RegistoAssistencias.dat");
                 aux = RegrasDeNegocio.GravarFicheiroClientes("RegistoClientes.dat");
                 aux = RegrasDeNegocio.GravarFicheiroOperadores("RegistoOperadores.dat");
@@ -374,12 +387,6 @@ namespace GereAssistencias
             {
                 Console.WriteLine(e.Message);
             }
-
-            //listaClientes.GravarFicheiroClientes("RegistoClientes.dat");
-            //listaOperadores.GravarFicheiroOperadores("RegistoOperadores.dat");
-            //listaProdutos.GravarFicheiroProdutos("RegistoProdutos.dat");
-            //listaSolucoes.GravarFicheiroSolucoes("RegistoSolucoes.dat");
-
         }
     }
 }

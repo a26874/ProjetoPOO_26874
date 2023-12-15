@@ -72,13 +72,12 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.ClienteException"></exception>
         public static bool InsereClienteAssistencia(Assist a)
         {
-            Cliente clienteInserir;
-            if (ReferenceEquals(a, null))
+            if (a is null)
                 return false;
 
             try
             {
-                RegistoClientes.ExisteCliente(a.ClienteNIF, out clienteInserir);
+                RegistoClientes.ExisteCliente(a.ClienteNIF, out Cliente clienteInserir);
                 RegistoAssist.InsereClienteAssistLista(a, clienteInserir);
                 return true;
             }
@@ -95,13 +94,11 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.OperadorException"></exception>
         public static bool InsereOperadorAssistencia(Assist a)
         {
-            Operador operadorInserir;
-            if (ReferenceEquals(a, null))
+            if (a is null)
                 return false;
-
             try
             {
-                RegistoOperadores.ExisteOperador(a.OperadorId, out operadorInserir);
+                RegistoOperadores.ExisteOperador(a.OperadorId, out Operador operadorInserir);
                 RegistoAssist.InsereOperadorAssistLista(a, operadorInserir);
                 return true;
             }
@@ -118,12 +115,11 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.AssistException"></exception>
         public static bool InsereSolucaoAssitencia(Assist a)
         {
-            ProblemasCon problemaInserir;
-            if (ReferenceEquals(a, null))
+            if (a is null)
                 return false;
             try
             {
-                RegistoProblemas.ExisteSolucao(a.tipoAssis.Id, out problemaInserir);
+                RegistoProblemas.ExisteSolucao(a.tipoAssis.Id, out ProblemasCon problemaInserir);
                 RegistoAssist.InsereSolucaoAssistLista(a, problemaInserir);
                 return true;
             }
@@ -259,6 +255,15 @@ namespace RegrasNegocio
             {
                 throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro.");
             }
+        }
+
+        /// <summary>
+        /// Retorna o numero de assistências realizadas.
+        /// </summary>
+        /// <returns></returns>
+        public static int NumeroAssistRealizadas()
+        {
+            return RegistoAssist.NumeroAssistRealizadas();
         }
         #endregion
 
@@ -486,10 +491,9 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.CategoriaException"></exception>
         public static bool InserirCategoriasProduto(Produto p)
         {
-            List<Categoria> categoriasInserir;
             try
             {
-                RegistoCategorias.ExisteCategoriasProduto(p.Id, out categoriasInserir);
+                RegistoCategorias.ExisteCategoriasProduto(p.Id, out List<Categoria> categoriasInserir);
                 RegistoProdutos.InserirCategorias(p, categoriasInserir.ToList());
                 return true;
             }
@@ -577,7 +581,7 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.ProblemaException"></exception>
         public static bool InsereSolucao(ProblemasCon p)
         {
-            if (p.Id == -1 || ReferenceEquals(p, null))
+            if (p.Id == -1 || p is null)
                 return false;
             try
             {

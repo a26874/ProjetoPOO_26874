@@ -26,7 +26,6 @@ namespace Dados
     {
 
         #region ATRIBUTOS
-        private static int numAssist;
         private static List<Assist> listaAssistencias;
         private static int assistenciasRealizadas;
         #endregion
@@ -89,7 +88,6 @@ namespace Dados
                 }
             }
             listaAssistencias.Add(a);
-            numAssist++;
             listaAssistencias.Sort();
             return true;
         }
@@ -102,12 +100,10 @@ namespace Dados
         /// <exception cref="Excecoes.ClienteException">Ja existe cliente nesta assistencia</exception>
         public static bool InsereClienteAssistLista(Assist a, Cliente c)
         {
-            if (!ReferenceEquals(a.Cliente, null))
+            if (a.Cliente is Cliente)
                 throw new ClienteException("Ja existe cliente nesta assistencia");
             foreach (Assist b in listaAssistencias)
             {
-                //if ((ReferenceEquals(b.Cliente, null) || b.Cliente == c) && !ReferenceEquals(a.Cliente, null) || !ReferenceEquals(b.Cliente,null))
-                //    throw new ClienteException("Ja existe cliente nesta assistencia");
                 if (b.Id == a.Id && a.ClienteNIF == c.NIF)
                 {
                     b.Cliente = c;
@@ -125,7 +121,7 @@ namespace Dados
         /// <exception cref="Excecoes.OperadorException">Ja existe operador nesta assistencia</exception>
         public static bool InsereOperadorAssistLista(Assist a, Operador o)
         {
-            if (!ReferenceEquals(a.Operador, null))
+            if (a.Operador is Operador)
                 throw new OperadorException("Ja existe operador nesta assistencia");
             foreach (Assist b in listaAssistencias)
             {
@@ -150,7 +146,7 @@ namespace Dados
                 throw new AssistException("Ja existe solucao para esta assistencia.");
             foreach (Assist b in listaAssistencias)
             {
-                if (ReferenceEquals(p, null))
+                if (p is null)
                     return false;
                 //else if ((ReferenceEquals(b.Solucao, null) || a.Solucao == p) && !ReferenceEquals(a.Solucao, null))
                 //    throw new AssistException("Ja existe solucao para esta assistencia.");
@@ -173,7 +169,6 @@ namespace Dados
         public static bool RemoverAssistencias()
         {
             listaAssistencias.Clear();
-            numAssist = 0;
             return true;
         }
         /// <summary>
@@ -188,31 +183,37 @@ namespace Dados
             return false;
         }
         /// <summary>
-        /// Ordena as assistencias.
+        /// Verifica se existe uma assistencia, na lista de assistencias.
         /// </summary>
-        public static void OrdenarAssistencias()
-        {
-            //Perguntar professor.
-            //listaAssistencias.Sort((a1,a2) => a1.Id.CompareTo(a2.Id));
-
-            listaAssistencias.Sort();
-        }
-        /// <summary>
-        /// Conclui uma assistência.
-        /// </summary>
-        /// <param name="a">a.</param>
+        /// <param name="idAssistencia"></param>
         /// <returns></returns>
-        public static bool ConcluirAssistencia(int idAssistencia, out Assist aux2)
+        public static bool ExisteAssistencia(int idAssistencia, out Assist a)
         {
-            Assist aux = new Assist();
             foreach (Assist b in listaAssistencias)
             {
                 if (b.Id == idAssistencia)
                 {
-                    aux = b;
-                    break;
+                    a = b;
+                    return true;
                 }
             }
+            a = null;
+            return false;
+        }
+        /// <summary>
+        /// Conclui uma assistência.
+        /// </summary>
+        /// <param name="idAssistencia"></param>
+        /// <param name="aux2"></param>
+        /// <returns></returns>
+        /// <exception cref="AssistException"></exception>
+        public static bool ConcluirAssistencia(int idAssistencia, out Assist aux2)
+        {
+            
+            Assist aux = new Assist();
+            bool existe = ExisteAssistencia(idAssistencia,out aux);
+            if (!existe)
+                throw new AssistException("A assistencia não existe.");
             foreach (Assist c in listaAssistencias)
             {
                 if (c.Equals(aux))
@@ -224,13 +225,24 @@ namespace Dados
                     }
                     c.estadoA.Ativo = false;
                     c.estadoA.DescEstado = "Completado";
-                    assistenciasRealizadas++;
                     aux2 = c;
                     return true;
                 }
             }
             aux2 = null;
             return false;
+        }
+
+        /// <summary>
+        /// Devolve o numero de assistências já realizadas
+        /// </summary>
+        /// <returns></returns>
+        public static int NumeroAssistRealizadas()
+        {
+            foreach (Assist a in listaAssistencias)
+                if (a.estadoA.DescEstado == "Completado" || a.estadoA.Ativo == false)
+                    assistenciasRealizadas++;
+            return assistenciasRealizadas;
         }
         /// <summary>
         /// Registar avaliacao de uma assistencia.

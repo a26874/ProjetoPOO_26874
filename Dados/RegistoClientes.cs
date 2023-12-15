@@ -27,7 +27,6 @@ namespace Dados
         #region ATRIBUTOS
         private static int numCliente;
         private static List<Cliente> listaClientes;
-        private static int numeroClientesExistentes;
         #endregion
 
         #region COMPORTAMENTO
@@ -38,7 +37,6 @@ namespace Dados
         /// </summary>
         static RegistoClientes()
         {
-            numeroClientesExistentes = 0;
             listaClientes = new List<Cliente>();
         }
         /// <summary>
@@ -120,7 +118,6 @@ namespace Dados
         public bool RemoverClientes()
         {
             listaClientes.Clear();
-            numeroClientesExistentes = 0;
             numCliente = 0;
             return true;
         }
@@ -243,7 +240,7 @@ namespace Dados
             {
                 if (c.NIF == a.Cliente.NIF && c.Saldo > a.tipoAssis.Preco)
                 {
-                    c.Saldo = c.Saldo- a.tipoAssis.Preco;
+                    c.Saldo -= a.tipoAssis.Preco;
                     return true;
                 }
             }
