@@ -286,22 +286,6 @@ namespace Dados
             {
                 throw new EscritaFicheiro("Erro ao gravar o ficheiro de assistencias.");
             }
-
-            //Stream ficheiro = null;
-
-            //if (!File.Exists(nomeFicheiro))
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Create);
-            //else
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-            //if (ficheiro == null)
-            //    return false;
-            //else
-            //{
-            //    BinaryFormatter b = new BinaryFormatter();
-            //    b.Serialize(ficheiro, listaAssistencias);
-            //    ficheiro.Close();
-            //    return true;
-            //}
         }
         /// <summary>
         /// Lê o ficheiro assistencias.
