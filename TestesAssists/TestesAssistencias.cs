@@ -41,10 +41,7 @@ namespace TestesAssists
             }
 
             //Verificação
-            if (resultado)
-                Assert.IsTrue(resultado, "Tudo inserido como esperado, não contem duplicados.");
-            else
-                Assert.IsFalse(resultado, "Já existe.");
+            Assert.IsFalse(resultado, "Já existe.");
         }
         /// <summary>
         /// Teste unitário para verificar erros ao inserir um cliente numa assistencia.

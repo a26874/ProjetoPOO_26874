@@ -1,7 +1,4 @@
-﻿
-using Assistencia;
-using Excecoes;
-using Microsoft.Win32;
+﻿using Excecoes;
 using ObjetosNegocio;
 using Outros;
 using Pessoas;
@@ -372,11 +369,60 @@ namespace GereAssistencias
 
 
             int numAssistRealizadas = RegrasDeNegocio.NumeroAssistRealizadas();
-
             Console.WriteLine(numAssistRealizadas);
 
-            try
+
+            //Verificar se algum cliente ou operador tem assistências associadas.
+            Cliente auxCliente = new Cliente("teste", 91882, new Morada("asd", "asd", "asdaw"), 9128749);
+            List<Assist> auxListaCliente = RegrasDeNegocio.ExisteClienteAssistEspecifico(auxCliente);
+
+            if (auxListaCliente.Count>0)
+            {
+                Console.WriteLine("O cliente {0} tem associadas as seguintes assistências:");
+                foreach (Assist a in auxListaCliente)
                 {
+                    Console.WriteLine(a.Id.ToString(), a.tipoAssis.ToString());
+                }
+            }
+
+            Cliente c1 = new Cliente("Marco", 94829, new Morada("Braga", "4720-452", "Amares"), 1874);
+            auxListaCliente = RegrasDeNegocio.ExisteClienteAssistEspecifico(c1);
+
+            if (auxListaCliente.Count > 0)
+            {
+                Console.WriteLine("O cliente {0} tem associadas as seguintes assistências:", c1.Nome);
+                foreach (Assist a in auxListaCliente)
+                {
+                    Console.WriteLine("ID:{0} - Data:{1}", a.Id, a.Data);
+                }
+            }
+
+            Operador auxOperador = new Operador("Teste",249, 9281899, new Morada("asd","asd","asd"));
+            List<Assist> auxListaOperador = RegrasDeNegocio.ExisteOperadorAssistEspecifico(auxOperador);
+            if (auxListaOperador.Count > 0)
+            {
+                Console.WriteLine("O operador {0} tem associadas as seguintes assistências:", auxOperador.Nome);
+                foreach (Assist a in auxListaOperador)
+                {
+                    Console.WriteLine("ID:{0} - Data:{1}", a.Id, a.Data);
+                }
+            }
+
+            Operador op1 = new Operador("Marco", 12, 2487, new Morada("Braga", "4720-444", "Amares"));
+            auxListaOperador = RegrasDeNegocio.ExisteOperadorAssistEspecifico(op1);
+            auxListaOperador.Sort();
+            if (auxListaOperador.Count > 0)
+            {
+                Console.WriteLine("O operador {0} tem associadas as seguintes assistências:",op1.Nome);
+                foreach (Assist a in auxListaOperador)
+                {
+                    Console.WriteLine("ID:{0} - Data:{1}", a.Id, a.Data);
+                }
+            }
+
+
+            try
+            {
                 bool aux = RegrasDeNegocio.GravarFicheiroAssist("RegistoAssistencias.dat");
                 aux = RegrasDeNegocio.GravarFicheiroClientes("RegistoClientes.dat");
                 aux = RegrasDeNegocio.GravarFicheiroOperadores("RegistoOperadores.dat");
@@ -387,6 +433,8 @@ namespace GereAssistencias
             {
                 Console.WriteLine(e.Message);
             }
+
+
         }
     }
 }

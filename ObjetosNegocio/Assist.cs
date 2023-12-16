@@ -288,9 +288,9 @@ namespace ObjetosNegocio
         {
             if (a is null)
                 return 1;
-            if (idAssistencia < a.idAssistencia)
+            if (dataAssistencia < a.dataAssistencia)
                 return -1;
-            else if (idAssistencia > a.idAssistencia)
+            else if (dataAssistencia > a.dataAssistencia)
                 return 1;
             else
                 return 0;

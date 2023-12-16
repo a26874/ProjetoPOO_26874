@@ -265,6 +265,33 @@ namespace RegrasNegocio
         {
             return RegistoAssist.NumeroAssistRealizadas();
         }
+        /// <summary>
+        /// Retorna uma lista das assistências em que certo cliente está associado.
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <returns></returns>
+        public static List<Assist> ExisteClienteAssistEspecifico(Cliente c)
+        {
+            List<Assist> aux = new List<Assist>();
+            foreach (Assist a in RegistoAssist.EnviarTodasAssistencias())
+                if (a.Cliente == c)
+                    aux.Add(a);
+            return aux;
+        }
+
+        /// <summary>
+        /// Retorna uma lista das assistências em que certo operador está associado.
+        /// </summary>
+        /// <param name="o">The o.</param>
+        /// <returns></returns>
+        public static List<Assist> ExisteOperadorAssistEspecifico(Operador o)
+        {
+            List<Assist> aux = new List<Assist>();
+            foreach (Assist a in RegistoAssist.EnviarTodasAssistencias())
+                if (a.Operador == o)
+                    aux.Add(a);
+            return aux;
+        }
         #endregion
 
         #region CLIENTES
@@ -679,7 +706,7 @@ namespace RegrasNegocio
             }
         }
         #endregion
-
+         
 
         #endregion
 

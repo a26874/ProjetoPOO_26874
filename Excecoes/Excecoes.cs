@@ -12,15 +12,6 @@ using System;
 namespace Excecoes
 {
     /// <summary>
-    /// Exceção para verificação de existência de cliente.
-    /// </summary>
-    /// <seealso cref="System.Exception" />
-    public class ClienteNaoExisteException : Exception
-    {
-        public ClienteNaoExisteException(string message) : base(message)
-        { }
-    }
-    /// <summary>
     /// Exceção para escrita de ficheiros.
     /// </summary>
     /// <seealso cref="System.Exception" />
