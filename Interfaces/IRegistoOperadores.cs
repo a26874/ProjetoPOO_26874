@@ -11,6 +11,9 @@ using ObjetosNegocio;
 
 namespace Interfaces
 {
+    /// <summary>
+    /// Classe de interface de Operadores.
+    /// </summary>
     public interface IRegistoOperadores
     {
         bool InsereOperador(Operador o);

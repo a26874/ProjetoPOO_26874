@@ -12,7 +12,7 @@ using ObjetosNegocio;
 namespace Interfaces
 {
     /// <summary>
-    /// Classe de Interfaces.
+    /// Classe de interface Clientes.
     /// </summary>
     public interface IRegistoClientes
     {

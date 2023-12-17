@@ -7,6 +7,9 @@ using System;
 
 namespace TestesAssists
 {
+    /// <summary>
+    /// Classe para testar assistências.
+    /// </summary>
     [TestClass]
     public class TestesAssistencias
     {

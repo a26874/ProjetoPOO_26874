@@ -13,6 +13,9 @@ using ObjetosNegocio;
 
 namespace Interfaces
 {
+    /// <summary>
+    /// Classe de interface Assist.
+    /// </summary>
     public interface IRegistoAssist
     {
         bool InsereAssistLista(Assist a);

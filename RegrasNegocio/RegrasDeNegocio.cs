@@ -17,6 +17,9 @@ using System.Linq;
 
 namespace RegrasNegocio
 {
+    /// <summary>
+    /// Classe para as regras de negócio.
+    /// </summary>
     public class RegrasDeNegocio
     {
         #region ATRIBUTOS
