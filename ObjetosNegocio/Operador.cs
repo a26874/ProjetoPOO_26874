@@ -20,17 +20,11 @@ namespace ObjetosNegocio
     {
         #region ATRIBUTOS
         private int id;
-        static private int numOperadores = 0;
         #endregion
 
         #region COMPORTAMENTO
 
         #region CONSTRUTORES        
-
-        static Operador()
-        {
-            numOperadores = 0;
-        }
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -40,7 +34,6 @@ namespace ObjetosNegocio
             id = -1;
             Contacto = -1;
             Morada = new Morada();
-            numOperadores++;
         }
         /// <summary>
         /// Construtor com parametros.
@@ -54,7 +47,6 @@ namespace ObjetosNegocio
             id = idOperador;
             Contacto = contactoOperador;
             Morada = moradaOperador;
-            numOperadores++;
         }
 
         #endregion
@@ -126,7 +118,12 @@ namespace ObjetosNegocio
             }
             return false;
         }
-        //Ainda por fazer
+        /// <summary>
+        /// Retorna o hashcode para da instância.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();

@@ -73,11 +73,24 @@ namespace ObjetosNegocio
             this.dataAssistencia = dataAssistencia;
             tipoAssistencia = tipoA;
             estadoAssistencia = estadoA;
-            this.clienteNif = clienteNIF;
+            clienteNif = clienteNIF;
             this.operadorId = operadorId;
             classificacao = new Avaliacao();
             solucao = new ProblemasCon();
         }
+        /// <summary>
+        /// Construtor protegido para uso no clone, assim irá criar uma nova assistência com todos os dados dessa mesma assistência.
+        /// </summary>
+        /// <param name="idAssistencia">The identifier assistencia.</param>
+        /// <param name="dataAssistencia">The data assistencia.</param>
+        /// <param name="tipoAssistencia">The tipo assistencia.</param>
+        /// <param name="estadoAssistencia">The estado assistencia.</param>
+        /// <param name="clienteNif">The cliente nif.</param>
+        /// <param name="operadorId">The operador identifier.</param>
+        /// <param name="cliente">The cliente.</param>
+        /// <param name="operador">The operador.</param>
+        /// <param name="classificacao">The classificacao.</param>
+        /// <param name="solucao">The solucao.</param>
         protected Assist(int idAssistencia, DateTime dataAssistencia, TipoAssist tipoAssistencia, EstadoAssist estadoAssistencia, int clienteNif, int operadorId, Cliente cliente, Operador operador, Avaliacao classificacao, ProblemasCon solucao)
         {
             this.idAssistencia = idAssistencia;
@@ -115,7 +128,7 @@ namespace ObjetosNegocio
         /// <summary>
         /// Manipulacao da variavel tipoAssistencia.
         /// </summary>
-        public TipoAssist tipoAssis
+        public TipoAssist TipoAssistencia
         {
             get { return tipoAssistencia; }
             set { tipoAssistencia = value; }
@@ -126,7 +139,7 @@ namespace ObjetosNegocio
         /// <value>
         /// The estado a.
         /// </value>
-        public EstadoAssist estadoA
+        public EstadoAssist EstadoAssistencia
         {
             get { return estadoAssistencia; }
             set { estadoAssistencia = value; }
@@ -275,7 +288,7 @@ namespace ObjetosNegocio
         /// <returns></returns>
         public bool ExisteSolucao(Assist a, ProblemasCon p)
         {
-            if (p.Equals(a.tipoAssis))
+            if (p.Equals(a.TipoAssistencia))
                 return true;
             return false;
         }

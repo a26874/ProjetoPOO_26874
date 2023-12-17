@@ -53,6 +53,14 @@ namespace ObjetosNegocio
             Morada = m;
             nif = ni;
         }
+        /// <summary>
+        /// Construtor protegido para uso apenas do clone.
+        /// </summary>
+        /// <param name="n">The n.</param>
+        /// <param name="c">The c.</param>
+        /// <param name="m">The m.</param>
+        /// <param name="ni">The ni.</param>
+        /// <param name="saldo">The saldo.</param>
         protected Cliente(string n, int c, Morada m, int ni, int saldo)
         {
             Nome = n;
@@ -155,7 +163,12 @@ namespace ObjetosNegocio
             }
             return false;
         }
-        //Ainda por fazer
+        /// <summary>
+        /// Retorna o hashcode para a instância.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();

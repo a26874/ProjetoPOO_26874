@@ -25,7 +25,10 @@ namespace Pessoas
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES
+        #region CONSTRUTORES        
+        /// <summary>
+        /// Construtor por defeito.
+        /// </summary>
         public Pessoa()
         {
 

@@ -153,7 +153,12 @@ namespace ObjetosNegocio
         {
             return FichaProblemasCon();
         }
-        //Ainda por fazer
+        /// <summary>
+        /// Retorna o hashcode para a instância.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -168,7 +173,7 @@ namespace ObjetosNegocio
         /// <returns></returns>
         public string FichaProblemasCon()
         {
-            return string.Format("Solucao:\nDescricao:{0}\nResolucao:{1}\n", descProblema, resolucaoProblema);
+            return string.Format("Solucao para problemas do ID tipo {0}:\nDescricao:{1}\nResolucao:{2}\n",id, descProblema, resolucaoProblema);
         }
         /// <summary>
         /// Para clonar objetos da classe.

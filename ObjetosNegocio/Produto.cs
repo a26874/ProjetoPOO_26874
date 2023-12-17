@@ -25,12 +25,15 @@ namespace ObjetosNegocio
         private static int contIdProduto;
         private int preco;
         private string descricao;
-        List<Categoria> categorias; 
+        List<Categoria> categorias;
         #endregion
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES     
+        #region CONSTRUTORES            
+        /// <summary>
+        /// Construtor estático.
+        /// </summary>
         static Produto()
         {
             contIdProduto = 1;
@@ -61,6 +64,14 @@ namespace ObjetosNegocio
             preco = p;
             descricao = d;
         }
+        /// <summary>
+        /// Construtor protegido para usos do clone.
+        /// </summary>
+        /// <param name="nome">The nome.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="preco">The preco.</param>
+        /// <param name="descricao">The descricao.</param>
+        /// <param name="categorias">The categorias.</param>
         protected Produto(string nome, int id, int preco, string descricao, List<Categoria> categorias)
         {
             this.nome = nome;
@@ -180,7 +191,12 @@ namespace ObjetosNegocio
             }
             return false;
         }
-        //Ainda por fazer
+        /// <summary>
+        /// Retorna o hashcode desta instância.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();

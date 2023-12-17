@@ -52,7 +52,7 @@ namespace RegrasNegocio
         /// <exception cref="Excecoes.AssistException">Falha ao inserir assistencia.</exception>
         public static bool InsereAssistencia(Assist a)
         {
-            if (a.tipoAssis is null || a.estadoA is null)
+            if (a.TipoAssistencia is null || a.EstadoAssistencia is null)
                 return false;
             try
             {
@@ -74,7 +74,6 @@ namespace RegrasNegocio
         {
             if (a is null)
                 return false;
-
             try
             {
                 RegistoClientes.ExisteCliente(a.ClienteNIF, out Cliente clienteInserir);
@@ -119,7 +118,7 @@ namespace RegrasNegocio
                 return false;
             try
             {
-                RegistoProblemas.ExisteSolucao(a.tipoAssis.Id, out ProblemasCon problemaInserir);
+                RegistoProblemas.ExisteSolucao(a.TipoAssistencia.Id, out ProblemasCon problemaInserir);
                 RegistoAssist.InsereSolucaoAssistLista(a, problemaInserir);
                 return true;
             }
@@ -136,8 +135,6 @@ namespace RegrasNegocio
         {
             RegistoAssist aux = new RegistoAssist();
             List<Assist> copiaListaAssists = new List<Assist>(); 
-            //listaOriginal = aux.ObterAssistencias;
-            //List<Assist> todasAssist = listaOriginal.Select(Assist => Assist.Clone()).ToList();
             foreach (Assist a in aux.ObterAssistencias)
             {
                 Assist clone = a.Clone();
@@ -154,7 +151,7 @@ namespace RegrasNegocio
             List<Assist> copiaListaAssistsAtivas = new List<Assist>();
             foreach(Assist a in aux.ObterAssistencias)
             {
-                if (a.estadoA.DescEstado == "Ativo" && a.estadoA.Ativo == true)
+                if (a.EstadoAssistencia.DescEstado == "Ativo" && a.EstadoAssistencia.Ativo == true)
                 {
                     Assist clone = a.Clone();
                     copiaListaAssistsAtivas.Add(clone);
@@ -171,7 +168,7 @@ namespace RegrasNegocio
             List<Assist> copiaListaAssistsConcluidas = new List<Assist>();
             foreach (Assist a in aux.ObterAssistencias)
             {
-                if (a.estadoA.DescEstado == "Completado" && a.estadoA.Ativo == false)
+                if (a.EstadoAssistencia.DescEstado == "Completado" && a.EstadoAssistencia.Ativo == false)
                 {
                     Assist clone = a.Clone();
                     copiaListaAssistsConcluidas.Add(clone);
@@ -182,10 +179,11 @@ namespace RegrasNegocio
         /// <summary>
         /// Conclui uma assistência e regista a sua avaliação.
         /// </summary>
-        /// <param name="a">a.</param>
+        /// <param name="idAssist">The identifier assist.</param>
         /// <param name="cls">The CLS.</param>
         /// <returns></returns>
         /// <exception cref="Excecoes.AssistException">Nao foi possivel concluir a assistencia" + "-" + e.Message</exception>
+        /// <exception cref="Excecoes.ClienteException">Nao foi possivel concluir a assistencia" + "-" + e.Message</exception>
         public static bool ConcluirAssistencia(int idAssist, Avaliacao cls)
         {
             try
@@ -215,8 +213,8 @@ namespace RegrasNegocio
             int maisCaro = 0;
             foreach (Assist a in listaAssistencias.ObterAssistencias)
             {
-                if (a.tipoAssis.Preco > maisCaro && a.tipoAssis.Preco != -1)
-                    maisCaro = a.tipoAssis.Preco;
+                if (a.TipoAssistencia.Preco > maisCaro && a.TipoAssistencia.Preco != -1)
+                    maisCaro = a.TipoAssistencia.Preco;
             }
             return maisCaro;
         }
@@ -256,7 +254,6 @@ namespace RegrasNegocio
                 throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro.");
             }
         }
-
         /// <summary>
         /// Retorna o numero de assistências realizadas.
         /// </summary>
@@ -268,13 +265,14 @@ namespace RegrasNegocio
         /// <summary>
         /// Retorna uma lista das assistências em que certo cliente está associado.
         /// </summary>
-        /// <param name="c">The c.</param>
+        /// <param name="nifCliente">The nif cliente.</param>
         /// <returns></returns>
-        public static List<Assist> ExisteClienteAssistEspecifico(Cliente c)
+        public static List<Assist> ExisteClienteAssistEspecifico(int nifCliente)
         {
+            RegistoAssist auxRegisto = new RegistoAssist();
             List<Assist> aux = new List<Assist>();
-            foreach (Assist a in RegistoAssist.EnviarTodasAssistencias())
-                if (a.Cliente == c)
+            foreach (Assist a in auxRegisto.ObterAssistencias)
+                if (a.Cliente.NIF == nifCliente)
                     aux.Add(a);
             return aux;
         }
@@ -282,13 +280,14 @@ namespace RegrasNegocio
         /// <summary>
         /// Retorna uma lista das assistências em que certo operador está associado.
         /// </summary>
-        /// <param name="o">The o.</param>
+        /// <param name="idOperador">The identifier operador.</param>
         /// <returns></returns>
-        public static List<Assist> ExisteOperadorAssistEspecifico(Operador o)
+        public static List<Assist> ExisteOperadorAssistEspecifico(int idOperador)
         {
+            RegistoAssist auxRegisto = new RegistoAssist();
             List<Assist> aux = new List<Assist>();
-            foreach (Assist a in RegistoAssist.EnviarTodasAssistencias())
-                if (a.Operador == o)
+            foreach (Assist a in auxRegisto.ObterAssistencias)
+                if (a.Operador.Id == idOperador)
                     aux.Add(a);
             return aux;
         }
@@ -643,24 +642,22 @@ namespace RegrasNegocio
             return listaSolucoes;      
         }
         /// <summary>
-        /// Verifica se existe uma solucao para um determinado tipo de assitencia de um problema.
+        /// Verifica se existe solução para algum problema, a partir do ID.
         /// </summary>
-        /// <param name="listaSolucoes">The lista solucoes.</param>
-        /// <param name="listaAssitencias">The lista assitencias.</param>
         /// <param name="tipoId">The tipo identifier.</param>
         /// <returns></returns>
         /// <exception cref="Excecoes.SolucaoException">O problema ainda nao tem solucao.</exception>
         public static bool ExisteSolucaoProblema(int tipoId)
         {
-            List<Assist> listaAssistencias = RegistoAssist.EnviarTodasAssistencias();
+            RegistoAssist auxRegisto = new RegistoAssist();
             List<ProblemasCon> listaSolucoes = RegistoProblemas.ObterSolucoes;
-            foreach (Assist a in listaAssistencias)
+            foreach (Assist a in auxRegisto.ObterAssistencias)
             {
-                if (a.tipoAssis.Id == tipoId)
+                if (a.TipoAssistencia.Id == tipoId)
                 {
                     foreach (ProblemasCon p in listaSolucoes)
                     {
-                        if (p.Id == a.tipoAssis.Id)
+                        if (p.Id == a.TipoAssistencia.Id)
                         {
                             return true;
                         }

@@ -150,17 +150,13 @@ namespace Dados
                     return false;
                 //else if ((ReferenceEquals(b.Solucao, null) || a.Solucao == p) && !ReferenceEquals(a.Solucao, null))
                 //    throw new AssistException("Ja existe solucao para esta assistencia.");
-                if (b.Id == a.Id && a.tipoAssis.Id == p.Id)
+                if (b.Id == a.Id && a.TipoAssistencia.Id == p.Id)
                 {
                     b.Solucao = p;
                     return true;
                 }
             }
             return false;
-        }
-        public static List<Assist> EnviarTodasAssistencias()
-        {
-            return listaAssistencias.ToList();
         }
         /// <summary>
         /// Remove todas as assistencias da lista de assitencias.
@@ -218,13 +214,13 @@ namespace Dados
             {
                 if (c.Equals(aux))
                 {
-                    if (c.estadoA.Ativo == false)
+                    if (c.EstadoAssistencia.Ativo == false)
                     {
                         aux2 = null;
                         throw new AssistException("Assistência ja concluida.");
                     }
-                    c.estadoA.Ativo = false;
-                    c.estadoA.DescEstado = "Completado";
+                    c.EstadoAssistencia.Ativo = false;
+                    c.EstadoAssistencia.DescEstado = "Completado";
                     aux2 = c;
                     return true;
                 }
@@ -232,7 +228,6 @@ namespace Dados
             aux2 = null;
             return false;
         }
-
         /// <summary>
         /// Devolve o numero de assistências já realizadas
         /// </summary>
@@ -240,7 +235,7 @@ namespace Dados
         public static int NumeroAssistRealizadas()
         {
             foreach (Assist a in listaAssistencias)
-                if (a.estadoA.DescEstado == "Completado" || a.estadoA.Ativo == false)
+                if (a.EstadoAssistencia.DescEstado == "Completado" || a.EstadoAssistencia.Ativo == false)
                     assistenciasRealizadas++;
             return assistenciasRealizadas;
         }

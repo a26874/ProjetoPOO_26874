@@ -23,9 +23,7 @@ namespace Dados
     public class RegistoOperadores 
     {
         #region ATRIBUTOS
-        private static int numOperadores;
         private static List<Operador> listaOperadores;
-        private static int numeroOperadoresExistentes;
         #endregion
 
         #region COMPORTAMENTO
@@ -36,7 +34,6 @@ namespace Dados
         /// </summary>
         static RegistoOperadores()
         {
-            numeroOperadoresExistentes = 0;
             listaOperadores = new List<Operador>();
         }
         /// <summary>
@@ -81,8 +78,6 @@ namespace Dados
                     throw new OperadorException("O operador ja existe ");
             }
             listaOperadores.Add(o);
-            numOperadores++;
-            numeroOperadoresExistentes++;
             listaOperadores.Sort();
             return true;
         }
@@ -93,8 +88,6 @@ namespace Dados
         public bool RemoverOperadores()
         {
             listaOperadores.Clear();
-            numeroOperadoresExistentes = 0;
-            numOperadores = 0;
             return true;
         }
         /// <summary>
@@ -107,14 +100,6 @@ namespace Dados
             if (listaOperadores.Remove(o))
                 return true;
             return false;
-        }
-        /// <summary>
-        /// Ordenação da lista de Operadores.
-        /// </summary>
-        public void OrdenarOperadores()
-        {
-            //listaOperadores.Sort((o1,o2)=>o1.Id.CompareTo(o2.Id));
-            listaOperadores.Sort();
         }
         /// <summary>
         /// Retorna o numero de operadores existentes.
@@ -145,20 +130,6 @@ namespace Dados
             {
                 throw new EscritaFicheiro("Erro ao gravar o ficheiro de operadores.");
             }
-            //Stream ficheiro = null;
-            //if (!File.Exists(nomeFicheiro))
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Create);
-            //else
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-            //if (ficheiro == null)
-            //    return false;
-            //else
-            //{
-            //    BinaryFormatter b = new BinaryFormatter();
-            //    b.Serialize(ficheiro, listaOperadores);
-            //    ficheiro.Close();
-            //    return true;
-            //}
         }
         /// <summary>
         /// Le o ficheiro de operadores.

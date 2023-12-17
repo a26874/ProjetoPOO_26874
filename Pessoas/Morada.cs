@@ -126,6 +126,12 @@ namespace Pessoas
             if (this == a) return true;
             return false;
         }
+        /// <summary>
+        /// Retorna o hashcode da instancia.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -139,7 +145,7 @@ namespace Pessoas
         /// <returns></returns>
         public string FichaMorada()
         {
-            return string.Format("Rua:{0} - Codigo-Postal:{1} - Localidade:{2}", distrito, codigoPostal, localidade);
+            return string.Format("Rua:{0} - Codigo-Postal:{1} - Localidade:{2}\n", distrito, codigoPostal, localidade);
         }
         #endregion
 

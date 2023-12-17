@@ -28,12 +28,12 @@ namespace GereAssistencias
             #region IO dados
             //List<Assist> assistsInserir = new List<Assist>();
             ////Nova assistencias
-            //Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
-            //Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
-            //Assist a3 = new Assist(new DateTime(2023, 11, 1, 13, 45, 44), new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
-            //Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
-            //Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
-            //Assist a6 = new Assist(new DateTime(2023, 5, 15, 11, 9, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 5000), new EstadoAssist("Ativo", true), 1266, 12);
+            //Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssistencia("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
+            //Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssistencia("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
+            //Assist a3 = new Assist(new DateTime(2023, 11, 1, 13, 45, 44), new TipoAssistencia("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
+            //Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssistencia("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
+            //Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssistencia("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
+            //Assist a6 = new Assist(new DateTime(2023, 5, 15, 11, 9, 33), new TipoAssistencia("Dificuldades Tecnicas", "Manutencao", 3, 5000), new EstadoAssist("Ativo", true), 1266, 12);
 
 
             //assistsInserir.Add(a1);
@@ -353,7 +353,7 @@ namespace GereAssistencias
             Avaliacao clsA3 = new Avaliacao("asdasd", 9, "asdas");
             try
             {
-                bool aux = RegrasDeNegocio.ConcluirAssistencia(3, clsA3);
+                bool aux = RegrasDeNegocio.ConcluirAssistencia(1, clsA1);
                 aux = RegrasDeNegocio.ConcluirAssistencia(2, clsA2);
                 aux = RegrasDeNegocio.ConcluirAssistencia(1, clsA2);
             }
@@ -372,21 +372,21 @@ namespace GereAssistencias
             Console.WriteLine(numAssistRealizadas);
 
 
-            //Verificar se algum cliente ou operador tem assistências associadas.
-            Cliente auxCliente = new Cliente("teste", 91882, new Morada("asd", "asd", "asdaw"), 9128749);
-            List<Assist> auxListaCliente = RegrasDeNegocio.ExisteClienteAssistEspecifico(auxCliente);
+            //Verificar se algum cliente com assistências associadas
+            Cliente auxCliente = new Cliente("teste", 91882, new Morada("asd", "asd", "asdaw"), 9128749); // -> Cliente novo, não tem nada associado.
+            List<Assist> auxListaCliente = RegrasDeNegocio.ExisteClienteAssistEspecifico(auxCliente.NIF);
 
-            if (auxListaCliente.Count>0)
+            if (auxListaCliente.Count > 0)
             {
                 Console.WriteLine("O cliente {0} tem associadas as seguintes assistências:");
                 foreach (Assist a in auxListaCliente)
                 {
-                    Console.WriteLine(a.Id.ToString(), a.tipoAssis.ToString());
+                    Console.WriteLine(a.Id.ToString(), a.TipoAssistencia.ToString());
                 }
             }
 
-            Cliente c1 = new Cliente("Marco", 94829, new Morada("Braga", "4720-452", "Amares"), 1874);
-            auxListaCliente = RegrasDeNegocio.ExisteClienteAssistEspecifico(c1);
+            Cliente c1 = new Cliente("Marco", 94829, new Morada("Braga", "4720-452", "Amares"), 1874); // -> Cliente já existente, irá ter uma assistência com o seu NIF.
+            auxListaCliente = RegrasDeNegocio.ExisteClienteAssistEspecifico(c1.NIF);
 
             if (auxListaCliente.Count > 0)
             {
@@ -397,8 +397,8 @@ namespace GereAssistencias
                 }
             }
 
-            Operador auxOperador = new Operador("Teste",249, 9281899, new Morada("asd","asd","asd"));
-            List<Assist> auxListaOperador = RegrasDeNegocio.ExisteOperadorAssistEspecifico(auxOperador);
+            Operador auxOperador = new Operador("Teste", 249, 9281899, new Morada("asd", "asd", "asd"));
+            List<Assist> auxListaOperador = RegrasDeNegocio.ExisteOperadorAssistEspecifico(auxOperador.Id); // -> Operador novo, não tem nada associado.
             if (auxListaOperador.Count > 0)
             {
                 Console.WriteLine("O operador {0} tem associadas as seguintes assistências:", auxOperador.Nome);
@@ -408,12 +408,12 @@ namespace GereAssistencias
                 }
             }
 
-            Operador op1 = new Operador("Marco", 12, 2487, new Morada("Braga", "4720-444", "Amares"));
-            auxListaOperador = RegrasDeNegocio.ExisteOperadorAssistEspecifico(op1);
+            Operador op1 = new Operador("Marco", 12, 2487, new Morada("Braga", "4720-444", "Amares")); // -> Operador já existente, irá ter uma assistência com o seu ID.
+            auxListaOperador = RegrasDeNegocio.ExisteOperadorAssistEspecifico(op1.Id);
             auxListaOperador.Sort();
             if (auxListaOperador.Count > 0)
             {
-                Console.WriteLine("O operador {0} tem associadas as seguintes assistências:",op1.Nome);
+                Console.WriteLine("O operador {0} tem associadas as seguintes assistências:", op1.Nome);
                 foreach (Assist a in auxListaOperador)
                 {
                     Console.WriteLine("ID:{0} - Data:{1}", a.Id, a.Data);

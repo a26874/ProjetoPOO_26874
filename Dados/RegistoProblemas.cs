@@ -21,22 +21,25 @@ namespace Dados
     public class RegistoProblemas
     {
         #region ATRIBUTOS
-        private static int numProblemas;
         private static List<ProblemasCon> listaSolucoes;
         #endregion
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES    
+        #region CONSTRUTORES            
+        /// <summary>
+        /// Construtor estatico para inicilização da classe.
+        /// </summary>
         static RegistoProblemas()
         {
             listaSolucoes = new List<ProblemasCon>();
         }
         /// <summary>
-        /// Construtor para inicializar um novo registo de ProblemasConhecidos.
+        /// Construtor por defeito.
         /// </summary>
         public RegistoProblemas()
         {
+
         }
         #endregion
 
@@ -77,7 +80,6 @@ namespace Dados
                     return false;
             }
             listaSolucoes.Add(p);
-            numProblemas++;
             return true;
         }
         /// <summary>
@@ -125,20 +127,6 @@ namespace Dados
             {
                 throw new EscritaFicheiro("Erro ao gravar o ficheiro de solucoes.");
             }
-            //Stream ficheiro = null;
-            //if (!File.Exists(nomeFicheiro))
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Create);
-            //else
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-            //if (ficheiro == null)
-            //    return false;
-            //else
-            //{
-            //    BinaryFormatter b = new BinaryFormatter();
-            //    b.Serialize(ficheiro, listaSolucoes);
-            //    ficheiro.Close();
-            //    return true;
-            //}
         }
         /// <summary>
         /// Le do ficheiro de solucoes.

@@ -12,9 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using ObjetosNegocio;
-using Interfaces;
 using Excecoes;
-using System.Net;
 
 namespace Dados
 {
@@ -25,7 +23,6 @@ namespace Dados
     {
 
         #region ATRIBUTOS
-        private static int numCliente;
         private static List<Cliente> listaClientes;
         #endregion
 
@@ -85,7 +82,6 @@ namespace Dados
                     throw new ClienteException("Ja existe este cliente.");
             }
             listaClientes.Add(c);
-            numCliente++;
             listaClientes.Sort();
             return true;
         }
@@ -118,7 +114,6 @@ namespace Dados
         public bool RemoverClientes()
         {
             listaClientes.Clear();
-            numCliente = 0;
             return true;
         }
         /// <summary>
@@ -131,14 +126,6 @@ namespace Dados
             if (listaClientes.Remove(c))
                 return true;
             return false;
-        }
-        /// <summary>
-        /// Ordena a lista de clientes, pelo seu NIF.
-        /// </summary>
-        public void OrdenarClientes()
-        {
-            //listaClientes.Sort((c1, c2) => c1.NIF.CompareTo(c2.NIF));
-            listaClientes.Sort();
         }
         /// <summary>
         /// Retorna o numero de clientes existentes.
@@ -169,20 +156,6 @@ namespace Dados
             {
                 throw new EscritaFicheiro("Erro ao gravar o ficheiro de clientes.");
             }
-            //Stream ficheiro = null;
-            //if (!File.Exists(nomeFicheiro))
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Create);
-            //else
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-            //if (ficheiro == null)
-            //    return false;
-            //else
-            //{
-            //    BinaryFormatter b = new BinaryFormatter();
-            //    b.Serialize(ficheiro, listaClientes);
-            //    ficheiro.Close();
-            //    return true;
-            //}
         }
         /// <summary>
         /// Le do ficheiro de clientes, todos os clientes.
@@ -238,13 +211,13 @@ namespace Dados
         {
             foreach (Cliente c in listaClientes)
             {
-                if (c.NIF == a.Cliente.NIF && c.Saldo > a.tipoAssis.Preco)
+                if (c.NIF == a.Cliente.NIF && c.Saldo > a.TipoAssistencia.Preco)
                 {
-                    c.Saldo -= a.tipoAssis.Preco;
+                    c.Saldo -= a.TipoAssistencia.Preco;
                     return true;
                 }
             }
-            throw new ClienteException("O cliente não tem saldo suficiente para concluir a assistencia.");
+            throw new ClienteException("O cliente não tem saldo suficiente para concl        uir a assistencia.");
         }
         #endregion
 

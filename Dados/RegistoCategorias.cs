@@ -9,7 +9,6 @@
 
 
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Outros;
 
@@ -21,7 +20,6 @@ namespace Dados
     public class RegistoCategorias
     {
         #region ATRIBUTOS
-        private static int numCategorias;
         private static List<Categoria> listaCategorias;
         private List<Categoria> categorias;
         #endregion
@@ -80,9 +78,14 @@ namespace Dados
             }
             Categoria c = new Categoria(nomeCategoria, idProd);
             listaCategorias.Add(c);
-            numCategorias++;
             return true;
         }
+        /// <summary>
+        /// Verifica se existe categorias para um produto.
+        /// </summary>
+        /// <param name="idProduto">The identifier produto.</param>
+        /// <param name="categoriasInserir">The categorias inserir.</param>
+        /// <returns></returns>
         public static bool ExisteCategoriasProduto(int idProduto, out List<Categoria> categoriasInserir)
         {
             categoriasInserir = new List<Categoria>();

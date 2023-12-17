@@ -24,7 +24,6 @@ namespace Dados
     public class RegistoProdutos
     {
         #region ATRIBUTOS
-        private static int numProdutos;
         private static List<Produto> listaProdutos;
         #endregion
 
@@ -38,7 +37,9 @@ namespace Dados
         {
             listaProdutos = new List<Produto>();
         }
-
+        /// <summary>
+        /// Construtor por defeito.
+        /// </summary>
         public RegistoProdutos()
         {
 
@@ -77,7 +78,6 @@ namespace Dados
                     return false;
             }
             listaProdutos.Add(p);
-            numProdutos++;
             listaProdutos.Sort();
             return true;
         }
@@ -88,7 +88,6 @@ namespace Dados
         public static bool RemoverProdutos()
         {
             listaProdutos.Clear();
-            numProdutos = 0;
             return true;
         }
         /// <summary>
@@ -131,20 +130,6 @@ namespace Dados
             {
                 throw new EscritaFicheiro("Erro ao gravar o ficheiro de produtos.");
             }
-            //Stream ficheiro = null;
-            //if (!File.Exists(nomeFicheiro))
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Create);
-            //else
-            //    ficheiro = File.Open(nomeFicheiro, FileMode.Open);
-            //if (ficheiro == null)
-            //    return false;
-            //else
-            //{
-            //    BinaryFormatter b = new BinaryFormatter();
-            //    b.Serialize(ficheiro, listaProdutos);
-            //    ficheiro.Close();
-            //    return true;
-            //}
         }
         /// <summary>
         /// Le do ficheiro Produtos, todos os produtos.

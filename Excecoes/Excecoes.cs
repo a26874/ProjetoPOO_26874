@@ -25,6 +25,7 @@ namespace Excecoes
     /// <summary>
     /// Exceção para leitura de ficheiro.
     /// </summary>
+    /// <seealso cref="System.Exception" />
     public class LeituraFicheiro : Exception
     {
         public LeituraFicheiro() { }
@@ -38,6 +39,7 @@ namespace Excecoes
     public class SolucaoException : Exception
     {
         public SolucaoException() { }
+
         public SolucaoException(string message) : base(message) { }
     }
     /// <summary>
