@@ -22,7 +22,7 @@ namespace Dados
     /// <summary>
     /// Classe para registar assistências.
     /// </summary>
-    public class RegistoAssist
+    public class RegistoAssist 
     {
 
         #region ATRIBUTOS
@@ -148,8 +148,6 @@ namespace Dados
             {
                 if (p is null)
                     return false;
-                //else if ((ReferenceEquals(b.Solucao, null) || a.Solucao == p) && !ReferenceEquals(a.Solucao, null))
-                //    throw new AssistException("Ja existe solucao para esta assistencia.");
                 if (b.Id == a.Id && a.TipoAssistencia.Id == p.Id)
                 {
                     b.Solucao = p;
