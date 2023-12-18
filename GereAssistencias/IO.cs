@@ -60,7 +60,7 @@ namespace GereAssistencias
         /// <summary>
         /// Dada uma lista de operadores dá print dos mesmos.
         /// </summary>
-        /// <param name="listaClientes"></param>
+        /// <param name="listaOperadores">The lista operadores.</param>
         public static void MostrarOperadores(List<Operador> listaOperadores)
         {
             foreach (Operador o in listaOperadores)
@@ -109,8 +109,6 @@ namespace GereAssistencias
         {
             foreach (Produto p in listaProdutos)
             {
-                //if (ReferenceEquals(p, null) || p.Id == 0)
-                //    continue;
                 Console.WriteLine(p.ToString());
                 foreach (Categoria c in listaCategorias)
                 {

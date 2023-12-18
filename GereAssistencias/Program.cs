@@ -26,7 +26,7 @@ namespace GereAssistencias
                 Console.WriteLine(e.Message);
             }
 
-            #region IO dados
+            #region Input de dados
             //List<Assist> assistsInserir = new List<Assist>();
             ////Nova assistencias
             //Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssistencia("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
@@ -385,6 +385,7 @@ namespace GereAssistencias
                 Console.WriteLine("O operador {0} tem associadas as seguintes assistências:", op1.Nome);
                 IO.DadosIdentificacaoAssist(auxListaOperador);
             }
+
 
             List<Produto> listaProdutos = RegrasDeNegocio.MostrarProdutos();
             List<Categoria> listaCategorias = RegrasDeNegocio.MostrarCategorias();
