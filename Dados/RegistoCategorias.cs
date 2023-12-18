@@ -9,8 +9,12 @@
 
 
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Excecoes;
+using System.Runtime.Serialization.Formatters.Binary;
 using Outros;
+using ObjetosNegocio;
 
 namespace Dados
 {
@@ -100,6 +104,55 @@ namespace Dados
                 return true;
             categoriasInserir = null;
             return false;
+        }
+        /// <summary>
+        /// Grava todas as categorias.
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        /// <exception cref="EscritaFicheiro"></exception>
+        public static bool GravarFicheiroCategorias(string nomeFicheiro)
+        {
+            try
+            {
+                using (Stream ficheiro = File.Open(nomeFicheiro, FileMode.Create))
+                {
+                    BinaryFormatter b = new BinaryFormatter();
+                    b.Serialize(ficheiro, listaCategorias);
+                    ficheiro.Close();
+                    return true;
+                }
+            }
+            catch (EscritaFicheiro)
+            {
+                throw new EscritaFicheiro("Erro ao gravar o ficheiro de categorias.");
+            }
+        }
+        /// <summary>
+        /// Lê tudo acerca de categorias.   
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        /// <exception cref="LeituraFicheiro"></exception>
+        public static bool LerFicheiroCategorias(string nomeFicheiro)
+        {
+            Stream ficheiro = null;
+            try
+            {
+                if (!File.Exists(nomeFicheiro))
+                    return false;
+                using (ficheiro = File.Open(nomeFicheiro, FileMode.Open))
+                {
+                    BinaryFormatter b = new BinaryFormatter();
+                    listaCategorias = (List<Categoria>)b.Deserialize(ficheiro);
+                    ficheiro.Close();
+                    return true;
+                }
+            }
+            catch (LeituraFicheiro)
+            {
+                throw new LeituraFicheiro("Erro ao ler o ficheiro de categorias.");
+            }
         }
         #endregion
 

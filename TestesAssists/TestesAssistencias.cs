@@ -64,7 +64,7 @@ namespace TestesAssists
             try
             {
                 resultado = RegistoAssist.InsereClienteAssistLista(a1, c2);
-                resultado = RegistoAssist.InsereClienteAssistLista(a1, c1);
+                resultado = RegistoAssist.InsereClienteAssistLista(a1, c1); // -> Dá erro, já tem cliente a assistência.
                 resultado = RegistoAssist.InsereClienteAssistLista(a1, c2);
             }
             finally
@@ -74,10 +74,7 @@ namespace TestesAssists
 
 
             //Verificação 
-            if (resultado)
-                Assert.IsTrue(resultado, "Tudo inserido como esperado, não contem clientes duplicados.");
-            else
-                Assert.IsFalse(resultado, "Já algum cliente nesta assistência.");
+            Assert.IsFalse(resultado, "Já algum cliente nesta assistência.");
         }
 
         /// <summary>
@@ -103,17 +100,14 @@ namespace TestesAssists
                 resultado = RegistoAssist.InsereOperadorAssistLista(a1, op1);
                 //resultado = RegistoAssist.InsereOperadorAssistLista(a1, op2);
                 resultado = RegistoAssist.InsereOperadorAssistLista(a2, op1);
-                resultado = RegistoAssist.InsereOperadorAssistLista(a2, op2);
+                resultado = RegistoAssist.InsereOperadorAssistLista(a2, op2); // -> dá erro, a assistência a2 já tem operador.
             }
             finally
             {
                 RegistoAssist.RemoverAssistencias();
             }
             //Verificação
-            if (resultado)
-                Assert.IsTrue(resultado, "Tudo inserido como pretendido, não houve duplicações");
-            else
-                Assert.IsFalse(resultado, "Ja existe algum operador nesta assistência.");
+            Assert.IsFalse(resultado, "Ja existe algum operador nesta assistência.");
         }
 
         

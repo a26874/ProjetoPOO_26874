@@ -137,7 +137,7 @@ namespace RegrasNegocio
         public static List<Assist> MostrarTodasAssistencias()
         {
             RegistoAssist aux = new RegistoAssist();
-            List<Assist> copiaListaAssists = new List<Assist>(); 
+            List<Assist> copiaListaAssists = new List<Assist>();
             foreach (Assist a in aux.ObterAssistencias)
             {
                 Assist clone = a.Clone();
@@ -152,7 +152,7 @@ namespace RegrasNegocio
         {
             RegistoAssist aux = new RegistoAssist();
             List<Assist> copiaListaAssistsAtivas = new List<Assist>();
-            foreach(Assist a in aux.ObterAssistencias)
+            foreach (Assist a in aux.ObterAssistencias)
             {
                 if (a.EstadoAssistencia.DescEstado == "Ativo" && a.EstadoAssistencia.Ativo == true)
                 {
@@ -234,7 +234,7 @@ namespace RegrasNegocio
                 RegistoAssist.GravarFicheiroAssistencias(nomeFicheiro);
                 return true;
             }
-            catch(EscritaFicheiro e)
+            catch (EscritaFicheiro e)
             {
                 throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");
             }
@@ -489,7 +489,7 @@ namespace RegrasNegocio
                 RegistoProdutos.InserirProduto(p);
                 return true;
             }
-            catch(ProdutosException e)
+            catch (ProdutosException e)
             {
                 throw new ProdutosException(e.Message + "-" + "Falha ao inserir o produto.");
             }
@@ -598,6 +598,41 @@ namespace RegrasNegocio
                 throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro");
             }
         }
+        /// <summary>
+        /// Grava todas as categorias existentes
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        public static bool GravarFicheiroCategorias(string nomeFicheiro)
+        {
+            try
+            {
+                RegistoCategorias.GravarFicheiroCategorias(nomeFicheiro);
+                return true;
+            }
+            catch (EscritaFicheiro e)
+            {
+                throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");
+            }
+        }
+        /// <summary>
+        /// Lê toda a informação do ficheiro de categorias.
+        /// </summary>
+        /// <param name="nomeFicheiro"></param>
+        /// <returns></returns>
+        /// <exception cref="LeituraFicheiro"></exception>
+        public static bool LerFicheiroCategorias(string nomeFicheiro)
+        {
+            try
+            {
+                RegistoCategorias.LerFicheiroCategorias(nomeFicheiro);
+                return true;
+            }
+            catch (LeituraFicheiro e)
+            {
+                throw new LeituraFicheiro(e.Message + " - " + "Erro ao ler ficheiro");
+            }
+        }
         #endregion
 
         #region SOLUCOES
@@ -617,7 +652,7 @@ namespace RegrasNegocio
                 RegistoProblemas.InserirSolucaoLista(p);
                 return true;
             }
-            catch(ProblemaException e)
+            catch (ProblemaException e)
             {
                 throw new ProblemaException(e.Message + "-" + "Ja existe esta solucao na lista de solucoes.");
             }
@@ -641,8 +676,8 @@ namespace RegrasNegocio
         /// <returns></returns>
         public static List<ProblemasCon> MostrarSolucoesExistentes()
         {
-            List < ProblemasCon > listaSolucoes = RegistoProblemas.ObterSolucoes;
-            return listaSolucoes;      
+            List<ProblemasCon> listaSolucoes = RegistoProblemas.ObterSolucoes;
+            return listaSolucoes;
         }
         /// <summary>
         /// Verifica se existe solução para algum problema, a partir do ID.
@@ -706,7 +741,7 @@ namespace RegrasNegocio
             }
         }
         #endregion
-         
+
 
         #endregion
 

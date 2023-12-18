@@ -19,6 +19,7 @@ namespace GereAssistencias
                 aux = RegrasDeNegocio.LerFicheiroProdutos("RegistoProdutos.dat");
                 aux = RegrasDeNegocio.LerFicheiroSolucoes("RegistoSolucoes.dat");
                 aux = RegrasDeNegocio.LerFicheiroAssist("RegistoAssistencias.dat");
+                aux = RegrasDeNegocio.LerFicheiroCategorias("RegistoCategorias.dat");
             }
             catch (LeituraFicheiro e)
             {
@@ -240,7 +241,17 @@ namespace GereAssistencias
             //{
             //    Console.WriteLine(e.Message);
             //}
-
+            ////Criação de categorias.
+            //try
+            //{
+            //    bool aux = RegrasDeNegocio.InserirCategoriasLista("SMARTPHONE", 1);
+            //    aux = RegrasDeNegocio.InserirCategoriasLista("5G", 1);
+            //    aux = RegrasDeNegocio.InserirCategoriasLista("Portatil", 2);
+            //}
+            //catch (CategoriaException e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
             //List<Produto> listaProdutos = RegrasDeNegocio.MostrarProdutos();
             //List<Categoria> listaCategorias = RegrasDeNegocio.MostrarCategorias();
             //foreach (Produto p in listaProdutos)
@@ -263,80 +274,47 @@ namespace GereAssistencias
             //Output de assistências concluidas.
             Console.WriteLine("Assitencias concluidas:");
             List<Assist> todasAssistConcluidas = RegrasDeNegocio.MostrarAssistenciasConcluidas();
-            foreach (Assist a in todasAssistConcluidas)
-            {
-                Console.WriteLine(a.ToString());
-            }
+            IO.MostrarAssistencias(todasAssistConcluidas);
+
 
             Console.WriteLine("\n\n\n");
 
             //Output de assistências por concluir.
             Console.WriteLine("Assistencias por concluir:");
             List<Assist> todasAssistAtivas = RegrasDeNegocio.MostrarAssistenciasAtivas();
-            foreach (Assist a in todasAssistAtivas)
-            {
-                Console.WriteLine(a.ToString());
-            }
+            IO.MostrarAssistencias(todasAssistAtivas);
 
             Console.WriteLine("\n\n\n");
 
             Console.WriteLine("Todas as assistencias:");
             //Output de todas as assistências.
             List<Assist> todasAssist = RegrasDeNegocio.MostrarTodasAssistencias();
-
-            foreach (Assist a in todasAssist)
-            {
-                Console.WriteLine(a.ToString());
-            }
+            IO.MostrarAssistencias(todasAssist);
 
             Console.WriteLine("\n\n\n");
             Console.WriteLine("Todos os clientes:");
             //Output de todos os clientes.
             List<Cliente> todosClientes = RegrasDeNegocio.MostrarTodosClientes();
-
-            foreach (Cliente c in todosClientes)
-            {
-                Console.WriteLine(c.ToString());
-            }
+            IO.MostrarClientes(todosClientes);
 
             Console.WriteLine("\n\n\n");
 
             Console.WriteLine("Todos os operadores:");
-
-
             //Output de todos os operadores.
             List<Operador> todosOperadores = RegrasDeNegocio.MostrarTodosOperadores();
+            IO.MostrarOperadores(todosOperadores);
 
-            foreach (Operador o in todosOperadores)
-            {
-                Console.WriteLine(o.ToString());
-            }
 
             Console.WriteLine("\n\n\n");
 
             //Output de todos os clientes com morada.
             Console.WriteLine("Clientes com morada:");
             List<Cliente> todosClientesCompleto = RegrasDeNegocio.MostrarFichaClientesCompleto();
-
-            foreach (Cliente c in todosClientesCompleto)
-            {
-                Console.WriteLine(c.ToString());
-                if (c.Morada is null || c.Morada.CodPostal == string.Empty)
-                    continue;
-                else
-                {
-                    Console.WriteLine(c.Morada.ToString());
-                }
-            }
-
-
+            IO.MostrarClientesCompleto(todosClientesCompleto);
 
 
             List<ProblemasCon> listaSolucoes = RegrasDeNegocio.MostrarSolucoesExistentes();
-            foreach (ProblemasCon p in listaSolucoes)
-            {
-                Console.WriteLine(p.ToString());
-            }
+            IO.MostrarSolucoes(listaSolucoes);
             try
             {
                 bool existeSolucao = RegrasDeNegocio.ExisteSolucaoProblema(10);
@@ -374,27 +352,21 @@ namespace GereAssistencias
 
             //Verificar se algum cliente com assistências associadas
             Cliente auxCliente = new Cliente("teste", 91882, new Morada("asd", "asd", "asdaw"), 9128749); // -> Cliente novo, não tem nada associado.
-            List<Assist> auxListaCliente = RegrasDeNegocio.ExisteClienteAssistEspecifico(auxCliente.NIF);
+            List<Assist> auxListaAssist = RegrasDeNegocio.ExisteClienteAssistEspecifico(auxCliente.NIF);
 
-            if (auxListaCliente.Count > 0)
+            if (auxListaAssist.Count > 0)
             {
                 Console.WriteLine("O cliente {0} tem associadas as seguintes assistências:");
-                foreach (Assist a in auxListaCliente)
-                {
-                    Console.WriteLine(a.Id.ToString(), a.TipoAssistencia.ToString());
-                }
+                IO.DadosIdentificacaoAssist(auxListaAssist);
             }
 
             Cliente c1 = new Cliente("Marco", 94829, new Morada("Braga", "4720-452", "Amares"), 1874); // -> Cliente já existente, irá ter uma assistência com o seu NIF.
-            auxListaCliente = RegrasDeNegocio.ExisteClienteAssistEspecifico(c1.NIF);
+            auxListaAssist = RegrasDeNegocio.ExisteClienteAssistEspecifico(c1.NIF);
 
-            if (auxListaCliente.Count > 0)
+            if (auxListaAssist.Count > 0)
             {
                 Console.WriteLine("O cliente {0} tem associadas as seguintes assistências:", c1.Nome);
-                foreach (Assist a in auxListaCliente)
-                {
-                    Console.WriteLine("ID:{0} - Data:{1}", a.Id, a.Data);
-                }
+                IO.DadosIdentificacaoAssist(auxListaAssist);
             }
 
             Operador auxOperador = new Operador("Teste", 249, 9281899, new Morada("asd", "asd", "asd"));
@@ -402,10 +374,7 @@ namespace GereAssistencias
             if (auxListaOperador.Count > 0)
             {
                 Console.WriteLine("O operador {0} tem associadas as seguintes assistências:", auxOperador.Nome);
-                foreach (Assist a in auxListaOperador)
-                {
-                    Console.WriteLine("ID:{0} - Data:{1}", a.Id, a.Data);
-                }
+                IO.DadosIdentificacaoAssist(auxListaOperador);
             }
 
             Operador op1 = new Operador("Marco", 12, 2487, new Morada("Braga", "4720-444", "Amares")); // -> Operador já existente, irá ter uma assistência com o seu ID.
@@ -414,13 +383,12 @@ namespace GereAssistencias
             if (auxListaOperador.Count > 0)
             {
                 Console.WriteLine("O operador {0} tem associadas as seguintes assistências:", op1.Nome);
-                foreach (Assist a in auxListaOperador)
-                {
-                    Console.WriteLine("ID:{0} - Data:{1}", a.Id, a.Data);
-                }
+                IO.DadosIdentificacaoAssist(auxListaOperador);
             }
 
-
+            List<Produto> listaProdutos = RegrasDeNegocio.MostrarProdutos();
+            List<Categoria> listaCategorias = RegrasDeNegocio.MostrarCategorias();
+            IO.MostrarProdutos(listaProdutos, listaCategorias);
             try
             {
                 bool aux = RegrasDeNegocio.GravarFicheiroAssist("RegistoAssistencias.dat");
@@ -428,13 +396,12 @@ namespace GereAssistencias
                 aux = RegrasDeNegocio.GravarFicheiroOperadores("RegistoOperadores.dat");
                 aux = RegrasDeNegocio.GravarFicheiroProdutos("RegistoProdutos.dat");
                 aux = RegrasDeNegocio.GravarFicheiroSolucoes("RegistoSolucoes.dat");
+                aux = RegrasDeNegocio.GravarFicheiroCategorias("RegistoCategorias.dat");
             }
             catch (EscritaFicheiro e)
             {
                 Console.WriteLine(e.Message);
             }
-
-
         }
     }
 }
