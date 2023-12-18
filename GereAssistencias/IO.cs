@@ -15,6 +15,9 @@ using System.Collections.Generic;
 
 namespace GereAssistencias
 {
+    /// <summary>
+    /// Classe para Input Output de dados.
+    /// </summary>
     public class IO
     {
         #region ATRIBUTOS
