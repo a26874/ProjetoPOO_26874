@@ -6,10 +6,8 @@
 *   <date>2023 12/18/2023 2:09:07 PM</date>
 *	<description></description>
 **/
-using Assistencia;
 using ObjetosNegocio;
 using Outros;
-using Pessoas;
 using System;
 using System.Collections.Generic;
 

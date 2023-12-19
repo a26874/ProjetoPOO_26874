@@ -1,5 +1,4 @@
-﻿using Assistencia;
-using Excecoes;
+﻿using Excecoes;
 using ObjetosNegocio;
 using Outros;
 using Pessoas;
