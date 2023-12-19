@@ -28,7 +28,10 @@ namespace RegrasNegocio
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES
+        #region CONSTRUTORES        
+        /// <summary>
+        /// Construtor por defeito.
+        /// </summary>
         public RegrasDeNegocio()
         {
 
@@ -64,7 +67,8 @@ namespace RegrasNegocio
             }
             catch (AssistException e)
             {
-                throw new AssistException("Falha ao inserir assistencia." + "-" + e.Message);
+                throw new AssistException("Falha ao inserir assistencia." + "-" + e.Message); // Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                              // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -85,7 +89,8 @@ namespace RegrasNegocio
             }
             catch (ClienteException e)
             {
-                throw new ClienteException(e.Message + "-" + "A assistencia " + a.Id + " ja tem cliente");
+                throw new ClienteException(e.Message + "-" + "A assistencia " + a.Id + " ja tem cliente");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                                          // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -106,7 +111,8 @@ namespace RegrasNegocio
             }
             catch (OperadorException e)
             {
-                throw new OperadorException(e.Message + "-" + "A assistencia " + a.Id + " ja tem operador");
+                throw new OperadorException(e.Message + "-" + "A assistencia " + a.Id + " ja tem operador");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                                            // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -127,7 +133,8 @@ namespace RegrasNegocio
             }
             catch (AssistException e)
             {
-                throw new AssistException(e.Message + "-" + "A assistencia " + a.Id + " ja tem solucao");
+                throw new AssistException(e.Message + "-" + "A assistencia " + a.Id + " ja tem solucao");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                                         // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -199,11 +206,13 @@ namespace RegrasNegocio
             }
             catch (AssistException e)
             {
-                throw new AssistException("Nao foi possivel concluir a assistencia" + "-" + e.Message);
+                throw new AssistException("Nao foi possivel concluir a assistencia" + "-" + e.Message);// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                                       // para o main. Assim consegui explorar melhor exceções
             }
             catch (ClienteException e)
             {
-                throw new ClienteException("Nao foi possivel concluir a assistencia" + "-" + e.Message);
+                throw new ClienteException("Nao foi possivel concluir a assistencia" + "-" + e.Message);// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                                        // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -236,7 +245,8 @@ namespace RegrasNegocio
             }
             catch (EscritaFicheiro e)
             {
-                throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");
+                throw new EscritaFicheiro(e.Message + " - " + "Erro ao gravar ficheiro");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                         // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -254,7 +264,8 @@ namespace RegrasNegocio
             }
             catch (LeituraFicheiro e)
             {
-                throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro.");
+                throw new LeituraFicheiro(e.Message + " - " + " Erro ao ler o ficheiro.");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                          // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -314,7 +325,8 @@ namespace RegrasNegocio
             }
             catch (ClienteException e)
             {
-                throw new ClienteException("Falha ao inserir o cliente." + e.Message);
+                throw new ClienteException("Falha ao inserir o cliente." + e.Message);// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                      // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -332,7 +344,8 @@ namespace RegrasNegocio
             }
             catch (ClienteException e)
             {
-                throw new ClienteException(" Falha ao inserir saldo" + " - " + e.Message);
+                throw new ClienteException(" Falha ao inserir saldo" + " - " + e.Message);// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                          // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -419,7 +432,8 @@ namespace RegrasNegocio
             }
             catch (OperadorException e)
             {
-                throw new OperadorException(e.Message + "-" + "Falha ao inserir o operador.");
+                throw new OperadorException(e.Message + "-" + "Falha ao inserir o operador.");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                              // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -491,7 +505,8 @@ namespace RegrasNegocio
             }
             catch (ProdutosException e)
             {
-                throw new ProdutosException(e.Message + "-" + "Falha ao inserir o produto.");
+                throw new ProdutosException(e.Message + "-" + "Falha ao inserir o produto.");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                             // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -509,7 +524,8 @@ namespace RegrasNegocio
             }
             catch (CategoriaException e)
             {
-                throw new CategoriaException(e.Message + "-" + "Falha ao inserir categoria");
+                throw new CategoriaException(e.Message + "-" + "Falha ao inserir categoria");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                             // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>
@@ -654,7 +670,8 @@ namespace RegrasNegocio
             }
             catch (ProblemaException e)
             {
-                throw new ProblemaException(e.Message + "-" + "Ja existe esta solucao na lista de solucoes.");
+                throw new ProblemaException(e.Message + "-" + "Ja existe esta solucao na lista de solucoes.");// Deveria retornar falso, entretanto ela apanha a exceção anterior e manda a anterior e a nova mensagem
+                                                                                                              // para o main. Assim consegui explorar melhor exceções
             }
         }
         /// <summary>

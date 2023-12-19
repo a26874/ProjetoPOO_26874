@@ -18,7 +18,7 @@ namespace Outros
     public class Avaliacao
     {
         #region ATRIBUTOS
-        private int idAvaliacao=1;
+        private DateTime dataAvaliacao;
         private string descricao;
         private int pontuacao;
         private string melhorias;
@@ -26,13 +26,13 @@ namespace Outros
 
         #region COMPORTAMENTO
 
-        #region CONSTRUTORES
+        #region CONSTRUTORES        
         /// <summary>
         /// Construtor por defeito
         /// </summary>
         public Avaliacao()
         {
-            idAvaliacao = -1;
+            dataAvaliacao = DateTime.MinValue;
             descricao = string.Empty;
             pontuacao = -1;
             melhorias = string.Empty;
@@ -43,12 +43,12 @@ namespace Outros
         /// <param name="desc"></param>
         /// <param name="pont"></param>
         /// <param name="mel"></param>
-        public Avaliacao(string desc, int pont, string mel)
+        public Avaliacao(string desc, int pont, string mel, DateTime dataAvaliacao)
         {
-            idAvaliacao++;
             descricao = desc;
             pontuacao = pont;
             melhorias = mel;
+            this.dataAvaliacao = dataAvaliacao;
         }
         #endregion
 
@@ -92,7 +92,7 @@ namespace Outros
         /// <returns></returns>
         public static bool operator == (Avaliacao a, Avaliacao b)
         {
-            if (a.idAvaliacao == b.idAvaliacao)
+            if (a.dataAvaliacao == b.dataAvaliacao)
                 return true;
             return false;
         }
@@ -151,7 +151,7 @@ namespace Outros
         /// <returns></returns>
         public string FichaAvaliacao()
         {
-            return string.Format("Pontuacao:{0}\nDescricao:{1}\nMelhorias:{2}\n", pontuacao, descricao, melhorias);
+            return string.Format("Pontuacao:{0}\nDescricao:{1}\nMelhorias:{2}\nData:{3}\n", pontuacao, descricao, melhorias, dataAvaliacao);
         }
         /// <summary>
         /// Para clonar objetos da classe.
@@ -159,7 +159,7 @@ namespace Outros
         /// <returns></returns>
         public Avaliacao Clone()
         {
-            return new Avaliacao(descricao, pontuacao, melhorias);
+            return new Avaliacao(descricao, pontuacao, melhorias, dataAvaliacao);
         }
         #endregion
 

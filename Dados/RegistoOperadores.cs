@@ -75,7 +75,8 @@ namespace Dados
                 if (a.Id == -1)
                     continue;
                 if (a.Equals(o))
-                    throw new OperadorException("O operador ja existe ");
+                    throw new OperadorException("O operador ja existe "); // Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                          // Explorar melhor a classe de exceções
             }
             listaOperadores.Add(o);
             listaOperadores.Sort();

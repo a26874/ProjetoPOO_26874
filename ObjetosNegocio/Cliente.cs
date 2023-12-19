@@ -46,7 +46,7 @@ namespace ObjetosNegocio
         /// <param name="c">The c.</param>
         /// <param name="m">The m.</param>
         /// <param name="ni">The ni.</param>
-        public Cliente(string n, int c, Morada m, int ni)
+        public Cliente(string n, int c, Morada m, int ni) 
         {
             Nome= n;
             Contacto = c;

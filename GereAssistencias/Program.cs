@@ -1,4 +1,5 @@
-﻿using Excecoes;
+﻿using Assistencia;
+using Excecoes;
 using ObjetosNegocio;
 using Outros;
 using Pessoas;
@@ -29,12 +30,12 @@ namespace GereAssistencias
             #region Input de dados
             //List<Assist> assistsInserir = new List<Assist>();
             ////Nova assistencias
-            //Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssistencia("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
-            //Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssistencia("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
-            //Assist a3 = new Assist(new DateTime(2023, 11, 1, 13, 45, 44), new TipoAssistencia("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
-            //Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssistencia("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
-            //Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssistencia("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
-            //Assist a6 = new Assist(new DateTime(2023, 5, 15, 11, 9, 33), new TipoAssistencia("Dificuldades Tecnicas", "Manutencao", 3, 5000), new EstadoAssist("Ativo", true), 1266, 12);
+            //Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
+            //Assist a2 = new Assist(new DateTime(2023, 10, 5, 10, 22, 11), new TipoAssist("Informacao entrega Produto", "Entregas", 2, 345), new EstadoAssist("Ativo", true), 1759, 12);
+            //Assist a3 = new Assist(new DateTime(2023, 11, 1, 13, 45, 44), new TipoAssist("Encomendas de produtos", "Entregas", 2, 255), new EstadoAssist("Ativo", true), 1874, 12);
+            //Assist a4 = new Assist(new DateTime(2023, 9, 29, 11, 55, 51), new TipoAssist("Servico Manutencao", "Assistencia", 4, 1000), new EstadoAssist("Ativo", true), 1676, 12);
+            //Assist a5 = new Assist(new DateTime(2023, 7, 15, 19, 11, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 200), new EstadoAssist("Ativo", true), 1676, 12);
+            //Assist a6 = new Assist(new DateTime(2023, 5, 15, 11, 9, 33), new TipoAssist("Dificuldades Tecnicas", "Manutencao", 3, 5000), new EstadoAssist("Ativo", true), 1266, 12);
 
 
             //assistsInserir.Add(a1);
@@ -326,9 +327,9 @@ namespace GereAssistencias
 
 
             //Criar avaliações e atribuir a assistências.
-            Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar");
-            Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao");
-            Avaliacao clsA3 = new Avaliacao("asdasd", 9, "asdas");
+            Avaliacao clsA1 = new Avaliacao("Bom servico", 10, "nada a apontar", new DateTime(2022,10,11));
+            Avaliacao clsA2 = new Avaliacao("Pessimo Servico", 2, "Melhorar comunicacao", new DateTime(2022, 2, 11));
+            Avaliacao clsA3 = new Avaliacao("asdasd", 9, "asdas", new DateTime(2022, 9, 11));
             try
             {
                 bool aux = RegrasDeNegocio.ConcluirAssistencia(1, clsA1);
@@ -360,12 +361,12 @@ namespace GereAssistencias
                 IO.DadosIdentificacaoAssist(auxListaAssist);
             }
 
-            Cliente c1 = new Cliente("Marco", 94829, new Morada("Braga", "4720-452", "Amares"), 1874); // -> Cliente já existente, irá ter uma assistência com o seu NIF.
-            auxListaAssist = RegrasDeNegocio.ExisteClienteAssistEspecifico(c1.NIF);
+            Cliente auxC = new Cliente("Marco", 94829, new Morada("Braga", "4720-452", "Amares"), 1874); // -> Cliente já existente, irá ter uma assistência com o seu NIF.
+            auxListaAssist = RegrasDeNegocio.ExisteClienteAssistEspecifico(auxC.NIF);
 
             if (auxListaAssist.Count > 0)
             {
-                Console.WriteLine("O cliente {0} tem associadas as seguintes assistências:", c1.Nome);
+                Console.WriteLine("O cliente {0} tem associadas as seguintes assistências:", auxC.Nome);
                 IO.DadosIdentificacaoAssist(auxListaAssist);
             }
 
@@ -377,12 +378,12 @@ namespace GereAssistencias
                 IO.DadosIdentificacaoAssist(auxListaOperador);
             }
 
-            Operador op1 = new Operador("Marco", 12, 2487, new Morada("Braga", "4720-444", "Amares")); // -> Operador já existente, irá ter uma assistência com o seu ID.
-            auxListaOperador = RegrasDeNegocio.ExisteOperadorAssistEspecifico(op1.Id);
+            Operador auxOp = new Operador("Marco", 12, 2487, new Morada("Braga", "4720-444", "Amares")); // -> Operador já existente, irá ter uma assistência com o seu ID.
+            auxListaOperador = RegrasDeNegocio.ExisteOperadorAssistEspecifico(auxOp.Id);
             auxListaOperador.Sort();
             if (auxListaOperador.Count > 0)
             {
-                Console.WriteLine("O operador {0} tem associadas as seguintes assistências:", op1.Nome);
+                Console.WriteLine("O operador {0} tem associadas as seguintes assistências:", auxOp.Nome);
                 IO.DadosIdentificacaoAssist(auxListaOperador);
             }
 

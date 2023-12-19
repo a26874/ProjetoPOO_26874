@@ -84,7 +84,8 @@ namespace Dados
             {
                 if (b.Equals(a))
                 {
-                    throw new AssistException("Ja existe esta assistencia");
+                    throw new AssistException("Ja existe esta assistencia");// Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                            // Explorar melhor a classe de exceções
                 }
             }
             listaAssistencias.Add(a);
@@ -101,7 +102,8 @@ namespace Dados
         public static bool InsereClienteAssistLista(Assist a, Cliente c)
         {
             if (a.Cliente is Cliente)
-                throw new ClienteException("Ja existe cliente nesta assistencia");
+                throw new ClienteException("Ja existe cliente nesta assistencia");// Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                                  // Explorar melhor a classe de exceções
             foreach (Assist b in listaAssistencias)
             {
                 if (b.Id == a.Id && a.ClienteNIF == c.NIF)
@@ -122,7 +124,8 @@ namespace Dados
         public static bool InsereOperadorAssistLista(Assist a, Operador o)
         {
             if (a.Operador is Operador)
-                throw new OperadorException("Ja existe operador nesta assistencia");
+                throw new OperadorException("Ja existe operador nesta assistencia");// Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                                    // Explorar melhor a classe de exceções
             foreach (Assist b in listaAssistencias)
             {
                 if (b.Id == a.Id && a.OperadorId == o.Id)
@@ -143,7 +146,8 @@ namespace Dados
         public static bool InsereSolucaoAssistLista(Assist a, ProblemasCon p)
         {
             if (a.Solucao.Id != -1)
-                throw new AssistException("Ja existe solucao para esta assistencia.");
+                throw new AssistException("Ja existe solucao para esta assistencia.");// Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                                      // Explorar melhor a classe de exceções
             foreach (Assist b in listaAssistencias)
             {
                 if (p is null)
@@ -207,7 +211,8 @@ namespace Dados
             Assist aux = new Assist();
             bool existe = ExisteAssistencia(idAssistencia,out aux);
             if (!existe)
-                throw new AssistException("A assistencia não existe.");
+                throw new AssistException("A assistencia não existe.");// Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                       // Explorar melhor a classe de exceções
             foreach (Assist c in listaAssistencias)
             {
                 if (c.Equals(aux))
@@ -215,7 +220,8 @@ namespace Dados
                     if (c.EstadoAssistencia.Ativo == false)
                     {
                         aux2 = null;
-                        throw new AssistException("Assistência ja concluida.");
+                        throw new AssistException("Assistência ja concluida.");// Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                               // Explorar melhor a classe de exceções
                     }
                     c.EstadoAssistencia.Ativo = false;
                     c.EstadoAssistencia.DescEstado = "Completado";

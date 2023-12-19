@@ -94,7 +94,12 @@ namespace Assistencia
                 return true;
             return false;
         }
-        //Ainda por fazer
+        /// <summary>
+        /// Retorna o hashcode para desta instância.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();

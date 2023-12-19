@@ -14,7 +14,6 @@ using System.Linq;
 using Excecoes;
 using System.Runtime.Serialization.Formatters.Binary;
 using Outros;
-using ObjetosNegocio;
 
 namespace Dados
 {

@@ -79,7 +79,8 @@ namespace Dados
             foreach (Cliente a in listaClientes)
             {
                 if (a.Equals(c))
-                    throw new ClienteException("Ja existe este cliente.");
+                    throw new ClienteException("Ja existe este cliente.");// Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                          // Explorar melhor a classe de exceções
             }
             listaClientes.Add(c);
             listaClientes.Sort();
@@ -102,7 +103,8 @@ namespace Dados
                         return true;
                     }
                     else
-                        throw new ClienteException("Cliente ja tem saldo, carregue.");
+                        throw new ClienteException("Cliente ja tem saldo, carregue."); // Enquanto deveria retornar false, pois é algo que é possivel controlar, decidi usar exceção para conseguir 
+                                                                                       // Explorar melhor a classe de exceções
                 }
             }
             throw new ClienteException("Cliente não existe na nossa base de dados");
@@ -217,7 +219,7 @@ namespace Dados
                     return true;
                 }
             }
-            throw new ClienteException("O cliente não tem saldo suficiente para concl        uir a assistencia.");
+            throw new ClienteException("O cliente não tem saldo suficiente para concluir a assistencia.");
         }
         #endregion
 

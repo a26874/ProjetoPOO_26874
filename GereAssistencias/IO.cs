@@ -49,7 +49,7 @@ namespace GereAssistencias
         public static void MostrarAssistencias (List<Assist> listaAssistencias)
         {
             foreach (Assist a in listaAssistencias)
-                Console.WriteLine(a.ToString ());
+                Console.WriteLine(a.ToString());
         }
         /// <summary>
         /// Dada uma lista de clientes dá print dos mesmos.
