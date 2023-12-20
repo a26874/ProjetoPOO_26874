@@ -50,7 +50,9 @@ namespace ObjetosNegocio
         /// </summary>
         public Assist()
         {
-            idAssistencia = -1;
+            idAssistencia = contIdAssistencia;
+            if (idAssistencia >= 1)
+                idAssistencia = contIdAssistencia++;
             dataAssistencia = DateTime.MinValue;
             tipoAssistencia = new TipoAssist();
             estadoAssistencia = new EstadoAssist();
