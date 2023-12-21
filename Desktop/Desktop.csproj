@@ -73,10 +73,19 @@
     <Compile Include="HelpDesk.Designer.cs">
       <DependentUpon>HelpDesk.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsereAssist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsereAssist.Designer.cs">
+      <DependentUpon>InsereAssist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="HelpDesk.resx">
       <DependentUpon>HelpDesk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsereAssist.resx">
+      <DependentUpon>InsereAssist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
