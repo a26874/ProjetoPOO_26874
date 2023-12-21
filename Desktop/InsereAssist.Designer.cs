@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.InserirAssist = new System.Windows.Forms.Button();
             this.dataHoraAssist = new System.Windows.Forms.TextBox();
             this.DataHoraAssistLabel = new System.Windows.Forms.Label();
@@ -44,13 +43,12 @@
             this.IDOperadorLabel = new System.Windows.Forms.Label();
             this.nifClienteAssist = new System.Windows.Forms.TextBox();
             this.idOperadorAssist = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
             // InserirAssist
             // 
             this.InserirAssist.Location = new System.Drawing.Point(30, 314);
-            this.InserirAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InserirAssist.Margin = new System.Windows.Forms.Padding(2);
             this.InserirAssist.Name = "InserirAssist";
             this.InserirAssist.Size = new System.Drawing.Size(56, 19);
             this.InserirAssist.TabIndex = 0;
@@ -61,7 +59,7 @@
             // dataHoraAssist
             // 
             this.dataHoraAssist.Location = new System.Drawing.Point(30, 106);
-            this.dataHoraAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataHoraAssist.Margin = new System.Windows.Forms.Padding(2);
             this.dataHoraAssist.Name = "dataHoraAssist";
             this.dataHoraAssist.Size = new System.Drawing.Size(76, 20);
             this.dataHoraAssist.TabIndex = 3;
@@ -89,7 +87,7 @@
             // descricaoAssist
             // 
             this.descricaoAssist.Location = new System.Drawing.Point(162, 106);
-            this.descricaoAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.descricaoAssist.Margin = new System.Windows.Forms.Padding(2);
             this.descricaoAssist.Name = "descricaoAssist";
             this.descricaoAssist.Size = new System.Drawing.Size(76, 20);
             this.descricaoAssist.TabIndex = 6;
@@ -97,7 +95,7 @@
             // nomeTipoAssist
             // 
             this.nomeTipoAssist.Location = new System.Drawing.Point(162, 37);
-            this.nomeTipoAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nomeTipoAssist.Margin = new System.Windows.Forms.Padding(2);
             this.nomeTipoAssist.Name = "nomeTipoAssist";
             this.nomeTipoAssist.Size = new System.Drawing.Size(76, 20);
             this.nomeTipoAssist.TabIndex = 7;
@@ -125,7 +123,7 @@
             // idTipoAssist
             // 
             this.idTipoAssist.Location = new System.Drawing.Point(162, 172);
-            this.idTipoAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.idTipoAssist.Margin = new System.Windows.Forms.Padding(2);
             this.idTipoAssist.Name = "idTipoAssist";
             this.idTipoAssist.Size = new System.Drawing.Size(76, 20);
             this.idTipoAssist.TabIndex = 10;
@@ -133,7 +131,7 @@
             // precoAssist
             // 
             this.precoAssist.Location = new System.Drawing.Point(162, 238);
-            this.precoAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.precoAssist.Margin = new System.Windows.Forms.Padding(2);
             this.precoAssist.Name = "precoAssist";
             this.precoAssist.Size = new System.Drawing.Size(76, 20);
             this.precoAssist.TabIndex = 11;
@@ -171,7 +169,7 @@
             // nifClienteAssist
             // 
             this.nifClienteAssist.Location = new System.Drawing.Point(30, 172);
-            this.nifClienteAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nifClienteAssist.Margin = new System.Windows.Forms.Padding(2);
             this.nifClienteAssist.Name = "nifClienteAssist";
             this.nifClienteAssist.Size = new System.Drawing.Size(76, 20);
             this.nifClienteAssist.TabIndex = 15;
@@ -179,17 +177,12 @@
             // idOperadorAssist
             // 
             this.idOperadorAssist.Location = new System.Drawing.Point(30, 238);
-            this.idOperadorAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.idOperadorAssist.Margin = new System.Windows.Forms.Padding(2);
             this.idOperadorAssist.Name = "idOperadorAssist";
             this.idOperadorAssist.Size = new System.Drawing.Size(76, 20);
             this.idOperadorAssist.TabIndex = 16;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // HelpDesk
+            // InsereAssist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -209,8 +202,8 @@
             this.Controls.Add(this.DataHoraAssistLabel);
             this.Controls.Add(this.dataHoraAssist);
             this.Controls.Add(this.InserirAssist);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Inserir Assitências";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "InsereAssist";
             this.Text = "Inserir Assitências";
             this.Load += new System.EventHandler(this.HelpDesk_Load);
             this.ResumeLayout(false);
@@ -235,7 +228,6 @@
         private System.Windows.Forms.Label IDOperadorLabel;
         private System.Windows.Forms.TextBox nifClienteAssist;
         private System.Windows.Forms.TextBox idOperadorAssist;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 
