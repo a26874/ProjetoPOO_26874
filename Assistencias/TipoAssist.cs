@@ -17,7 +17,7 @@ namespace Assistencia
     public class TipoAssist
     {
         #region ATRIBUTOS
-        // Esclarecimento = 1; Entregas = 2; Atendimento = 3; Assistência = 4;
+        // Atendimento = 1; Entregas = 2; Esclarecimento = 3; Assistência = 4;
         private string desc;
         private string nomeTipo;
         private int id;

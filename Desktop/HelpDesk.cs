@@ -36,5 +36,19 @@ namespace Desktop
         {
 
         }
+
+        /// <summary>
+        /// Abre o menu para inserir uma assistência.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InsereAssistButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            InsereAssist novaAdicao = new InsereAssist();
+            novaAdicao.ShowDialog();
+        }
+
+        
     }
 }

@@ -14,7 +14,7 @@ namespace Desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InsereAssist());
+            Application.Run(new HelpDesk());
 
         }
     }
