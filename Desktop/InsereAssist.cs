@@ -1,4 +1,6 @@
-﻿using Excecoes;
+﻿using Assistencia;
+using Dados;
+using Excecoes;
 using ObjetosNegocio;
 using RegrasNegocio;
 using System;
@@ -16,6 +18,7 @@ namespace Desktop
     {
         #region ATRIBUTOS
         private string textoAtualSelecione = string.Empty;
+        RegistoAssist auxRegisto = new RegistoAssist();
         #endregion
 
 
@@ -38,6 +41,21 @@ namespace Desktop
         }
 
         /// <summary>
+        /// Verifica todas as assistências existentes e cria um dicionario com todos os tipos e o seu conteudo.
+        /// </summary>
+        /// <returns></returns>
+        private Dictionary<TipoAssist, (string nomeTipo, int id)> CriarDicionarioTipoAssist()
+        {
+            Dictionary<TipoAssist, (string nomeTipo, int id)> auxMapaTipoAssist = new Dictionary<TipoAssist, (string nomeTipo, int id)>();
+            foreach (Assist a in auxRegisto.ObterAssistencias)
+            {
+                if (auxMapaTipoAssist.ContainsValue((a.TipoAssistencia.NomeTipo, a.TipoAssistencia.Id)))
+                    continue;
+                auxMapaTipoAssist.Add(a.TipoAssistencia, (a.TipoAssistencia.NomeTipo, a.TipoAssistencia.Id));
+            }
+            return auxMapaTipoAssist;
+        }
+        /// <summary>
         /// Assim que for preenchida todos os dados referentes a uma assistência, ao clicar no botão insere a assistência.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -52,18 +70,16 @@ namespace Desktop
             //Dicionários, foi definido como a key dele uma string que neste caso vai ser
             //o respetivo nome do serviço a executar
             //De seguida é especificado o nome do Tipo e qual o seu id.
-            Dictionary<string, (string nomeTipo, int id)> mapaMenuTipoAssist = new Dictionary<string, (string nomeTipo, int id)>();
+            Dictionary<TipoAssist, (string nomeTipo, int id)> mapaMenuTipoAssist = new Dictionary<TipoAssist, (string nomeTipo, int id)>();
 
-            mapaMenuTipoAssist.Add("Atendimento", ("Atendimento", 1));
-            mapaMenuTipoAssist.Add("Entregas", ("Entregas", 2));
-            mapaMenuTipoAssist.Add("Esclarecimento", ("Esclarecimento", 3));
-            mapaMenuTipoAssist.Add("Assistencias", ("Assistencias", 4));
+
+            mapaMenuTipoAssist = CriarDicionarioTipoAssist();
 
             if (textoAtualSelecione != string.Empty)
             {
-                if (mapaMenuTipoAssist.ContainsKey(textoAtualSelecione))
+                if (mapaMenuTipoAssist.ContainsKey(assistenciaInserir.TipoAssistencia))
                 {
-                    var valoresMenu = mapaMenuTipoAssist[textoAtualSelecione];
+                    var valoresMenu = mapaMenuTipoAssist[assistenciaInserir.TipoAssistencia];
                     assistenciaInserir.TipoAssistencia.NomeTipo = valoresMenu.nomeTipo;
                     assistenciaInserir.TipoAssistencia.Id = valoresMenu.id;
                 }
@@ -82,10 +98,6 @@ namespace Desktop
 
             if (int.TryParse(precoAssist.Text, out int precoAssistencia))
                 assistenciaInserir.TipoAssistencia.Preco = precoAssistencia;
-
-            //if (int.TryParse(idTipoAssist.Text, out int idTipoAssistencia))
-            //    assistenciaInserir.TipoAssistencia.Id = idTipoAssistencia;
-
 
             if (descricaoAssist != null)
                 assistenciaInserir.TipoAssistencia.Desc = descricaoAssist.Text;

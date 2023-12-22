@@ -17,7 +17,7 @@ namespace Assistencia
     public class TipoAssist
     {
         #region ATRIBUTOS
-        // Atendimento = 1; Entregas = 2; Esclarecimento = 3; Assistência = 4;
+        // Atendimento = 1; Entregas = 2; Manutencao = 3; Assistência = 4;
         private string desc;
         private string nomeTipo;
         private int id;
@@ -38,10 +38,12 @@ namespace Assistencia
             preco = -1;
         }
         /// <summary>
-        /// Construtor para tipos de assistencia.
+        /// Construtor para tipos de assistência.
         /// </summary>
-        /// <param name="descricao">The descricao.</param>
-        /// <param name="nome">The nome.</param>
+        /// <param name="desc">The desc.</param>
+        /// <param name="nomeTipo">The nome tipo.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="preco">The preco.</param>
         public TipoAssist(string desc, string nomeTipo, int id, int preco)
         {
             this.desc = desc;
