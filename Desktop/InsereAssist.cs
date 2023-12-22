@@ -31,15 +31,24 @@ namespace Desktop
         }
 
         /// <summary>
-        /// 
+        /// Quando é aberto a janela do Inserir Assist, o que estiver dentro deste metodo inicia.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void HelpDesk_Load(object sender, EventArgs e)
+        private void InsereAssist_Load(object sender, EventArgs e)
         {
-
+            DataHoraTimer.Start();
         }
-
+        
+        /// <summary>
+        /// Quando é fechado a janela do Inserir Assist, o que estiver dentro deste metodo para.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InsereAssist_Closed(object sender, EventArgs e)
+        {
+            DataHoraTimer.Stop();
+        }
         /// <summary>
         /// Verifica todas as assistências existentes e cria um dicionario com todos os tipos e o seu conteudo.
         /// </summary>
@@ -70,21 +79,34 @@ namespace Desktop
             //Dicionários, foi definido como a key dele uma string que neste caso vai ser
             //o respetivo nome do serviço a executar
             //De seguida é especificado o nome do Tipo e qual o seu id.
-            Dictionary<TipoAssist, (string nomeTipo, int id)> mapaMenuTipoAssist = new Dictionary<TipoAssist, (string nomeTipo, int id)>();
+            Dictionary<string, (string nomeTipo, int id)> mapaMenuTipoAssist = new Dictionary<string, (string nomeTipo, int id)>();
+
+            mapaMenuTipoAssist.Add("Atendimento", ("Atendimento", 1));
+            mapaMenuTipoAssist.Add("Entregas", ("Entregas", 2));
+            mapaMenuTipoAssist.Add("Manutencao", ("Manutencao", 3));
+            mapaMenuTipoAssist.Add("Assistencia", ("Assistencia", 4));
+
+            //Dictionary<TipoAssist, (string nomeTipo, int id)> mapaMenuTipoAssist = new Dictionary<TipoAssist, (string nomeTipo, int id)>();
 
 
-            mapaMenuTipoAssist = CriarDicionarioTipoAssist();
+            //mapaMenuTipoAssist = CriarDicionarioTipoAssist();
 
 
 
             if (textoAtualSelecione != string.Empty)
             {
-                if (mapaMenuTipoAssist.ContainsKey(assistenciaInserir.TipoAssistencia))
+                if (mapaMenuTipoAssist.ContainsKey(textoAtualSelecione))
                 {
-                    var valoresMenu = mapaMenuTipoAssist[assistenciaInserir.TipoAssistencia];
+                    var valoresMenu = mapaMenuTipoAssist[textoAtualSelecione];
                     assistenciaInserir.TipoAssistencia.NomeTipo = valoresMenu.nomeTipo;
                     assistenciaInserir.TipoAssistencia.Id = valoresMenu.id;
                 }
+                //if (mapaMenuTipoAssist.ContainsValue((assistenciaInserir.TipoAssistencia.NomeTipo, assistenciaInserir.TipoAssistencia.Id)))
+                //{
+                //    var valoresMenu = mapaMenuTipoAssist[assistenciaInserir.TipoAssistencia];
+                //    assistenciaInserir.TipoAssistencia.NomeTipo = valoresMenu.nomeTipo;
+                //    assistenciaInserir.TipoAssistencia.Id = valoresMenu.id;
+                //}
             }
             else
             {
@@ -121,14 +143,17 @@ namespace Desktop
                 if (aux)
                 {
                     MessageBox.Show("Assistencia inserida com sucesso.");
-                    HelpDesk returnMain = new HelpDesk();
+                    MenuAssistencia returnMain = new MenuAssistencia();
                     returnMain.Show();
+                    DataHoraTimer.Stop();
                     Close();
                 }
             }
             catch (AssistException exc)
             {
+                DataHoraTimer.Stop();
                 MessageBox.Show(exc.Message);
+                Close();
             }
         }
         /// <summary>
@@ -184,8 +209,17 @@ namespace Desktop
         private void selecioneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem clicado = (ToolStripMenuItem)sender;
-
             textoAtualSelecione = clicado.Text;
+        }
+
+        /// <summary>
+        /// Usado um timer para que seja possivel apresentar horas em tempo real.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataHoraTimer_Tick(object sender, EventArgs e)
+        {
+            DataHoraLabel.Text = DateTime.Now.ToString();
         }
     }
 }

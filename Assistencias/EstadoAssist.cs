@@ -89,9 +89,12 @@ namespace Assistencia
         /// </returns>
         public override bool Equals(object obj)
         {
-            EstadoAssist a = (EstadoAssist)obj;
-            if (this == a)
-                return true;
+            if(obj is EstadoAssist)
+            {
+                EstadoAssist a = (EstadoAssist)obj;
+                if (this == a)
+                    return true;
+            }
             return false;
         }
         /// <summary>

@@ -14,7 +14,7 @@ namespace Desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HelpDesk());
+            Application.Run(new MenuAssistencia());
 
         }
     }

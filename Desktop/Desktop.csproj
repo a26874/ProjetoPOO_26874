@@ -67,11 +67,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelpDesk.cs">
+    <Compile Include="ApresentarAssist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HelpDesk.Designer.cs">
-      <DependentUpon>HelpDesk.cs</DependentUpon>
+    <Compile Include="ApresentarAssist.Designer.cs">
+      <DependentUpon>ApresentarAssist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAssistencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuAssistencia.Designer.cs">
+      <DependentUpon>MenuAssistencia.cs</DependentUpon>
     </Compile>
     <Compile Include="InsereAssist.cs">
       <SubType>Form</SubType>
@@ -81,8 +87,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="HelpDesk.resx">
-      <DependentUpon>HelpDesk.cs</DependentUpon>
+    <EmbeddedResource Include="ApresentarAssist.resx">
+      <DependentUpon>ApresentarAssist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuAssistencia.resx">
+      <DependentUpon>MenuAssistencia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsereAssist.resx">
       <DependentUpon>InsereAssist.cs</DependentUpon>
@@ -96,6 +105,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\Assistencia.EstadoAssist.datasource" />
+    <None Include="Properties\DataSources\Assistencia.TipoAssist.datasource" />
+    <None Include="Properties\DataSources\Dados.RegistoAssist.datasource" />
+    <None Include="Properties\DataSources\Dados.RegistoCategorias.datasource" />
+    <None Include="Properties\DataSources\Dados.RegistoClientes.datasource" />
+    <None Include="Properties\DataSources\Dados.RegistoOperadores.datasource" />
+    <None Include="Properties\DataSources\Dados.RegistoProblemas.datasource" />
+    <None Include="Properties\DataSources\Dados.RegistoProdutos.datasource" />
+    <None Include="Properties\DataSources\ObjetosNegocio.Assist.datasource" />
+    <None Include="Properties\DataSources\ObjetosNegocio.Cliente.datasource" />
+    <None Include="Properties\DataSources\ObjetosNegocio.Operador.datasource" />
+    <None Include="Properties\DataSources\ObjetosNegocio.ProblemasCon.datasource" />
+    <None Include="Properties\DataSources\ObjetosNegocio.Produto.datasource" />
+    <None Include="Properties\DataSources\Outros.Avaliacao.datasource" />
+    <None Include="Properties\DataSources\Outros.Categoria.datasource" />
+    <None Include="Properties\DataSources\Pessoas.Morada.datasource" />
+    <None Include="Properties\DataSources\Pessoas.Pessoa.datasource" />
+    <None Include="Properties\DataSources\RegrasNegocio.RegrasDeNegocio.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
