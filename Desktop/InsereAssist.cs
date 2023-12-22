@@ -59,6 +59,8 @@ namespace Desktop
             mapaMenuTipoAssist.Add("Esclarecimento", ("Esclarecimento", 3));
             mapaMenuTipoAssist.Add("Assistencias", ("Assistencias", 4));
 
+
+
             if (textoAtualSelecione != string.Empty)
             {
                 if (mapaMenuTipoAssist.ContainsKey(textoAtualSelecione))
