@@ -30,8 +30,8 @@ namespace Assistencia
         /// </summary>
         public EstadoAssist()
         {
-            descEstadoAssistencia = string.Empty;
-            servicoAtivo = false;
+            descEstadoAssistencia = "Ativo";
+            servicoAtivo = true;
         }
         /// <summary>
         /// Construtor com parametros..

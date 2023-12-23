@@ -51,6 +51,7 @@
     <Reference Include="Pessoas">
       <HintPath>..\Pessoas\bin\Debug\Pessoas.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="RegrasNegocio">
       <HintPath>..\RegrasNegocio\bin\Debug\RegrasNegocio.dll</HintPath>
     </Reference>

@@ -45,7 +45,7 @@
             this.selecioneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atendimentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entregasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.esclarecimentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManutencaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataHoraLabel = new System.Windows.Forms.Label();
             this.DataHoraTimer = new System.Windows.Forms.Timer(this.components);
@@ -175,7 +175,7 @@
             this.selecioneToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.atendimentoToolStripMenuItem,
             this.entregasToolStripMenuItem,
-            this.esclarecimentoToolStripMenuItem,
+            this.ManutencaoToolStripMenuItem,
             this.assistenciaToolStripMenuItem});
             this.selecioneToolStripMenuItem.Name = "selecioneToolStripMenuItem";
             this.selecioneToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
@@ -187,21 +187,21 @@
             this.atendimentoToolStripMenuItem.Name = "atendimentoToolStripMenuItem";
             this.atendimentoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.atendimentoToolStripMenuItem.Text = "Atendimento";
-            this.atendimentoToolStripMenuItem.Click += new System.EventHandler(this.atendimentoToolStripMenuItem_Click);
+            this.atendimentoToolStripMenuItem.Click += new System.EventHandler(this.AtendimentoToolStripMenuItem_Click);
             // 
             // entregasToolStripMenuItem
             // 
             this.entregasToolStripMenuItem.Name = "entregasToolStripMenuItem";
             this.entregasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.entregasToolStripMenuItem.Text = "Entregas";
-            this.entregasToolStripMenuItem.Click += new System.EventHandler(this.entregasToolStripMenuItem_Click);
+            this.entregasToolStripMenuItem.Click += new System.EventHandler(this.EntregasToolStripMenuItem_Click);
             // 
-            // esclarecimentoToolStripMenuItem
+            // ManutencaoToolStripMenuItem
             // 
-            this.esclarecimentoToolStripMenuItem.Name = "esclarecimentoToolStripMenuItem";
-            this.esclarecimentoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.esclarecimentoToolStripMenuItem.Text = "Esclarecimento";
-            this.esclarecimentoToolStripMenuItem.Click += new System.EventHandler(this.esclarecimentoToolStripMenuItem_Click);
+            this.ManutencaoToolStripMenuItem.Name = "ManutencaoToolStripMenuItem";
+            this.ManutencaoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.ManutencaoToolStripMenuItem.Text = "Manutencao";
+            this.ManutencaoToolStripMenuItem.Click += new System.EventHandler(this.ManutencaoToolStripMenuItem_Click);
             // 
             // assistenciaToolStripMenuItem
             // 
@@ -271,7 +271,7 @@
         private System.Windows.Forms.ToolStripMenuItem selecioneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem atendimentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem entregasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem esclarecimentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ManutencaoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assistenciaToolStripMenuItem;
         private System.Windows.Forms.Label DataHoraLabel;
         private System.Windows.Forms.Timer DataHoraTimer;

@@ -6,6 +6,7 @@ using RegrasNegocio;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Desktop
@@ -49,6 +50,25 @@ namespace Desktop
         {
             DataHoraTimer.Stop();
         }
+
+        /// <summary>
+        /// Percorre o menu dos tipos de assistência e verifica qual é que foi selecionado. Devolve o proprio item, contendo o ID e Texto.
+        /// </summary>
+        /// <returns></returns>
+        private ToolStripMenuItem ObterIdToolStripMenu()
+        {
+            ToolStripMenuItem auxMenu = null;
+
+            foreach (ToolStripMenuItem subMenu in selecioneToolStripMenuItem.DropDownItems)
+            {
+                if (subMenu.Text == textoAtualSelecione)
+                {
+                    auxMenu = subMenu;
+                    break;
+                }
+            }
+            return auxMenu;
+        }
         /// <summary>
         /// Verifica todas as assistências existentes e cria um dicionario com todos os tipos e o seu conteudo.
         /// </summary>
@@ -73,40 +93,26 @@ namespace Desktop
         {
             Assist assistenciaInserir = new Assist();
 
-            assistenciaInserir.EstadoAssistencia.DescEstado = "Ativo";
-            assistenciaInserir.EstadoAssistencia.Ativo = true;
-
             //Dicionários, foi definido como a key dele uma string que neste caso vai ser
             //o respetivo nome do serviço a executar
             //De seguida é especificado o nome do Tipo e qual o seu id.
-            Dictionary<string, (string nomeTipo, int id)> mapaMenuTipoAssist = new Dictionary<string, (string nomeTipo, int id)>();
-
-            mapaMenuTipoAssist.Add("Atendimento", ("Atendimento", 1));
-            mapaMenuTipoAssist.Add("Entregas", ("Entregas", 2));
-            mapaMenuTipoAssist.Add("Manutencao", ("Manutencao", 3));
-            mapaMenuTipoAssist.Add("Assistencia", ("Assistencia", 4));
-
-            //Dictionary<TipoAssist, (string nomeTipo, int id)> mapaMenuTipoAssist = new Dictionary<TipoAssist, (string nomeTipo, int id)>();
+            Dictionary<TipoAssist, (string nomeTipo, int id)> mapaMenuTipoAssistTeste = new Dictionary<TipoAssist, (string nomeTipo, int id)>();
 
 
-            //mapaMenuTipoAssist = CriarDicionarioTipoAssist();
+            mapaMenuTipoAssistTeste = CriarDicionarioTipoAssist();
 
+            //Obter index do item para verificar se existe no dicionario
+            ToolStripMenuItem posicaoItem = ObterIdToolStripMenu(); 
+            int indexPosicaoItem = selecioneToolStripMenuItem.DropDownItems.IndexOf(posicaoItem)+1;
 
 
             if (textoAtualSelecione != string.Empty)
             {
-                if (mapaMenuTipoAssist.ContainsKey(textoAtualSelecione))
+                if (mapaMenuTipoAssistTeste.ContainsValue((posicaoItem.Text, indexPosicaoItem)))
                 {
-                    var valoresMenu = mapaMenuTipoAssist[textoAtualSelecione];
-                    assistenciaInserir.TipoAssistencia.NomeTipo = valoresMenu.nomeTipo;
-                    assistenciaInserir.TipoAssistencia.Id = valoresMenu.id;
+                    assistenciaInserir.TipoAssistencia.NomeTipo = posicaoItem.Text;
+                    assistenciaInserir.TipoAssistencia.Id = indexPosicaoItem;
                 }
-                //if (mapaMenuTipoAssist.ContainsValue((assistenciaInserir.TipoAssistencia.NomeTipo, assistenciaInserir.TipoAssistencia.Id)))
-                //{
-                //    var valoresMenu = mapaMenuTipoAssist[assistenciaInserir.TipoAssistencia];
-                //    assistenciaInserir.TipoAssistencia.NomeTipo = valoresMenu.nomeTipo;
-                //    assistenciaInserir.TipoAssistencia.Id = valoresMenu.id;
-                //}
             }
             else
             {
@@ -161,7 +167,7 @@ namespace Desktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void atendimentoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AtendimentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (atendimentoToolStripMenuItem.Pressed)            
                 selecioneToolStripMenuItem.Text = atendimentoToolStripMenuItem.Text;
@@ -172,7 +178,7 @@ namespace Desktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void entregasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EntregasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (entregasToolStripMenuItem.Pressed)
                 selecioneToolStripMenuItem.Text = entregasToolStripMenuItem.Text;
@@ -183,11 +189,11 @@ namespace Desktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void esclarecimentoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ManutencaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (esclarecimentoToolStripMenuItem.Pressed)
-                selecioneToolStripMenuItem.Text = esclarecimentoToolStripMenuItem.Text;
-            textoAtualSelecione = esclarecimentoToolStripMenuItem.Text;
+            if (ManutencaoToolStripMenuItem.Pressed)
+                selecioneToolStripMenuItem.Text = ManutencaoToolStripMenuItem.Text;
+            textoAtualSelecione = ManutencaoToolStripMenuItem.Text;
         }
         /// <summary>
         /// Quando é carregado num tipo de assistência muda o seu texto para esse mesmo tipo.
