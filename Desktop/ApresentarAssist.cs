@@ -1,53 +1,90 @@
 ﻿using ObjetosNegocio;
-using Assistencia;
-using Dados;
-using Outros;
+using RegrasNegocio;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Windows.Controls;
-using System.Reflection;
-
 namespace Desktop
 {
     public partial class ApresentarAssist : Form
     {
+
+        #region ATRIBUTOS
+        private bool enterCarregado = false;
+        #endregion
         public ApresentarAssist()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Ao clicar no botão de todas as assistências, é tudo que existe referente a assistências apresentado ao utilizador.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TodasAssistButton_Click(object sender, EventArgs e)
+        {
+            MostrarAssistenciasListView.Clear();
+            MostrarAssistenciasListView = IO.ListViewTodasAssistencias(MostrarAssistenciasListView);
+        }
 
         /// <summary>
-        /// Cria a estrutura a mostrar dos dados de uma assistência.
+        /// Ao clicar no botão de apenas concluidas, irá mostrar todas as assistências que teem o seu estado concluido.
         /// </summary>
-        private void CriarGridAssistencia()
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ApenasConcluidasButton_Click(object sender, EventArgs e)
         {
-            Type tipoDados = typeof(Assist);
-            foreach (PropertyInfo p in tipoDados.GetProperties())
-            {
-                if (p.Name == "Cliente" || p.Name == "Operador")
-                    continue;
-                var coluna = new DataGridViewTextBoxColumn
-                {
-                    Name = p.Name + "Coluna",
-                    HeaderText = p.Name,
-                    DataPropertyName = p.Name
-                };
-                MostrarAssistenciasGrid.Columns.Add(coluna);
-            }
+            MostrarAssistenciasListView.Clear();
+            MostrarAssistenciasListView = IO.ListViewAssistConcluidas(MostrarAssistenciasListView);
         }
-        private void testeButton_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Ao clicar no botão Por Concluir, irá apenas mostrar todas as assistências que ainda não foram concluidas.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PorConcluirButton_Click(object sender, EventArgs e)
         {
+            MostrarAssistenciasListView.Clear();
+            MostrarAssistenciasListView = IO.ListViewAssistPorConcluir(MostrarAssistenciasListView);
+        }
 
-            RegistoAssist aux = new RegistoAssist();
-
-            List<Assist> auxAssist = aux.ObterAssistencias;
-            MostrarAssistenciasGrid.Columns.Clear();
-
-            CriarGridAssistencia();
-            MostrarAssistenciasGrid.DataSource = auxAssist;
-            MostrarAssistenciasGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        /// <summary>
+        /// Verifica se a tecla enter foi pressionada.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+        private void detalhadaTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                enterCarregado = true;
+        }
+        /// <summary>
+        /// Ao clicar no botão Detalhada, a partir do Id inserido mostra a assistência caso exista, toda detalhada.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void DetalhadaButton_Click(object sender, EventArgs e)
+        {
+            MostrarAssistenciasListView.Clear();
+            Assist auxAssist = new Assist();
+            bool mostrarUmaVez = false;
+            if (!mostrarUmaVez)
+            {
+                MessageBox.Show("Insira o ID da assistência:");
+                mostrarUmaVez = true;
+            }
+            detalhadaTextBox.Visible = true;
+            detalhadaTextBox.Focus();
+            detalhadaTextBox.KeyDown += detalhadaTextBox_KeyDown;
+            while (!enterCarregado)
+                Application.DoEvents();
+            if (int.TryParse(detalhadaTextBox.Text, out int idAssist))
+            {
+                bool aux = RegrasDeNegocio.ExisteAssistencia(idAssist, out auxAssist);
+            }
+            else
+                Application.DoEvents();
+            MostrarAssistenciasListView = IO.ListViewAssistDetalhada(MostrarAssistenciasListView, auxAssist);
         }
     }
 }

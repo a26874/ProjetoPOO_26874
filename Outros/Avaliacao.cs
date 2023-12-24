@@ -81,6 +81,17 @@ namespace Outros
             get { return melhorias; }
             set { melhorias = value; }
         }
+        /// <summary>
+        /// Manipulacao da variavel Data
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public DateTime Data
+        {
+            get { return dataAvaliacao; }
+            set { dataAvaliacao = value;}
+        }
         #endregion
 
         #region OPERADORES
@@ -151,7 +162,7 @@ namespace Outros
         /// <returns></returns>
         public string FichaAvaliacao()
         {
-            return string.Format("Pontuacao:{0}\nDescricao:{1}\nMelhorias:{2}\nData:{3}\n", pontuacao, descricao, melhorias, dataAvaliacao);
+            return string.Format("Pontuacao:{0} \nDescricao:{1} \nMelhorias:{2} \nData:{3} \n", pontuacao, descricao, melhorias, dataAvaliacao);
         }
         /// <summary>
         /// Para clonar objetos da classe.

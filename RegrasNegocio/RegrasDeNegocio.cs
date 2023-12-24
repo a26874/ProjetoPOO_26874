@@ -138,6 +138,26 @@ namespace RegrasNegocio
             }
         }
         /// <summary>
+        /// Verifica a existência de uma assistência, a partir do seu ID.
+        /// </summary>
+        /// <param name="idAssist">The identifier assist.</param>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        public static bool ExisteAssistencia(int idAssist, out Assist a)
+        {
+            RegistoAssist aux = new RegistoAssist();
+            foreach (Assist b in aux.ObterAssistencias)
+            {
+                if (b.Id == idAssist)
+                {
+                    a = b;
+                    return true;
+                }
+            }
+            a = null;
+            return false;
+        }
+        /// <summary>
         /// Mostra todas as assistências.
         /// </summary>
         /// <returns></returns>

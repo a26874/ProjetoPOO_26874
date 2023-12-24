@@ -166,7 +166,7 @@ namespace Assistencia
         /// <returns></returns>
         public string FichaTipoAssist()
         {
-            return string.Format("Descricao:{0}|Tipo:{1}|ID:{2}|Preco:{3}", desc, nomeTipo, id, preco);
+            return string.Format("Descricao:{0} |Tipo:{1} |ID:{2} |Preco:{3} ", desc, nomeTipo, id, preco);
         }
         /// <summary>
         /// Para clonar objetos da classe.
