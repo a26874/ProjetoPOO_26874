@@ -236,6 +236,15 @@ namespace RegrasNegocio
             }
         }
         /// <summary>
+        /// Remove uma assistência do registo de assistências.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <returns></returns>
+        public static bool RemoverAssistencia(Assist a)
+        {
+            return RegistoAssist.RemoverAssistenciaEspecifica(a);
+        }
+        /// <summary>
         /// De todas as assistencias, mostra o preço da mais cara.
         /// </summary>
         /// <param name="listaAssistencias">The lista assistencias.</param>

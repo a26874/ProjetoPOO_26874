@@ -9,12 +9,37 @@ namespace Desktop
 
         #region ATRIBUTOS
         private bool enterCarregado = false;
+        private bool enterSubiu = false;
+        private MenuAssistencia menuAssist;
         #endregion
+
+        /// <summary>
+        /// Construtor por defeito
+        /// </summary>
         public ApresentarAssist()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Construtor com parametros.
+        /// </summary>
+        /// <param name="menuAssistForm">The menu assist form.</param>
+        public ApresentarAssist(MenuAssistencia menuAssistForm)
+        {
+            InitializeComponent();
+            menuAssist = menuAssistForm;
+            FormClosing += ApresentarAssist_FormClosing;
+        }
+        /// <summary>
+        /// Verifica quando este form é fechado.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        private void ApresentarAssist_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            menuAssist.Show();
+            return;
+        }
         /// <summary>
         /// Ao clicar no botão de todas as assistências, é tudo que existe referente a assistências apresentado ao utilizador.
         /// </summary>
@@ -22,8 +47,7 @@ namespace Desktop
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TodasAssistButton_Click(object sender, EventArgs e)
         {
-            MostrarAssistenciasListView.Clear();
-            MostrarAssistenciasListView = IO.ListViewTodasAssistencias(MostrarAssistenciasListView);
+            dataGridAssitencias = IO.DataGridTodasAssistencias(dataGridAssitencias);
         }
 
         /// <summary>
@@ -33,10 +57,8 @@ namespace Desktop
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ApenasConcluidasButton_Click(object sender, EventArgs e)
         {
-            MostrarAssistenciasListView.Clear();
-            MostrarAssistenciasListView = IO.ListViewAssistConcluidas(MostrarAssistenciasListView);
+            dataGridAssitencias = IO.DataGridApenasConcluidas(dataGridAssitencias);
         }
-
         /// <summary>
         /// Ao clicar no botão Por Concluir, irá apenas mostrar todas as assistências que ainda não foram concluidas.
         /// </summary>
@@ -44,8 +66,7 @@ namespace Desktop
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void PorConcluirButton_Click(object sender, EventArgs e)
         {
-            MostrarAssistenciasListView.Clear();
-            MostrarAssistenciasListView = IO.ListViewAssistPorConcluir(MostrarAssistenciasListView);
+            dataGridAssitencias = IO.DataGridPorConcluir(dataGridAssitencias);
         }
 
         /// <summary>
@@ -59,20 +80,25 @@ namespace Desktop
                 enterCarregado = true;
         }
         /// <summary>
+        /// Verifica quando a tecla enter deixou de ser pressionada.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+        private void detalhadaTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                enterSubiu = true;
+        }
+        /// <summary>
         /// Ao clicar no botão Detalhada, a partir do Id inserido mostra a assistência caso exista, toda detalhada.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void DetalhadaButton_Click(object sender, EventArgs e)
         {
-            MostrarAssistenciasListView.Clear();
             Assist auxAssist = new Assist();
-            bool mostrarUmaVez = false;
-            if (!mostrarUmaVez)
-            {
-                MessageBox.Show("Insira o ID da assistência:");
-                mostrarUmaVez = true;
-            }
+
+            DetalhadaIdLabel.Visible = true;
             detalhadaTextBox.Visible = true;
             detalhadaTextBox.Focus();
             detalhadaTextBox.KeyDown += detalhadaTextBox_KeyDown;
@@ -81,10 +107,12 @@ namespace Desktop
             if (int.TryParse(detalhadaTextBox.Text, out int idAssist))
             {
                 bool aux = RegrasDeNegocio.ExisteAssistencia(idAssist, out auxAssist);
+                detalhadaTextBox.Clear();
             }
             else
                 Application.DoEvents();
-            MostrarAssistenciasListView = IO.ListViewAssistDetalhada(MostrarAssistenciasListView, auxAssist);
+            dataGridAssitencias = IO.DataGridAssistDetalhada(dataGridAssitencias, auxAssist);
+            detalhadaTextBox.KeyUp += detalhadaTextBox_KeyUp;
         }
     }
 }

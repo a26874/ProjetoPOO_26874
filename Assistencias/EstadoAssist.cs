@@ -116,7 +116,7 @@ namespace Assistencia
         /// <returns></returns>
         public string FichaEstadoAssistencia()
         {
-            return string.Format("Descricao:{0} |Ativo:{1} ", descEstadoAssistencia, servicoAtivo.ToString());
+            return string.Format("Descricao:{0} Ativo:{1} ", descEstadoAssistencia, servicoAtivo.ToString());
         }
         /// <summary>
         /// Para clonar objetos da classe.

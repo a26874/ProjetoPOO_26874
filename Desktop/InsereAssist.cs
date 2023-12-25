@@ -20,6 +20,7 @@ namespace Desktop
         #region ATRIBUTOS
         private string textoAtualSelecione = string.Empty;
         RegistoAssist auxRegisto = new RegistoAssist();
+        private MenuAssistencia menuAssist;
         #endregion
 
 
@@ -31,6 +32,16 @@ namespace Desktop
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Construtor por parametros.
+        /// </summary>
+        /// <param name="menuAssistForm">The menu assist form.</param>
+        public InsereAssist(MenuAssistencia menuAssistForm)
+        {
+            InitializeComponent();
+            menuAssist = menuAssistForm;
+            FormClosing += InsereAssist_FormClosing;
+        }
         /// <summary>
         /// Quando é aberto a janela do Inserir Assist, o que estiver dentro deste metodo inicia.
         /// </summary>
@@ -46,9 +57,11 @@ namespace Desktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void InsereAssist_Closed(object sender, EventArgs e)
+        private void InsereAssist_FormClosing(object sender, FormClosingEventArgs e)
         {
             DataHoraTimer.Stop();
+            menuAssist.Show();
+            return;
         }
 
         /// <summary>
@@ -132,7 +145,6 @@ namespace Desktop
             if (descricaoAssist != null)
                 assistenciaInserir.TipoAssistencia.Desc = descricaoAssist.Text;
 
-            //Assist a1 = new Assist(new DateTime(2023, 4, 20, 16, 40, 29), new TipoAssist("Esclarecimento duvidas", "Atendimento", 1, 500), new EstadoAssist("Ativo", true), 1874, 12);
 
             if (DateTime.TryParseExact(dataHoraAssist.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dataInserir))
             {

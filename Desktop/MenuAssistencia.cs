@@ -99,7 +99,7 @@ namespace Desktop
         private void InsereAssistButton_Click(object sender, EventArgs e)
         {
             Hide();
-            InsereAssist novaAdicao = new InsereAssist();
+            InsereAssist novaAdicao = new InsereAssist(this);
             novaAdicao.ShowDialog();
         }
         /// <summary>
@@ -110,8 +110,19 @@ namespace Desktop
         private void ApresentaAssistButton_Click(object sender, EventArgs e)
         {
             Hide();
-            ApresentarAssist novaApresenta = new ApresentarAssist();
+            ApresentarAssist novaApresenta = new ApresentarAssist(this);
             novaApresenta.ShowDialog();
+        }
+        /// <summary>
+        /// Abre o menu para remoção de uma assistência.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void RemoverAssistButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            RemoverAssist novaRemocao = new RemoverAssist(this);
+            novaRemocao.ShowDialog();
         }
     }
 }
