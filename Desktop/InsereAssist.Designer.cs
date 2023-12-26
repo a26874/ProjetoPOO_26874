@@ -56,7 +56,7 @@
             // InserirAssist
             // 
             this.InserirAssist.Location = new System.Drawing.Point(30, 314);
-            this.InserirAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InserirAssist.Margin = new System.Windows.Forms.Padding(2);
             this.InserirAssist.Name = "InserirAssist";
             this.InserirAssist.Size = new System.Drawing.Size(56, 19);
             this.InserirAssist.TabIndex = 5;
@@ -67,7 +67,7 @@
             // dataHoraAssist
             // 
             this.dataHoraAssist.Location = new System.Drawing.Point(165, 44);
-            this.dataHoraAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataHoraAssist.Margin = new System.Windows.Forms.Padding(2);
             this.dataHoraAssist.Name = "dataHoraAssist";
             this.dataHoraAssist.Size = new System.Drawing.Size(76, 20);
             this.dataHoraAssist.TabIndex = 0;
@@ -95,10 +95,10 @@
             // descricaoAssist
             // 
             this.descricaoAssist.Location = new System.Drawing.Point(268, 44);
-            this.descricaoAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.descricaoAssist.Margin = new System.Windows.Forms.Padding(2);
             this.descricaoAssist.Name = "descricaoAssist";
             this.descricaoAssist.Size = new System.Drawing.Size(76, 20);
-            this.descricaoAssist.TabIndex = 4;
+            this.descricaoAssist.TabIndex = 3;
             // 
             // NomeTipoAssistLabel
             // 
@@ -113,10 +113,10 @@
             // precoAssist
             // 
             this.precoAssist.Location = new System.Drawing.Point(268, 110);
-            this.precoAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.precoAssist.Margin = new System.Windows.Forms.Padding(2);
             this.precoAssist.Name = "precoAssist";
             this.precoAssist.Size = new System.Drawing.Size(76, 20);
-            this.precoAssist.TabIndex = 3;
+            this.precoAssist.TabIndex = 4;
             // 
             // PrecoAssistLabel
             // 
@@ -151,7 +151,7 @@
             // nifClienteAssist
             // 
             this.nifClienteAssist.Location = new System.Drawing.Point(165, 110);
-            this.nifClienteAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nifClienteAssist.Margin = new System.Windows.Forms.Padding(2);
             this.nifClienteAssist.Name = "nifClienteAssist";
             this.nifClienteAssist.Size = new System.Drawing.Size(76, 20);
             this.nifClienteAssist.TabIndex = 1;
@@ -159,7 +159,7 @@
             // idOperadorAssist
             // 
             this.idOperadorAssist.Location = new System.Drawing.Point(165, 176);
-            this.idOperadorAssist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.idOperadorAssist.Margin = new System.Windows.Forms.Padding(2);
             this.idOperadorAssist.Name = "idOperadorAssist";
             this.idOperadorAssist.Size = new System.Drawing.Size(76, 20);
             this.idOperadorAssist.TabIndex = 2;
@@ -252,7 +252,7 @@
             this.Controls.Add(this.InserirAssist);
             this.Controls.Add(this.menuTipoAssistenciaButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "InsereAssist";
             this.Text = "Inserir Assistência";
             this.Load += new System.EventHandler(this.InsereAssist_Load);

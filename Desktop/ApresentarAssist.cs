@@ -112,7 +112,7 @@ namespace Desktop
             else
                 Application.DoEvents();
             dataGridAssitencias = IO.DataGridAssistDetalhada(dataGridAssitencias, auxAssist);
-            detalhadaTextBox.KeyUp += detalhadaTextBox_KeyUp;
+            //detalhadaTextBox.KeyUp += detalhadaTextBox_KeyUp;
         }
     }
 }

@@ -7,6 +7,7 @@
 *	<description></description>
 **/
 using System;
+using System.ComponentModel;
 using Assistencia;
 using Outros;
 
@@ -58,6 +59,10 @@ namespace ObjetosNegocio
             estadoAssistencia = new EstadoAssist();
             ClienteNIF = -1;
             operadorId = -1;
+            cliente = new Cliente();
+            operador = new Operador();
+            solucao = new ProblemasCon();
+            classificacao = new Avaliacao();
         }
         /// <summary>
         /// Construtor com todos os parametros.

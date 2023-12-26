@@ -6,7 +6,6 @@ using RegrasNegocio;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Desktop
@@ -106,13 +105,14 @@ namespace Desktop
         {
             Assist assistenciaInserir = new Assist();
 
-            //Dicionários, foi definido como a key dele uma string que neste caso vai ser
-            //o respetivo nome do serviço a executar
+            RegistoAssist auxAssists = new RegistoAssist();
+            assistenciaInserir.Id = auxAssists.ObterAssistencias.Count+1;
+            //Dicionários, foi definido como a key dele o objeto TipoAssist 
             //De seguida é especificado o nome do Tipo e qual o seu id.
-            Dictionary<TipoAssist, (string nomeTipo, int id)> mapaMenuTipoAssistTeste = new Dictionary<TipoAssist, (string nomeTipo, int id)>();
+            Dictionary<TipoAssist, (string nomeTipo, int id)> mapaMenuTipoAssist = new Dictionary<TipoAssist, (string nomeTipo, int id)>();
 
 
-            mapaMenuTipoAssistTeste = CriarDicionarioTipoAssist();
+            mapaMenuTipoAssist = CriarDicionarioTipoAssist();
 
             //Obter index do item para verificar se existe no dicionario
             ToolStripMenuItem posicaoItem = ObterIdToolStripMenu(); 
@@ -121,7 +121,7 @@ namespace Desktop
 
             if (textoAtualSelecione != string.Empty)
             {
-                if (mapaMenuTipoAssistTeste.ContainsValue((posicaoItem.Text, indexPosicaoItem)))
+                if (mapaMenuTipoAssist.ContainsValue((posicaoItem.Text, indexPosicaoItem)))
                 {
                     assistenciaInserir.TipoAssistencia.NomeTipo = posicaoItem.Text;
                     assistenciaInserir.TipoAssistencia.Id = indexPosicaoItem;
@@ -161,8 +161,7 @@ namespace Desktop
                 if (aux)
                 {
                     MessageBox.Show("Assistencia inserida com sucesso.");
-                    MenuAssistencia returnMain = new MenuAssistencia();
-                    returnMain.Show();
+                    menuAssist.Show();
                     DataHoraTimer.Stop();
                     Close();
                 }

@@ -378,6 +378,19 @@ namespace RegrasNegocio
             }
         }
         /// <summary>
+        /// Verifica se existe um cliente.
+        /// </summary>
+        /// <param name="nifCliente">The nif cliente.</param>
+        /// <param name="auxCliente">The aux cliente.</param>
+        /// <returns></returns>
+        public static bool ExisteCliente(int nifCliente, out Cliente auxCliente)
+        {
+            bool aux=RegistoClientes.ExisteCliente(nifCliente,out auxCliente);
+            if (aux)
+                return true;
+            return false;
+        }
+        /// <summary>
         /// Mostra todos os clientes existentes.
         /// </summary>
         public static List<Cliente> MostrarTodosClientes()
@@ -478,6 +491,19 @@ namespace RegrasNegocio
                 listaOperadores.Add(clone);
             }
             return listaOperadores;
+        }
+        /// <summary>
+        /// Verifica se existe um operador.
+        /// </summary>
+        /// <param name="idOperador">The identifier operador.</param>
+        /// <param name="auxOperador">The aux operador.</param>
+        /// <returns></returns>
+        public static bool ExisteOperador(int idOperador, out Operador auxOperador)
+        {
+            bool aux = RegistoOperadores.ExisteOperador(idOperador, out auxOperador);
+            if (aux)
+                return true;
+            return false;
         }
         /// <summary>
         /// Grava toda a informação acerca de operadores.

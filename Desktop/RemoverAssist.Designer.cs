@@ -30,6 +30,7 @@
         {
             this.RemoverAssistLabel = new System.Windows.Forms.Label();
             this.textBoxRemoverAssist = new System.Windows.Forms.TextBox();
+            this.RemoverAssistButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // RemoverAssistLabel
@@ -47,13 +48,23 @@
             this.textBoxRemoverAssist.Name = "textBoxRemoverAssist";
             this.textBoxRemoverAssist.Size = new System.Drawing.Size(100, 20);
             this.textBoxRemoverAssist.TabIndex = 1;
-            this.textBoxRemoverAssist.TextChanged += new System.EventHandler(this.textBoxRemoverAssist_TextChanged);
+            // 
+            // RemoverAssistButton
+            // 
+            this.RemoverAssistButton.Location = new System.Drawing.Point(68, 129);
+            this.RemoverAssistButton.Name = "RemoverAssistButton";
+            this.RemoverAssistButton.Size = new System.Drawing.Size(75, 23);
+            this.RemoverAssistButton.TabIndex = 2;
+            this.RemoverAssistButton.Text = "Remover";
+            this.RemoverAssistButton.UseVisualStyleBackColor = true;
+            this.RemoverAssistButton.Click += new System.EventHandler(this.RemoverAssistButton_Click);
             // 
             // RemoverAssist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(220, 183);
+            this.Controls.Add(this.RemoverAssistButton);
             this.Controls.Add(this.textBoxRemoverAssist);
             this.Controls.Add(this.RemoverAssistLabel);
             this.Name = "RemoverAssist";
@@ -67,5 +78,6 @@
 
         private System.Windows.Forms.Label RemoverAssistLabel;
         private System.Windows.Forms.TextBox textBoxRemoverAssist;
+        private System.Windows.Forms.Button RemoverAssistButton;
     }
 }

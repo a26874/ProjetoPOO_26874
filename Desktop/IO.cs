@@ -460,8 +460,14 @@ namespace Desktop
                 dadosLinhaAux[countAssist++] = a.EstadoAssistencia.ToString();
                 dadosLinhaAux[countAssist++] = a.ClienteNIF.ToString();
                 dadosLinhaAux[countAssist++] = a.OperadorId.ToString();
-                dadosLinhaAux[countAssist++] = a.Cliente.ToString();
-                dadosLinhaAux[countAssist++] = a.Operador.ToString();
+                if (a.Cliente.NIF != -1)
+                    dadosLinhaAux[countAssist++] = a.Cliente.ToString();
+                else
+                    dadosLinhaAux[countAssist++] = "Não contém cliente !!";
+                if (a.Operador.Id != -1)
+                    dadosLinhaAux[countAssist++] = a.Operador.ToString();
+                else
+                    dadosLinhaAux[countAssist++] = "Não contém operador !!";
                 if (a.Classificacao.Pontuacao != -1)
                     dadosLinhaAux[countAssist++] = a.Classificacao.ToString();
                 else
