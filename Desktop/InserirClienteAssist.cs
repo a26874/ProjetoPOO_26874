@@ -1,22 +1,32 @@
-﻿using ObjetosNegocio;
+﻿/*
+*	<copyright file="InserirClienteAssist" company="IPCA">
+*	</copyright>
+* 	<author>Marco Macedo</author>
+*	<contact>a26874@alunos.ipca.pt</contact>
+*   <date>2023 12/26/2023 9:52:01 PM</date>
+*	<description></description>
+**/
+
+using ObjetosNegocio;
 using RegrasNegocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Desktop
 {
+    /// <summary>
+    /// Classe para um form de inserir um cliente.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class InserirClienteAssist : Form
     {
         #region ATRIBUTOS
         private MenuAssistencia menuAssist;
         #endregion
+
+        #region COMPORTAMENTOS
+
+        #region CONSTRUTORES
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -24,14 +34,31 @@ namespace Desktop
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Construtor com parametros.
+        /// </summary>
+        /// <param name="menuAssistForm">The menu assist form.</param>
         public InserirClienteAssist(MenuAssistencia menuAssistForm)
         {
             InitializeComponent();
             menuAssist = menuAssistForm;
             FormClosing += InserirClienteAssist_FormClosing;
         }
+        #endregion
 
+        #region PROPRIEDADES
+
+        #endregion
+
+        #region OPERADORES
+
+        #endregion
+
+        #region OVERRIDES
+
+        #endregion
+
+        #region OUTROS METODOS
         /// <summary>
         /// Ao fechar a janela, volta atrás
         /// </summary>
@@ -73,5 +100,9 @@ namespace Desktop
             else
                 MessageBox.Show("Erro ao inserir o cliente.");
         }
+        #endregion
+
+        #endregion
+
     }
 }

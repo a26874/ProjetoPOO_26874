@@ -1,18 +1,34 @@
-﻿using ObjetosNegocio;
+﻿/*
+*	<copyright file="ApresentarAssist" company="IPCA">
+*	</copyright>
+* 	<author>Marco Macedo</author>
+*	<contact>a26874@alunos.ipca.pt</contact>
+*   <date>2023 12/23/2023 9:23:20 PM</date>
+*	<description></description>
+**/
+
+
+using ObjetosNegocio;
 using RegrasNegocio;
 using System;
 using System.Windows.Forms;
 namespace Desktop
 {
+    /// <summary>
+    /// Classe para um form de apresentar assistências
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class ApresentarAssist : Form
     {
 
         #region ATRIBUTOS
         private bool enterCarregado = false;
-        private bool enterSubiu = false;
         private MenuAssistencia menuAssist;
         #endregion
 
+        #region COMPORTAMENTO
+
+        #region CONSTRUTORES
         /// <summary>
         /// Construtor por defeito
         /// </summary>
@@ -30,6 +46,22 @@ namespace Desktop
             menuAssist = menuAssistForm;
             FormClosing += ApresentarAssist_FormClosing;
         }
+        #endregion
+
+        #region PROPRIEDADES
+
+        #endregion
+
+        #region OPERADORES
+
+        #endregion
+
+        #region OVERRIDES
+
+        #endregion
+
+        #region OUTROS METODOS
+
         /// <summary>
         /// Verifica quando este form é fechado.
         /// </summary>
@@ -80,16 +112,6 @@ namespace Desktop
                 enterCarregado = true;
         }
         /// <summary>
-        /// Verifica quando a tecla enter deixou de ser pressionada.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
-        private void detalhadaTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                enterSubiu = true;
-        }
-        /// <summary>
         /// Ao clicar no botão Detalhada, a partir do Id inserido mostra a assistência caso exista, toda detalhada.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -112,7 +134,9 @@ namespace Desktop
             else
                 Application.DoEvents();
             dataGridAssitencias = IO.DataGridAssistDetalhada(dataGridAssitencias, auxAssist);
-            //detalhadaTextBox.KeyUp += detalhadaTextBox_KeyUp;
         }
+        #endregion
+
+        #endregion
     }
 }

@@ -1,4 +1,13 @@
-﻿using Assistencia;
+﻿/*
+*	<copyright file="InsereAssist" company="IPCA">
+*	</copyright>
+* 	<author>Marco Macedo</author>
+*	<contact>a26874@alunos.ipca.pt</contact>
+*   <date>2023 12/21/2023 12:25:03 AM</date>
+*	<description></description>
+**/
+
+using Assistencia;
 using Dados;
 using Excecoes;
 using ObjetosNegocio;
@@ -22,7 +31,9 @@ namespace Desktop
         private MenuAssistencia menuAssist;
         #endregion
 
+        #region COMPORTAMENTOS
 
+        #region CONSTRUTORES
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -30,7 +41,6 @@ namespace Desktop
         {
             InitializeComponent();
         }
-
         /// <summary>
         /// Construtor por parametros.
         /// </summary>
@@ -41,6 +51,24 @@ namespace Desktop
             menuAssist = menuAssistForm;
             FormClosing += InsereAssist_FormClosing;
         }
+
+        #endregion
+
+        #region PROPRIEDADES
+
+        #endregion
+
+        #region OPERADORES
+
+        #endregion
+
+        #region OVERRIDES
+
+        #endregion
+
+        #region OUTROS METODOS
+
+        
         /// <summary>
         /// Quando é aberto a janela do Inserir Assist, o que estiver dentro deste metodo inicia.
         /// </summary>
@@ -238,5 +266,8 @@ namespace Desktop
         {
             DataHoraLabel.Text = DateTime.Now.ToString();
         }
+        #endregion
+
+        #endregion
     }
 }

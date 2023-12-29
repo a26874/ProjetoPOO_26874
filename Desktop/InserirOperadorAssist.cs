@@ -1,15 +1,34 @@
-﻿using ObjetosNegocio;
+﻿/*
+*	<copyright file="InserirOperadorAssist" company="IPCA">
+*	</copyright>
+* 	<author>Marco Macedo</author>
+*	<contact>a26874@alunos.ipca.pt</contact>
+*   <date>2023 12/23/2023 10:53:41 PM</date>
+*	<description></description>
+**/
+
+
+using ObjetosNegocio;
 using RegrasNegocio;
 using System.Windows.Forms;
 
 namespace Desktop
 {
+    /// <summary>
+    /// Classe para um form de inserir operador.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class InserirOperadorAssist : Form
     {
 
         #region ATRIBUTOS
         private MenuAssistencia menuAssist;
         #endregion
+
+        #region COMPORTAMENTOS
+
+
+        #region CONSTRUTORES
         /// <summary>
         /// Construtor por defeito.
         /// </summary>
@@ -17,7 +36,6 @@ namespace Desktop
         {
             InitializeComponent();
         }
-
         /// <summary>
         /// Construtor com parametros.
         /// </summary>
@@ -28,6 +46,21 @@ namespace Desktop
             menuAssist = menuAssistForm;
             FormClosing += InserirOperadorAssist_FormClosing;
         }
+        #endregion
+
+        #region PROPRIEDADES
+
+        #endregion
+
+        #region OPERADORES
+
+        #endregion
+
+        #region OVERRIDES
+
+        #endregion
+
+        #region OUTROS METODOS
 
         /// <summary>
         /// Ao fechar a janela volta ao menu de assistências.
@@ -69,5 +102,8 @@ namespace Desktop
             else
                 MessageBox.Show("Erro ao inserir o operador.");
         }
+        #endregion
+
+        #endregion
     }
 }

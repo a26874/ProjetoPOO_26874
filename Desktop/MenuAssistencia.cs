@@ -1,4 +1,13 @@
-﻿using Excecoes;
+﻿/*
+*	<copyright file="MenuAssistencia" company="IPCA">
+*	</copyright>
+* 	<author>Marco Macedo</author>
+*	<contact>a26874@alunos.ipca.pt</contact>
+*   <date>2023 12/23/2023 9:23:20 PM</date>
+*	<description></description>
+**/
+
+using Excecoes;
 using RegrasNegocio;
 using System;
 using System.IO;
@@ -6,8 +15,20 @@ using System.Windows.Forms;
 
 namespace Desktop
 {
+    /// <summary>
+    /// Classe para um menu de assistência.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MenuAssistencia : Form
     {
+
+        #region ATRIBUTOS
+
+        #endregion
+
+        #region COMPORTAMENTOS
+
+        #region CONSTRUTORES 
         /// <summary>
         /// Construtor estático.
         /// </summary>
@@ -23,6 +44,21 @@ namespace Desktop
             InitializeComponent();
             FormClosing += MenuAssistencia_FormClosing;
         }
+        #endregion
+
+        #region PROPRIEDADES
+
+        #endregion
+
+        #region OPERADORES
+
+        #endregion
+
+        #region OVERRIDES
+
+        #endregion
+
+        #region OUTROS METODOS
         /// <summary>
         /// Ao fechar a janela, executa metodos.
         /// </summary>
@@ -41,10 +77,8 @@ namespace Desktop
         /// <param name="e"></param>
         private void MenuAssistencia_Load(object sender, EventArgs e)
         {
-            timerDataHora.Start();   
+            timerDataHora.Start();
         }
-
-       
         /// <summary>
         /// Grava a informação em ficheiros.
         /// </summary>
@@ -110,7 +144,6 @@ namespace Desktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void InsereAssistButton_Click(object sender, EventArgs e)
         {
             Hide();
@@ -173,5 +206,8 @@ namespace Desktop
             InserirOperadorAssist novoOperador = new InserirOperadorAssist(this);
             novoOperador.ShowDialog();
         }
+        #endregion
+
+        #endregion
     }
 }

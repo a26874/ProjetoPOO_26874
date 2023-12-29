@@ -1,16 +1,33 @@
-﻿using ObjetosNegocio;
+﻿/*
+*	<copyright file="RemoverAssist" company="IPCA">
+*	</copyright>
+* 	<author>Marco Macedo</author>
+*	<contact>a26874@alunos.ipca.pt</contact>
+*   <date>2023 12/25/2023 1:30:01 AM</date>
+*	<description></description>
+**/
+
+using ObjetosNegocio;
 using RegrasNegocio;
 using System;
 using System.Windows.Forms;
 
 namespace Desktop
 {
+    /// <summary>
+    /// Classe para um form de remover assistência.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class RemoverAssist : Form
     {
 
         #region ATRIBUTOS   
         private MenuAssistencia menuAssist;
-        #endregion        
+        #endregion
+
+        #region COMPORTAMENTOS
+
+        #region CONSTRUTORES
         /// <summary>
         /// Construtor por defeito
         /// </summary>
@@ -29,6 +46,21 @@ namespace Desktop
             menuAssist = menuAssistForm;
             FormClosing += RemoverAssist_FormClosing;
         }
+        #endregion
+
+        #region PROPRIEDADES
+
+        #endregion
+
+        #region OPERADORES
+
+        #endregion
+
+        #region OVERRIDES
+
+        #endregion
+
+        #region OUTROS METODOS
 
         /// <summary>
         /// Ao fechar a janela de remover assistências volta ao menu.
@@ -40,7 +72,6 @@ namespace Desktop
             menuAssist.Show();
             return;
         }
-
 
         /// <summary>
         /// Remove a assistência caso ela exista.
@@ -66,5 +97,8 @@ namespace Desktop
             else
                 MessageBox.Show($"Não existe assistência com o ID:{idAssist}");
         }
+        #endregion
+
+        #endregion
     }
 }
