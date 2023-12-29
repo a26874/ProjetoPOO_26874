@@ -16,6 +16,9 @@ using System.Windows.Forms;
 
 namespace Desktop
 {
+    /// <summary>
+    /// Classe para Input Output de dados
+    /// </summary>
     public class IO
     {
         #region ATRIBUTOS
